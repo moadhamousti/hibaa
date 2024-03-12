@@ -2,6 +2,8 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { db } from "./db";
 import bcrypt from "bcrypt"; // Assuming bcrypt for password hashing
+import GoogleProvider from "next-auth/providers/google"
+
 
 export const authOptions = {
   adapter: PrismaAdapter(db),
@@ -31,13 +33,15 @@ export const authOptions = {
           if (!existingUser) {
             return null; // User not found
           }
-
-          const passwordMatch = await bcrypt.compare(
-            credentials.password,
-            existingUser.password
-          );
-          if (!passwordMatch) {
-            return null; // Incorrect password
+          
+          if(existingUser.password){
+            const passwordMatch = await bcrypt.compare(
+              credentials.password,
+              existingUser.password
+            );
+            if (!passwordMatch) {
+              return null; // Incorrect password
+            }
           }
 
           return {
@@ -50,6 +54,10 @@ export const authOptions = {
           return null; // Handle database or other errors
         }
       },
+    }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   callbacks: {

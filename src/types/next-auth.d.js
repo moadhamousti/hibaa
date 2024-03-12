@@ -7,7 +7,7 @@ export const authOptions = {
     user(session, user) {
       return {
         id: session.user.id,
-        username: session.user.username, // Access username from session.user
+        username: session.user.username || null, 
         // ... other user properties you need
       };
     },
