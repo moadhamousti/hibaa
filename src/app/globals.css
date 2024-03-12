@@ -34,6 +34,10 @@
  
     --radius: 0.5rem;
   }
+
+  .responsiveMenu {
+    @apply absolute bg-[color:var(--bg)] h-[calc(100vh_-_100px)] w-full flex flex-col items-center justify-center gap-[50px] text-4xl z-[999] left-0 top-[100px];
+  }
  
   .dark {
     --background: 222.2 84% 4.9%;

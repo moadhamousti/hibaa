@@ -1,0 +1,77 @@
+.link {
+    cursor: pointer;
+  }
+  
+   .burger {
+    width: 24px;
+    height: 20px;
+    flex-direction: column;
+    margin-top: 8px;
+    justify-content: space-between;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .line {
+    width: 100%;
+    height: 2px;
+    background-color: var(--textColor);
+  }
+  
+  /* .responsiveMenu{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    background-color: var(--bg);
+    height: calc(100vh - 100px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    font-size: 36px;
+    z-index: 999;
+  } */
+
+  .button {
+    background-color: var(--btnBlue); /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+  
+  /* Hover effect */
+  .button:hover {
+    background-color:var(--btnBlueHover); /* Darker green */
+  }
+  
+  /* Active/focus effect */
+  .active, .button:focus {
+    outline: none;
+    background-color: var(--btnBlueFocus); /* Dark green */
+  }
+  
+  @media screen and (max-width: 640px) {
+    .burger {
+      display: flex;
+    }
+  
+    .link{
+      display: none;
+    }
+
+    .button{
+      display: none;
+    }
+  } 
