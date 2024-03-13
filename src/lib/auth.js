@@ -33,6 +33,12 @@ export const authOptions = {
           if (!existingUser) {
             return null; // User not found
           }
+
+          // if (!existingUser.active) {
+          //   throw new Error('User is not active'); 
+          // }
+
+          
           
           if(existingUser.password){
             const passwordMatch = await bcrypt.compare(

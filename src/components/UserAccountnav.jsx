@@ -1,21 +1,28 @@
 "use client";
 
 import { signOut } from "next-auth/react";
-import { Button, buttonVariants } from "./ui/button";
 import { Link } from "lucide-react";
+import { Button } from "@mui/material";
 
 const UserAccountnav = () => {
   return (
-    <div className="gap-0 pl-3">
-      <Button className={buttonVariants()} href='/create-post'>Publish</Button>
-      <Button 
-        variant="destructive" 
-        onClick={() => signOut({
-          redirect: true,
-          callbackUrl:`${window.location.origin}/`
-        })}>Log Out
-      </Button>
-      
+    <div className=" flex gap-4">
+        <Button
+          variant="contained"
+          href="/create-post"
+          
+        >
+          Publish
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => signOut({
+            redirect: true,
+            callbackUrl: `${window.location.origin}/`
+          })}
+        >
+          Log Out
+        </Button>
     </div>
   )
 }

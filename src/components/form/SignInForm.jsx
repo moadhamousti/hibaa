@@ -19,6 +19,9 @@ import Link from 'next/link';
 import GoogleSignInButton from '../GoogleSignInButton';
 import { useRouter } from 'next/navigation';
 import {useToast} from "@/components/ui/use-toast"
+import imageFit from '../../../public/Blank.png'
+import Image from 'next/image';
+import SignUpButton from '../SignInButton';
 
 const FormSchema = z.object({
   email: z.string().min(1, 'Email is required').email('Invalid email'),
@@ -58,8 +61,18 @@ const SignInForm = () => {
   };
 
   return (
-    <Form {...form}>
+    <div className='flex flex-col lg:flex-row min-h-screen'>
+      <div className="lg:w-1/2 max-h-screen hidden lg:block">
+        <Image src={imageFit} alt="Your Image" />
+      </div>
+      <div className="lg:w-1/2 p-8">
+      <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
+          <div className="text-center mb-4">
+            <h1 className="text-4xl font-bold		">Welcome!</h1>
+            <br />
+            <h2 className="text-lg">Please enter your details to create your Account</h2>
+          </div>
         <div className='space-y-2'>
           <FormField
             control={form.control}
@@ -92,9 +105,10 @@ const SignInForm = () => {
             )}
           />
         </div>
-        <Button className='w-full mt-6' type='submit'>
+        {/* <Button className='w-full mt-6' type='submit'>
           Sign in
-        </Button>
+        </Button> */}
+        <SignUpButton/>
       </form>
       <div className='mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400'>
         or
@@ -107,6 +121,8 @@ const SignInForm = () => {
         </Link>
       </p>
     </Form>
+      </div>
+    </div>
   );
 };
 

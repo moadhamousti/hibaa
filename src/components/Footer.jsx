@@ -16,12 +16,13 @@ const Footer = () => {
         </div>
 
         {/* Top Middle Text */}
-        <div className="flex-grow text-center">
-          <p className="text-sm text-gray-500">© All Rights Reserved, {new Date().getFullYear()}</p>
+        <div className="flex-grow text-center lg:text-center">
+          <p className="text-sm text-gray-500 lg:hidden">© All Rights Reserved, {new Date().getFullYear()}</p>
+          <p className="text-sm text-gray-500 hidden lg:block sm:text[15px]">© All Rights Reserved, 2024</p>
         </div>
 
         {/* Top Right Icons (replace with your SVG imports) */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 lg:justify-end">
           <Link href="/">
               <Image src={FacebookIcon} alt="Facebook Icon" width={24} height={24} />
           </Link>
@@ -38,34 +39,27 @@ const Footer = () => {
       <div className="my-8 border-t border-gray-200"></div>
 
       {/* Links Section (Bottom) */}
-      <div className="container mx-auto grid sm:grid-cols-5 md:grid-cols-5 gap-4">
+      <div className="container mx-auto flex flex-wrap justify-between items-center gap-4">
         <div className="flex flex-col gap-4 font-light">
           <span className="font-bold">Links</span>
           <Link href="/">Homepage</Link>
           <Link href="/">Blog</Link>
+          <Link href="/">Homepage</Link>
+          <Link href="/">Blog</Link>
+        </div>
+        <div className="flex flex-col gap-4 font-light">
+          <span className="font-bold">Community</span>
+          <Link href="/">About</Link>
+          <Link href="/">Contact</Link>
           <Link href="/">About</Link>
           <Link href="/">Contact</Link>
         </div>
         <div className="flex flex-col gap-4 font-light">
-          <span className="font-bold">Community</span>
+          <span className="font-bold">Social</span>
           <Link href="/">Support</Link>
           <Link href="/">Whats New</Link>
-          <Link href="/">Sponsors</Link>
-          <Link href="/">Policy</Link>
-        </div>
-        <div className="flex flex-col gap-4 font-light">
-          <span className="font-bold">Social</span>
-          <Link href="/">Facebook</Link>
-          <Link href="/">Twitter</Link>
-          <Link href="/">Instagram</Link>
-          <Link href="/">Youtube</Link>
-        </div>
-        <div className="flex flex-col gap-4 font-light">
-          <span className="font-bold">Support</span>
-          <Link href="/">Support</Link>
-          <Link href="/">Be a sponsor</Link>
-          <Link href="/">Support</Link>
-          <Link href="/">Youtube</Link>
+          <Link href="/">About</Link>
+          <Link href="/">Contact</Link>
         </div>
       </div>
     </footer>

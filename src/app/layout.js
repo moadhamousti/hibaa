@@ -16,11 +16,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body >
         <Provider>
-          <main className='min-h-screen bg-bg text-textColor'>
-            <div className='max-w-screen-xl mx-auto px-8'>
-              <Navbar />
+          <main className=''>
+            <div className=''>
+              {/* <Navbar /> */}
                 {children}
               {/* <Footer/> */}
             </div>
@@ -29,5 +29,6 @@ export default function RootLayout({ children }) {
         </Provider>
       </body>
     </html>
+    // className={inter.className}
   );
 }
