@@ -1,42 +1,55 @@
+
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@mui/material';
 import Link from 'next/link';
-import image from '../../public/p1.jpeg'
+import { Button } from '@mui/material';
+import CallMadeIcon from '@mui/icons-material/CallMade';
+
+
 const Landing = () => {
   return (
-    <div className='mt-6'>
-      <div className='mt-16 flex flex-col lg:flex-row items-center gap-20'>
-        <div className='flex-1 flex flex-col gap-6'>
-          <h1 className='font-black text-6xl text-center lg:text-left'>Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
-          <p className='mt-7 softTextColor font-light leading-7 text-center lg:text-left'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam tenetur tempore
-            sint nemo dignissimos facere enim debitis, 
-            minima totam, corrupti vitae ad ducimus 
-            commodi fugit labore non natus pariatur aliquid.
-          </p>
-          <Button
-              href="/feed"
-              variant="contained"
-              sx={{
-                backgroundColor: '#569437',
-                color: 'white',
-                textTransform: 'none',
-                width: '150px',
-                '&:hover': {
-                  backgroundColor: '#356120'
-                }
-              }}
-              className=''
-            >
-              Explore
-            </Button>
-        </div>
-        <div className='flex-1 h-[300px] lg:h-[500px] relative'>
-          <Image src={image} alt='' layout="fill" objectFit="cover" />
+    <div className="mt-8 relative  w-3/3 rounded-3xl overflow-hidden ">
+      <div className="bg-[url('/give.jpeg')] h-[739px] w-3/3 bg-cover md:h-[239]">
+        <div className="absolute rounded-3xl  bg-[#cbc2c252] bottom-0 ">
+          <div className=' p-8'>
+          <div className='items-end flex justify-start '>
+            <div className='w-90 '>
+            <h2 className=' text-white text-2xl lg:text-5xl font-semibold  truncate text-wrap align-baseline sm:text-3xl '>
+              JOIN US IN SHARING MEDICAL SUPPLIES AND EQUIPMENT
+            </h2>
+          </div>
+          {/* <div className="">
+
+              <Image src="/ArrowDown.svg" alt="Arrow Down" className='w-8 h-auto items-end' />
+          </div> */}
+          </div>
+              <p className='text-white text-lg lg:text-2xl md:text-1xl mt-6'>
+                We are <span className='font-extrabold '> Heba&aTaa</span>, providing medical supplies and equipment.
+              </p>
+              <div className='mt-7'>
+                <Button
+                    href="/feed"
+                    variant="outlined"
+                    sx={{
+                      color: 'white',
+                      borderColor: 'white',
+                      textTransform: 'none',
+                      borderRadius:'50px',
+                      '&:hover': {
+                        backgroundColor: '#b5b3b3',
+                        borderColor: 'white',
+                      }
+                  }}
+                  
+                  endIcon={<CallMadeIcon />}
+                >
+                  GET STARTED
+                </Button>
+              </div>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

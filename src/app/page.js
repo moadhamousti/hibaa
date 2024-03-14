@@ -22,14 +22,20 @@ export default async function Home () {
         <About/>
         <Features/>
         <Questions/>
-        <Newsletter/>
+        {/* <Footer/> */}
+
+      </div>
+      <Newsletter/>
+      <div className='max-w-screen-xl mx-auto px-8'>
         <Footer/>
-        {/* <h2>Client Session</h2>
-        <User/>
-        <h2>Server Session</h2>
-        {JSON.stringify(session)} */}
+
       </div>
     </div>
   )
     
 }
+
+        {/* <h2>Client Session</h2>
+        <User/>
+        <h2>Server Session</h2>
+        {JSON.stringify(session)} */}

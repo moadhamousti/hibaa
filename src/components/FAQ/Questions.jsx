@@ -35,7 +35,7 @@ const Questions = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id='faq'>
       <div className={styles.title}>
         <b>FAQs</b>
       </div>

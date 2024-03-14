@@ -3,6 +3,7 @@
 import { signOut } from "next-auth/react";
 import { Link } from "lucide-react";
 import { Button } from "@mui/material";
+import AccountMenu from "./AccountMenu";
 
 const UserAccountnav = () => {
   return (
@@ -14,6 +15,7 @@ const UserAccountnav = () => {
         >
           Publish
         </Button>
+        {/* <AccountMenu /> */}
         <Button
           variant="outlined"
           onClick={() => signOut({

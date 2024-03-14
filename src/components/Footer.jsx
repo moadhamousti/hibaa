@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-white w-full py-8 px-4 sm:px-6 md:px-8 lg:px-10">
+    <footer className="bg-white w-full py-8 px-4 sm:px-6 md:px-8 lg:px-10" id='contact'>
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         {/* Charity Link (Top Left) */}
         <div className="mr-4">
@@ -17,7 +17,7 @@ const Footer = () => {
 
         {/* Top Middle Text */}
         <div className="flex-grow text-center lg:text-center">
-          <p className="text-sm text-gray-500 lg:hidden">© All Rights Reserved, {new Date().getFullYear()}</p>
+          <p className="text-sm text-gray-500 hidden lg:hidden">© All Rights Reserved, {new Date().getFullYear()}</p>
           <p className="text-sm text-gray-500 hidden lg:block sm:text[15px]">© All Rights Reserved, 2024</p>
         </div>
 

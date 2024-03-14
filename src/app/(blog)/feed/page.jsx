@@ -15,9 +15,12 @@ const page = async () => {
     <>
     <PageLayout>
       <Navbar />
-        <div className='flex gap-[50px]'>
-          <CardList/>
+      <div className='px-4 pt-10 text-center'>
+        <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
+      </div>
+        <div className='pt-8 flex gap-[200px]'>
           <Menu/>
+          <CardList/>
         </div>
     </PageLayout>
     

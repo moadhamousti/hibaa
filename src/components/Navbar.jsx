@@ -10,16 +10,19 @@ import LoginIcon from '@mui/icons-material/Login';
 import CallMadeIcon from '@mui/icons-material/CallMade';
 const Navbar = async () => {
   const session = await getServerSession(authOptions);
+  const handleClick = (sectionId) => {
+    smoothScrollTo(sectionId);
+  };
   return (
     <div className='flex items-center justify-between h-24'>
           <div className="text-left text-3xl font-bold lg:text-3xl md:text-x2 text-softTextColor ">
             <Link href='/'>Charity</Link>
           </div>
-          <div className="hidden sm:flex items-center gap-[20px] lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
-            <Link href="" className="text-[20px]">• What We Do</Link>
-            <Link href="" className="text-[20px]">• Features</Link>
-            <Link href="" className="text-[20px]">• FAQ</Link> 
-            <Link href="" className="text-[20px]">• Contact</Link>     
+          <div className="hidden sm:flex items-center gap-[12px] lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
+            <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
+            <Link href="/#features" className="text-[19px]">• Features</Link>
+            <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
+            <Link href="/#contact" className="text-[19px]">• Contact</Link>     
           </div>  
 
         {/* <AuthLinks/> */}
