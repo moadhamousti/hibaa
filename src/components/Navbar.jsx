@@ -68,11 +68,13 @@ export default Navbar;
 // import Link from 'next/link';
 // import { useState } from 'react';
 // import { BiMenu } from 'react-icons/bi';
-// import { Button } from './ui/button';
 // import { signOut, useSession } from 'next-auth/react'; // Import useSession
 // import LoginIcon from '@mui/icons-material/Login';
 // import MenuIcon from '@mui/icons-material/Menu';
+// import AccountMenu from './AccountMenu';
 // // Assuming you have styles and LoginIcon imported
+// import CallMadeIcon from '@mui/icons-material/CallMade';
+// import { Button } from '@mui/material';
 
 // const Navbar = () => {
 //   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
@@ -88,38 +90,59 @@ export default Navbar;
 //         <Link href='/'>Charity</Link>
 //       </div>
 //       <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
-//         <Link href="" className="text-xl">What We Do</Link>
-//         <Link href="" className="text-xl">Features</Link>
-//         <Link href="" className="text-xl">FAQ</Link> 
-//         <Link href="" className="text-xl">Contact</Link>     
+//         <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
+//           <Link href="/#features" className="text-[19px]">• Features</Link>
+//           <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
+//           <Link href="/#contact" className="text-[19px]">• Contact</Link>     
 //       </div>
 
 //       <div className='flex gap-4'>
 //       {status === "unauthenticated" ? (
 //         // <Button href="/login" ></Button>
-//         <Link className='cursor-pointer md:inline-block hidden' href='/sign-in'>
-//           <Button
-//             variant="contained"
-//             sx={{
-//               backgroundColor: '#569437',
-//               color: 'white',
-//               textTransform: 'none',
-//               '&:hover': {
-//                 backgroundColor: '#356120'
-//               }
-//             }}
-//             // endIcon={<LoginIcon />}
-//           >
-//             Log in
-//           </Button>
-//         </Link> 
+//         <Button
+//         href="/sign-in"
+//         variant="outlined"
+//         sx={{
+//           color: 'black',
+//           borderColor: 'black',
+//           textTransform: 'none',
+//           borderRadius:'50px',
+//           '&:hover': {
+//             backgroundColor: '#b5b3b3',
+//             borderColor: 'black',
+//           }
+//         }}
+        
+//         endIcon={<CallMadeIcon />}
+//       >
+//         GET STARTED
+//       </Button>
 //         // <Link href="/login" >Login</Link>
 
 
 //       ):(
 //         <>
-//         <Link href="/post" className='cursor-pointer md:inline-block hidden'>Post</Link>
-//         <span className='cursor-pointer md:inline-block hidden' onClick={signOut}>Logout</span>
+//         {/* <Link href="/post" className='cursor-pointer md:inline-block hidden'>Post</Link>
+//         <span className='cursor-pointer md:inline-block hidden' onClick={signOut}>Logout</span> */}
+//         <div className=" flex gap-4">
+//         <Button
+//           variant="contained"
+//           href="/create-post"
+//           className='cursor-pointer md:inline-block hidden'
+//         >
+//           Publish
+//         </Button>
+//         <AccountMenu />
+//         {/* <Button
+//           variant="outlined"
+//           onClick={() => signOut({
+//             redirect: true,
+//             callbackUrl: `${window.location.origin}/`
+//           })}
+//         >
+//           Log Out
+//         </Button> */}
+//     </div>
 //         </>
 //       )}
 
@@ -152,10 +175,14 @@ export default Navbar;
 //             </Button>
 //             ) : (
 //               <>
-//                 <Link href="/post">
+//                 <Button
+//                   variant="contained"
+//                   href="/create-post"
+                  
+//                 >
 //                   Publish
-//                 </Link>
-//                 <span className='cursor-pointer' onClick={signOut}>Logout</span>
+//                 </Button>
+//                 {/* <span className='cursor-pointer' onClick={signOut}>Logout</span> */}
 //               </>
 //             )}
 //           </div>
@@ -166,100 +193,6 @@ export default Navbar;
 // };
 
 // export default Navbar;
-
-
-
-// "use client"
-
-// import styles from './Styles.css'
-
-// import Link from 'next/link';
-// import { useState } from 'react';
-// import { BiMenu } from 'react-icons/bi';
-// import { signOut, useSession } from 'next-auth/react'; // Import useSession
-// import LoginIcon from '@mui/icons-material/Login';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import { Button } from '@mui/material';
-// import { authOptions } from '@/lib/auth';
-// // Assuming you have styles and LoginIcon imported
-
-// const Navbar = async () => {
-//   const session = await getServerSession(authOptions); // Destructure session and status from useSession hook
-//   const [open, setOpen] = useState(false);
-
-//   const toggleMobileMenu = () => {
-//     setOpen(!open);
-//   };
-
-//   return (
-//     <div className='flex items-center justify-between h-24'>
-//       <div className="text-left text-3xl font-bold lg:text-3xl md:text-x2 text-softTextColor ">
-//         <Link href='/'>Charity</Link>
-//       </div>
-//       <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
-//         <Link href="" className="text-xl">What We Do</Link>
-//         <Link href="" className="text-xl">Features</Link>
-//         <Link href="" className="text-xl">FAQ</Link> 
-//         <Link href="" className="text-xl">Contact</Link>     
-//       </div>
-
-//       <div className='flex gap-4'>
-//           {session?.user ? (
-//             // <UserAccountnav/>
-//             <div className="gap-0 pl-3">
-//               <Button 
-//               variant="outlined"
-//               sx={{
-//                 backgroundColor: 'none',
-//                 color: 'black',
-//                 textTransform: 'none',
-//                 '&:hover': {
-//                   backgroundColor: '#b8b8b8'
-//                 }
-//               }}
-//                href='/create-post'>Publish</Button>
-//               <Link className='cursor-pointer md:inline-block hidden' href='/'></Link>
-//               <Button 
-//                 variant="outlined"
-//                 sx={{
-//                   backgroundColor: 'none',
-//                   color: 'black',
-//                   textTransform: 'none',
-//                   '&:hover': {
-//                     backgroundColor: '#b8b8b8'
-//                   }
-//                 }}>Log Out
-//               </Button>
-//             </div>
-//           ) :(
-//             // <Button>
-//             //   <Link href='/sign-in'>Log In</Link>
-//             // </Button>
-//             <Link className='cursor-pointer md:inline-block hidden' href='/sign-in'>
-//             <Button
-//               variant="outlined"
-//               sx={{
-//                 backgroundColor: 'none',
-//                 color: 'black',
-//                 textTransform: 'none',
-//                 '&:hover': {
-//                   backgroundColor: '#b8b8b8'
-//                 }
-//               }}
-//               endIcon={<LoginIcon />}
-//             >
-//               Log in
-//             </Button>
-//           </Link>
-//           )}
-//         </div>
-//     </div>
-//   );
-// };
-
-// export default Navbar;
-
-
 
 
 

@@ -1,87 +1,70 @@
-"use client";
-import { Logout } from '@mui/icons-material';
-import { Avatar, Box, Divider, IconButton, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material';
-import { Settings } from 'lucide-react';
-import { signOut } from 'next-auth/react';
+import React from 'react'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu'
+import { Button } from './ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import HomeIcon from '@mui/icons-material/Home';
 import Link from 'next/link';
-import React, { useState } from 'react';
-import UserProfileName from './UserProfileName';
-
+import { signOut, useSession } from 'next-auth/react';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
+export const navItems = [
+    { name: "Home", href: "/", icon: HomeIcon },
+    { name: "Profile", href: "/", icon: AccountCircleIcon },
+    { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
+];
 const AccountMenu = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
+    const { data: session } = useSession();
 
-    const open = Boolean(anchorEl);
+    const user = session?.user;
+  return (
+    <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+            <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
+                <Avatar className='h-10 w-10 rounded-full'>
+                    <AvatarImage src={session?.user?.image} alt=""/>
+                    <AvatarFallback>{user?.username ? user.username : user?.name}</AvatarFallback>
+                </Avatar>
+            </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+            className="w-50"
+            align="end"
+            forceMount
+        >
+            <DropdownMenuLabel>
+                <div className='flex flex-col space-y-1'>
+                    <p className='text-[14px] font-medium leading-none'>{user?.username ? user.username : user?.name}</p>
+                    <p className='text-[16px] leading-none text-muted-foreground'>{user?.email}</p>
+                </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator/>
+            <DropdownMenuGroup>
+                {navItems.map((item, index) => (
+                    <DropdownMenuItem asChild key={index}>
+                        <Link href={item.href} className='w-full flex gap-2 items-center'>
+                            <span>
+                                <item.icon className='w-4 h-4'/>
+                            </span>
+                            {item.name}
+                        </Link>
+                    </DropdownMenuItem>
+                ))}
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator/>
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    return (
-        <>
-            <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                <Tooltip title="Account settings">
-                    <IconButton
-                        onClick={handleClick}
-                        size="small"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
+            <DropdownMenuItem className='w-full flex gap-2 items-center' asChild>
+                <Button
+                    onClick={() => signOut({
+                        redirect: true,
+                        callbackUrl: `${window.location.origin}/`
+                    })}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>
-                            {/* {session?.user.image ? session.user.image : session.user.image} */}
-                            {/* <UserProfileImage /> */}
-                        </Avatar>
-                    </IconButton>
-                </Tooltip>
-            </Box>
-            <Menu
-                anchorEl={anchorEl}
-                id="account-menu"
-                open={open}
-                onClose={handleClose}
-                onClick={handleClose}
-                PaperProps={{
-                    elevation: 0,
-                    // sx: styles.styledPaper,
-                }}
-                transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            >
-                <MenuItem>
-                    <Link href='/profile'>
-                        <Avatar />
-                        {/* {session?.user.username ? session.user.username : session.user.name} */}
-                        {/* <UserProfileName/> */}
-                    </Link>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleClose}>
-                    <ListItemIcon>
-                        <Settings fontSize="small" />
-                    </ListItemIcon>
-                    Settings
-                </MenuItem>
-                <MenuItem>
-                    <ListItemIcon>
-                        <Logout fontSize="small" />
-                    </ListItemIcon>
-                    <Link 
-                    href=''
-                        onClick={() => signOut({
-                          redirect: true,
-                          callbackUrl: `${window.location.origin}/`
-                        })}
-                    >
-                        Logout
-                    </Link>
-                </MenuItem>
-            </Menu>
-        </>
-    );
-};
+                    Log Out
+                </Button>
+            </DropdownMenuItem>
+        </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}
 
-export default AccountMenu;
+export default AccountMenu

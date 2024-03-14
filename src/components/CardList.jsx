@@ -1,9 +1,24 @@
-import React from 'react'
+import React from 'react';
+import Card from './Card'; // Import your Card component here
+import Pagination from './Pagination';
 
-const CardList = () => {
+const CardList = ({ data }) => {
+
   return (
-    <div>CardList</div>
-  )
-}
+    <div>
+      <div className="grid grid-cols-3 gap-6">
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
+        <Card/>
 
-export default CardList
+    </div>
+      <Pagination/>
+    </div>
+    
+  );
+};
+
+export default CardList;

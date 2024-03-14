@@ -15,8 +15,8 @@ const UserAccountnav = () => {
         >
           Publish
         </Button>
-        {/* <AccountMenu /> */}
-        <Button
+        <AccountMenu />
+        {/* <Button
           variant="outlined"
           onClick={() => signOut({
             redirect: true,
@@ -24,7 +24,7 @@ const UserAccountnav = () => {
           })}
         >
           Log Out
-        </Button>
+        </Button> */}
     </div>
   )
 }

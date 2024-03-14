@@ -5,6 +5,8 @@ import { authOptions } from '@/lib/auth'
 import { getServerSession } from 'next-auth'
 import React from 'react'
 import PageLayout from '../layout';
+import Footer from '@/components/Footer';
+import Pagination from '@/components/Pagination';
 
 const page = async () => {
   const session = await getServerSession(authOptions);
@@ -13,16 +15,19 @@ const page = async () => {
   // }
   return (
     <>
-    <PageLayout>
-      <Navbar />
-      <div className='px-4 pt-10 text-center'>
-        <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
-      </div>
-        <div className='pt-8 flex gap-[200px]'>
+    <Navbar />
+    <div className='min-h-screen bg-bg text-textColor'>
+      <div className='max-w-screen-xl mx-auto'>
+        <div className=' pt-10 text-center'>
+          <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
+        </div>
+        <div className='pt-8 flex gap-[200px] mb-10'>
           <Menu/>
           <CardList/>
         </div>
-    </PageLayout>
+      </div>
+      <Footer/>
+    </div>
     
     </>
     

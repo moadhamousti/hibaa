@@ -1,7 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { db } from "./db";
-import bcrypt from "bcrypt"; // Assuming bcrypt for password hashing
+import bcryptjs from "bcryptjs"; // Assuming bcrypt for password hashing
 import GoogleProvider from "next-auth/providers/google"
 
 
@@ -41,7 +41,7 @@ export const authOptions = {
           
           
           if(existingUser.password){
-            const passwordMatch = await bcrypt.compare(
+            const passwordMatch = await bcryptjs.compare(
               credentials.password,
               existingUser.password
             );
