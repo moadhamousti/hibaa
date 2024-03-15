@@ -21,7 +21,7 @@ const page = async () => {
         <div className=' pt-10 text-center'>
           <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
         </div>
-        <div className='pt-8 flex gap-[200px] mb-10'>
+        <div className='flex flex-col items-center pt-8 mb-10'>
           <Menu/>
           <CardList/>
         </div>

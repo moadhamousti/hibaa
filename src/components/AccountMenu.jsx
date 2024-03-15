@@ -9,19 +9,20 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 export const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
-    { name: "Profile", href: "/", icon: AccountCircleIcon },
+    { name: "Profile", href: "/user/profile", icon: AccountCircleIcon },
     { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
 ];
 const AccountMenu = () => {
     const { data: session } = useSession();
 
     const user = session?.user;
+    const avatarSrc = session?.user?.image || "https://github.com/shadcn.png";
   return (
     <DropdownMenu>
         <DropdownMenuTrigger asChild>
             <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
                 <Avatar className='h-10 w-10 rounded-full'>
-                    <AvatarImage src={session?.user?.image} alt=""/>
+                    <AvatarImage src={avatarSrc} alt=""/>
                     <AvatarFallback>{user?.username ? user.username : user?.name}</AvatarFallback>
                 </Avatar>
             </Button>

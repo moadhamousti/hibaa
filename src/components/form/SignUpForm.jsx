@@ -21,6 +21,8 @@ import {useToast} from "@/components/ui/use-toast"
 import imageFit from '../../../public/Blank.png'
 import Image from 'next/image';
 import SignUpButton from '../SignUpButton';
+import { ChevronLeftIcon } from "@radix-ui/react-icons"
+
 
 
 const FormSchema = z
@@ -41,6 +43,10 @@ const FormSchema = z
 const SignUpForm = () => {
   const router = useRouter();
   const {toast}  = useToast();
+  const goBack = () => {
+    router.back(); // Navigate to the previous page
+  };
+
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -84,6 +90,9 @@ const SignUpForm = () => {
         <Image src={imageFit} alt="Your Image" />
       </div>
       <div className="lg:w-1/2 p-8">
+          <Button variant="outline" size="icon" onClick={goBack}>
+            <ChevronLeftIcon className="h-4 w-4" />
+          </Button>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
             <div className="text-center mb-4">
