@@ -10,8 +10,10 @@ const page = () => {
     <PageLayout>
         <Navbar/>
             <div>
-                <h1>Profile</h1>
-                <div className="">
+                <div className=' pt-8 text-center'>
+                  <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
+                </div>
+                <div className="mt-10">
                     <ProfileForm/>
                 </div>
             </div>

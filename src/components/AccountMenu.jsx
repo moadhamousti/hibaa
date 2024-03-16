@@ -9,7 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 export const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
-    { name: "Profile", href: "/user/profile", icon: AccountCircleIcon },
+    { name: "Profile", href: "/profile", icon: AccountCircleIcon },
     { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
 ];
 const AccountMenu = () => {

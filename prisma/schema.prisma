@@ -61,22 +61,57 @@ model User {
   name          String?
   email         String?   @unique
   emailVerified DateTime?
-  // active        Boolean   @default(false)
+  active        Boolean   @default(false)
   image         String?
-  // ActivateToken ActivateToken[]
+  ActivateToken ActivateToken[]
   accounts      Account[]
   sessions      Session[]
+  DonPosts      DonPost[]
 }
 
-// model ActivateToken{
-//   id            String    @id @default(cuid())
-//   token         String    @unique
-//   activatedAt   DateTime?
-//   createdAt     DateTime  @default(now())
-//   updatedAt     DateTime  @updatedAt
-//   user          User       @relation(fields: [userId], references: [id])
-//   userId        String
-// }
+
+model MedCategory {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  title     String
+  DonPosts  DonPost[]
+}
+
+model LocationCategory {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  title     String
+  DonPosts  DonPost[]  
+}
+
+
+model DonPost {
+  id              String           @id @default(cuid())
+  slug            String           @unique
+  title           String
+  createdAt       DateTime         @default(now())
+  description     String
+  images          String[]
+  phone           String
+  isWhatsapp      Boolean          @default(false)
+  userEmail       String
+  views           Int              @default(0)
+  catSlug         String
+  locationSlug    String
+  cat             MedCategory      @relation(fields: [catSlug], references: [slug])
+  locCat          LocationCategory @relation(fields: [locationSlug], references: [slug])
+  user            User             @relation(fields: [userEmail], references: [email])
+}
+
+model ActivateToken{
+  id            String    @id @default(cuid())
+  token         String    @unique
+  activatedAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  user          User       @relation(fields: [userId], references: [id])
+  userId        String
+}
 
 model VerificationToken {
   identifier String

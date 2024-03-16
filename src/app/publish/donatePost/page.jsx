@@ -1,3 +1,5 @@
+"use client"
+
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import { Input } from '@/components/ui/input';
@@ -5,7 +7,7 @@ import { Label } from '@/components/ui/label';
 import {Button} from  '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Select } from '@/components/ui/select';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -36,12 +38,34 @@ const postSchema = z.object({
 
 const page = () => {
   // const { register, handleSubmit, formState: { errors } } = useForm();
+  const [file,setFile] = useState(null)
 
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+};
 
-  // const onSubmit = (data) => {
-  //   console.log(data); // Handle form submission here
-  // };
-  
+// const handleFormSubmit = async (e) => {
+//   e.preventDefault();
+
+//   if (!file) return;
+
+//   try {
+//       const { data, error } = await supabase.storage
+//           .from('charity') // Specify your bucket name
+//           .upload(`public/${file.name}`, file);
+
+//       if (error) {
+//           throw error;
+//       }
+
+//       console.log('File uploaded:', data);
+//   } catch (error) {
+//       console.error('Error uploading file:', error.message);
+//   }
+// };
+// const onSubmit = (data) => {
+//   console.log(data); // Handle form submission here
+// };
 
   return (
     <PageLayout>
@@ -80,8 +104,8 @@ const page = () => {
             <Label htmlFor="email">Email</Label>
             <Input id="email" type="email" className='bg-gray-200' placeholder="Email"/>
 
-            <FileUploader/>
-
+            {/* <FileUploader/> */}
+            <input type='file' id='image' onChange={e=>setfile(e.target.files[0])}/>
             <Button type="submit" className='mt-8'>Submit</Button>
           </form>
         </div>

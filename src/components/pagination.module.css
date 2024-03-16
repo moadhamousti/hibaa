@@ -1,0 +1,15 @@
+.button{
+    width: 100px;
+    border: none;
+    padding: 16px;
+    background-color: crimson;
+    color: wheat;
+    cursor: pointer;
+}
+
+
+.button:disabled{
+    border-color: rgb(100, 5, 24);
+    cursor: pointer;
+    cursor: not-allowed;
+}
