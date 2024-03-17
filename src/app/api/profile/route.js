@@ -25,30 +25,5 @@ export const GET = async (request) => {
   }
 };
 
-export const POST = async (request) => {
-  try {
-    const session = await getSession({ req: request });
-    if (!session) {
-      return { error: "Unauthorized", status: 401 };
-    }
 
-    const body = await request.json();
-    const { name, username, email, password } = body;
 
-    // Update user credentials in the database
-    const updatedUser = await db.user.update({
-      where: { id: session.user.id },
-      data: {
-        name,
-        username,
-        email,
-        ...(password && { password }), // Update password only if provided
-      },
-    });
-
-    return { message: "User profile updated successfully", user: updatedUser };
-  } catch (error) {
-    console.error("Error updating user profile:", error);
-    return { error: "Internal Server Error", status: 500 };
-  }
-};

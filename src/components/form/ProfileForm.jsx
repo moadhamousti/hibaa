@@ -1,6 +1,7 @@
 "use client"
+
 import { useState, useEffect } from "react";
-import { useSession, getSession } from "next-auth/react"; // Import getSession to access session data
+import { useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Form } from "../ui/form";
@@ -47,26 +48,27 @@ const ProfileForm = () => {
   
     try {
       const validatedData = schema.parse(formData);
-      const response = await fetch("/api/profile", {
+      const formData = new FormData();
+      formData.append("name", validatedData.name);
+      formData.append("username", validatedData.username);
+      formData.append("email", validatedData.email);
+      formData.append("password", validatedData.password);
+
+      const response = await fetch("/api/profile/updateProfile", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(validatedData), // Send form data as JSON string
+        body: formData,
       });
   
       if (!response.ok) {
         throw new Error("Failed to update profile");
       }
   
-      const responseData = await response.json(); // Parse response JSON
+      const responseData = await response.json();
       console.log("Profile updated successfully:", responseData);
   
-      // Update session data after successful update (if necessary)
-      const updatedSession = await getSession(); // Fetch updated session data
-      setFormData((prevData) => ({ ...prevData, password: "" }));
+      // Update session data after successful update
+      // You can also consider updating the local state with the new data if necessary
   
-      // Handle any further actions, such as showing a success message
     } catch (error) {
       console.error("Update error:", error);
       // Handle error, such as displaying an error message to the user
@@ -107,14 +109,17 @@ const ProfileForm = () => {
           Email:
           <Input type="email" name="email" value={formData.email} onChange={handleChange} />
         </Label>
-        <Label>
-          Current Password:
-          <Input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </Label>
-        <Button type="submit">Update Profile</Button>
+        {session?.user?.password && (
+          <Label>
+            Current Password:
+            <Input type="password" name="password" value={formData.password} onChange={handleChange} required />
+          </Label>
+        )}
+        <Button type="submit" onClick={handleSubmit}>Update Profile</Button>
       </Form>
     </div>
   );
 };
 
 export default ProfileForm;
+

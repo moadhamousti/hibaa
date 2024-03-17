@@ -59,7 +59,7 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   name          String?
-  email         String?   @unique
+  email         String    @unique
   emailVerified DateTime?
   active        Boolean   @default(false)
   image         String?
@@ -67,6 +67,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   DonPosts      DonPost[]
+  // DonatePosts   DonatePost[]
 }
 
 
@@ -95,13 +96,24 @@ model DonPost {
   phone           String
   isWhatsapp      Boolean          @default(false)
   userEmail       String
+  user            User             @relation(fields: [userEmail], references: [email])
   views           Int              @default(0)
   catSlug         String
   locationSlug    String
   cat             MedCategory      @relation(fields: [catSlug], references: [slug])
   locCat          LocationCategory @relation(fields: [locationSlug], references: [slug])
-  user            User             @relation(fields: [userEmail], references: [email])
 }
+
+
+// model DonatePost{
+//   id              String           @id @default(cuid())
+//   slug            String           @unique
+//   title           String
+//   createdAt       DateTime         @default(now())
+//   description     String
+//   userEmail       String
+//   user            User             @relation(fields: [userEmail], references: [email])
+// }
 
 model ActivateToken{
   id            String    @id @default(cuid())
