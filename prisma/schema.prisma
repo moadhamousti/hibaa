@@ -67,41 +67,59 @@ model User {
   accounts      Account[]
   sessions      Session[]
   DonPosts      DonPost[]
-  // DonatePosts   DonatePost[]
+  // posts         Post[]
 }
+
+model Category {
+  id    String  @id @default(cuid()) @map("_id")
+  slug  String  @unique
+  title String
+  img   String?
+}
+
+// model Post {
+//   id        String    @id @default(cuid()) @map("_id")
+//   createdAt DateTime  @default(now())
+//   title     String
+//   desc      String
+//   img       String
+//   phone           String
+//   isWhatsapp      Boolean          @default(false)
+//   views     Int       @default(0)
+//   userEmail String
+//   user      User      @relation(fields: [userEmail], references: [email])
+// }
+
 
 
 model MedCategory {
   id        String    @id @default(cuid())
-  slug      String    @unique
-  title     String
+  title     String   @unique
   DonPosts  DonPost[]
 }
 
 model LocationCategory {
   id        String    @id @default(cuid())
-  slug      String    @unique
-  title     String
+  title     String    @unique
   DonPosts  DonPost[]  
 }
 
 
 model DonPost {
-  id              String           @id @default(cuid())
-  slug            String           @unique
-  title           String
-  createdAt       DateTime         @default(now())
-  description     String
-  images          String[]
+  id        String    @id @default(cuid()) @map("_id")
+  createdAt DateTime  @default(now())
+  title     String
+  desc      String
+  img       String
   phone           String
   isWhatsapp      Boolean          @default(false)
-  userEmail       String
-  user            User             @relation(fields: [userEmail], references: [email])
-  views           Int              @default(0)
-  catSlug         String
-  locationSlug    String
-  cat             MedCategory      @relation(fields: [catSlug], references: [slug])
-  locCat          LocationCategory @relation(fields: [locationSlug], references: [slug])
+  views     Int       @default(0)
+  userEmail String
+  location String
+  category String
+  MedCategory  MedCategory  @relation(fields: [category], references: [title])
+  user      User      @relation(fields: [userEmail], references: [email])
+  cat       LocationCategory  @relation(fields: [location], references: [title])
 }
 
 

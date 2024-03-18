@@ -21,25 +21,37 @@ import PageLayout from '@/app/(blog)/layout';
 import { useRouter } from 'next/navigation';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from '@/lib/firebase';
-import { useSession } from 'next-auth/react';
+import { getSession, useSession } from 'next-auth/react';
 
 
 
 const storage = getStorage(app);
 
 const Page = () => {
-  const { status } = useSession();
+  const { data: session, status } = useSession();
+  console.log(session)
   const router = useRouter();
+  const [locationCategories, setLocationCategories] = useState([]);
+  const [selectedLocationCategory, setSelectedLocationCategory] = useState("");
+  const [toolsCategories, setToolsCategories] = useState([]);
+  const [selectedToolsCategories, setSelectedToolsCategories] = useState("");
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [desc, setDesc] = useState("");
+  const [slug, setSlug] = useState("");
+  const [location, setlocation] = useState("");
+
+
   const [cat, setCat] = useState("");
   const [locCat, setLocCat] = useState("");
   const [phone, setPhone] = useState("");
+  const [isWhatsapp, setisWhatsapp] = useState(false);
+
   const [user, setUser] = useState("");
   const [userEmail, setUserEmail] = useState("");
-
+  const [catSlug, setCatSlug] = useState("");
+  
 
 
   useEffect(() => {
@@ -72,7 +84,66 @@ const Page = () => {
       );
     };
     file && upload();
-  }, [file])
+  }, [file]);
+
+
+  useEffect(() => {
+    const fetchLocationCategories = async () => {
+      try {
+        const res = await fetch("/api/location", {
+          cache: "no-store",
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await res.json();
+        setLocationCategories(data);
+      } catch (error) {
+        console.error('Error fetching location categories:', error);
+      }
+    };
+
+    fetchLocationCategories();
+  }, []);
+
+
+  useEffect(() => {
+    const fetchToolsCategories = async () => {
+      try {
+        const res = await fetch("/api/categories", {
+          cache: "no-store",
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const data = await res.json();
+        setToolsCategories(data);
+      } catch (error) {
+        console.error('Error fetching tools categories:', error);
+      }
+    };
+
+    fetchToolsCategories();
+  }, []);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  if (status === "unauthenticated") {
+    router.push("/");
+  }
+
+  const slugify = (str) =>
+    str
+      .toLowerCase()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/[\s_-]+/g, '-')
+      .replace(/^-+|-+$/g, '')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,12 +151,14 @@ const Page = () => {
       method: "POST",
       body: JSON.stringify({
         title,
-        description,
-        images: [media],
-        slug: slugify(title),
-        cat: { connect: { slug: cat } },
-        locCat: { connect: { slug: locCat } },
-        phone,        
+        desc,
+        img: media,
+        phone,
+        isWhatsapp,
+        location: selectedLocationCategory,
+        // slug: slugify(title),
+        // catSlug: catSlug || "style",
+        category: selectedToolsCategories,
       }),
     });
     console.log(res)
@@ -99,12 +172,7 @@ const Page = () => {
     router.push("/")
   }
 
-  const slugify = (str) =>
-    str
-      .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
-      .replace(/[\s_-]+/g, '-')
-      .replace(/^-+|-+$/g, '')
+  
 
   return (
     <PageLayout>
@@ -118,16 +186,62 @@ const Page = () => {
           <Input id="title" className="bg-gray-200" placeholder="Title" onChange={e => setTitle(e.target.value)} />
 
           <Label htmlFor="description">Description</Label>
-          <Textarea onChange={e => setDescription(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
+          <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
 
-          <Label htmlFor="location">Location</Label>
-          <LocationFilter onChange={(e) => setLocCat(e.target.value)} />
 
-          <Label htmlFor="type">Medical equipment type</Label>
-          <MedToolsTypeFilter onChange={(e) => setCat(e.target.value)} />
+          <label htmlFor="locationCategory">Select Location Category:</label>
+        <select
+          id="locationCategory"
+          value={selectedLocationCategory}
+          onChange={(e) => setSelectedLocationCategory(e.target.value)}
+        >
+          {/* <option value="">Select a location category</option> */}
+          {locationCategories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.title}
+            </option>
+          ))}
+        </select>
+
+        <label htmlFor="toolsCategory">Select Tools Category:</label>
+          <select
+            id="toolsCategory"
+            value={selectedToolsCategories}
+            onChange={(e) => setSelectedToolsCategories(e.target.value)}
+          >
+            {/* <option value="">Select a tools category</option> */}
+            {toolsCategories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.title}
+              </option>
+            ))}
+          </select>
 
           <Label htmlFor="phone">Phone</Label>
           <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200' placeholder="Phone Number" />
+          <div className='flex gap-3'>
+            <Image src={whatsapp} alt='' width={20} height={20}/>
+            <span>Is this a whatsapp Number?</span>
+            <RadioGroup
+              aria-label="whatsapp-option"
+              name="whatsapp-option"
+              value={isWhatsapp ? "yes" : ""}
+              onChange={(e) => setisWhatsapp(e.target.value === "yes")}
+              
+            >
+              <div className=''>
+                <input 
+                  type="radio" 
+                  id="whatsapp-yes" 
+                  value="yes" 
+                  checked={isWhatsapp} 
+                  onChange={() => setisWhatsapp(!isWhatsapp)} 
+                />
+                <Label htmlFor="whatsapp-yes" className="ml-2 mb-1">Yes</Label>
+              </div>
+            </RadioGroup>
+          </div>
+
 
           <input type='file' id='image' onChange={e => setFile(e.target.files[0])} />
           <Button type="submit" className='mt-8' onClick={handleSubmit}>Submit</Button>

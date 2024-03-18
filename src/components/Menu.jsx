@@ -12,7 +12,6 @@ const Menu = () => {
             </h1>
             <div className='flex justify-between mb-8 gap-5'>
               <LocationFilter/>
-              <PostTypeFilter/>
               <MedToolsTypeFilter/>
             </div>
           </div>

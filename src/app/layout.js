@@ -7,7 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import Provider from '@/components/provider';
 import Footer from '@/components/Footer';
 import NProgress from 'nprogress';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation'; 
 import { useEffect } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
