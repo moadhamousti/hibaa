@@ -52,6 +52,12 @@ model Session {
   user         User       @relation(fields: [userId], references: [id], onDelete:Cascade)
 }
 
+
+enum UserRole {
+  ADMIN
+  USER
+}
+
 model User {
   id            String    @id @default(cuid())
   username      String?   @unique
@@ -67,7 +73,9 @@ model User {
   accounts      Account[]
   sessions      Session[]
   DonPosts      DonPost[]
+  role          UserRole  @default(USER)
   // posts         Post[]
+  ReqPost       ReqPost[]
 }
 
 model Category {
@@ -96,16 +104,35 @@ model MedCategory {
   id        String    @id @default(cuid())
   title     String   @unique
   DonPosts  DonPost[]
+  ReqPost   ReqPost[]
 }
 
 model LocationCategory {
   id        String    @id @default(cuid())
   title     String    @unique
-  DonPosts  DonPost[]  
+  DonPosts  DonPost[]
+  ReqPost   ReqPost[]  
 }
 
 
 model DonPost {
+  id        String    @id @default(cuid()) @map("_id")
+  createdAt DateTime  @default(now())
+  title     String
+  desc      String
+  img       String
+  phone           String
+  isWhatsapp      Boolean          @default(false)
+  views     Int       @default(0)
+  userEmail String
+  location String
+  category String
+  MedCategory  MedCategory  @relation(fields: [category], references: [title])
+  user      User      @relation(fields: [userEmail], references: [email])
+  cat       LocationCategory  @relation(fields: [location], references: [title])
+}
+
+model ReqPost {
   id        String    @id @default(cuid()) @map("_id")
   createdAt DateTime  @default(now())
   title     String

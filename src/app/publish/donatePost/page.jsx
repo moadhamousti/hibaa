@@ -134,9 +134,6 @@ const Page = () => {
     return <div>Loading...</div>;
   }
 
-  if (status === "unauthenticated") {
-    router.push("/");
-  }
 
   const slugify = (str) =>
     str
@@ -169,7 +166,7 @@ const Page = () => {
   }
 
   if (status === "unauthenticated") {
-    router.push("/")
+    router.push("/lost")
   }
 
   
@@ -241,7 +238,6 @@ const Page = () => {
               </div>
             </RadioGroup>
           </div>
-
 
           <input type='file' id='image' onChange={e => setFile(e.target.files[0])} />
           <Button type="submit" className='mt-8' onClick={handleSubmit}>Submit</Button>

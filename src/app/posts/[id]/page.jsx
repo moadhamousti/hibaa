@@ -26,6 +26,8 @@ const getData = async (id) => {
 
 
 
+
+
 const page = async ({ params }) => {
 
   const { id } = params;
@@ -50,8 +52,6 @@ const page = async ({ params }) => {
   return (
     <>
     <Navbar />
-      <div className='min-h-screen bg-bg text-textColor'>
-        <div className='max-w-screen-xl mx-auto'>
           <div className={styles.container}>
             <div className={styles.infoContainer}>
               <div className={styles.textContainer}>
@@ -81,7 +81,7 @@ const page = async ({ params }) => {
                   </div>
                 </div>
               </div>
-              {data?.Image && (
+              {data?.img && (
                 <div className={styles.imageContainer}>
                   <Image src={data.img} alt="" fill className={styles.image} />
                 </div>
@@ -142,11 +142,9 @@ const page = async ({ params }) => {
                 <h3>{data.views}</h3>
               </div>
             </div>
-          </div>
           
         </div>
         <Footer/>
-      </div>
     
     </>
   )

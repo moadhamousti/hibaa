@@ -72,7 +72,10 @@ export const authOptions = {
         if(user) {
             return {
                 ...token,
-                username:user.username
+                username:user.username,
+                // role: user.role,            
+                
+                
             }
         }
         return token
@@ -83,7 +86,9 @@ export const authOptions = {
             ...session,
             user:{
                 ...session.user,
-                username: token.username
+                username: token.username,
+                // role: user.role,
+
             }
         }
     },

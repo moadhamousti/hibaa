@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   Form,
@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from '../ui/form';
 import * as z from 'zod';
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input } from '../ui/input';
 import { Button } from '../ui/button';
@@ -42,6 +42,8 @@ const SignInForm = () => {
 
 
 
+
+
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -67,6 +69,8 @@ const SignInForm = () => {
     router.push('/feed');
    }
   };
+
+
 
   return (
     <div className='flex flex-col lg:flex-row min-h-screen'>

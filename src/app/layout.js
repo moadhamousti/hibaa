@@ -22,19 +22,11 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
   useEffect(() => {
-    // router.events.on('routeChangeStart', () => {
-    //   NProgress.start();
-    // });
-    // router.events.on('routeChangeComplete', () => {
-    //   NProgress.done();
-    // });
-    // router.events.on('routeChangeError', () => {
-    //   NProgress.done();
-    // });
+    NProgress.configure({ trickleRate: 0.02, trickleSpeed: 800 });
     NProgress.start();
     setTimeout(()=>{
       NProgress.done();
-    }, 2000)
+    }, 3000)
   }, [pathname]);
   return (
     <html lang='en'>

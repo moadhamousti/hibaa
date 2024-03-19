@@ -36,6 +36,7 @@ const MedToolsTypeFilter = () => {
         {/* Optional: Add a dropdown icon */}
         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12.586l-6.293-6.293a1 1 0 0 1 1.414-1.414L10 10.172l5.879-5.879a1 1 0 1 1 1.414 1.414L10 12.586z"/></svg>
       </div>
+      
     </div>
   );
 };

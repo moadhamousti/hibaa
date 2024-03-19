@@ -2,8 +2,11 @@ import { db } from "@/lib/db"
 import { NextResponse } from "next/server"
 
 export const GET = async () =>{
+    
     try{
-        const DonPost = await db.DonPost.findMany()
+        const DonPost = await db.DonPost.findMany({
+            include:{user: true},
+        })
         return new NextResponse(JSON.stringify(DonPost,{status:200}))
     }catch(err){
         console.log(err)

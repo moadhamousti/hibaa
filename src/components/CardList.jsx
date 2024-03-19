@@ -8,14 +8,16 @@ import Pagination from './Pagination';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const CardList = () => {
+const CardList = ({page, cat}) => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/posts/donatePosts');
+        const response = await fetch(`/api/posts/donatePosts?page=${page}`,{
+          cache:"no-store"
+        });
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -40,7 +42,7 @@ const CardList = () => {
           posts.map(post => <Card key={post.id} post={post} />)
         )}
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
     </div>
   );
 };

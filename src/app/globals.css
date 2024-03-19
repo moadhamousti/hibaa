@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @import 'nprogress/nprogress.css';
+
+#nprogress .bar {
+  background: red; /* Change to your desired color */
+  height: 5px; /* Change to your desired height */
+}
+
+#nprogress .spinner {
+  display: none;
+}
  
 @layer base {
   :root {
