@@ -67,8 +67,14 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token,user}){
-        console.log(token, user);
+    async jwt({ token,user, session, trigger}){
+        console.log(token, user, session);
+        if(trigger === "update" && session?.email){
+          token.email = session.email;
+        }
+
+
+
         if(user) {
             return {
                 ...token,
@@ -78,6 +84,19 @@ export const authOptions = {
                 
             }
         }
+
+        // update the credentials and add to database 
+        const newUser = await db.user.update({
+          where: {
+            email: token.email,
+          },
+          data: {
+            email: token.email,
+          }
+        });
+
+        console.log("newUser", newUser);
+
         return token
     },
     async session({session, user,token } ){
@@ -87,6 +106,7 @@ export const authOptions = {
             user:{
                 ...session.user,
                 username: token.username,
+                email:token.email,
                 // role: user.role,
 
             }

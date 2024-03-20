@@ -22,16 +22,26 @@ const Landing = () => {
         <p className=' sm:inline-block mt-4 md:text-lg lg:text-xl font-in'>
                 We are <span className='font-extrabold '> Heba&aTaa</span>, providing medical supplies and equipment.
         </p>
-                <button className="py-2 px-4 inline-flex items-center mt-6  rounded-3xl capitalize xt-[--TextColor] font-semibold border-2 border-solid border-[--bg] hover:scale-105 transition-all ease duration-200 text-sm sm:text-base max-md:text-xs max-md:font-normal">
-                  GET STARTED
-                      <svg width="20" height="17" viewBox="0 0 20 17"  className='ml-2 hidden  ' xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19.9872 3.15923C20.0752 2.61399 19.7045 2.1007 19.1592 2.01276L10.2741 0.579667C9.72883 0.491725 9.21553 0.862437 9.12759 1.40768C9.03965 1.95291 9.41036 2.46621 9.9556 2.55415L17.8535 3.82801L16.5797 11.7259C16.4917 12.2712 16.8624 12.7845 17.4077 12.8724C17.9529 12.9604 18.4662 12.5896 18.5541 12.0444L19.9872 3.15923ZM1.58549 16.8107L19.5855 3.81068L18.4145 2.18932L0.414509 15.1893L1.58549 16.8107Z" fill="black"/>
-                      </svg>     
+                <div className='mt-8'>
+                  <Button
+                      href="/feed"
+                      variant="outlined"
+                      sx={{
+                        color: 'white',
+                        borderColor: 'white',
+                        textTransform: 'none',
+                        borderRadius:'50px',
+                        '&:hover': {
+                          backgroundColor: '#b5b3b3',
+                          borderColor: 'white',
+                        }
+                      }}
                       
-                      <svg width="20" height="17" viewBox="0 0 20 17"  className='ml-2  dark:hidden' xmlns="http://www.w3.org/2000/svg">
-                      <path d="M19.9872 3.15923C20.0752 2.61399 19.7045 2.1007 19.1592 2.01276L10.2741 0.579667C9.72883 0.491725 9.21553 0.862437 9.12759 1.40768C9.03965 1.95291 9.41036 2.46621 9.9556 2.55415L17.8535 3.82801L16.5797 11.7259C16.4917 12.2712 16.8624 12.7845 17.4077 12.8724C17.9529 12.9604 18.4662 12.5896 18.5541 12.0444L19.9872 3.15923ZM1.58549 16.8107L19.5855 3.81068L18.4145 2.18932L0.414509 15.1893L1.58549 16.8107Z" fill="white"/>
-                      </svg>               
-                  </button>
+                      endIcon={<CallMadeIcon />}
+                    >
+                    GET STARTED
+                  </Button>
+                </div>
       </div>
     </article>
   </div>

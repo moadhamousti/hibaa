@@ -40,9 +40,15 @@ const SignInForm = () => {
     router.back(); // Navigate to the previous page
   };
 
+  
 
 
-
+const {data: session, status}= useSession()
+useEffect(() => {
+    if (session && status === 'authenticated') {
+      router.push('/');
+    }
+  }, [session, status, router]);
 
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -68,6 +74,7 @@ const SignInForm = () => {
     router.refresh();
     router.push('/feed');
    }
+
   };
 
 

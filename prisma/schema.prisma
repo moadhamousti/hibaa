@@ -59,7 +59,7 @@ enum UserRole {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @unique @id @default(cuid())
   username      String?   @unique
   password      String?
   createdAt     DateTime  @default(now())
@@ -68,7 +68,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   active        Boolean   @default(false)
-  image         String?
+  image         String    @default("https://github.com/shadcn.png")
   ActivateToken ActivateToken[]
   accounts      Account[]
   sessions      Session[]

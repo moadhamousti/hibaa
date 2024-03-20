@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import {
   Form,
@@ -22,6 +22,7 @@ import imageFit from '../../../public/Blank.png'
 import Image from 'next/image';
 import SignUpButton from '../SignUpButton';
 import { ChevronLeftIcon } from "@radix-ui/react-icons"
+import { useSession } from 'next-auth/react';
 
 
 
@@ -57,6 +58,13 @@ const SignUpForm = () => {
     },
   });
 
+
+  const {data: session, status}= useSession()
+useEffect(() => {
+    if (session && status === 'authenticated') {
+      router.push('/');
+    }
+  }, [session, status, router]);
 
 
 

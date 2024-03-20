@@ -34,9 +34,18 @@
 
 
 
+// Import necessary dependencies
+// Import necessary dependencies
+import { db } from '@/lib/db';
+import { getServerSession } from 'next-auth';
+import { NextResponse } from 'next/server';
+
+// Define the update profile function
 export const UPDATE = async (req) => {
+    // Get the user's session
     const session = await getServerSession();
 
+    // Check if user is authenticated
     if (!session) {
         return new NextResponse(
             JSON.stringify({ message: 'Not Authenticated' }, { status: 401 })
@@ -44,8 +53,8 @@ export const UPDATE = async (req) => {
     }
 
     try {
-        const body = await req.json();
-        const { name, username, email, password } = body;
+        // Parse request body
+        const { name, username, email, password } = await req.json();
 
         // Update user credentials in the database
         const updatedUser = await db.user.update({
@@ -58,11 +67,15 @@ export const UPDATE = async (req) => {
             },
         });
 
+        // Return success response
         return new NextResponse(JSON.stringify(updatedUser, { status: 200 }));
-    } catch (err) {
-        console.error(err);
+    } catch (error) {
+        // Handle errors
+        console.error(error);
         return new NextResponse(
-            JSON.stringify({ message: "Something went wrong!" }, { status: 500 })
+            JSON.stringify({ message: 'Something went wrong!' }, { status: 500 })
         );
     }
 };
+
+

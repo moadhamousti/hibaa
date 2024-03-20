@@ -18,10 +18,10 @@ const Newsletter = () => {
         },
       });
 
-  const onSubmit = (data) => {
-    console.log(data); // Handle form submission here
-  };
-
+      const onSubmit = async (data) => {
+        console.log(data.email + " has subscribed");
+        // Perform subscription logic here
+    };
   return (
     <div className="bg-black py-12 text-white mt-6 mb-6 shadow-lg">
       <div className="container mx-auto text-center">

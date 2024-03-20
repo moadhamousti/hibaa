@@ -13,7 +13,7 @@ import PostTypeFilter from '@/components/PostTypeFilter';
 import LocationFilter from '@/components/LocationFilter';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
-import whatsapp from '../../../../public/Whatsapp.png'
+import whatsapp from '../../../../public/whatsapp.png'
 import MedToolsTypeFilter from '@/components/MedToolsTypeFilter';
 import { useDropzone } from 'react-dropzone';
 import FileUploader from '@/components/FileUploader';
@@ -22,8 +22,18 @@ import { useRouter } from 'next/navigation';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { app } from '@/lib/firebase';
 import { getSession, useSession } from 'next-auth/react';
+import uploadIcon from '../../../../public/Upload.png'
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import loader from '../../../../public/loader.gif'
+import { useToast } from "@/components/ui/use-toast"
 
 
+const FormSchema = z.object({
+  title: z.string().min(8, 'title too short'),
+  description : z.string().min(25, 'Description must be more than 25 characters'),
+  phone: z.string().max(10, 'the phone must have 10 digits'),
+});
 
 const storage = getStorage(app);
 
@@ -51,8 +61,22 @@ const Page = () => {
   const [user, setUser] = useState("");
   const [userEmail, setUserEmail] = useState("");
   const [catSlug, setCatSlug] = useState("");
+  const { toast } = useToast();
   
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+  };
 
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+    setFile(droppedFile);
+  };
 
   useEffect(() => {
     const upload = () => {
@@ -131,7 +155,11 @@ const Page = () => {
   }, []);
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return (
+      <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
+        <Image src={loader} height={50} width={45} alt="" />
+      </div>
+    );
   }
 
 
@@ -158,17 +186,28 @@ const Page = () => {
         category: selectedToolsCategories,
       }),
     });
-    console.log(res)
+  
+
+    if (res.ok) {
+      toast({
+        title: "Success",
+        description: "Post added successfully",
+        variant: "success",
+        className: "bg-green-500 text-white", 
+      });
+      router.push('/feed'); 
+    } else {
+      toast({
+        title: "Error",
+        description: "An error occurred",
+        variant: "error",
+        className: "bg-red-500 text-white", 
+      });
+    }
+    
   }
 
-  if (status === "loading") {
-    return <div>Loading...</div>
-  }
-
-  if (status === "unauthenticated") {
-    router.push("/lost")
-  }
-
+  
   
 
   return (
@@ -239,7 +278,39 @@ const Page = () => {
             </RadioGroup>
           </div>
 
-          <input type='file' id='image' onChange={e => setFile(e.target.files[0])} />
+          {/* <input type='file' id='image' onChange={e => setFile(e.target.files[0])} /> */}
+
+          <div className="flex flex-col items-center justify-center">
+      <label htmlFor="image" className="relative">
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          onChange={handleImageChange}
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+          className="hidden"
+        />
+        {file ? (
+          <img
+            src={URL.createObjectURL(file)}
+            alt="Preview"
+            className="w-full h-full object-cover rounded-md border-2 border-gray-300"
+          />
+        ) : (
+          <div
+            className="w-full h-full flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md"
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+          >
+            <div className='column self-center'>
+              <Image src={uploadIcon} width={150} height={150}/>
+              <p className="text-gray-400">Drag and drop files here or click to <strong className='text-blue-500 font-bold'>browse</strong></p>
+            </div>
+          </div>
+        )}
+      </label>
+    </div>
           <Button type="submit" className='mt-8' onClick={handleSubmit}>Submit</Button>
         </form>
       </div>

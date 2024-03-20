@@ -2,11 +2,13 @@ import image from '../../public/travel.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Card = ({ post }) => { 
   return ( 
     <Link href={`/posts/${post.id}`}>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 mt-10">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
         <div className="relative h-48">
             {post.img ? (
@@ -28,7 +30,11 @@ const Card = ({ post }) => {
             )}
           </div>
           <div className="p-4">
-            <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
+            <h2 className="text-xl font-semibold mb-2">
+              {post?.title && post.title.length > 20
+                ? post.title.substring(0, 20) + "..."
+                : post.title}
+            </h2>
             
             {/* <p className="">{post.desc}</p> */}
             <p className="text-gray-600">

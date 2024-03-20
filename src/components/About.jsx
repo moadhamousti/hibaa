@@ -57,23 +57,25 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className=" px-6 py-8 mt-8" id='whatWeDo'>
-      {/* <div className=''> */}
+    <div className=" px-6 py-8 mt-8">
+    {/* <div className=''> */}
 
-          
-        <div className='flex list-disc  text-6xl m-10  uppercase justify-center items-center '>
-          <h1 className='text-center'><b>About Us</b> 
-          </h1>
-        </div>
-        <ul className='flex list-disc list-inside  gap-8 text-2xl '>
-          <div className='p-6 bg-[#c2c2c2] rounded-lg	'>
-            <li className=' '>We believe in the power of collective action to address healthcare disparities and ensure that essential medical resources reach underserved communities around the world.</li>
-          </div>
-          <div className='p-6 bg-[#c2c2c2] rounded-lg	'>
-            <li className=' '>We believe in the power of collective action to address healthcare disparities and ensure that essential medical resources reach underserved communities around the world.</li>
-          </div>
-        </ul>
-    </div>
+        
+      <ul className='flex list-disc  text-6xl m-10  uppercase justify-center items-center '>
+        <h1 className='text-center'><b>About Us</b> 
+        </h1>
+      </ul>
+      <ul className='flex list-disc list-inside  gap-8 text-2xl '>
+      <div className='p-6 bg-[#c2c2c2] rounded-lg	'>
+        <li className=' '>We believe in the power of collective action to address healthcare disparities and ensure that essential medical resources reach underserved communities around the world.</li>
+      </div>
+      <div className='p-6 bg-[#c2c2c2] rounded-lg	'>
+        <li className=' '>We believe in the power of collective action to address healthcare disparities and ensure that essential medical resources reach underserved communities around the world.</li>
+
+      </div>
+        
+      </ul>
+  </div>
   );
 };
 
