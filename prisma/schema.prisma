@@ -68,7 +68,7 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   active        Boolean   @default(false)
-  image         String    @default("https://github.com/shadcn.png")
+  image         String
   ActivateToken ActivateToken[]
   accounts      Account[]
   sessions      Session[]
@@ -78,12 +78,12 @@ model User {
   ReqPost       ReqPost[]
 }
 
-model Category {
-  id    String  @id @default(cuid()) @map("_id")
-  slug  String  @unique
-  title String
-  img   String?
-}
+// model Category {
+//   id    String  @id @default(cuid()) @map("_id")
+//   slug  String  @unique
+//   title String
+//   img   String?
+// }
 
 // model Post {
 //   id        String    @id @default(cuid()) @map("_id")
@@ -114,6 +114,12 @@ model LocationCategory {
   ReqPost   ReqPost[]  
 }
 
+model PostType {
+  id        String    @id @default(cuid())
+  title     String    @unique
+  DonPosts  DonPost[]
+}
+
 
 model DonPost {
   id        String    @id @default(cuid()) @map("_id")
@@ -122,14 +128,16 @@ model DonPost {
   desc      String
   img       String
   phone           String
-  isWhatsapp      Boolean          @default(false)
+  isWhatsapp      Boolean          @default(false) 
   views     Int       @default(0)
   userEmail String
   location String
   category String
+  type     String
   MedCategory  MedCategory  @relation(fields: [category], references: [title])
   user      User      @relation(fields: [userEmail], references: [email])
   cat       LocationCategory  @relation(fields: [location], references: [title])
+  PostType  PostType[]
 }
 
 model ReqPost {

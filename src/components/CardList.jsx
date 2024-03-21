@@ -8,14 +8,14 @@ import Pagination from './Pagination';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const CardList = ({page, cat}) => {
+const CardList = ({ page, locationFilter, categoryFilter }) => {
   const [loading, setLoading] = useState(true);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`/api/posts/donatePosts?page=${page}`,{
+        const response = await fetch(`/api/posts/donatePosts?page=${page}&location=${locationFilter}&category=${categoryFilter}`,{
           cache:"no-store"
         });
         if (!response.ok) {
@@ -29,7 +29,7 @@ const CardList = ({page, cat}) => {
       }
     };
     fetchData();
-  }, []); // Empty dependency array ensures useEffect runs only once
+  }, [page, locationFilter, categoryFilter]); // Dependency array includes filters
 
   return (
     <div className="max-w-screen-xl mx-auto">

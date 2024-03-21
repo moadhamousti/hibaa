@@ -16,6 +16,10 @@ import phone from "../../../../public/phone.png";
 
 import { formatDistanceToNow } from 'date-fns';
 import { useSession } from 'next-auth/react';
+import DeleteButton from '@/components/DeleteButton';
+import { authOptions } from '@/lib/auth';
+import { getServerSession } from 'next-auth';
+
 
 const getData = async (id) => {
   const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
@@ -29,14 +33,13 @@ const getData = async (id) => {
   return res.json();
 };
 
-const Page = async ({ params, session }) => {
+const Page = async ({ params }) => {
 
   const { id } = params;
   const data = await getData(id);
+  const session = await getServerSession(authOptions);
 
   const formattedDate = formatDistanceToNow(new Date(data.createdAt), { addSuffix: true });
-  const isCurrentUserPost = session?.user?.DonPosts.includes(id);
-
 
   const getEmailServiceLink = (email) => {
     const domain = email.split('@')[1];
@@ -56,9 +59,9 @@ const Page = async ({ params, session }) => {
   
   return (
     <>
-      <Navbar />
       <div className='min-h-screen bg-bg text-textColor'>
         <div className='max-w-screen-xl mx-auto'>
+        <Navbar />
           <div className={styles.container}>
             <div className={styles.infoContainer}>
               <div className={styles.textContainer}>
@@ -154,11 +157,13 @@ const Page = async ({ params, session }) => {
                 <h3>{data.views}</h3>
               </div>
             </div>
-            {isCurrentUserPost && (
-              <button className='' onClick={handleEditClick}>
-                Edit
-              </button>
-            )}
+            {session && session.user && data.user.email === session.user.email && (
+                <Link href={`/posts/update/${id}`}>
+                  <button>
+                    Update
+                  </button>
+                </Link>
+              )}
           </div>
         </div>
         <Footer />

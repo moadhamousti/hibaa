@@ -10,10 +10,10 @@ const Menu = ({ onFilter }) => {
   const [selectedCategory, setSelectedCategory] = useState('');
 
   const handleFilter = () => {
-    console.log("Filter button clicked"); // Add this console.log to check if the button click event is being triggered
-    console.log("Selected Location:", selectedLocation); // Add this console.log to check the selected location
-    console.log("Selected Category:", selectedCategory); // Add this console.log to check the selected category
-    onFilter(selectedLocation, selectedCategory);
+    console.log("Filter button clicked");
+    console.log("Selected Location:", selectedLocation);
+    console.log("Selected Category:", selectedCategory);
+    onFilter(selectedLocation, selectedCategory); // Pass selectedLocation and selectedCategory to onFilter
   };
 
   return (

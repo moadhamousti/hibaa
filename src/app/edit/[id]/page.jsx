@@ -224,7 +224,7 @@ const Page = () => {
     <PageLayout>
       <Navbar />
       <div className='pt-10 text-center mb-10'>
-        <h1 className="text-4xl font-extrabold tracking-normal">Create Post</h1>
+        <h1 className="text-4xl font-extrabold tracking-normal">Edit Post</h1>
       </div>
       <div className="max-w-md mx-auto">
         <form className="grid gap-4">
@@ -322,7 +322,7 @@ const Page = () => {
         )}
       </label>
     </div>
-          <Button type="submit" className='mt-8' onClick={handleSubmit}>Submit</Button>
+          <Button type="submit" className='mt-8' onClick={handleSubmit}>Edit Post</Button>
         </form>
       </div>
       <Footer />
