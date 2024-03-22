@@ -79,9 +79,9 @@ export const authOptions = {
           if (session?.email) {
             token.email = session.email;
           }
-          if (session?.image) {
-            token.image = session.image;
-          }
+          // if (session?.image) {
+          //   token.image = session.image;
+          // }
       }
         if(user) {
             return {
@@ -102,7 +102,7 @@ export const authOptions = {
             name:token.name,
             username:token.username,
             email:token.email,
-            image:token.image,
+            // image:token.image,
             role:token.role,
 
 
@@ -122,7 +122,7 @@ export const authOptions = {
                 username: token.username,
                 name:token.name,
                 email:token.email,
-                image:token.image,
+                // image:token.image,
                 role:token.role,
 
 

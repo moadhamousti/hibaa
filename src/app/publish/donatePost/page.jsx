@@ -277,7 +277,7 @@ const Page = () => {
             >
               <div className=''>
                 <input 
-                  type="radio" 
+                  type="radio"
                   id="whatsapp-yes" 
                   value="yes" 
                   checked={isWhatsapp} 

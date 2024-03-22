@@ -24,7 +24,7 @@ export const PUT = async (req , {params}) =>{
     try{
         const DonPost = await db.DonPost.update({
             where:{id},
-            data:{title, desc, phone, isWhatsapp}
+            data:{title, desc, phone, isWhatsapp,location,category,img}
         })
         return new NextResponse(JSON.stringify(DonPost,{status:200}))
     }catch(err){

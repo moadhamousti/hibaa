@@ -1,48 +1,35 @@
-"use client"
-
-
-// cardList.jsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Card from './Card';
 import Pagination from './Pagination';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const CardList = ({ page, locationFilter, categoryFilter }) => {
-  const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/api/posts/donatePosts?page=${page}&location=${locationFilter}&category=${categoryFilter}`,{
-          cache:"no-store"
-        });
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await response.json();
-        setPosts(data); // Assuming the response is an array of posts
-        setLoading(false); // Set loading to false after fetching data
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
-  }, [page, locationFilter, categoryFilter]); // Dependency array includes filters
+const getData = async ({ page }) => {
+  const res = await fetch(`http://localhost:3000/api/posts/donatePosts?page=${page}`,{
+    cache: "no-store",
+  });
 
+  if(!res.ok) {
+    throw new Error("Could not load posts");
+  }
+
+  return res.json();
+}
+
+
+
+const CardList = async ({ page }) => {
+  const data = await getData({ page });
+  
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {/* Render skeleton cards while loading */}
-        {loading ? (
-          Array.from({ length: 4 }, (_, index) => <Skeleton count={5} key={index} />)
-        ) : (
-          // Replace skeleton cards with actual cards after data is fetched
-          posts.map(post => <Card key={post.id} post={post} />)
-        )}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+        {data && data.map((item) => (
+          <Card item={item} key={item._id}/>
+        ))}
       </div>
-      {/* <Pagination /> */}
+      <Pagination page={page} />
     </div>
   );
 };
@@ -83,6 +70,54 @@ export default CardList;
 //         )}
 //       </div>
 //       <Pagination />
+//     </div>
+//   );
+// };
+
+// export default CardList;
+
+
+
+
+
+
+// import React from 'react';
+// import Card from './Card';
+// import Pagination from './Pagination';
+// import Skeleton from 'react-loading-skeleton'
+// import 'react-loading-skeleton/dist/skeleton.css'
+
+
+// const getData = async ({ page }) => {
+//   const res = await fetch(`http://localhost:3000/api/posts/donatePosts?page=${page}`,{
+//     cache: "no-store",
+//   });
+
+//   if(!res.ok) {
+//     throw new Error("Could not load posts");
+//   }
+
+//   return res.json();
+// }
+
+
+
+// const CardList = async ({ page }) => {
+//   const {posts,count} = await getData({ page });
+
+//   const POST_PER_PAGE = 2;
+
+//   const hasPrev = POST_PER_PAGE * (page - 1) > 0;
+//   const hasNext = POST_PER_PAGE * (page - 1) + POST_PER_PAGE < count;
+  
+//   return (
+//     <div className="max-w-screen-xl mx-auto">
+//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+//         {posts?.map((item) => (
+//           <Card item={item} key={item._id}/>
+//         ))}
+//       </div>
+//       <Pagination page={page} hasPrev={hasPrev} hasNext={hasNext}/>
 //     </div>
 //   );
 // };

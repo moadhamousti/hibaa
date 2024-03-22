@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 const LocationFilter = () => {
   const [location, setLocation] = useState([]);
   const defaultLocationTitle = "Agadir";
+  const [selected , setSelected] = useState()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,8 +28,15 @@ const LocationFilter = () => {
   }, []);
 
   return (
-    <div className="relative">
-      <select defaultValue={defaultLocationTitle} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto">
+    <>
+      <select 
+          defaultValue={defaultLocationTitle} 
+          className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
+          onChange={(e) => {
+            const c = location?.find((x) => x.id === e.target.value);
+            setSelected(c)
+          }}
+        >
         {location.map((location) => (
           <option key={location.id} value={location.id}>{location.title}</option>
         ))}
@@ -37,7 +45,8 @@ const LocationFilter = () => {
         {/* Optional: Add a dropdown icon */}
         <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12.586l-6.293-6.293a1 1 0 0 1 1.414-1.414L10 10.172l5.879-5.879a1 1 0 1 1 1.414 1.414L10 12.586z"/></svg>
       </div>
-    </div>
+      
+    </>
   );
 };
 
