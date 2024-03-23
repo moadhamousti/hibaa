@@ -1,135 +1,120 @@
-// "use client"
-
-// import { useState } from "react";
-// import { useSession } from "next-auth/react";
-// import { Button } from "../ui/button";
-// import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-// import { Form } from "../ui/form";
-// import { Label } from "../ui/label";
-// import { Input } from "../ui/input";
-
-// const ProfileForm = () => {
-
-//   const[newEmail, setNewEmail] = useState("")
-//   const[newName, setNewName] = useState("")
-
-//   const {data: session, status, update} = useSession()
-//   console.log("this is the session", session)
-
-//   return (
-//     <div className="flex flex-col items-center">
-//       <h1>Profile</h1>
-//       <Button
-//         variant="ghost"
-//         className="relative h-10 w-10 rounded-full"
-//         onClick=''
-//         height={40}
-//         width={40}
-        
-//       >
-//         <Avatar className="h-10 w-10 rounded-full">
-//           <AvatarImage src=' ' alt="" />
-//           <AvatarFallback>
-//           </AvatarFallback>
-//         </Avatar>
-//         <input id="fileInput" type="file" className="hidden" />
-//       </Button>
-//       <Form className="mt-4 w-full max-w-xs">
-//       <h2>{session?.user.name}</h2>
-//         <Label>
-//           Name:
-//           <Input type='text' placeholder='name' value={newName} onChange={(e) => setNewName(e.target.value)}  />
-//         </Label>
-//         {/* <Label>
-//           Username:
-//           <Input type='text' placeholder='username' value={newUsername} onChange={(e) => setNewUsername(e.target.value)}/>
-//         </Label> */}
-//         {/* <Label>
-//           Email:
-//           <Input type='email' placeholder='email' value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
-//         </Label> */}
-//           {/* <Label>
-//             Current Password:
-//             <Input type="password" name="password"  value={newEmail} onChange={(e) => setNewEmail(e.target.value)} required />
-//           </Label> */}
-//         <button type="submit" onClick={() => update({name: newName})} >Update Profile</button>
-//       </Form>
-//     </div>
-//   );
-// };
-
-// export default ProfileForm;
-
-
-
-
 "use client"
 
-
-import { useSession } from 'next-auth/react'
-import Image from 'next/image'
-import React, { useState } from 'react'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
-
+import { useSession } from 'next-auth/react';
+import React, { useEffect, useState } from 'react';
+import { Label } from '../ui/label';
+import { Input } from '../ui/input';
 
 const ProfileForm = () => {
-  const[newName, setNewName] = useState("")
-  const[newUserName, setNewUserName] = useState("")
-  const[newImage, setNewImage] = useState("")
+  const [newName, setNewName] = useState('');
+  const [newUserName, setNewUserName] = useState('');
   const [newEmail, setNewEmail] = useState('');
+  const [newImage, setNewImage] = useState('');
+  const [imagePreview, setImagePreview] = useState("https://github.com/shadcn.png");
 
-  const {data: session, status, update} = useSession()
-  console.log("this is the session", session)
+  const { data: session, status, update } = useSession();
+  console.log(session)
 
-  const hasImage = session?.user?.image?.startsWith('https://lh3.googleusercontent.com/');
+  useEffect(() => {
+    if (session) {
+      setNewName(session.user.name);
+      setNewUserName(session.user.username);
+      setNewEmail(session.user.email);
+      setImagePreview(session.user.image);
+    }
+  }, [session]);
 
-  // Check if the session user has no image or the image doesn't start with the specified URL prefix
-  const hasNoImage = !hasImage;
-  const [email, setEmail] = useState(hasNoImage ? (session?.user?.email ?? '') : '');
+  const submitHandler = (e) => {
+    e.preventDefault();
 
-  
-  // Modify the email value based on the condition
-  const emailValue = hasNoImage ? (session?.user?.email ?? '') : session?.user?.email;
-  const disableEmailChange = !hasNoImage;
+    const formData = new FormData();
+    formData.set('name', newName);
+    formData.set('username', newUserName);
+    formData.set('email', newEmail);
+    formData.set('image', newImage);
+
+    // Perform the form submission or update action here
+  };
+
+  const onChange = (e) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImagePreview(reader.result);
+      }
+    };
+
+    setNewImage(e.target.files[0]);
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
   return (
-    <div className="flex flex-col items-center">
-      <h2>{session?.user.name}</h2>
-      <h2>{session?.user.username}</h2>
-
-
-      {/* <input type='email' placeholder='email' value={session?.user.email}/> */}
-
-      {hasNoImage && (
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            value={emailValue} 
-            onChange={(e) => setEmail(e.target.value)} 
-          />
+    <div className="flex justify-center gap-[100px] ">
+      <div className='column'>
+        <div className='text-left'>
+          <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
         </div>
-      )}
+        <div className='mt-7'>
+          <img
+            className="w-20 h-20 rounded-full mb-4"
+            src={imagePreview}
+            alt="Profile"
+          />
+          <label
+            htmlFor="profile-image"
+            className="block mt-2 px-4 py-2 bg-gray-200 rounded-md cursor-pointer text-center"
+          >
+            Upload Image
+            <input
+              id="profile-image"
+              type="file"
+              accept="image/*"
+              onChange={onChange}
+              className="hidden"
+            />
+          </label>
+        </div>
+      </div>
 
+      <div  className="flex flex-col gap-4">
+        <Label htmlFor="name">Name:</Label>
+        <Input
+          id="name"
+          type="text"
+          placeholder="Name"
+          className='w-full'
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+        />
 
+        <Label htmlFor="username">Username:</Label>
+        <Input
+          id="username"
+          type="text"
+          placeholder="Username"
+          value={newUserName}
+          onChange={(e) => setNewUserName(e.target.value)}
+        />
 
-      <Label htmlFor="title"></Label>
-      <Input id="title" className="bg-gray-200 mb-3"/>
-      <Input type='text' placeholder="name" value={newName} onChange={(e) => setNewName(e.target.value)}/>
-      <Input type='text' placeholder="username" value={newUserName} onChange={(e) => setNewUserName(e.target.value)}/>
-      
-      <Input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setNewImage(e.target.files[0])}
-      />
+        <Label htmlFor="email">Email:</Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="Email"
+          value={newEmail}
+          onChange={(e) => setNewEmail(e.target.value)}
+        />
 
-      <Button onClick={() => update( {username: newUserName}, {name: newName})}>update</Button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >
+          Update
+        </button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileForm
+export default ProfileForm;

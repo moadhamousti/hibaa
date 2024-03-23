@@ -10,13 +10,25 @@ import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 export const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
     { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-    { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
+    { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
+
 ];
 const AccountMenu = () => {
     const { data: session } = useSession();
 
     const user = session?.user;
     const avatarSrc = session?.user?.image || "https://github.com/shadcn.png";
+
+    const navItems = session && session.user.role === 'ADMIN' ? [
+        { name: "Home", href: "/", icon: HomeIcon },
+        { name: "Profile", href: "/profile", icon: AccountCircleIcon },
+        { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
+        { name: "Admin", href: "/admin", icon: PrivacyTipIcon }
+    ] : [
+        { name: "Home", href: "/", icon: HomeIcon },
+        { name: "Profile", href: "/profile", icon: AccountCircleIcon },
+        { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
+    ];
   return (
     <DropdownMenu>
         <DropdownMenuTrigger asChild>

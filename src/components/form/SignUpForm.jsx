@@ -28,18 +28,20 @@ import { useSession } from 'next-auth/react';
 
 const FormSchema = z
   .object({
-    username: z.string().min(1, 'Username is required').max(100),
-    email: z.string().min(1, 'Email is required').email('Invalid email'),
+    username: z.string().min(1, 'Nom d\'utilisateur est nécessaire').max(100),
+    email: z.string().min(1, 'L\'e-mail est requis').email('Email invalide'),
     password: z
       .string()
-      .min(1, 'Password is required')
-      .min(8, 'Password must have than 8 characters'),
-    confirmPassword: z.string().min(1, 'Password confirmation is required'),
+      .min(1, 'Mot de passe requis')
+      .min(8, 'Le mot de passe doit comporter plus de 8 caractères'),
+    confirmPassword: z.string().min(1, 'Une confirmation du mot de passe est requise'),
   })
   .refine((data) => data.password === data.confirmPassword, {
     path: ['confirmPassword'],
-    message: 'Password do not match',
+    message: 'Le mot de passe ne correspond pas',
   });
+
+
 
 const SignUpForm = () => {
   const router = useRouter();
@@ -104,9 +106,9 @@ useEffect(() => {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
             <div className="text-center mb-4">
-              <h1 className="text-4xl font-bold		">Welcome!</h1>
+              <h1 className="text-4xl font-bold		">Bienvenue!</h1>
               <br />
-              <h2 className="text-lg">Please enter your details to create your Account</h2>
+              <h2 className="text-lg">Veuillez saisir vos coordonnées pour créer votre compte</h2>
             </div>
             <div className='space-y-2'>
               <FormField
@@ -114,9 +116,9 @@ useEffect(() => {
                 name='username'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel>Nom d'utilisateur</FormLabel>
                     <FormControl>
-                      <Input placeholder='johndoe' {...field} />
+                      <Input placeholder='utilisateur' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -127,9 +129,9 @@ useEffect(() => {
                 name='email'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>E-mail</FormLabel>
                     <FormControl>
-                      <Input placeholder='mail@example.com' {...field} />
+                      <Input placeholder='mail@exemple.com' {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -140,11 +142,11 @@ useEffect(() => {
                 name='password'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+                    <FormLabel>Mot de passe</FormLabel>
                     <FormControl>
                       <Input
                         type='password'
-                        placeholder='Enter your password'
+                        placeholder='Tapez votre mot de passe'
                         {...field}
                       />
                     </FormControl>
@@ -157,10 +159,10 @@ useEffect(() => {
                 name='confirmPassword'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Re-Enter your password</FormLabel>
+                    <FormLabel>Ressaisir votre mot de passe</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder='Re-Enter your password'
+                        placeholder='Ressaisir votre mot de passe'
                         type='password'
                         {...field}
                       />
@@ -176,13 +178,13 @@ useEffect(() => {
             <SignUpButton/>
           </form>
           <div className='mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400'>
-            or
+            ou
           </div>
-          <GoogleSignInButton>Sign up with Google</GoogleSignInButton>
+          <GoogleSignInButton>Connectez-vous avec Google</GoogleSignInButton>
           <p className='text-center text-sm text-gray-600 mt-2'>
-            If you don't have an account, please{' '}
+            Si vous avez déja un compte, veuillez vous{' '}
             <Link className='text-blue-500 hover:underline' href='/sign-in'>
-              Sign in
+              Se connecter
             </Link>
           </p>
         </Form>

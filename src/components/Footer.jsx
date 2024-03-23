@@ -17,8 +17,8 @@ const Footer = () => {
 
         {/* Top Middle Text */}
         <div className="flex-grow text-center lg:text-center">
-          <p className="text-sm text-gray-500 hidden lg:hidden">© All Rights Reserved, {new Date().getFullYear()}</p>
-          <p className="text-sm text-gray-500 hidden lg:block sm:text[15px]">© All Rights Reserved, 2024</p>
+          <p className="text-sm text-gray-500 hidden lg:hidden">© Tous droits réservés, {new Date().getFullYear()}</p>
+          <p className="text-sm text-gray-500 hidden lg:block sm:text[15px]">© Tous droits réservés, 2024</p>
         </div>
 
         {/* Top Right Icons (replace with your SVG imports) */}

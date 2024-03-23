@@ -12,7 +12,7 @@ const Menu = () => {
       <h1>Choose your options to filter posts:</h1>
       <div className='flex justify-between gap-6'>
         <LocationFilter/>
-        {/* <MedToolsTypeFilter /> */}
+        <MedToolsTypeFilter />
         <Button>Filter</Button>
       </div>
     </div>

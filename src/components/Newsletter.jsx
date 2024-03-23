@@ -27,7 +27,7 @@ const Newsletter = () => {
       <div className="container mx-auto text-center">
         <div className="pl-8 pr-8">
           <h2 className="text-[20px] lg:text-3xl md:text-2xl font-bold mb-8">
-            "STAY UPDATED ON OUR LATEST EFFORTS TO SHARE MEDICAL SUPPLIES AND EQUIPMENT SUBSCRIBING TO OUR NEWSLETTER"
+          "RESTEZ À JOUR DE NOS DERNIERS EFFORTS POUR PARTAGER DES ÉQUIPEMENTS MÉDICAUX EN VOUS ABONNANT À NOTRE NEWSLETTER"
           </h2>
         </div>
         <div className="max-w-md mx-auto">
@@ -39,13 +39,13 @@ const Newsletter = () => {
                     render={({ field }) => (
                     <FormItem>
                         <FormControl>
-                        <Input className='text-black' placeholder='mail@example.com' {...field} />
+                        <Input className='text-black' placeholder='mail@exemple.com' {...field} />
                         </FormControl>
                         <FormMessage />
                     </FormItem>
                     )}
                 />
-                <Button type="submit" className="mt-4 py-2 px-6 bg-white text-black rounded-md hover:bg-gray-100 transition duration-300">Subscribe</Button>
+                <Button type="submit" className="mt-4 py-2 px-6 bg-white text-black rounded-md hover:bg-gray-100 transition duration-300">S'abonner</Button>
             </form>
           </Form>
         </div>

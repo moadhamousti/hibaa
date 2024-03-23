@@ -79,15 +79,16 @@ export const authOptions = {
           if (session?.email) {
             token.email = session.email;
           }
-          // if (session?.image) {
-          //   token.image = session.image;
-          // }
+          if (session?.image) {
+            token.image = session.image;
+          }
       }
         if(user) {
             return {
                 ...token,
                 username:user.username,
-                // role: user.role,          
+                image:user.image,
+                role: user.role,          
                 
                 
             }
@@ -102,14 +103,14 @@ export const authOptions = {
             name:token.name,
             username:token.username,
             email:token.email,
-            // image:token.image,
+            image:token.image,
             role:token.role,
 
 
 
           },
         })
-        console.log("newUser");
+        console.log(newUser);
 
         return token
     },
@@ -127,7 +128,6 @@ export const authOptions = {
 
 
 
-                // role: token.role,
 
             }
         }

@@ -5,7 +5,7 @@ import { Button } from './ui/button'
 const SignUpButton = () => {
   return (
     <Button className='w-[340px] mt-6 block mx-auto' type='submit'>
-      Create Account
+      Créer un compte
     </Button>
 
     

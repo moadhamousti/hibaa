@@ -17,10 +17,10 @@ const Landing = () => {
         className='absolute bottom-0 top-0 left-0 w-full h-full   bg-gradient-to-b from-transparent to-black opacity-80 rounded-3xl z-10' 
       />
       <div className='w-full text-[--bg] lg:w-full p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col items-start justify-center z-10 min-h-9'>
-            <h1 className='font-bold capitalize text-lg sm:text-xl md:text-3xl lg:text-4xl'>JOIN US IN SHARING MEDICAL SUPPLIES AND EQUIPMENT </h1>
+            <h1 className='font-bold capitalize text-lg sm:text-xl md:text-3xl lg:text-4xl'>NOTRE SITE PERMET AUX GENS DE CONTRIBUER ET DE BÉNÉFICIER D'ÉQUIPEMENTS MÉDICAUX EN LES PARTAGEANT AVEC LA COMMUNAUTÉ </h1>
 
         <p className=' sm:inline-block mt-4 md:text-lg lg:text-xl font-in'>
-                We are <span className='font-extrabold '> Heba&aTaa</span>, providing medical supplies and equipment.
+                Nous sommes <span className='font-extrabold '> Heba&aTaa</span>, Rejoignez-nous dans notre mission visant à rendre les soins de santé accessibles à tous.
         </p>
                 <div className='mt-8'>
                   <Button
@@ -39,7 +39,7 @@ const Landing = () => {
                       
                       endIcon={<CallMadeIcon />}
                     >
-                    GET STARTED
+                    COMMENCER
                   </Button>
                 </div>
       </div>

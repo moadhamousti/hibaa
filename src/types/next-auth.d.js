@@ -9,9 +9,9 @@ export const authOptions = {
         id: session.user.id,
         username: session.user.username,
         name:session.user.name,
-        email:session.email,
-        image:session.image,
-        role:session.role,
+        email:session.user.email,
+        image:session.user.image,
+        role:session.user.role,
 
 
         // role: user.UserRole,

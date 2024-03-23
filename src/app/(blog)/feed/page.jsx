@@ -24,7 +24,7 @@ export default function Page({ searchParams }) {
             <CardList page={page} cat={cat} loc={loc}/>
           </div>
         </div>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </>
   )
