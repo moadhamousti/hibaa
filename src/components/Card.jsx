@@ -12,18 +12,11 @@ const Card =  ({ item}) => {
   const router = useRouter();
   const { data: session, status } = useSession();
 
-  console.log(session)
-  console.log(item)
+  console.log("session",session)
+  console.log("item" , item)
 
-  const isCurrentUser = session && session.user && session.user.id === item.user.id;
-
-  const handleProfileClick = () => {
-    if (isCurrentUser) {
-      router.push(`/profile/${session.user.id}`);
-    } else {
-      router.push(`/profile/user/${item.user.id}`);
-    }
-  };
+  const isCurrentUser = session && session.user && item.user && session.user.id === item.user.id;
+  const profileLink = isCurrentUser ? (session ? `/profile/${session.user.id}` : null) : (item.user ? `/profile/user/${item.user.id}` : null);
   
 
 
@@ -71,7 +64,7 @@ const Card =  ({ item}) => {
           </div>
           <div className="flex items-center gap-3 p-4 bg-gray-100">
             <div>
-            <div onClick={handleProfileClick}>
+            <div>
                   {item?.user?.image ? (
                     <div className='w-[25px] h-[25px] relative'>
                       <Image src={item.user.image} alt="" fill className="rounded-full object-cover"/>
@@ -84,20 +77,22 @@ const Card =  ({ item}) => {
                 </div>
             </div>
             <div>
-            <Link href={`/profile/${item.user._id}`}>
-                <p className="text-sm text-black">
-                  {item?.user?.username ? 
-                    (item.user.username.length > 6 ? 
-                      item.user.username.slice(0, 6) + '...' : 
-                      item.user.username) : 
-                    (item?.user?.name ? 
-                      (item.user.name.length > 6 ? 
-                        item.user.name.slice(0, 6) + '...' : 
-                        item.user.name) : 
-                      '')
-                }
+              {profileLink && (
+                <Link href={profileLink}>
+                  <p className="text-sm text-black">
+                    {item?.user?.username ? 
+                      (item.user.username.length > 6 ? 
+                        item.user.username.slice(0, 6) + '...' : 
+                        item.user.username) : 
+                      (item?.user?.name ? 
+                        (item.user.name.length > 6 ? 
+                          item.user.name.slice(0, 6) + '...' : 
+                          item.user.name) : 
+                        '')
+                  }
                 </p>
-            </Link>
+              </Link>
+              )}
               <p className="text-sm font-bold text-black">{item.location}</p>
             </div>
             <span className="text-[12px] font-semibold text-blue-500 ml-12">

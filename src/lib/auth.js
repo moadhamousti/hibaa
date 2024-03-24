@@ -88,7 +88,9 @@ export const authOptions = {
                 ...token,
                 username:user.username,
                 image:user.image,
-                role: user.role,          
+                role: user.role, 
+                email: user.email,          
+
                 
                 
             }

@@ -9,7 +9,6 @@ export default function Page({ searchParams }) {
 
 
   const page = parseInt(searchParams.page) || 1
-  const { cat , loc} = searchParams;
   
   return (
     <>
@@ -20,8 +19,8 @@ export default function Page({ searchParams }) {
             <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
           </div>
           <div className='flex flex-col items-center pt-8 mb-10'>
-            <Menu page={page} cat={cat} loc={loc}/>
-            <CardList page={page} cat={cat} loc={loc}/>
+            <Menu page={page}/>
+            <CardList page={page}/>
           </div>
         </div>
         {/* <Footer/> */}

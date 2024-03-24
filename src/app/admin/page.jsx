@@ -25,7 +25,7 @@ const AdminPage = () => {
       <NavbarAdmin />
           <div className='min-h-screen bg-bg text-textColor'>
             <div className='max-w-screen-xl mx-auto'>
-          {/* <h1>Welcome, {session.user.name}!</h1> */}
+          <h1>Welcome, {session.user.name}!</h1>
         </div>
       </div>
     <Footer/>

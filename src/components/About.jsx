@@ -57,7 +57,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <div className=" px-6 py-8 mt-10">
+    <div className=" px-6 py-8 mt-10" id="about">
     {/* <div className=''> */}
 
         

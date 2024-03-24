@@ -15,7 +15,7 @@ const page = () => {
                   <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
                 </div>
                 <div className="mt-10">
-                    {/* <ProfileForm/> */}
+                    <ProfileForm/>
                 </div>
                 <div>
                   <UserPosts/>

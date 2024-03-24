@@ -1,27 +1,28 @@
 import PageLayout from '@/app/(blog)/layout'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
+import NavbarNoMenu from '@/components/NavbarNoMenu'
+import NavbarSimple from '@/components/NavbarSimple'
 import UserPosts from '@/components/UserPosts'
-import ProfileUserForm from '@/components/form/ProfileForm'
+import ProfileUserForm from '@/components/form/ProfileUserForm'
 import React from 'react'
 
 const page = () => {
   
   return (
     <PageLayout>
-        <Navbar/>
+        <NavbarSimple/>
             <div>
-                <div className=' pt-8 text-center'>
-                  <h1 className="text-4xl font-extrabold tracking-normal">Posts</h1>
-                </div>
-                <div className="mt-10">
+                <div className="mt-12  mb-12">
                     <ProfileUserForm/>
                 </div>
                 <div>
                   {/* <UserPosts/> */}
+                  
+
                 </div>
             </div>
-        <Footer/>
+        {/* <Footer/> */}
     </PageLayout>
   )
 }

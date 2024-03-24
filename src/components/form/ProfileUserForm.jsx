@@ -1,31 +1,73 @@
 "use client"
 
 
-import { useSession } from 'next-auth/react'
-import Image from 'next/image'
-import React, { useState } from 'react'
-import { Label } from '../ui/label'
-import { Input } from '../ui/input'
-import { Button } from '../ui/button'
+import React, { useEffect, useState } from 'react';
+import { Badge } from "@/components/ui/badge";
+import UserPosts from '../UserPosts';
 
+const ProfileUserForm = () => {
+  const [userData, setUserData] = useState(null);
 
-const ProfileForm = () => {
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url = window.location.href;
+        const id = url.substring(url.lastIndexOf('/') + 1);
+
+        const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+          cache: "no-store",
+        });
+        if (!res.ok) {
+          throw new Error("Failed to fetch user data");
+        }
+        const data = await res.json();
+        setUserData(data);
+      } catch (error) {
+        console.error(error);
+        // Handle error
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <div>
-      <Input id="title" className="bg-gray-200 mb-3"/>
-      <Input type='text' placeholder="name" value={newName} onChange={(e) => setNewName(e.target.value)}/>
-      <Input type='text' placeholder="username" value={newUserName} onChange={(e) => setNewUserName(e.target.value)}/>
-      
-      <Input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setNewImage(e.target.files[0])}
-      />
+    <div className="flex justify-center gap-[100px]">
+      <div className='column'>
+        <div className=' pt-8 text-center'>
+          <h1 className="text-4xl font-extrabold tracking-normal">Profile de <span className='text-[#3b83c6]'>{userData?.username || userData?.name}</span></h1>
+        </div>
+          <div className='mt-7'>
+            {userData && (
+              <>
+                <div className="flex items-center justify-center">
+                  <img
+                    className="w-20 h-20 rounded-full mb-4"
+                    src={userData.image}
+                    alt="Profile"
+                  />
+                </div>
+                <div className="text-center gap-5">
+                  <h2 className="text-lg font-semibold">{userData.name}</h2>
+                  <h2 className="text-lg font-semibold">{userData.username}</h2>
+                  <p className="text-sm text-grat-500">{userData.email}</p>
+                  <p className="text-sm text-black">
+                    <Badge variant="light" className={userData.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[#3b83c6]'}>
+                      {userData.role}
+                    </Badge>
+                  </p>
+                </div>
+              </>
+            )}
 
-      <Button onClick={() => update( {username: newUserName}, {name: newName})}>update</Button>
+                <div>
+                  <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
+                  <UserPosts id={userData?.id} />
+                </div>
+          </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProfileForm
+export default ProfileUserForm;

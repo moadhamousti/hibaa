@@ -21,6 +21,10 @@ const getData = async ({ page }) => {
 
 const CardList = async ({ page }) => {
   const data = await getData({ page });
+
+  async function handleDelete(id){
+
+  }
   
   return (
     <div className="max-w-screen-xl mx-auto">

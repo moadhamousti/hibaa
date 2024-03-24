@@ -25,7 +25,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" aria-labelledby="services-heading" className="mt-8">
+    <section id="features" aria-labelledby="services-heading" className="mt-8" >
       <div className="mx-auto p-2 rounded-xl">
         <h2 id="services-heading" className="text-4xl font-bold text-center text-[black] mb-10">Features</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

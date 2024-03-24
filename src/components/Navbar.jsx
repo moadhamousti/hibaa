@@ -102,17 +102,17 @@ const Navbar = () => {
 
   return (
     <div className='flex items-center justify-between h-24 '>
-      <div className="text-left text-3xl font-bold lg:text-3xl md:text-x2 text-softTextColor ">
+      <div className="text-left text-xl font-bold lg:text-2xl md:text-l text-softTextColor ">
         <Link href='/'>Charity</Link>
       </div>
-      <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
-          <Link href="/#whatWeDo" className="text-[19px]">• À Propos</Link>
+      <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
+          <Link href="/#about" className="text-[19px]">• À Propos</Link>
           <Link href="/#features" className="text-[19px]">• Caractéristiques </Link>
           <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
           <Link href="/#contact" className="text-[19px]">• Contact</Link>       
       </div>
 
-      <div className='flex gap-4'>
+      <div className='flex gap-1'>
       {status === "unauthenticated" ? (
         // <Button href="/login" ></Button>
         <Button
@@ -141,7 +141,7 @@ const Navbar = () => {
         <>
         {/* <Link href="/post" className='cursor-pointer md:inline-block hidden'>Post</Link>
         <span className='cursor-pointer md:inline-block hidden' onClick={signOut}>Logout</span> */}
-        <div className=" flex gap-5">
+        <div className=" flex gap-1">
         {/* <Button
         href="/"
         variant="contained"

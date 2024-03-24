@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
       boxShadow: {
         'custom': '0 2px 4px rgba(0, 0, 0, 0.1)',
       },

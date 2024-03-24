@@ -10,7 +10,7 @@ const ProfileForm = () => {
   const [newUserName, setNewUserName] = useState('');
   const [newEmail, setNewEmail] = useState('');
   const [newImage, setNewImage] = useState('');
-  const [imagePreview, setImagePreview] = useState("https://github.com/shadcn.png");
+  const [imagePreview, setImagePreview] = useState("");
 
   const { data: session, status, update } = useSession();
   console.log(session)
@@ -69,6 +69,7 @@ const ProfileForm = () => {
             <input
               id="profile-image"
               type="file"
+              alt=''
               accept="image/*"
               onChange={onChange}
               className="hidden"
@@ -84,34 +85,31 @@ const ProfileForm = () => {
           type="text"
           placeholder="Name"
           className='w-full'
-          value={newName}
+          value={newName || ''} // Ensure this value is always defined
           onChange={(e) => setNewName(e.target.value)}
         />
+        <Label htmlFor="name">Username:</Label>
 
-        <Label htmlFor="username">Username:</Label>
         <Input
           id="username"
           type="text"
           placeholder="Username"
-          value={newUserName}
+          value={newUserName || ''} // Ensure this value is always defined
           onChange={(e) => setNewUserName(e.target.value)}
         />
 
-        <Label htmlFor="email">Email:</Label>
+      <Label htmlFor="name">Email:</Label>
+
         <Input
           id="email"
           type="email"
           placeholder="Email"
-          value={newEmail}
+          value={newEmail || ''} // Ensure this value is always defined
           onChange={(e) => setNewEmail(e.target.value)}
         />
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
-        >
-          Update
-        </button>
+        
+        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600" onClick={() => update( {username: newUserName}, {name: newName}, {email: newEmail})} >update</button>
       </div>
     </div>
   );

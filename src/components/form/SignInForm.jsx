@@ -25,7 +25,7 @@ import SignUpButton from '../SignInButton';
 import { ChevronLeftIcon } from "@radix-ui/react-icons"
 
 const FormSchema = z.object({
-  email: z.string().min(1, 'Email is required').email('l\'Email invalide'),
+  email: z.string().min(1, 'L\'e-mail est requis').email('L\'Email invalide'),
   password: z
     .string()
     .min(1, 'Mot de passe requis')

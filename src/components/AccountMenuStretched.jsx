@@ -8,6 +8,7 @@ import { signOut, useSession } from 'next-auth/react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
@@ -35,13 +36,20 @@ const AccountMenu = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
-                    <Avatar className='h-10 w-10 rounded-full'>
-                        <AvatarImage src={avatarSrc} alt="" />
-                        <AvatarFallback>{user?.username ? user.username : user?.name}</AvatarFallback>
-                    </Avatar>
-                </Button>
+            <div style={{ width: '174px', height: '48px', backgroundColor: '#E5E7EB', borderRadius: '24px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'left', gap:'5px' }}>
+                    <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
+                        <Avatar className='h-10 w-10 rounded-full'>
+                            <AvatarImage src={avatarSrc} alt="" />
+                            <AvatarFallback>{user?.username ? user.username : user?.name}</AvatarFallback>
+                        </Avatar>
+                    </Button>
+                <div>
+                    <span>{user?.username ? user.username.slice(0, 6) + '...' : user?.name.slice(0, 5) + '...'}</span>
+                </div>
+                <ExpandMoreIcon/>
+            </div>
             </DropdownMenuTrigger>
+
             <DropdownMenuContent
                 className="w-50 bg-gray-200 rounded-xl p-4"
                 align="end"

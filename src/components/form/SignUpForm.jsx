@@ -29,7 +29,7 @@ import { useSession } from 'next-auth/react';
 const FormSchema = z
   .object({
     username: z.string().min(1, 'Nom d\'utilisateur est nécessaire').max(100),
-    email: z.string().min(1, 'L\'e-mail est requis').email('Email invalide'),
+    email: z.string().min(1, 'L\'e-mail est requis').email('L\'Email invalide'),
     password: z
       .string()
       .min(1, 'Mot de passe requis')

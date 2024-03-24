@@ -12,7 +12,7 @@ import email from "../../../../public/email.png";
 import phone from "../../../../public/phone.png";
 import EditIcon from '@mui/icons-material/Edit';
 
-
+import { Badge } from "@/components/ui/badge"
 
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
 import { getServerSession } from 'next-auth';
@@ -22,6 +22,7 @@ import NavbarSimple from '@/components/NavbarSimple';
 
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import DeletePost from '@/components/deletePost';
 
 
 const getData = async (id) => {
@@ -35,6 +36,8 @@ const getData = async (id) => {
 
   return res.json();
 };
+
+
 
 const Page = async ({ params }) => {
 
@@ -72,7 +75,7 @@ const Page = async ({ params }) => {
         <div className='max-w-screen-xl mx-auto'>
           <NavbarSimple />
           <div className='py-6 px-1 shadow-lg'>
-            <h1 className="text-4xl text-[black] sm:font-bold fsm:my-4 capitalize text-center sm:text-left">Details post</h1>
+            <h1 className="text-4xl text-[black] sm:font-bold fsm:my-4 capitalize text-center sm:text-left">Détails poste</h1>
             <div className="sm:flex justify-between">
               <div className="mt-10 bg-[white] h-[450px] w-full rounded overflow-hidden max-w-xl sm:w-full">
                 <Image width={100} height={100} src={data.img} alt="Mountain" className="w-full h-full sm:object-cover object-fill" />
@@ -86,21 +89,38 @@ const Page = async ({ params }) => {
                       <span className="text-[#626262] capitalize">{data?.location}</span>
                     </div>
                   </div>
-                  {!session || !session.user || !data || !data.id || session.user.email !== data.userEmail &&(
-                    <span className="text-[#626262]">{formattedDate}</span>
-                  )}
-                  {session && session.user && data && data.id && session.user.email === data.userEmail && (
-                    <>
-                        {/* <p>Post Creator ID: {data.id}</p> */}
-                        <Link href={`/posts/update/${id}`}>
-                            <EditIcon/>
-                        </Link>
-                    </>
-                  )}
+                  
+                  <div className="flex gap-3">
+                    {!session || !session.user || !data || !data.id || session.user.email !== data.userEmail &&(
+                      <span className="text-[#626262]">{formattedDate}</span>
+                    )}
+
+                    {session && session.user && data && data.id && session.user.email === data.userEmail && (
+                      <>
+                          {/* <p>Post Creator ID: {data.id}</p> */}
+                          <Link href={`/posts/update/${id}`}>
+                              <EditIcon/>
+                          </Link>
+                      </>
+                    )}
+
+                    {/* Your other page content */}
+                    {session && session.user && data && data.id && session.user.email === data.userEmail && (
+                      <>
+                          <Link href='/feed'>
+                            <DeletePost data={data} />
+                          </Link>
+                      </>
+                    )}
+                  </div>
                   
                 </div>
                 <p className="text-[black] leading-tight mb-4">
                   {data?.desc}
+                </p>
+                <p>
+                  
+                  <Badge variant="destructive" >{data?.category}</Badge>
                 </p>
 
                 <div className="py-10">
@@ -149,8 +169,41 @@ const Page = async ({ params }) => {
                   </div>
                 </div>
                 <div className="flex gap-5">
-                  <button role="button" aria-label="Subscribe" className="m-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border hover:border-[white ] hover:border-[#00A4BF] rounded-full">Via WhatsApp</button>
-                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full">Via Email</button>
+                {data.isWhatsapp ? (
+                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full">
+                    <Link href={`https://wa.me/+212${data.phone}`} className="">
+                      Via WhatsApp
+                    </Link>
+                  </button>
+                ) : (
+                  <button
+                    role="button"
+                    aria-label="Subscribe"
+                    className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#5de8fd] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#7ceeff] rounded-full"
+                    disabled
+                  >
+                    Via WhatsApp
+                  </button>
+                )}
+
+                {/* <button
+                  role="button"
+                  aria-label="Subscribe"
+                  className={`sm:mt-1 w-1/2 h-12 text-white bg-#00A4BF shadow-md text-base sm:text-xl hover:text-#00A4BF hover:bg-white hover:border-2 hover:border-white hover:border-#00A4BF rounded-full ${!getEmailServiceLink(data.user.email) && 'opacity-50 cursor-not-allowed'}`}
+                  disabled={!getEmailServiceLink(data.user.email)}
+                  onClick={() => {
+                    const emailServiceLink = getEmailServiceLink(data.user.email);
+                    if (emailServiceLink) {
+                      window.location.href = emailServiceLink;
+                    }
+                  }}
+                >
+                  Via Email
+                </button> */}
+
+
+                  
+                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full">Via E-mail</button>
                 </div>
               </div>
             </div>

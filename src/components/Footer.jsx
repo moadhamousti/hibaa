@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className="bg-white w-full py-8 px-4 sm:px-6 md:px-8 lg:px-4" id='features'>
+    <footer className="bg-white w-full py-8 px-4 sm:px-6 md:px-8 lg:px-4" id='contact'>
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         {/* Charity Link (Top Left) */}
         <div className="mr-4">
