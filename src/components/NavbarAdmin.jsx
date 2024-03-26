@@ -14,6 +14,7 @@ import CallMadeIcon from '@mui/icons-material/CallMade';
 import { Button, IconButton , Menu, MenuItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
+import AccountMenuStretched from './AccountMenuStretched';
 
 const NavbarAdmin = () => {
   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
@@ -112,7 +113,7 @@ const NavbarAdmin = () => {
           <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Donate Post</MenuItem>
         </Link>
       </Menu>
-        <AccountMenu />
+        <AccountMenuStretched />
         {/* <Button
           variant="outlined"
           onClick={() => signOut({

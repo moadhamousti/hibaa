@@ -53,29 +53,56 @@
 
 
 
+import Link from 'next/link';
 import React from 'react';
+import { CalendarIcon } from "@radix-ui/react-icons"
+ 
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 const About = () => {
   return (
-    <div className=" px-6 py-8 mt-10" id="about">
-    {/* <div className=''> */}
-
-        
-      <ul className='flex list-disc  text-6xl m-10  uppercase justify-center items-center '>
-        <h1 className='text-center'><b>À Propos</b> 
-        </h1>
-      </ul>
-      <ul className='flex list-disc list-inside  gap-8 text-2xl '>
-      <div className='p-6 bg-[#c2c2c2] rounded-lg	'>
-        <li className=' '>We believe in the power of collective action to address healthcare disparities and ensure that essential medical resources reach underserved communities around the world.</li>
-      </div>
-      <div className='p-6 bg-[#c2c2c2] rounded-lg	'>
-        <li className=' '>We believe in the power of collective action to address healthcare disparities and ensure that essential medical resources reach underserved communities around the world.</li>
-
-      </div>
-        
-      </ul>
-  </div>
+    // <div className=" px-6 py-8 mt-10" >
+      <section aria-labelledby="services-heading" className="mt-8  py-6 mx-auto w-full" id="about">
+        <div className="w-full text-center">
+                <h2 id="services-heading" className="text-4xl font-bold text-center text-black mb-2">About Us</h2>
+            <div className="w-4/5 mx-auto text-center">
+            <p className="py-2 text-lg font-medium text-justify">
+            Hiba&ataa vous permet de rechercher, de trouver et de recevoir les équipements médicaux nécessaires pour améliorer votre bien-être et votre santé . Rejoignez-nous dans notre mission visant à rendre les soins de santé accessible à tous.            
+            </p>
+            {/* <button className="underline   py-2 px-4 rounded-full text-xl text-[#217bbc]   font-semibold capitalize">
+                <Link href={'/about'}>
+                Read More
+                </Link>
+                </button> */}
+            <HoverCard>
+            <HoverCardTrigger asChild>
+              <Link href="/about" className='underline'>Read more</Link>
+            </HoverCardTrigger>
+            <HoverCardContent className="w-80">
+              <div className="flex justify-between space-x-4">
+                <div className="space-y-1">
+                  <h4 className="text-sm font-semibold">@nextjs</h4>
+                  <p className="text-sm">
+                    The React Framework – created and maintained by @vercel.
+                  </p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+            </div>
+        </div>
+    </section>
+  // </div>
   );
 };
 

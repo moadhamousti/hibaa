@@ -18,6 +18,7 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons"
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import arrow from '../../public/Arrow.svg'
+import AccountMenuStretched from './AccountMenuStretched';
 
 
 const NavbarSimple = () => {
@@ -135,7 +136,7 @@ const NavbarSimple = () => {
           <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Donate Post</MenuItem>
         </Link>
       </Menu>
-        <AccountMenu />
+        <AccountMenuStretched />
         {/* <Button
           variant="outlined"
           onClick={() => signOut({

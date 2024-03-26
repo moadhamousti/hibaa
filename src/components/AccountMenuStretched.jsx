@@ -16,7 +16,7 @@ export const navItems = [
     { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
 ];
 
-const AccountMenu = () => {
+const AccountMenuStretched = () => {
     const { data: session } = useSession();
 
     const user = session?.user;
@@ -91,4 +91,4 @@ const AccountMenu = () => {
     )
 }
 
-export default AccountMenu;
+export default AccountMenuStretched;

@@ -28,7 +28,8 @@ const DeletePost = ({ data }) => {
   return (
     <div>
         <>
-          <DeleteIcon onClick={onDeleteClick} />
+          <DeleteIcon  sx={{ color: '#EF507F' }}onClick={onDeleteClick} /> 
+
         </>
     </div>
   );

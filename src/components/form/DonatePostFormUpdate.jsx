@@ -269,8 +269,8 @@ const DonatePostFormUpdate = ({ params }) => {
                   onChange={(e) => setPhone(e.target.value)}
                 />
                 <div className='flex gap-3'>
-                   <img src="/whatsapp.png" alt='' width={20} height={20} />
-                   <span>Est-ce un numéro WhatsApp ?</span>
+                   <img src="/whatsapp.png" alt='' width={18} height={18} />
+                   <span className='text-[14px]'>Est-ce un numéro WhatsApp ?</span>
                    <input
                     type="radio"
                     checked={isWhatsapp}

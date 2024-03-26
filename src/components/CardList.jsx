@@ -5,8 +5,8 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 
-const getData = async ({ page }) => {
-  const res = await fetch(`http://localhost:3000/api/posts/donatePosts?page=${page}`,{
+const getData = async ({ page, cat,loc }) => {
+  const res = await fetch(`http://localhost:3000/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}`,{
     cache: "no-store",
   });
 
@@ -19,8 +19,8 @@ const getData = async ({ page }) => {
 
 
 
-const CardList = async ({ page }) => {
-  const data = await getData({ page });
+const CardList = async ({ page, cat,loc}) => {
+  const data = await getData({ page, cat,loc });
 
   async function handleDelete(id){
 
@@ -28,7 +28,7 @@ const CardList = async ({ page }) => {
   
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {data && data.map((item) => (
           <Card item={item} key={item._id}/>
         ))}

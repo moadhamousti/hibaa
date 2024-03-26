@@ -39,7 +39,7 @@ const Landing = () => {
                       
                       endIcon={<CallMadeIcon />}
                     >
-                    COMMENCER
+                    EXPLORER
                   </Button>
                 </div>
       </div>

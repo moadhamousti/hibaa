@@ -87,6 +87,7 @@ export const authOptions = {
             return {
                 ...token,
                 username:user.username,
+                name:user.name,
                 image:user.image,
                 role: user.role, 
                 email: user.email,          
@@ -122,11 +123,11 @@ export const authOptions = {
             ...session,
             user:{
                 ...session.user,
-                username: token.username,
-                name:token.name,
-                email:token.email,
-                // image:token.image,
-                role:token.role,
+                username: token.username || session.user.username,
+                name: token.name || session.user.name,
+                email: token.email || session.user.email,
+                image:token.image || session.user.image,
+                role: token.role || session.user.role,
 
 
 

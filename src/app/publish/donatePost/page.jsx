@@ -9,7 +9,7 @@ const page = () => {
         <NavbarSimple />
         <div style={{ display: 'flex' }}>
         <div className='pt-10'>
-          <h1 className="text-4xl font-extrabold tracking-normal hidden sm:block">Créer Poste</h1>
+          <h1 className="text-3xl font-extrabold tracking-normal hidden sm:block">Créer Poste</h1>
         </div>
 
           <div style={{ flex: 1 }}>

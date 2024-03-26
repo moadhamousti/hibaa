@@ -11,7 +11,7 @@ import yahoo from "../../../../public/yahoo.png";
 import email from "../../../../public/email.png";
 import phone from "../../../../public/phone.png";
 import EditIcon from '@mui/icons-material/Edit';
-
+import defaultImage from '../../../../public/equipement.jpg'
 import { Badge } from "@/components/ui/badge"
 
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
@@ -23,6 +23,7 @@ import NavbarSimple from '@/components/NavbarSimple';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeletePost from '@/components/deletePost';
+
 
 
 const getData = async (id) => {
@@ -43,10 +44,17 @@ const Page = async ({ params }) => {
 
   const { id } = params;
   const data = await getData(id);
+  
  
   
 
   const session = await getServerSession(authOptions);
+
+  const isCurrentUser = session && session.user && data.user && session.user.email === data.user.email;
+  console.log("isCurrentUser", isCurrentUser);
+  
+  const profileLink = isCurrentUser ? (session ? '/profile': '') : (data.user ? `/profile/user/${data.user.id}` : '');
+  console.log("profileLink", profileLink);
 
   const formattedDate = data.createdAt ? 
   formatDistanceToNowStrict(new Date(data.createdAt), { addSuffix: true }) : 
@@ -78,14 +86,25 @@ const Page = async ({ params }) => {
             <h1 className="text-4xl text-[black] sm:font-bold fsm:my-4 capitalize text-center sm:text-left">Détails poste</h1>
             <div className="sm:flex justify-between">
               <div className="mt-10 bg-[white] h-[450px] w-full rounded overflow-hidden max-w-xl sm:w-full">
-                <Image width={100} height={100} src={data.img} alt="Mountain" className="w-full h-full sm:object-cover object-fill" />
+                <Image width={100} height={100} src={data.img ? data.img : defaultImage} alt="Mountain" className="w-full h-full sm:object-cover object-fill" />
               </div>
               <div className="p-6 w-full rounded-lg overflow-hidden max-w-lg sm:w-full py-10">
                 <div className="flex justify-between items-center py-10 text-[textColor]">
                   <div className="flex items-center">
-                    <Image src={data.user.image} alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover" />
+                    <Link href={profileLink}>
+                      {data.user.image ? (
+                          <div className='mr-2 w-[50px] h-[50px] relative'>
+                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover"/>
+                          </div>
+                        ) : (
+                          <div className='mr-2 w-[50px] h-[50px] relative'>
+                            <Image src="https://github.com/shadcn.png" alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover"/>
+                          </div>
+                        )}
+                      </Link>
+                    {/* <Image src={data.user.image} alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover" /> */}
                     <div className="flex flex-col items-left">
-                      <span className="text-[black] font-semibold">{data?.user?.username ? data.user.username : data?.user?.name}</span>
+                    <Link href={profileLink}><span className="text-[black] font-semibold">{data?.user?.username ? data.user.username : data?.user?.name}</span></Link>
                       <span className="text-[#626262] capitalize">{data?.location}</span>
                     </div>
                   </div>
@@ -99,7 +118,7 @@ const Page = async ({ params }) => {
                       <>
                           {/* <p>Post Creator ID: {data.id}</p> */}
                           <Link href={`/posts/update/${id}`}>
-                              <EditIcon/>
+                              <EditIcon sx={{ color: '#00A4BF' }}/>
                           </Link>
                       </>
                     )}
@@ -108,20 +127,23 @@ const Page = async ({ params }) => {
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
                       <>
                           <Link href='/feed'>
-                            <DeletePost data={data} />
+                          <DeletePost
+                            data={data}
+                             // Add this line to set the color
+                          />
                           </Link>
                       </>
                     )}
                   </div>
                   
                 </div>
-                <p className="text-[black] leading-tight mb-4">
+                <h4 className="text-[black] leading-tight mb-4">
                   {data?.desc}
-                </p>
-                <p>
+                </h4>
+                <h4 className="text-[black] leading-tight mb-4">
                   
                   <Badge variant="destructive" >{data?.category}</Badge>
-                </p>
+                </h4>
 
                 <div className="py-10">
                   <div className="flex gap-2">
@@ -186,20 +208,7 @@ const Page = async ({ params }) => {
                   </button>
                 )}
 
-                {/* <button
-                  role="button"
-                  aria-label="Subscribe"
-                  className={`sm:mt-1 w-1/2 h-12 text-white bg-#00A4BF shadow-md text-base sm:text-xl hover:text-#00A4BF hover:bg-white hover:border-2 hover:border-white hover:border-#00A4BF rounded-full ${!getEmailServiceLink(data.user.email) && 'opacity-50 cursor-not-allowed'}`}
-                  disabled={!getEmailServiceLink(data.user.email)}
-                  onClick={() => {
-                    const emailServiceLink = getEmailServiceLink(data.user.email);
-                    if (emailServiceLink) {
-                      window.location.href = emailServiceLink;
-                    }
-                  }}
-                >
-                  Via Email
-                </button> */}
+      
 
 
                   

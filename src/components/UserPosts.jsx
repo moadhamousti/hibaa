@@ -26,7 +26,7 @@ const UserPosts = ({ id }) => {
   return (
     <div className="flex flex-wrap justify-center">
       {userPosts.slice(0, 3).map((post) => (
-        <div key={post.id} className="w-1/3 px-4 mb-4">
+        <div key={post.id} className=" px-4 mb-4">
           <Card item={post} />
         </div>
       ))}

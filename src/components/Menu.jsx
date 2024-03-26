@@ -9,8 +9,7 @@ const Menu = () => {
 
   return (
     <div>
-      <h1>Choose your options to filter posts:</h1>
-      <div className='flex justify-between gap-6'>
+      <div className='flex justify-between gap-6 mt-9'>
         <LocationFilter/>
         <MedToolsTypeFilter />
         <Button>Filter</Button>

@@ -1,0 +1,93 @@
+
+
+.title {
+  margin: 50px 0px;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: capitalize;
+  width: 20%;
+  height: 40px;
+  justify-content: center;
+  border-radius: 10px;
+}
+
+.category.Wheelchairs {
+  background-color: #57c4ff31;
+}
+
+.category.Crutches {
+  background-color: #da85c731;
+}
+
+.category.Walkers {
+  background-color: #7fb88133;
+}
+
+.category.Canes {
+  background-color: #ff795736;
+}
+
+.category.OrthopedicBraces {
+  background-color: #ffb04f45;
+}
+
+.category.Eyeglasses {
+  background-color: #5e4fff31;
+}
+
+.category.Nebulizers {
+  background-color: #b64fff31;
+}
+
+.category.FeedingTubes {
+  background-color: #ff4ff631;
+}
+
+.category.Stethoscopes {
+  background-color: #4fff5531;
+}
+
+.category.WheeledShowerChairs {
+  background-color: #b9ff4f31;
+}
+
+
+.category.WheeledShowerChairs {
+  background-color: #b9ff4f31;
+}
+
+.image {
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 1280px) {
+  .category {
+    width: 20%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .category {
+    width: 25%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .category {
+    width: 45%;
+  }
+}
+@media screen and (max-width: 640px) {
+  .category {
+    width: 100%;
+  }
+}

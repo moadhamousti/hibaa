@@ -71,12 +71,13 @@ import { BiMenu } from 'react-icons/bi';
 import { signOut, useSession } from 'next-auth/react'; // Import useSession
 import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
-import AccountMenu from './AccountMenu';
 // Assuming you have styles and LoginIcon imported
 import CallMadeIcon from '@mui/icons-material/CallMade';
 import { Button, IconButton , Menu, MenuItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
+import AccountMenu from './AccountMenu';
+
 
 const Navbar = () => {
   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
@@ -106,10 +107,10 @@ const Navbar = () => {
         <Link href='/'>Charity</Link>
       </div>
       <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
-          <Link href="/#about" className="text-[19px]">• À Propos</Link>
-          <Link href="/#features" className="text-[19px]">• Caractéristiques </Link>
-          <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
-          <Link href="/#contact" className="text-[19px]">• Contact</Link>       
+          <Link href="/#about" className="text-[17px]">•À Propos</Link>
+          <Link href="/#features" className="text-[17px]">•Caractéristiques </Link>
+          <Link href="/#faq" className="text-[17px]">•FAQ</Link> 
+          <Link href="/#contact" className="text-[17px]">•Contact</Link>       
       </div>
 
       <div className='flex gap-1'>
@@ -134,6 +135,7 @@ const Navbar = () => {
       >
         COMMENCER
       </Button>
+      
         // <Link href="/login" >Login</Link>
 
 
@@ -196,10 +198,10 @@ const Navbar = () => {
 
         {open && (
           <div className='fixed top-24 right-0 rounded-sm bg-gray-500 h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-white z-50'>
-            <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
-            <Link href="/#features" className="text-[19px]">• Features</Link>
-            <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
-            <Link href="/#contact" className="text-[19px]">• Contact</Link>  
+            <Link href="/#about" className="text-[17px]">•À Propos</Link>
+            <Link href="/#features" className="text-[17px]">•Caractéristiques </Link>
+            <Link href="/#faq" className="text-[17px]">•FAQ</Link> 
+            <Link href="/#contact" className="text-[17px]">•Contact</Link>  
             {status === "unauthenticated" ? (
               // <button href="/" className={styles.button}>Login</button>
               <Button
@@ -216,7 +218,7 @@ const Navbar = () => {
                   }
                 }}
                 
-                endIcon={<CallMadeIcon />}
+                endIcon={<CallMadeIcon  />}
               >
               COMMENCER
             </Button>
