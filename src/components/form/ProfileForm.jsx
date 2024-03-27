@@ -2,6 +2,7 @@
 
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
+import UserPosts from '../UserPosts';
 
 const ProfileForm = () => {
   const [newName, setNewName] = useState('');
@@ -9,9 +10,36 @@ const ProfileForm = () => {
   const [newEmail, setNewEmail] = useState('');
   const [newImage, setNewImage] = useState('');
   const [imagePreview, setImagePreview] = useState("");
+  const [userData, setUserData] = useState(null);
+
 
   const { data: session, status, update } = useSession();
   console.log(session)
+
+  const id = session?.user?.id; // Extract user ID from session
+
+  useEffect(() => {
+    if (id) {
+      const fetchData = async () => {
+        try {
+          const res = await fetch(`http://localhost:3000/api/user/${id}`, {
+            cache: "no-store",
+          });
+          if (!res.ok) {
+            throw new Error("Failed to fetch user data");
+          }
+          const data = await res.json();
+          setUserData(data);
+        } catch (error) {
+          console.error(error);
+          // Handle error
+        }
+      };
+  
+      fetchData();
+    }
+  }, [id]);
+  
 
   useEffect(() => {
     if (session) {
@@ -51,7 +79,7 @@ const ProfileForm = () => {
     <div className=" min-h-screen font-sans leading-normal overflow-x-hidden lg:overflow-auto">
         <section className=" p-4 shadow">
           <div className="md:flex">
-          <h2 className="md:w-1/3 sm:text-start text-center uppercase  text-sm font-bold sm:text-lg  mb-16">Personal Information de <span className='text-blue-500'>{session.user.username || session.user.name}</span> </h2>
+          <h2 className="md:w-1/3 sm:text-start text-center uppercase  text-sm font-bold sm:text-lg  mb-16">Personal Information de <span className='text-blue-500'>{session?.user.username || session?.user.name}</span> </h2>
           </div>
           <div className=' p-2  grid sm:grid-cols-2  gap-0"  '>
             <div className='  flex flex-col items-center  w-full '>
@@ -138,7 +166,12 @@ const ProfileForm = () => {
               </div>
               </form>
           </div>
+                
         </section>
+                <div>
+                  <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
+                  <UserPosts id={id} />
+                </div>
       </div>
   );
 };

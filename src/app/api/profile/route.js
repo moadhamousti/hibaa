@@ -1,38 +1,42 @@
-import { getSession } from "next-auth/react"; // Import getSession to access session data
-import { db } from "../../../lib/db";
+import { db } from "@/lib/db";
+import { NextResponse } from "next/server";
 
-export const GET = async (request) => {
+export const GET = async (req, { params }) => {
+  const { id } = params;
   try {
-    const session = await getSession({ req: request });
-    if (!session) {
-      return { error: "Unauthorized", status: 401 };
-    }
-
-    // Fetch user profile data from the database
-    const user = await db.user.findUnique({
-      where: { id: session.user.id },
-      select: { id: true, name: true, username: true, email: true },
+    // Fetch user
+    const user = await db.User.findUnique({
+      where: { id },
     });
 
     if (!user) {
-      return { error: "User not found", status: 404 };
+      return new NextResponse(
+        JSON.stringify({ message: "User not found" }),
+        { status: 404 }
+      );
     }
 
-    return { user };
-  } catch (error) {
-    console.error("Error fetching user profile:", error);
-    return { error: "Internal Server Error", status: 500 };
+    // Fetch user's posts
+    const userWithPosts = await db.User.findUnique({
+      where: { id },
+      include: {
+        DonPosts: true // Assuming DonPosts is the relation to the posts
+      }
+    });
+
+    return new NextResponse(JSON.stringify(userWithPosts), { status: 200 });
+  } catch (err) {
+    console.error(err);
+    return new NextResponse(
+      JSON.stringify({ message: "Something went wrong" }),
+      { status: 500 }
+    );
   }
 };
 
 
 
 
-
-
-
-import { getSession } from 'next-auth/react';
-import { db } from '@/lib/db';
 
 export default async function handler(req, res) {
   if (req.method !== 'PUT') {

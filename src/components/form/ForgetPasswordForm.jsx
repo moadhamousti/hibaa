@@ -26,16 +26,12 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons"
 
 const FormSchema = z.object({
   email: z.string().min(1, 'L\'e-mail est requis').email('L\'Email invalide'),
-  password: z
-    .string()
-    .min(1, 'Mot de passe requis')
-    .min(8, 'Le mot de passe doit comporter plus de 8 caractères'),
 });
 
 
 
 
-const SignInForm = () => {
+const ForgetPasswordForm = () => {
   const router = useRouter();
   const {toast}  = useToast();
 
@@ -57,28 +53,52 @@ useEffect(() => {
     resolver: zodResolver(FormSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
   const onSubmit = async (values) => {
-   const signInData = await signIn('credentials',{
-    email: values.email,
-    password: values.password,
-    redirect:false,
-   })
-   if(signInData?.error) {
-    toast({
-      title: "Error",
-      description:"Something Went Wrong!",
-      variant:"destructive",
-    })
-   }else{
-    router.refresh();
-    router.push('/feed');
-   }
-
+    try {
+      const res = await fetch("/api/forget-password", {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: values.email,
+        }),
+      });
+      if (res.status === 400) {
+        toast({
+          title: "Error",
+          description: "User with this email is not registered",
+          variant: "destructive",
+        })
+      } else if (res.status === 200) {
+        toast({
+          title: "Success",
+          description: "Password reset email sent",
+          variant: "success",
+          className: "bg-green-500 text-white"
+        });
+        router.push("/sign-in");
+      } else {
+        toast({
+          title: "Error",
+          description: "Unknown error occurred",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred",
+        variant: "destructive",
+      });
+      router.push("/sign-in")
+      console.error(error);
+    }
   };
+
 
 
 
@@ -94,9 +114,9 @@ useEffect(() => {
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
           <div className="text-center mb-4">
-            <h1 className="text-4xl font-bold">Bienvenue!</h1>
+            <h1 className="text-4xl font-bold">Mot de passe oublier</h1>
             <br />
-            <h2 className="text-lg">Veuillez saisir vos coordonnées pour créer votre compte</h2>
+            <h2 className="text-lg">Veuillez saisir vos coordonnées pour récuperer votre mot de passe</h2>
           </div>
         <div className='space-y-2'>
           <FormField
@@ -112,39 +132,16 @@ useEffect(() => {
               </FormItem>
             )}
           />
-          <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Mot de passe</FormLabel>
-                <FormControl>
-                  <Input
-                    type='password'
-                    placeholder='Tapez votre mot de passe'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div>
-            <Link href='/forget-password'><p className='mt-2 text-black font-semibold text-end text-[16px] '>Forgot Password?</p></Link>
-          </div>
+          
         </div>
-        {/* <Button className='w-full mt-6' type='submit'>
-          Sign in
-        </Button> */}
         <SignUpButton/>
       </form>
       <div className='mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400'>
         ou
       </div>
-      <GoogleSignInButton>Connectez-vous avec Google</GoogleSignInButton>
       <p className='text-center text-sm text-gray-600 mt-2'>
       Si vous n'avez pas de compte, s'il vous plaît{' '}
-        <Link className='text-blue-500 hover:underline' href='/sign-up'>
+        <Link className='text-blue-500 hover:underline' href='/sign-in'>
           S'inscrire
         </Link>
       </p>
@@ -154,4 +151,4 @@ useEffect(() => {
   );
 };
 
-export default SignInForm;
+export default ForgetPasswordForm;

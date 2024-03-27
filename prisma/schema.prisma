@@ -68,12 +68,14 @@ model User {
   email         String    @unique
   emailVerified DateTime?
   active        Boolean   @default(false)
-  image         String
+  image         String?   
   ActivateToken ActivateToken[]
   accounts      Account[]
   sessions      Session[]
   DonPosts      DonPost[]
   role          UserRole  @default(USER)
+  resetToken       String?     // New field for password reset token
+  resetTokenExpiry DateTime?   // New field for token expiry
   // posts         Post[]
   ReqPost       ReqPost[]
 }
@@ -133,7 +135,7 @@ model DonPost {
   userEmail String
   location String
   category String
-  type     String
+  type     String @default("Donation")
   MedCategory  MedCategory  @relation(fields: [category], references: [title])
   user      User      @relation(fields: [userEmail], references: [email])
   cat       LocationCategory  @relation(fields: [location], references: [title])
