@@ -116,11 +116,11 @@ model LocationCategory {
   ReqPost   ReqPost[]  
 }
 
-model PostType {
-  id        String    @id @default(cuid())
-  title     String    @unique
-  DonPosts  DonPost[]
-}
+// model PostType {
+//   id        String    @id @default(cuid())
+//   title     String    @unique
+//   DonPosts  DonPost[]
+// }
 
 
 model DonPost {
@@ -135,11 +135,11 @@ model DonPost {
   userEmail String
   location String
   category String
-  type     String @default("Donation")
+  // type     String @default("Donation")
   MedCategory  MedCategory  @relation(fields: [category], references: [title])
   user      User      @relation(fields: [userEmail], references: [email])
   cat       LocationCategory  @relation(fields: [location], references: [title])
-  PostType  PostType[]
+  // PostType  PostType[]
 }
 
 model ReqPost {

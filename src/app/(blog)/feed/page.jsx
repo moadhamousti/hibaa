@@ -2,9 +2,9 @@ import CardList from '@/components/CardList';
 import Menu from '@/components/Menu';
 import Navbar from '@/components/Navbar';
 
-import Footer from '@/components/Footer';
 import CategoryList from '@/components/CategoriesList';
 import LocationList from '@/components/LocationList';
+import FooterFeed from '@/components/FooterFeed';
 
 
 export default function Page({ searchParams }) {
@@ -35,7 +35,7 @@ export default function Page({ searchParams }) {
             <CardList page={page} cat={cat} loc={loc}/>
           </div>
         </div>
-        {/* <Footer/> */}
+        <FooterFeed/>
       </div>
     </>
   )

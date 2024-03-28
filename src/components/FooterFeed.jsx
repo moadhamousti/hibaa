@@ -1,12 +1,18 @@
+"use client"
 
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import FacebookIcon from '../../public/Facebook.svg'; 
 import InstagramIcon from '../../public/Instagram.svg';
 import TwitterIcon from '../../public/Twitter.svg';
 import Image from 'next/image';
 
-const Footer = () => {
-  
+const FooterFeed = () => {
+  const { data: session } = useSession(); // Use useSession hook to retrieve session data
+
+  if (session) {
+    return null; // If there's a session (user signed in), don't render the footer
+  }
 
   return (
     <div className="">
@@ -88,5 +94,5 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterFeed;
 

@@ -23,6 +23,8 @@ import Image from 'next/image';
 import SignUpButton from '../SignUpButton';
 import { ChevronLeftIcon } from "@radix-ui/react-icons"
 import { useSession } from 'next-auth/react';
+import loaderGif from '../../../public/loaderB.gif'
+
 
 
 
@@ -45,6 +47,7 @@ const FormSchema = z
 
 const SignUpForm = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const {toast}  = useToast();
   const goBack = () => {
     router.back(); // Navigate to the previous page
@@ -71,6 +74,7 @@ useEffect(() => {
 
 
   const onSubmit = async (values) => {
+    setIsLoading(true);
     const response = await fetch('/api/user', {
       method: 'POST',
       headers:{
@@ -92,6 +96,8 @@ useEffect(() => {
         variant:"destructive",
       })
     }
+    setIsLoading(false);
+
   };
 
   return (
@@ -175,7 +181,18 @@ useEffect(() => {
             {/* <Button className='w-[340px] mt-6' type='submit'>
               Create Account
             </Button> */}
-            <SignUpButton/>
+            {/* <SignUpButton/> */}
+            <div className="w-full mt-6 relative">
+            <button className='bg-[#38867D87] w-[300px] h-[50px] top-[581px] left-[873px] rounded-[50px] mt-6 block mx-auto' type='submit'
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <Image src={loaderGif} alt="Loading..." width={50} height={50} className="absolute inset-0 m-auto" />
+                ) : (
+                  'Créer un compte'
+                )}
+              </button>
+            </div>
           </form>
           <div className='mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400'>
             ou

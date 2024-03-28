@@ -3,8 +3,7 @@
 // CategoryList.jsx
 import React, { useState, useEffect } from "react";
 import styles from "./categoryList.module.css";
-import Link from "next/link";
-import { Button } from "./ui/button";
+import { useRouter } from "next/navigation";
 
 const getData = async () => {
   const res = await fetch("http://localhost:3000/api/location", {
@@ -19,25 +18,32 @@ const getData = async () => {
 };
 
 const LocationList = () => {
-  const [location, setLocation] = useState([]);
+  const [locations, setLocations] = useState([]);
   const [selectedLocation, setSelectedLocation] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchLocation = async () => {
+    const fetchLocations = async () => {
       try {
         const data = await getData();
-        setLocation(data);
+        setLocations(data);
       } catch (error) {
-        console.error("Error fetching location:", error);
+        console.error("Error fetching locations:", error);
       }
     };
 
-    fetchLocation();
+    fetchLocations();
   }, []);
 
   const handleLocationChange = (event) => {
     const selectedLocation = event.target.value;
     setSelectedLocation(selectedLocation);
+    // Filter immediately after location selection
+    if (selectedLocation) {
+      router.push(`/feed?loc=${encodeURIComponent(selectedLocation)}`);
+    } else {
+      router.push("/feed");
+    }
   };
 
   return (
@@ -50,7 +56,7 @@ const LocationList = () => {
             className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
         >
             <option value="">Sélectionnez ville</option>
-            {location.map((location) => (
+            {locations.map((location) => (
             <option key={location.id} value={location.title}>
                 {location.title}
             </option>
@@ -63,15 +69,9 @@ const LocationList = () => {
             </svg>
         </div>
       </div>
-      {selectedLocation && (
-        <div className="flex gap-5">
-            <Link href={`/feed?loc=${selectedLocation}`}>
-                <button className="block mt-2 text-white bg-[#00A4BF] w-[105px] h-[44px] px-26 rounded-md">Filtrer villes</button>
-            </Link>
-        </div>
-      )}
     </div>
   );
 };
 
 export default LocationList;
+

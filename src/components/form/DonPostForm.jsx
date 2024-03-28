@@ -258,35 +258,37 @@ const DonPostsForm = () => {
           </div>
 
           <Label htmlFor="locationCategory">Choisir une catégorie:</Label>
-        <select
-          id="locationCategory"
-          value={selectedLocationCategory}
-          onChange={(e) => setSelectedLocationCategory(e.target.value)}
-          className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px]'
-
-        >
-          {/* <option value="">Select a location category</option> */}
-          {locationCategories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.title}
-            </option>
-          ))}
-        </select>
-
-        <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
           <select
-            id="toolsCategory"
-            value={selectedToolsCategories}
-            className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px]'
-            onChange={(e) => setSelectedToolsCategories(e.target.value)}
-          >
-            {/* <option value="">Select a tools category</option> */}
-            {toolsCategories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.title}
-              </option>
-            ))}
-          </select>
+              id="toolsCategory"
+              value={selectedToolsCategories}
+              className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px]'
+              onChange={(e) => setSelectedToolsCategories(e.target.value)}
+            >
+              {/* <option value="">Sélectionner une catégorie d'outils</option> */}
+              {toolsCategories.map((category) => (
+                <option key={category.id} value={category.title}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+            
+
+            <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
+            
+            <select
+              id="locationCategory"
+              value={selectedLocationCategory}
+              onChange={(e) => setSelectedLocationCategory(e.target.value)}
+              className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px]'
+            >
+              {/* <option value="">Sélectionner une catégorie de lieu</option> */}
+              {locationCategories.map((category) => (
+                <option key={category.id} value={category.title}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+
 
 
           <Label htmlFor="toolsCategory">Ajouter une image</Label>
@@ -316,7 +318,7 @@ const DonPostsForm = () => {
             onDragOver={handleDragOver}
           >
             <div className='column self-center bg-white px-10 py-10' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <Image className='mb-6' src={uploadIcon} width={100} height={100} />
+              <Image alt="" className='mb-6' src={uploadIcon} width={100} height={100} />
               <p className="text-gray-400">Glisser-déposer des fichiers ou <strong className='text-[#00A4BF] font-bold underline'>Parcourir</strong></p>
             </div>
 

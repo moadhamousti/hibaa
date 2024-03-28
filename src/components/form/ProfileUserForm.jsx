@@ -32,7 +32,7 @@ const ProfileUserForm = () => {
   }, []);
 
   return (
-    <div className="flex justify-center gap-[100px]">
+    <div className="flex flex-wrap justify-center">
       <div className='column'>
         <div className=' pt-8 text-center'>
           <h1 className="text-4xl font-extrabold tracking-normal">Profile de <span className='text-[#3b83c6]'>{userData?.username || userData?.name}</span></h1>
@@ -43,7 +43,7 @@ const ProfileUserForm = () => {
                 <div className="flex items-center justify-center">
                   <img
                     className="w-20 h-20 rounded-full mb-4"
-                    src={userData.image}
+                    src={userData.image || "https://github.com/shadcn.png"}
                     alt="Profile"
                   />
                 </div>
