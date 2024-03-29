@@ -121,7 +121,7 @@ const AccountMenu = () => {
         { name: "Home", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
         { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
-        { name: "Admin", href: "/admin", icon: SupervisorAccountIcon }
+        { name: "Admin", href: "/admin/dashboard", icon: SupervisorAccountIcon }
     ] : [
         { name: "Home", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },

@@ -192,101 +192,100 @@ const Page = () => {
   return (
     <PageLayout>
       <Navbar />
-      <div className='pt-10 text-center mb-10'>
-        <h1 className="text-4xl font-extrabold tracking-normal">Create A Request Post</h1>
-        <p>In here you can request medical tools </p>
-      </div>
-      <div className="max-w-md mx-auto">
-        <form className="grid gap-4">
-          <Label htmlFor="title">Title</Label>
-          <Input id="title" className="bg-gray-200" placeholder="Title" onChange={e => setTitle(e.target.value)} />
+      <div className="mb-10">
+        <div className='pt-10 text-center mb-10'>
+          <h1 className="text-4xl font-extrabold tracking-normal">Create A Request Post</h1>
+          <p>In here you can request medical tools </p>
+        </div>
+        <div className="max-w-md mx-auto">
+          <form className="grid gap-4">
+            {/* <Label htmlFor="title">Title</Label>
+            <Input id="title" className="bg-gray-200" placeholder="Title" onChange={e => setTitle(e.target.value)} />
 
-          <Label htmlFor="description">Description</Label>
-          <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
+            <Label htmlFor="description">Description</Label>
+            <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" /> */}
 
 
-          <label htmlFor="locationCategory">Select Location Category:</label>
-        <select
-          id="locationCategory"
-          value={selectedLocationCategory}
-          onChange={(e) => setSelectedLocationCategory(e.target.value)}
-        >
-          {/* <option value="">Select a location category</option> */}
-          {locationCategories.map((category) => (
-            <option key={category.id} value={category.id}>
-              {category.title}
-            </option>
-          ))}
-        </select>
-
-        <label htmlFor="toolsCategory">Select Tools Category:</label>
-          <select
-            id="toolsCategory"
-            value={selectedToolsCategories}
-            onChange={(e) => setSelectedToolsCategories(e.target.value)}
-          >
-            {/* <option value="">Select a tools category</option> */}
-            {toolsCategories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.title}
-              </option>
-            ))}
-          </select>
-
-          <Label htmlFor="phone">Phone</Label>
-          <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200' placeholder="Phone Number" />
-          <div className='flex gap-3'>
-            <Image src={whatsapp} alt='' width={20} height={20}/>
-            <span>Is this a whatsapp Number?</span>
-            <RadioGroup
-              aria-label="whatsapp-option"
-              name="whatsapp-option"
-              value={isWhatsapp ? "yes" : ""}
-              onChange={(e) => setisWhatsapp(e.target.value === "yes")}
-              
+            {/* <label htmlFor="locationCategory">Select Location Category:</label>
+            <select
+              id="locationCategory"
+              value={selectedLocationCategory}
+              onChange={(e) => setSelectedLocationCategory(e.target.value)}
             >
-              <div className=''>
-                <input 
-                  type="radio" 
-                  id="whatsapp-yes" 
-                  value="yes" 
-                  checked={isWhatsapp} 
-                  onChange={() => setisWhatsapp(!isWhatsapp)} 
+              {locationCategories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.title}
+                </option>
+              ))}
+            </select> */}
+
+          <label htmlFor="toolsCategory">Select Tools Category:</label>
+            <select
+              id="toolsCategory"
+              value={selectedToolsCategories}
+              onChange={(e) => setSelectedToolsCategories(e.target.value)}
+            >
+              {/* <option value="">Select a tools category</option> */}
+              {toolsCategories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+
+            {/* <Label htmlFor="phone">Phone</Label>
+            <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200' placeholder="Phone Number" />
+            <div className='flex gap-3'>
+              <Image src={whatsapp} alt='' width={20} height={20}/>
+              <span>Is this a whatsapp Number?</span>
+              <RadioGroup
+                aria-label="whatsapp-option"
+                name="whatsapp-option"
+                value={isWhatsapp ? "yes" : ""}
+                onChange={(e) => setisWhatsapp(e.target.value === "yes")}
+                
+              >
+                <div className=''>
+                  <input 
+                    type="radio" 
+                    id="whatsapp-yes" 
+                    value="yes" 
+                    checked={isWhatsapp} 
+                    onChange={() => setisWhatsapp(!isWhatsapp)} 
+                  />
+                  <Label htmlFor="whatsapp-yes" className="ml-2 mb-1">Yes</Label>
+                </div>
+              </RadioGroup>
+            </div> */}
+
+
+
+            <div className="flex flex-col items-center justify-center">
+            {/* <label htmlFor="image" className="relative">
+              <input
+                type="file"
+                id="image"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+              {file ? (
+                <img
+                  src={URL.createObjectURL(file)}
+                  alt="Preview"
+                  className="w-full h-full object-cover rounded-md border-2 border-gray-300"
                 />
-                <Label htmlFor="whatsapp-yes" className="ml-2 mb-1">Yes</Label>
-              </div>
-            </RadioGroup>
-          </div>
-
-
-          {/* <input type='file' id='image' onChange={e => setFile(e.target.files[0])} /> */}
-
-          <div className="flex flex-col items-center justify-center">
-      <label htmlFor="image" className="relative">
-        <input
-          type="file"
-          id="image"
-          accept="image/*"
-          onChange={handleImageChange}
-          className="hidden"
-        />
-        {file ? (
-          <img
-            src={URL.createObjectURL(file)}
-            alt="Preview"
-            className="w-full h-full object-cover rounded-md border-2 border-gray-300"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md">
-            <p className="text-gray-400">Drag and drop files here or click to browse</p>
-          </div>
-        )}
-      </label>
-    </div>
-          <Button type="submit" className='mt-8' onClick={handleSubmit}>Submit</Button>
-        </form>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center border-2 border-dashed border-gray-300 rounded-md">
+                  <p className="text-gray-400">Drag and drop files here or click to browse</p>
+                </div>
+              )}
+            </label> */}
       </div>
-      <Footer />
+            {/* <Button type="submit" className='mt-8' onClick={handleSubmit}>Submit</Button> */}
+          </form>
+        </div>
+      </div>
     </PageLayout>
   )
 }

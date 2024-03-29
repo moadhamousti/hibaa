@@ -82,7 +82,7 @@ const Footer = () => {
 
     </div>
         <div className='py-4'>
-          <p className='text-[--softTextColor] text-center'>Copyright © 2024. HEBA&AATAE. All rights reserved.</p>
+          <p className='text-[--softTextColor] text-center'>Copyright © Tous droits réservés, {new Date().getFullYear()}</p>
         </div>
         </div>
   );

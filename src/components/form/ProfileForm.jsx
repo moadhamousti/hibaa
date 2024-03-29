@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import React, { useEffect, useState } from 'react';
 import UserPosts from '../UserPosts';
+import CurrentUserPosts from '../CurrentUserPosts';
 
 const ProfileForm = () => {
   const [newName, setNewName] = useState('');
@@ -15,6 +16,7 @@ const ProfileForm = () => {
 
   const { data: session, status, update } = useSession();
   console.log(session)
+  // console.log(data)
 
   const id = session?.user?.id; // Extract user ID from session
 
@@ -168,10 +170,11 @@ const ProfileForm = () => {
           </div>
                 
         </section>
-                <div>
-                  <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
-                  <UserPosts id={id} />
-                </div>
+        {/* <div>
+          <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
+          <CurrentUserPosts id={session?.user?.id} />
+        </div> */}
+
       </div>
   );
 };
