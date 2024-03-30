@@ -5,22 +5,29 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 
-const getData = async ({ page, cat,loc }) => {
-  const res = await fetch(`http://localhost:3000/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}`,{
+const getData = async ({ page, cat,loc,type }) => {
+  const resDon = await fetch(`http://localhost:3000/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
     cache: "no-store",
   });
 
-  if(!res.ok) {
+  const resReq = await fetch(`http://localhost:3000/api/posts/requestPosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
+    cache: "no-store",
+  });
+
+  if (!resDon.ok || !resReq.ok) {
     throw new Error("Could not load posts");
   }
 
-  return res.json();
+  const dataDon = await resDon.json();
+  const dataReq = await resReq.json();
+
+  return { dataDonate: dataDon, dataRequest: dataReq };
 }
 
 
 
-const CardList = async ({ page, cat,loc}) => {
-  const data = await getData({ page, cat,loc });
+const CardList = async ({ page, cat,loc,type}) => {
+  const { dataDonate, dataRequest } = await getData({ page, cat, loc,type });
 
   async function handleDelete(id){
 
@@ -29,7 +36,10 @@ const CardList = async ({ page, cat,loc}) => {
   return (
     <div className="max-w-screen-xl mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
-        {data && data.map((item) => (
+        {dataRequest && dataRequest.map((item) => (
+          <Card item={item} key={item._id}/>
+        ))}
+        {dataDonate && dataDonate.map((item) => (
           <Card item={item} key={item._id}/>
         ))}
       </div>

@@ -7,6 +7,7 @@ export const GET = async (req) =>{
     const page = searchParams.get("page")
     const cat = searchParams.get("cat")
     const loc = searchParams.get("loc")
+    const type = searchParams.get("type");
 
 
     const POST_PER_PAGE = 9;
@@ -19,6 +20,7 @@ export const GET = async (req) =>{
             where: {
                 ...(cat && { category : cat}),
                 ...(loc && { location : loc}),
+                ...(type && { type : type}),
 
             }
         })

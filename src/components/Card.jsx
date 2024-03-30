@@ -53,15 +53,15 @@ const Card =  ({ item}) => {
           </Link>
         </div>
         <div className="p-4">
-          <Link href={`/posts/${item.id}`}>
-            <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-black antialiased">
-              {item?.title ? item.title : <Skeleton width={200} />}
-            </h4>
-          </Link>
+        <Link href={item.type === 'DONATION' ? `/posts/donPost/${item.id}` : `/posts/reqPost/${item.id}`}>
+          <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-black antialiased">
+            {item?.title ? item.title : <Skeleton width={200} />}
+          </h4>
+        </Link>
           <p className="mt-2 font-sans text-l font-normal leading-relaxed text-[#626262] text-wrap antialiased">
             {item.desc ? 
-              (item.desc.length > 40 ? 
-                item.desc.slice(0, 40) + '...' : 
+              (item.desc.length > 38 ? 
+                item.desc.slice(0, 38) + '...' : 
                 item.desc) : 
               ''}
           </p>

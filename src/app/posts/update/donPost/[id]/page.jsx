@@ -1,19 +1,20 @@
+
+
 import PageLayout from '@/app/(blog)/layout'
 import NavbarSimple from '@/components/NavbarSimple'
-import ReqPostsForm from '@/components/form/ReqPostForm'
+import DonatePostFormUpdate from '@/components/form/DonatePostFormUpdate'
 import React from 'react'
 
-const page = () => {
+const page = ({ params }) => {
   return (
     <PageLayout>
         <NavbarSimple />
         <div style={{ display: 'flex' }}>
-        <div className='pt-10'>
-          <h1 className="text-3xl font-extrabold tracking-normal hidden sm:block">Créer Poste</h1>
-        </div>
-
+          <div className='pt-10'>
+            <h1 className="text-4xl font-extrabold tracking-normal hidden md:block lg:block">Update Post</h1>
+          </div>
           <div style={{ flex: 1 }}>
-            <ReqPostsForm/>
+            <DonatePostFormUpdate params={params}/>
           </div>
         </div>
     </PageLayout>

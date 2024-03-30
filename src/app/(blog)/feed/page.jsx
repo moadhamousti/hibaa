@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import CategoryList from '@/components/CategoriesList';
 import LocationList from '@/components/LocationList';
 import FooterFeed from '@/components/FooterFeed';
+import TypeSelect from '@/components/TypeList';
 
 
 export default function Page({ searchParams }) {
@@ -13,6 +14,8 @@ export default function Page({ searchParams }) {
   const page = parseInt(searchParams.page) || 1
   const {cat} = searchParams;
   const {loc} = searchParams;
+  const {type} = searchParams;
+
 
   
   return (
@@ -31,8 +34,12 @@ export default function Page({ searchParams }) {
               <LocationList/>
             </div>
           </div>
+          
           <div className='flex flex-col items-center pt-8 mb-10'>
-            <CardList page={page} cat={cat} loc={loc}/>
+              <div className="w-[120px] ml-auto">
+                <TypeSelect />
+              </div>
+            <CardList page={page} cat={cat} loc={loc} type={type}/>
           </div>
         </div>
         <FooterFeed/>

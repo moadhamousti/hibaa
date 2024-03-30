@@ -4,14 +4,14 @@ import React from 'react';
 import styles from "./singlePage.module.css";
 import Image from 'next/image';
 import Link from 'next/link';
-import whatsapp from "../../../../public/whatsapp.png";
-import gmail from "../../../../public/Gmail.png";
-import hotmail from "../../../../public/hotmail.png";
-import yahoo from "../../../../public/yahoo.png";
-import email from "../../../../public/email.png";
-import phone from "../../../../public/phone.png";
+import whatsapp from "../../../../../public/whatsapp.png";
+import gmail from "../../../../../public/Gmail.png";
+import hotmail from "../../../../../public/hotmail.png";
+import yahoo from "../../../../../public/yahoo.png";
+import email from "../../../../../public/email.png";
+import phone from "../../../../../public/phone.png";
 import EditIcon from '@mui/icons-material/Edit';
-import defaultImage from '../../../../public/equipement.jpg'
+import defaultImage from '../../../../../public/equipement.jpg'
 import { Badge } from "@/components/ui/badge"
 
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
@@ -22,12 +22,13 @@ import NavbarSimple from '@/components/NavbarSimple';
 
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import DeletePost from '@/components/deleteDonPost';
+import DeleteDonPost from '@/components/deleteDonPost';
+import DeleteReqPost from '@/components/deleteReqPost';
 
 
 
 const getData = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/posts/donPost/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/posts/reqPost/${id}`, {
     cache: "no-store",
   });
 
@@ -117,8 +118,8 @@ const Page = async ({ params }) => {
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
                       <>
                           {/* <p>Post Creator ID: {data.id}</p> */}
-                          <Link href={`/posts/update/${id}`}>
-                              <EditIcon sx={{ color: '#00A4BF' }}/>
+                          <Link href={data.type === 'DONATION' ? `/posts/update/donPost/${id}` : `/posts/update/reqPost/${id}`}>
+                            <EditIcon sx={{ color: '#00A4BF' }}/>
                           </Link>
                       </>
                     )}
@@ -127,23 +128,32 @@ const Page = async ({ params }) => {
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
                       <>
                           <Link href='/feed'>
-                          <DeletePost
-                            data={data}
-                             // Add this line to set the color
-                          />
+                          {data.type === 'REQUEST' ? (
+                              <DeleteReqPost data={data} />
+                            ) : (
+                              <DeleteReqPost data={data} />
+                            )}
                           </Link>
                       </>
                     )}
                   </div>
+
                   
                 </div>
-                <h4 className="text-[black] leading-tight mb-4">
-                  {data?.desc}
-                </h4>
-                <h4 className="text-[black] leading-tight mb-4">
-                  
-                  <Badge variant="destructive" >{data?.category}</Badge>
-                </h4>
+                <div className="mb-3">
+                    <Badge className="bg-blue-500">{data.type === 'DONATION' ? 'Donation' : 'Request'}</Badge>
+                  </div>
+                
+                <div className="">
+                  <h4 className="text-[black] leading-tight mb-3">
+                    {data?.desc}
+                  </h4>
+                  <h4 className="text-[black] leading-tight mb-4">
+                    
+                    <Badge variant="destructive" >{data?.category}</Badge>
+
+                  </h4>
+                </div>
 
                 <div className="py-10">
                   <div className="flex gap-2">

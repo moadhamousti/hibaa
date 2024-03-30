@@ -6,12 +6,12 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const DeletePost = ({ data }) => {
+const DeleteReqPost = ({ data }) => {
   const router = useRouter(); // Initialize useRouter here
 
   const onDeleteClick = async () => {
     try {
-      const res = await fetch(`/api/posts/${data.id}`, {
+      const res = await fetch(`/api/posts/delete/reqPost/${data.id}`, {
         method: 'DELETE',
       });
       if (res.ok) {
@@ -35,4 +35,4 @@ const DeletePost = ({ data }) => {
   );
 };
 
-export default DeletePost;
+export default DeleteReqPost;

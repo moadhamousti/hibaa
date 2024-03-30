@@ -28,11 +28,13 @@ import * as z from 'zod';
 import loader from '../../../public/loader.gif'
 import { useToast } from "@/components/ui/use-toast"
 import Loader from '../Loader';
+import FetchedPosts from '../FetchedPosts';
+import FetchedPostsLoc from '../FetchedPostsLoc';
 
 const storage = getStorage(app);
 
 
-const DonPostsForm = () => {
+const ReqPostsForm = () => {
 
   const { data: session, status } = useSession();
   console.log(session)
@@ -40,7 +42,7 @@ const DonPostsForm = () => {
   const [locationCategories, setLocationCategories] = useState([]);
   const [selectedLocationCategory, setSelectedLocationCategory] = useState("");
   const [toolsCategories, setToolsCategories] = useState([]);
-  const [selectedToolsCategories, setSelectedToolsCategories] = useState("");
+  const [selectedToolsCategories, setSelectedToolsCategories] = useState('');
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
   const [title, setTitle] = useState("");
@@ -67,6 +69,17 @@ const DonPostsForm = () => {
   const { toast } = useToast();
   
   const [loading, setLoading] = useState(false);
+
+
+  const handleCategorySelect = (e) => {
+    setSelectedToolsCategories(e.target.value);
+  };
+
+  const handleLocationSelect = (e) => {
+    setSelectedLocationCategory(e.target.value);
+  };
+
+  
 
 const handleImageChange = (e) => {
   const selectedFile = e.target.files[0];
@@ -205,7 +218,7 @@ useEffect(() => {
       return; // Prevent form submission
     }
 
-    const res = await fetch("/api/publish/donatePost", {
+    const res = await fetch("/api/publish/requestPost", {
       method: "POST",
       body: JSON.stringify({
         title,
@@ -251,6 +264,73 @@ useEffect(() => {
           {/* <Label htmlFor="title">Titre</Label>
           <Input id="title" className="bg-gray-200" placeholder="Titre" onChange={e => setTitle(e.target.value)} /> */}
 
+          <Label htmlFor="locationCategory">Choisir une catégorie:</Label>
+          <div>
+          {/* <label htmlFor="toolsCategory">Choisir une catégorie:</label> */}
+          <select
+            id="toolsCategory"
+            value={selectedToolsCategories}
+            className="bg-[#B0BAC31C] px-2 py-2 rounded-[20px] w-full"
+            onChange={handleCategorySelect}
+            onBlur={handleCategorySelect} // Handle onBlur event for immediate validation feedback
+            required
+          >
+            <option value="">Select Category</option>
+            {toolsCategories.map((category) => (
+              <option key={category.id} value={category.title}>
+                {category.title}
+              </option>
+            ))}
+          </select>
+          <p className="text-red-600 text-[16px] mb-4">{categoryError}</p>
+
+          {/* Render FetchedPosts component with selectedToolsCategories as prop */}
+          <FetchedPosts selectedCategory={selectedToolsCategories} />
+        </div>
+
+
+        <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
+            
+        <div>
+            <select
+              id="locationCategory"
+              value={selectedLocationCategory}
+              // onChange={(e) => setSelectedLocationCategory(e.target.value)}
+              onChange={handleLocationSelect}
+              className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px] w-full'
+              onBlur={(e) => setSelectedLocationCategory(e.target.value)} // Handle onBlur event for immediate validation feedback
+              required 
+            >
+              <option value="">Select Emplacement</option>
+              {/* <option value="">Sélectionner une catégorie de lieu</option> */}
+              {locationCategories.map((category) => (
+                <option key={category.id} value={category.title}>
+                  {category.title}
+                </option>
+              ))}
+            </select>
+            <p className="text-red-600 text-[16px] mb-4">{locationError}</p>
+
+            <FetchedPostsLoc selectedLocation={selectedLocationCategory} />
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <div className="space-y-2">
             <Label htmlFor="title">Titre</Label>
             <Input id="title" className="bg-gray-200" placeholder="Titre" onChange={e => setTitle(e.target.value)} />
@@ -262,9 +342,9 @@ useEffect(() => {
             <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
             <p className="text-red-600 text-[16px] mb-4">{descriptionError}</p>
           </div>
+            
 
-
-          <Label htmlFor="phone">Numéro de téléphone</Label>
+            <Label htmlFor="phone">Numéro de téléphone</Label>
           <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
           <div className='flex gap-3'>
             <Image src={whatsapp} alt='' width={20} height={20}/>
@@ -289,27 +369,8 @@ useEffect(() => {
               </div>
             </RadioGroup>
           </div>
-
-          <Label htmlFor="locationCategory">Choisir une catégorie:</Label>
-          <select
-              id="toolsCategory"
-              value={selectedToolsCategories}
-              className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px]'
-              onChange={(e) => setSelectedToolsCategories(e.target.value)}
-              onBlur={(e) => setSelectedToolsCategories(e.target.value)} // Handle onBlur event for immediate validation feedback
-              required 
-            >
-              <option value="">Select Category</option>
-              {/* <option value="">Sélectionner une catégorie d'outils</option> */}
-              {toolsCategories.map((category) => (
-                <option key={category.id} value={category.title}>
-                  {category.title}
-                </option>
-              ))}
-            </select>
-            <p className="text-red-600 text-[16px] mb-4">{categoryError}</p>
-            
-
+          
+{/* 
             <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
             
             <select
@@ -317,18 +378,17 @@ useEffect(() => {
               value={selectedLocationCategory}
               onChange={(e) => setSelectedLocationCategory(e.target.value)}
               className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px]'
-              onBlur={(e) => setSelectedLocationCategory(e.target.value)} // Handle onBlur event for immediate validation feedback
+              onBlur={(e) => setSelectedLocationCategory(e.target.value)} 
               required 
             >
               <option value="">Select Emplacement</option>
-              {/* <option value="">Sélectionner une catégorie de lieu</option> */}
               {locationCategories.map((category) => (
                 <option key={category.id} value={category.title}>
                   {category.title}
                 </option>
               ))}
-            </select>
-            <p className="text-red-600 text-[16px] mb-4">{locationError}</p>
+            </select> */}
+            {/* <p className="text-red-600 text-[16px] mb-4">{locationError}</p> */}
 
 
 
@@ -381,4 +441,4 @@ useEffect(() => {
   )
 }
 
-export default DonPostsForm;
+export default ReqPostsForm;

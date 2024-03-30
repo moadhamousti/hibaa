@@ -24,7 +24,7 @@ import Loader from '../Loader';
 const storage = getStorage(app);
 
 const getData = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/posts/donPost/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/posts/reqPost/${id}`, {
     cache: "no-store",
   });
 
@@ -35,7 +35,7 @@ const getData = async (id) => {
   return res.json();
 };
 
-const DonatePostFormUpdate = ({ params }) => {
+const RequestPostFormUpdate = ({ params }) => {
     const { data: session, status } = useSession();
   console.log(session)
   const { id } = params;
@@ -179,7 +179,7 @@ const DonatePostFormUpdate = ({ params }) => {
 
   const handleUpdatePost = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/donPost/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/posts/reqPost/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -355,7 +355,7 @@ const DonatePostFormUpdate = ({ params }) => {
   );
 };
 
-export default DonatePostFormUpdate;
+export default RequestPostFormUpdate;
 
 
 

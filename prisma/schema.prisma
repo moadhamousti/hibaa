@@ -122,6 +122,11 @@ model LocationCategory {
 //   DonPosts  DonPost[]
 // }
 
+enum PostType {
+  DONATION
+  REQUEST
+}
+
 
 model DonPost {
   id        String    @id @default(cuid()) @map("_id")
@@ -135,11 +140,10 @@ model DonPost {
   userEmail String
   location String
   category String
-  // type     String @default("Donation")
   MedCategory  MedCategory  @relation(fields: [category], references: [title])
   user      User      @relation(fields: [userEmail], references: [email])
   cat       LocationCategory  @relation(fields: [location], references: [title])
-  // PostType  PostType[]
+  type          PostType  @default(DONATION) 
 }
 
 model ReqPost {
@@ -157,6 +161,7 @@ model ReqPost {
   MedCategory  MedCategory  @relation(fields: [category], references: [title])
   user      User      @relation(fields: [userEmail], references: [email])
   cat       LocationCategory  @relation(fields: [location], references: [title])
+  type          PostType   @default(REQUEST) 
 }
 
 
