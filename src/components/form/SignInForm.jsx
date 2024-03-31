@@ -136,7 +136,7 @@ useEffect(() => {
             )}
           />
           <div>
-            <Link href='/forget-password'><p className='mt-2 text-black font-semibold text-end text-[16px] '>Forgot Password?</p></Link>
+            <Link href='/forget-password'><p className='mt-2 text-black font-normal text-end text-[16px] hover:text-[#2a645d87] '>Mot de passe oublié?</p></Link>
           </div>
         </div>
         {/* <Button className='w-full mt-6' type='submit'>

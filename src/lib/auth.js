@@ -90,10 +90,7 @@ export const authOptions = {
                 name:user.name,
                 image:user.image,
                 role: user.role, 
-                email: user.email,          
-
-                
-                
+                email: user.email,           
             }
         }
 

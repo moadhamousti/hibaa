@@ -342,7 +342,7 @@ const DonatePostFormUpdate = ({ params }) => {
 
                
                 <div className='mt-8 grid gap-9'>
-                    <button type="submit" className='mt-8 h-[48px] w-[197px] text-base font-normal leading-7 text-white rounded-[20px] bg-[#00A4BF] block mx-auto' onClick={handleUpdatePost}>Update</button>
+                    <button type="submit" className='mt-8 h-[48px] w-[197px] text-base font-normal leading-7 text-white rounded-[20px] bg-[#00A4BF] block mx-auto' onClick={handleUpdatePost}>Modfier</button>
 
                 </div>
               </form>

@@ -107,10 +107,10 @@ const Navbar = () => {
         <Link href='/'>Charity</Link>
       </div>
       <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
-          <Link href="/#about" className="text-[17px]">•À Propos</Link>
-          <Link href="/#features" className="text-[17px]">•Caractéristiques </Link>
-          <Link href="/#faq" className="text-[17px]">•FAQ</Link> 
-          <Link href="/#contact" className="text-[17px]">•Contact</Link>       
+          <Link href="/#about" className="text-[18px]">•À Propos</Link>
+          <Link href="/#features" className="text-[18px]">•Traits </Link>
+          <Link href="/#faq" className="text-[18px]">•FAQ</Link> 
+          <Link href="/#contact" className="text-[18px]">•Contact</Link>       
       </div>
 
       <div className='flex gap-1'>
@@ -172,10 +172,10 @@ const Navbar = () => {
         onClose={handleClose}
       >
         <Link href='/publish/requestPost'>
-          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Request Post</MenuItem>
+          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem>
         </Link>
         <Link href='/publish/donatePost'>
-          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Donate Post</MenuItem>
+          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Poste Donation</MenuItem>
         </Link>
       </Menu>
         <AccountMenu />

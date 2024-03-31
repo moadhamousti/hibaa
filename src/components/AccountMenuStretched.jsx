@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
@@ -9,6 +9,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Skeleton from '@mui/material/Skeleton';
 
 export const navItems = [
     { name: "Home", href: "/", icon: HomeIcon },
@@ -16,11 +17,31 @@ export const navItems = [
     { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
 ];
 
+const SkeletonComponent = () => (
+    <div style={{ width: '174px', height: '48px', backgroundColor: '#E5E7EB', borderRadius: '24px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'left', gap: '5px' }}>
+      <Skeleton variant="circular" width={40} height={40} />
+      <Skeleton variant="text" width={80} />
+      <ExpandMoreIcon />
+    </div>
+  );
+
 const AccountMenuStretched = () => {
     const { data: session } = useSession();
 
     const user = session?.user;
     const avatarSrc = session?.user?.image || "https://github.com/shadcn.png";
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (user) {
+        setLoading(false);
+        }
+    }, [user]);
+
+    if (loading) {
+        return <SkeletonComponent />;
+    }
 
     const navItems = session && session.user.role === 'ADMIN' ? [
         { name: "Home", href: "/", icon: HomeIcon },
@@ -36,17 +57,17 @@ const AccountMenuStretched = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-            <div style={{ width: '174px', height: '48px', backgroundColor: '#E5E7EB', borderRadius: '24px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'left', gap:'5px' }}>
-                    <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
-                        <Avatar className='h-10 w-10 rounded-full'>
-                            <AvatarImage src={avatarSrc} alt="" />
-                            <AvatarFallback>{user?.username ? user.username : user?.name}</AvatarFallback>
-                        </Avatar>
-                    </Button>
+            <div style={{ width: '174px', height: '48px', backgroundColor: '#E5E7EB', borderRadius: '24px', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'left', gap: '5px' }}>
+                <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
+                    <Avatar className='h-10 w-10 rounded-full'>
+                    <AvatarImage src={avatarSrc} alt="" />
+                    <AvatarFallback>{user?.username ? user.username : user?.name}</AvatarFallback>
+                    </Avatar>
+                </Button>
                 <div>
                     <span>{user?.username ? user.username.slice(0, 6) + '...' : user?.name.slice(0, 5) + '...'}</span>
                 </div>
-                <ExpandMoreIcon/>
+                <ExpandMoreIcon />
             </div>
             </DropdownMenuTrigger>
 

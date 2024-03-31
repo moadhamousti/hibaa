@@ -40,18 +40,18 @@ const TypeList = () => {
   return (
     <div className="mt-8">
       <div className="relative">
-        <select
-          value={selectedType}
-          onChange={handleTypeChange}
-          className="block appearance-none w-full bg-gray-100 borde hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
-        >
-          <option value="">Select a type</option>
-          {types.map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
+      <select
+        value={selectedType}
+        onChange={handleTypeChange}
+        className="block appearance-none w-full bg-gray-100 border hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
+      >
+        <option value="">Poste type</option>
+        {types.map((type) => (
+          <option key={type} value={type}>
+            {type === 'DONATION' ? 'Donation' : type === 'REQUEST' ? 'Demande' : type}
+          </option>
+        ))}
+      </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
           <svg
             className="fill-current h-4 w-4"

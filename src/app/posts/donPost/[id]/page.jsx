@@ -23,6 +23,7 @@ import NavbarSimple from '@/components/NavbarSimple';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteDonPost from '@/components/deleteDonPost';
+import DeleteReqPost from '@/components/deleteReqPost';
 
 
 
@@ -130,7 +131,7 @@ const Page = async ({ params }) => {
                           {data.type === 'DONATION' ? (
                               <DeleteDonPost data={data} />
                             ) : (
-                              <DeleteDonPost data={data} />
+                              <DeleteReqPost data={data} />
                             )}
                           </Link>
                       </>

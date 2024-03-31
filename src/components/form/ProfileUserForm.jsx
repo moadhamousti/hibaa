@@ -4,9 +4,14 @@
 import React, { useEffect, useState } from 'react';
 import { Badge } from "@/components/ui/badge";
 import UserPosts from '../UserPosts';
+import { useSession } from 'next-auth/react';
+import loader from '../../../public/loader.gif'
+import Image from 'next/image';
 
 const ProfileUserForm = () => {
   const [userData, setUserData] = useState(null);
+  const { data: session, status } = useSession();
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +35,15 @@ const ProfileUserForm = () => {
 
     fetchData();
   }, []);
+
+  if (status === "loading") {
+    return (
+      <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
+        <Image src={loader} height={50} width={45} alt="" />
+      </div>
+    );
+  }
+
 
   return (
     <div className="flex flex-wrap justify-center">
@@ -59,9 +73,12 @@ const ProfileUserForm = () => {
                 </div>
               </>
             )}
+            <div className="">
+                  <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
+
+            </div>
 
                 <div>
-                  <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
                   <UserPosts id={userData?.id} />
                 </div>
           </div>

@@ -17,8 +17,6 @@ const page = () => {
                     <ProfileUserForm/>
                 </div>
                 <div>
-                  {/* <UserPosts/> */}
-                  
 
                 </div>
             </div>

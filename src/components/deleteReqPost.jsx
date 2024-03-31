@@ -11,7 +11,7 @@ const DeleteReqPost = ({ data }) => {
 
   const onDeleteClick = async () => {
     try {
-      const res = await fetch(`/api/posts/delete/reqPost/${data.id}`, {
+      const res = await fetch(`/api/posts/reqPost/${data.id}`, {
         method: 'DELETE',
       });
       if (res.ok) {

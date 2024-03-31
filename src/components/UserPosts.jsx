@@ -8,9 +8,13 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Card from '@/components/Card';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import loader from '../../public/loader.gif'
 
 const UserPosts = ({ id }) => {
   const [userPosts, setUserPosts] = useState([]);
+  const { data: session, status } = useSession();
+
 
   useEffect(() => {
     const fetchUserPosts = async () => {
@@ -29,6 +33,14 @@ const UserPosts = ({ id }) => {
 
     fetchUserPosts();
   }, [id]);
+
+  if (status === "loading") {
+    return (
+      <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
+        <Image src={loader} height={50} width={45} alt="" />
+      </div>
+    );
+  }
 
   return (
     <section className='py-12'>

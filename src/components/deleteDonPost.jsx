@@ -11,7 +11,7 @@ const DeleteDonPost = ({ data }) => {
 
   const onDeleteClick = async () => {
     try {
-      const res = await fetch(`/api/posts/delete/donPost/${data.id}`, {
+      const res = await fetch(`/api/posts/donPost/${data.id}`, {
         method: 'DELETE',
       });
       if (res.ok) {

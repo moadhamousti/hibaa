@@ -94,7 +94,7 @@ const ForgetPassword = () => {
             type="submit"
             className='bg-[#38867D87] w-[300px] h-[50px] top-[581px] left-[873px] rounded-[50px] mt-6 block mx-auto'
           >
-            Submit
+            Envoyer
           </button>
         </form>
         <div className="mx-auto my-4 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">

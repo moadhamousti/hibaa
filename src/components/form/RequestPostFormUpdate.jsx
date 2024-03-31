@@ -321,14 +321,14 @@ const RequestPostFormUpdate = ({ params }) => {
                         </label>
                       ) : (
                         <div
-                          className="w-[430px] h-full flex items-center justify-center border-2 border-dashed border-[#00A4BF] bg-[#F8F8FF] rounded-md"
+                          className="w-full h-full flex items-center justify-center border-2 border-dashed border-[#00A4BF] bg-[#F8F8FF] rounded-md"
                           onDrop={handleDrop}
                           onDragOver={handleDragOver}
                         >
                           <label htmlFor="image" className="cursor-pointer">
                             <div className='column self-center bg-white px-10 py-10' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                               <Image className='mb-6' src={uploadIcon} width={100} height={100} />
-                              <p className="text-gray-400">Glisser-déposer des fichiers ou <strong className='text-[#00A4BF] font-bold underline'>Parcourir</strong></p>
+                              <p className="text-gray-400 text-center">Glisser-déposer des fichiers ou <strong className='text-[#00A4BF] font-bold underline'>Parcourir</strong></p>
                             </div>
                           </label>
                         </div>
@@ -342,7 +342,7 @@ const RequestPostFormUpdate = ({ params }) => {
 
                
                 <div className='mt-8 grid gap-9'>
-                    <button type="submit" className='mt-8 h-[48px] w-[197px] text-base font-normal leading-7 text-white rounded-[20px] bg-[#00A4BF] block mx-auto' onClick={handleUpdatePost}>Update</button>
+                    <button type="submit" className='mt-8 h-[48px] w-[197px] text-base font-normal leading-7 text-white rounded-[20px] bg-[#00A4BF] block mx-auto' onClick={handleUpdatePost}>Modfier</button>
 
                 </div>
               </form>

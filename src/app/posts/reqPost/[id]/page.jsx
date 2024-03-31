@@ -81,10 +81,10 @@ const Page = async ({ params }) => {
   return (
     <>
       <div className='min-h-screen bg-bg text-textColor'>
-        <div className='max-w-screen-xl mx-auto'>
+        <div className='max-w-screen-xl mx-auto px-2'>
           <NavbarSimple />
-          <div className='py-6 px-1 shadow-lg'>
-            <h1 className="text-4xl text-[black] sm:font-bold fsm:my-4 capitalize text-center sm:text-left">Détails poste</h1>
+          <div className='py-6 shadow-lg'>
+            <h1 className="text-4xl text-[black] font-bold fsm:my-4 capitalize text-center sm:text-left">Détails poste</h1>
             <div className="sm:flex justify-between">
               <div className="mt-10 bg-[white] h-[450px] w-full rounded overflow-hidden max-w-xl sm:w-full">
                 <Image width={100} height={100} src={data.img ? data.img : defaultImage} alt="Mountain" className="w-full h-full sm:object-cover object-fill" />
@@ -128,8 +128,8 @@ const Page = async ({ params }) => {
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
                       <>
                           <Link href='/feed'>
-                          {data.type === 'REQUEST' ? (
-                              <DeleteReqPost data={data} />
+                          {data.type === 'DONATION' ? (
+                              <DeleteDonPost data={data} />
                             ) : (
                               <DeleteReqPost data={data} />
                             )}
@@ -141,7 +141,7 @@ const Page = async ({ params }) => {
                   
                 </div>
                 <div className="mb-3">
-                    <Badge className="bg-blue-500">{data.type === 'DONATION' ? 'Donation' : 'Request'}</Badge>
+                    <Badge className="bg-blue-500">{data.type === 'DONATION' ? 'Donation' : 'Demande'}</Badge>
                   </div>
                 
                 <div className="">

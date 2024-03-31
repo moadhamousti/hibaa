@@ -1,0 +1,37 @@
+.table{
+    width: 100%;
+
+}
+
+.table td{
+    padding: 10px;
+}
+
+
+.user{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .button {
+    padding: 5px 10px; 
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .view {
+    background-color: teal;
+  }
+  
+  .delete {
+    background-color: crimson;
+  }

@@ -6,17 +6,25 @@ import { Form, FormControl, FormItem, FormLabel, FormDescription, FormMessage, F
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { useState } from 'react';
-import emailjs from '@emailjs/browser'
-import axios from 'axios';
+// import sgMail from "@sendgrid/mail";
 
 const FormSchema = z.object({
   email: z.string().min(1, 'L\'e-mail est requis').email('L\'Email invalide'),
 });
 
+// sgMail.setApiKey(process.env.SENDGRID_NEWSLETTER_API_KEY);
+//   const msg = {
+//     to: 'test@example.com',
+//     from: 'test@example.com', // Use the email address or domain you verified above
+//     subject: 'Sending with Twilio SendGrid is Fun',
+//     text: 'and easy to do anywhere, even with Node.js',
+//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+//   };
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
 
+  
 
 
 
@@ -29,7 +37,7 @@ const Newsletter = () => {
 
 
   return (
-    <div className="bg-[#EF507F] py-12 text-white mt-[60px] mb-10 shadow-lg">
+    <div className="bg-[#EF507F] py-12 text-white mt-[60px] mb-[50px] shadow-lg">
       <div className="container mx-auto text-center">
         <div className="pl-8 pr-8">
           <h2 className="text-[20px] lg:text-3xl md:text-2xl font-bold mb-8">

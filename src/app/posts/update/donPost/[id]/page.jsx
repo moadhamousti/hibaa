@@ -11,7 +11,7 @@ const page = ({ params }) => {
         <NavbarSimple />
         <div style={{ display: 'flex' }}>
           <div className='pt-10'>
-            <h1 className="text-4xl font-extrabold tracking-normal hidden md:block lg:block">Update Post</h1>
+            <h1 className="text-4xl font-extrabold tracking-normal hidden md:block lg:block">Modifier Poste</h1>
           </div>
           <div style={{ flex: 1 }}>
             <DonatePostFormUpdate params={params}/>
