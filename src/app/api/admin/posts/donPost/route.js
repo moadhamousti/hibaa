@@ -13,6 +13,8 @@ export const GET = async () => {
     }
 }
 
+
+
 // Endpoint for PUT request to update a post
 export const PUT = async (req, { params }) => {
     const { id } = params;

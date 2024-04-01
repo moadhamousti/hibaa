@@ -133,7 +133,8 @@ model DonPost {
   createdAt DateTime  @default(now())
   title     String
   desc      String
-  img       String
+  img       String 
+  // img       String?   @default("https://github.com/shadcn.png")
   phone           String
   isWhatsapp      Boolean          @default(false) 
   views     Int       @default(0)
