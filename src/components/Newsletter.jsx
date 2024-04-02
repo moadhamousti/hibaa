@@ -37,7 +37,7 @@ const Newsletter = () => {
 
 
   return (
-    <div className="bg-[#EF507F] py-12 text-white mt-[60px] mb-[50px] shadow-lg">
+    <div className="bg-[#EF507F] py-12 text-white mt-[60px] mb-[50px] shadow-lg" id="contact">
       <div className="container mx-auto text-center">
         <div className="pl-8 pr-8">
           <h2 className="text-[20px] lg:text-3xl md:text-2xl font-bold mb-8">

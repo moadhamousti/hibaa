@@ -1,70 +1,50 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import styles from './singleUserPage.module.css'
-import Image from 'next/image'
-import { useSession } from 'next-auth/react';
+import { fetchUser } from '@/lib/data';
+import styles from './singleUserPage.module.css'; 
+import Image from 'next/image'; 
+import { updateUser } from '@/lib/actions';
+import Link from 'next/link';
 
-const SingleUserPage = () => {
+const SingleUserPage = async ({ params }) => {
+  const { id } = params;
 
-    const [userData, setUserData] = useState(null);
-  const { data: session, status } = useSession();
+  // Fetch user data directly in the component
+  const user = await fetchUser(id);
+  console.log(user);
 
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const url = window.location.href;
-        const id = url.substring(url.lastIndexOf('/') + 3);
-
-        const res = await fetch(`http://localhost:3000/api/user/${id}`, {
-          cache: "no-store",
-        });
-        if (!res.ok) {
-          throw new Error("Failed to fetch user data");
-        }
-        const data = await res.json();
-        setUserData(data);
-      } catch (error) {
-        console.error(error);
-        // Handle error
-      }
-    };
-
-    fetchData();
-  }, []);
 
   return (
     <div className={styles.container}>
-        {userData && (
-                <>
                     <div className={styles.infoContainer}>
-                        <div className={styles.imgContainer}>
-                            <Image src={userData.image} alt="" fill/>  
-                        </div>
-                        Jogn Doe
+                      
+                      <div className={styles.imgContainer}>
+                        <Image src={user.image || "https://github.com/shadcn.png"} alt="" fill/>  
+                      </div>
+                      <span>{user.name}</span>
                     </div>
                     <div className={styles.formContainer}>
-                        <form action="" className={styles.form}>
+                        <form action={updateUser} className={styles.form}>
+                            <input name='id' value={user.id} hidden/>
                             <label>Name</label>
-                            <input type="text" name='name' placeholder='john doe'/>
+                            <input type="text" name='name' placeholder={user.name}/>
                             <label>Username</label>
-                            <input type="text" name='username' placeholder='john_doe123'/>
+                            <input type="text" name='username' placeholder={user.username} />
                             <label>Email</label>
-                            <input type="email" name='email' placeholder='exemple@exemple.com'/>
-                            <label>Password</label>
-                            <input type="password" name='password' placeholder='password'/>
+                            <input type="email" name='email' placeholder={user.email} />
+                            <label>password</label>
+                            <input type="password" name='password' placeholder='password' />
                             <label>Is Admin</label>
-                            <select name='isAdmin' id='isAdmin'>
-                                <option value={true}>Yes</option>
-                                <option value={false}>No</option>
+                            <select name='role' id='role' defaultValue={user.role}>
+                              <option value="ADMIN" selected={user.role ==="ADMIN"} >Admin</option>
+                              <option value="USER" selected={!user.role ==="USER"}>User</option>
                             </select>
+
                             <button type='submit'>
                                 Update
                             </button>
+ 
                         </form>
                     </div>
-                </>
-            )}
     </div>
   )
 }

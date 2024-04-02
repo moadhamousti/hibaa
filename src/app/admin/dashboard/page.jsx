@@ -48,7 +48,7 @@ const AdminPage = () => {
             <CardCategory/>
           </div>
           <Users/>
-          <Chart/>
+          {/* <Chart/> */}
         </div>
         <div className=''>
           {/* <Rightbar/> */}

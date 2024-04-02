@@ -130,10 +130,10 @@ const NavbarSimple = () => {
         onClose={handleClose}
       >
         <Link href='/publish/requestPost'>
-          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Request Post</MenuItem>
+          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem>
         </Link>
         <Link href='/publish/donatePost'>
-          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Donate Post</MenuItem>
+          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Poste Donation</MenuItem>
         </Link>
       </Menu>
         <AccountMenuStretched />

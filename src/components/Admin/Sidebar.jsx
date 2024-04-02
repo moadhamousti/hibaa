@@ -14,6 +14,7 @@ import Image from 'next/image';
 import { useSession } from 'next-auth/react';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Badge } from "@/components/ui/badge"
+import MapIcon from '@mui/icons-material/Map';
 
 
 const menuItems = [
@@ -40,6 +41,11 @@ const menuItems = [
         path: "/admin/dashboard/categories",
         icon: <CategorySharpIcon />,
       },
+      {
+        title: "Locations",
+        path: "/admin/dashboard/locations",
+        icon: <MapIcon />,
+      },
     ],
   },
   {
@@ -50,16 +56,6 @@ const menuItems = [
         path: "/admin/dashboard/posting",
         icon: <AddchartSharpIcon />,
       },
-      {
-        title: "Reports",
-        path: "/admin/dashboard/reports",
-        icon: <AssessmentSharpIcon />,
-      },
-      {
-        title: "Teams",
-        path: "/admin/dashboard/teams",
-        icon: <Groups2SharpIcon />,
-      },
     ],
   },
   {
@@ -69,11 +65,6 @@ const menuItems = [
         title: "Settings",
         path: "/admin/dashboard/settings",
         icon: <SettingsApplicationsSharpIcon />,
-      },
-      {
-        title: "Help",
-        path: "/admin/dashboard/help",
-        icon: <HelpCenterSharpIcon />,
       },
     ],
   },

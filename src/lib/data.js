@@ -71,37 +71,192 @@ export const fetchPosts = async (q, page) => {
     const ITEM_PER_PAGE = 3;
     const skip = ITEM_PER_PAGE * (page - 1);
 
-    console.log(q)
-
     try {
-        const DonPost = await db.DonPost.findMany({
+        const donPostsPromise = db.DonPost.findMany({
             where: {
                 OR: [
-                  { title: { contains: q } },
-                  { desc: { contains: q } },
-                  { location: { contains: q } },
-                  { category: { contains: q } }
+                    { title: { contains: q } },
+                    { desc: { contains: q } },
+                    { location: { contains: q } },
+                    { category: { contains: q } }
                 ]
             },
-            take: ITEM_PER_PAGE, // use 'take' instead of 'limit'
+            take: ITEM_PER_PAGE,
             skip: skip,
         });
-        const count = await db.DonPost.findMany({
+
+        const reqPostsPromise = db.ReqPost.findMany({
             where: {
                 OR: [
-                  { title: { contains: q } },
-                  { desc: { contains: q } },
-                  { location: { contains: q } },
-                  { category: { contains: q } }
+                    { title: { contains: q } },
+                    { desc: { contains: q } },
+                    { location: { contains: q } },
+                    { category: { contains: q } }
+                ]
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+
+        const [donPosts, reqPosts] = await Promise.all([donPostsPromise, reqPostsPromise]);
+
+        const posts = [...donPosts, ...reqPosts];
+
+        const count = await db.DonPost.count({
+            where: {
+                OR: [
+                    { title: { contains: q } },
+                    { desc: { contains: q } },
+                    { location: { contains: q } },
+                    { category: { contains: q } }
                 ]
             },
         });
-        return {DonPost,count};
+
+        return { posts, count };
     } catch (err) {
-        throw new Error("Failed to fetch users");
+        console.error(err);
+        throw new Error("Failed to fetch posts");
     }
 };
 
+
+
+
+
+
+export const fetchUser = async (id) => {
+    console.log(id)
+    try {
+        const user = await db.user.findUnique({
+            where: { id }
+        });
+
+        console.log(user) 
+        return user;
+    } catch (err) {
+        throw new Error("Failed to fetch user");
+    }
+};
+
+export const fetchCategory = async (id) => {
+    console.log(id)
+    try {
+        const category = await db.MedCategory.findUnique({
+            where: { id }
+        });
+
+        console.log(category) 
+        return category;
+    } catch (err) {
+        throw new Error("Failed to fetch user");
+    }
+};
+
+export const fetchLocation = async (id) => {
+    console.log(id)
+    try {
+        const location = await db.LocationCategory.findUnique({
+            where: { id }
+        });
+
+        console.log(location) 
+        return location;
+    } catch (err) {
+        throw new Error("Failed to fetch user");
+    }
+};
+
+
+
+
+
+
+export const fetchPost = async (id) => {
+    console.log(id)
+    try {
+        const reqPost = await db.ReqPost.findUnique({
+            where: { id }
+        });
+        const donPost = await db.DonPost.findUnique({
+            where: { id }
+        });
+
+        // Check if either reqPost or donPost is not null
+        if (reqPost) {
+            return reqPost;
+        } else if (donPost) {
+            return donPost;
+        } else {
+            throw new Error("Post not found"); // Throw an error if both are null
+        }
+    } catch (err) {
+        throw new Error("Failed to fetch post: " + err.message); // Include the error message from the caught error
+    }
+};
+
+
+
+
+
+
+export const fetchcategories = async (q, page) => {
+    const ITEM_PER_PAGE = 5;
+    const skip = ITEM_PER_PAGE * (page - 1);
+
+    try {
+        const categories = await db.MedCategory.findMany({
+            where: {
+                OR: [{ title: { contains: q } }],
+            },
+            include: {
+                DonPosts: true,
+                ReqPost: true,
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+        const count = await db.MedCategory.count({
+            where: {
+                OR: [
+                  { title: { contains: q } },
+                ]
+            },
+        });
+        return { categories, count };
+    } catch (err) {
+        throw new Error("Failed to fetch categories");
+    }
+};
+
+export const fetchlocations = async (q, page) => {
+    const ITEM_PER_PAGE = 6;
+    const skip = ITEM_PER_PAGE * (page - 1);
+
+    try {
+        const locations = await db.LocationCategory.findMany({
+            where: {
+                OR: [{ title: { contains: q } }],
+            },
+            include: {
+                DonPosts: true,
+                ReqPost: true,
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+        const count = await db.MedCategory.count({
+            where: {
+                OR: [
+                  { title: { contains: q } },
+                ]
+            },
+        });
+        return { locations, count };
+    } catch (err) {
+        throw new Error("Failed to fetch categories");
+    }
+};
 
 
 

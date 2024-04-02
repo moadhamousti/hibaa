@@ -9,6 +9,7 @@ import { format } from 'date-fns';
 import WhatsApp from "../../../../../public/whatsapp.png"
 import Phone from "../../../../../public/phone.png"
 import { Badge } from '@/components/ui/badge';
+import { deletePost } from '@/lib/actions'
 
 
 
@@ -19,39 +20,42 @@ const Posts = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
   
   // Fetch posts
-  const { DonPost, count } = await fetchPosts(q, page);
+  const { posts, totalCount  } = await fetchPosts(q, page);
 
-  console.log(DonPost)
+  console.log(posts)
 
   return (
     <div className="bg-gray-300 p-[20px] rounded-sm mt-[20px]">
-      <div className="flex align-center justify-be tween">
+      <div className="flex align-center justify-between">
         <Search placeholder="Recherche une poste..." />
         <Link href="/admin/dashboard/posts/Add">
           <button className="p-[10px] bg-[#5d57c9] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
-        <thead>
+        <thead className='px-4 py-2 bg-white text-center'>
           <tr>
-            <td className="font-bold">Image</td>
-            <td className="font-bold">Titre</td>
-            <td className="font-bold">Description</td>
-            <td className="font-bold">Created At</td>
-            <td className="font-bold">Location</td>
-            <td className="font-bold">Category</td>
-            <td className="font-bold">Phone</td>
-            <td className="font-bold">isWhatsapp</td>
-            <td className="font-bold">Action</td>
+            <td className="font-bold border border-gray-300">Type</td>
+            <td className="font-bold border border-gray-300">Image</td>
+            <td className="font-bold border border-gray-300">Titre</td>
+            {/* <td className="font-bold">Description</td> */}
+            <td className="font-bold border border-gray-300">Created At</td>
+            <td className="font-bold border border-gray-300">Location</td>
+            <td className="font-bold border border-gray-300">Category</td>
+            <td className="font-bold border border-gray-300">Phone</td>
+            <td className="font-bold border border-gray-300">isWhatsapp</td>
+            <td className="font-bold border border-gray-300">Action</td>
+            
           </tr>
         </thead>
-        <tbody>
-          {DonPost.map(DonPost => (
-            <tr key={DonPost.id}>
-              <td>
+        <tbody className='text-center '>
+          {posts.map(posts => (
+            <tr key={posts.id}>
+              <td className="border border-white">{posts.type}</td>
+              <td className="border border-white">
                 <div className={styles.user}>
                   <Image
-                    src={DonPost.img || "https://github.com/shadcn.png"}
+                    src={posts.img || "https://www.medisave.co.uk/cdn/shop/collections/Tom.jpg?v=1683730716"}
                     alt=""
                     width={40}
                     height={40}
@@ -59,15 +63,15 @@ const Posts = async ({ searchParams }) => {
                   />
                 </div>
               </td>
-              <td>{DonPost.title.length > 4 ? DonPost.title.substring(0, 4) + '...' : DonPost.title}</td>
-              <td>{DonPost.desc.length > 4 ? DonPost.desc.substring(0, 10) + '...' : DonPost.desc}</td>
-              <td className=''>{format(DonPost.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-              <td>{DonPost.location}</td>
-              <td>{DonPost.category}</td>
-              <td>{DonPost.phone}</td>
-              {/* <td>{DonPost.isWhatsapp}</td> */}
-              <td>
-                {DonPost.isWhatsapp ? (
+              <td className="border border-white">{posts.title.length > 4 ? posts.title.substring(0, 4) + '...' : posts.title}</td>
+              {/* <td>{posts.desc.length > 4 ? posts.desc.substring(0, 10) + '...' : posts.desc}</td> */}
+              <td className="border border-white">{format(posts.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+              <td className="border border-white">{posts.location}</td>
+              <td className="border border-white">{posts.category}</td>
+              <td className="border border-white">{posts.phone}</td>
+              {/* <td>{posts.isWhatsapp}</td> */}
+              <td className="border border-white">
+                {posts.isWhatsapp ? (
                   <div className="flex gap-2">
                     
                     <Image
@@ -99,21 +103,24 @@ const Posts = async ({ searchParams }) => {
                 )}
               </td>
 
-              <td>
+              <td className='border border-white'>
                 <div className={styles.buttons}>
-                  <Link href={`/admin/dashboard/posts/${DonPost.id}`}>
+                  <Link href={`/admin/dashboard/posts/${posts.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>
                   </Link>
-                  <Link href="">
+                  <form action={deletePost}>
+                    <input type='text' defaultValue={posts.id} name='id' hidden/>
+                    <input type='text' defaultValue={posts.type} name='postType' hidden/> {/* Assuming it's DonPost */}
                     <button className={`${styles.button} ${styles.delete}`}>Supprimer</button>
-                  </Link>
+                  </form>
+
                 </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <Pagination count={count} />
+      <Pagination totalCount={totalCount} />
     </div>
   )
 }

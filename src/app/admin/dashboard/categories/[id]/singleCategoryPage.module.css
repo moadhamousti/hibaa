@@ -35,7 +35,7 @@
     flex-direction: column;
   }
   
-  .form input, .form select ,.form textarea{
+  .form input, .form select{
     padding: 20px;
     border: 2px solid #2e374a;
     border-radius: 5px;

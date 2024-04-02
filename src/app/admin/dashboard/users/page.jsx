@@ -6,6 +6,9 @@ import styles from "./users.module.css"
 import Pagination from "@/components/Admin/pagination/pagination"
 import { fetchUsers } from "@/lib/data"
 import { format } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+import { deleteUser } from "@/lib/actions"
+
 
 
 const Users = async ({searchParams}) => {
@@ -23,20 +26,20 @@ const Users = async ({searchParams}) => {
         </Link>
       </div>
       <table className={styles.table}>
-        <thead>
+        <thead className="px-4 py-2 bg-white text-center">
           <tr>
-            <td className="font-bold">Name</td>
-            <td className="font-bold">Username</td>
-            <td className="font-bold">E-mail</td>
-            <td className="font-bold">Created At</td>
-            <td className="font-bold">Role</td>
-            <td className="font-bold ">Action</td>
+            <td className="font-bold border border-gray-300">Name</td>
+            <td className="font-bold border border-gray-300">Username</td>
+            <td className="font-bold border border-gray-300">E-mail</td>
+            <td className="font-bold border border-gray-300">Created At</td>
+            <td className="font-bold border border-gray-300">Role</td>
+            <td className="font-bold border border-gray-300 ">Action</td>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {users.map((user)=>(
             <tr key={user.id}>
-            <td>
+            <td className="border border-white">
               <div className={styles.user}>
                 <Image
                   src={user.image || "https://github.com/shadcn.png"}
@@ -48,18 +51,28 @@ const Users = async ({searchParams}) => {
                 {user.name}
               </div>
             </td>
-            <td>{user.username}</td>
-            <td>{user.email}</td>
-            <td>{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-            <td>{user.role}</td>
-            <td>
+            <td className="border border-white">{user.username}</td>
+            <td className="border border-white">{user.email}</td>
+            <td className="border border-white">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+            <td className="border border-white">
+              <Badge
+                variant="light"
+                className={user.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[#3b83c6]'}
+              >
+              {user.role}
+              </Badge>
+            </td>
+
+
+            <td className="border border-white">
               <div className={styles.buttons}>
                 <Link href={`/admin/dashboard/users/${user.id}`}>
                   <button className={`${styles.button} ${styles.view}`}>Voir</button>
                 </Link>
-                <Link href="">
-                  <button className={`${styles.button} ${styles.delete}`}>Supprimer</button>
-                </Link>
+                <form action={deleteUser}>
+                    <input type='text' defaultValue={user.id} name='id' hidden/>
+                    <button className={`${styles.button} ${styles.delete}`}>Supprimer</button>
+                  </form>
               </div>
             </td>
           </tr>
