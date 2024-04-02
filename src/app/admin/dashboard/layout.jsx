@@ -5,7 +5,7 @@ import Sidebar from '../../../components/Admin/Sidebar';
 const Layout = ({ children }) => {
   return (
     <div className="flex">
-      <div className="menu w-1/4 bg-bgSoft min-h-screen bg-gray-400 p-[20px]">
+      <div className="bg-blue-600 bg-bgSoft min-h-screen p-[20px]">
         <Sidebar />
       </div>
       <div className="content flex-1 p-[20px]">

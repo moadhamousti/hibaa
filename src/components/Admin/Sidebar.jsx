@@ -1,69 +1,66 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
+import { useSession } from 'next-auth/react';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import PostAddSharpIcon from '@mui/icons-material/PostAddSharp';
 import CategorySharpIcon from '@mui/icons-material/CategorySharp';
 import AddchartSharpIcon from '@mui/icons-material/AddchartSharp';
-import AssessmentSharpIcon from '@mui/icons-material/AssessmentSharp';
-import Groups2SharpIcon from '@mui/icons-material/Groups2Sharp';
-import HelpCenterSharpIcon from '@mui/icons-material/HelpCenterSharp';
 import SettingsApplicationsSharpIcon from '@mui/icons-material/SettingsApplicationsSharp';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Badge } from "@/components/ui/badge";
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import MapIcon from '@mui/icons-material/Map';
 import MenuLink from './menuLink';
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { Badge } from "@/components/ui/badge"
-import MapIcon from '@mui/icons-material/Map';
-
 
 const menuItems = [
   {
-    title: "Pages",
-    list: [
+    title: 'Main',
+    items: [
       {
-        title: "Dashboard",
-        path: "/admin/dashboard",
+        title: 'Dashboard',
+        path: '/admin/dashboard',
         icon: <DashboardIcon />,
       },
       {
-        title: "Users",
-        path: "/admin/dashboard/users",
+        title: 'Users',
+        path: '/admin/dashboard/users',
         icon: <GroupIcon />,
       },
       {
-        title: "Posts",
-        path: "/admin/dashboard/posts",
+        title: 'Posts',
+        path: '/admin/dashboard/posts',
         icon: <PostAddSharpIcon />,
       },
       {
-        title: "Categories",
-        path: "/admin/dashboard/categories",
+        title: 'Categories',
+        path: '/admin/dashboard/categories',
         icon: <CategorySharpIcon />,
       },
       {
-        title: "Locations",
-        path: "/admin/dashboard/locations",
+        title: 'Locations',
+        path: '/admin/dashboard/locations',
         icon: <MapIcon />,
       },
     ],
   },
   {
-    title: "Analytics",
-    list: [
+    title: 'Other',
+    items: [
       {
-        title: "Posting",
-        path: "/admin/dashboard/posting",
+        title: 'Posting',
+        path: '/admin/dashboard/posting',
         icon: <AddchartSharpIcon />,
       },
     ],
   },
   {
-    title: "User",
-    list: [
+    title: 'Settings',
+    items: [
       {
-        title: "Settings",
-        path: "/admin/dashboard/settings",
+        title: 'Settings',
+        path: '/admin/dashboard/settings',
         icon: <SettingsApplicationsSharpIcon />,
       },
     ],
@@ -71,38 +68,49 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
-  const {data: session} = useSession();
-  console.log(session)
+  const { data: session } = useSession();
+  const [open, setOpen] = useState(true);
+
   return (
-    <div className='sticky top-[40px]'>
-      <div className='flex items-center gap-[20px] mb-[20px]'>
-        <Image className='rounded-full object-cover' src={session?.user.image || "https://github.com/shadcn.png"} alt="" width={50} height={50} />
-        <div className='flex flex-col'>
-          <span className='font-medium text-base'>{session?.user.username || session?.user.name}</span>
-          <span className='text-sm text-black'>
-            <Badge variant="light" className=" bg-[#c1bc31]">
-              {session?.user.role}
-            </Badge>
-          </span>
-        </div>
+    <div className={`px-2 duration-300 ${open ? 'w-78' : 'w-15'} relative`}>
+      <MenuOpenIcon
+        className={`ml-[30px] mt-[10px] text-4xl rounded-full text-[--textColor] absolute right-4 top-6 cursor-pointer ${
+          !open && 'rotate-180'
+        } `}
+        onClick={() => setOpen(!open)}
+      />
+
+      <div className={`p-2 duration-300 ${open ? 'w-78' : 'w-15'} relative`}></div>
+
+      <div className='inline-flex items-center relative mb-4 justify-between '>
+        <Image
+          src='/tiktok.png'
+          width={60}
+          height={60}
+
+          className={`rounded-full cursor-pointer block float-left duration-500 ${open ? 'w-1/3' : 'w-1/4 absolute top-4 mb-4 -left-1'
+            } ${!open && 'rotate-[360deg]'}`}
+        />
+        <h1 className={`ml-2 text-[--softBg] text-italic origin-left font-bold text-2xl duration-300 ${!open && 'scale-0'
+          }`}>
+          Hiba&Ataa{' '}
+        </h1>
       </div>
-      <ul className='list-none'>
-        {menuItems.map(cat => (
-          <li key={cat.title}>
-            <span className='text-black font-bold text-base mt-[10px]'>{cat.title}</span>
-            {/* Added return statement and wrapped the MenuLink component inside {} */}
-            {cat.list.map(item => (
-              <MenuLink item={item} key={item.title} />
+
+      <ul className='pt-2'>
+        {menuItems.map((section) => (
+          <React.Fragment key={section.title}>
+            <li className={`py-2 ${!open && 'hidden'}`}>
+              <span className='text-[--softBg] text-sm'>{section.title}</span>
+            </li>
+            {section.items.map((item) => (
+              <MenuLink item={item} key={item.title} open={open} />
             ))}
-          </li>
+          </React.Fragment>
         ))}
       </ul>
-      {/* <button className='logout py-5 px-[20px] my-2 flex items-center gap-[10px] cursor-pointer rounded-lg bg-transparent border-none text-black w-full hover:bg-gray-300'> 
-          <LogoutIcon />
-          Logout
-      </button> */}
     </div>
   );
-}
+};
 
 export default Sidebar;
