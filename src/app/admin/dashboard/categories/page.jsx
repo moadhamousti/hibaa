@@ -23,15 +23,15 @@ const Categories = async ({ searchParams }) => {
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche une catégorie..." />
         <Link href="/admin/dashboard/categories/Add"> {/* Corrected href */}
-          <button className="p-[10px] bg-[#5d57c9] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
         <thead className="px-4 py-2 bg-white text-center">
           <tr>
             <td className="font-bold border border-gray-300">Title</td>
-            <td className="font-bold border border-gray-300">Donation Posts</td>
-            <td className="font-bold border border-gray-300">Request Posts</td> 
+            <td className="font-bold border border-gray-300">Don Postes</td>
+            <td className="font-bold border border-gray-300">Demande Postes</td> 
             <td className="font-bold border border-gray-300">Action</td> 
 
 
@@ -46,7 +46,7 @@ const Categories = async ({ searchParams }) => {
               
 
 
-              <td className="border border-white">
+              <td className="border border-white items-center">
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/categories/${category.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

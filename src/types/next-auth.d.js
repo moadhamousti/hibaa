@@ -12,6 +12,8 @@ export const authOptions = {
         email:session.user.email,
         image:session.user.image,
         role:session.user.role,
+        password:session.user.password,
+
 
 
         // role: user.UserRole,

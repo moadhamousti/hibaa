@@ -61,10 +61,10 @@ const Card = () => {
         <div className="bg-gray-300 p-[20px] rounded-lg flex gap-[20px] cursor-pointer w-full hover:bg-blue-300">
             <PeopleAltIcon sx={{ fontSize: 24 }} />
             <div className="flex flex-col gap-[20px]">
-                <span className=''>Total Users</span>
+                <span className=''>Total Utilisateurs</span>
                 <span className='text-2xl font-semibold'>{totalUsers}</span>
                 <span className='text-base font-light'>
-                    <span className='font-bold text-green-600'>{percentageIncrease}%</span> more than previous week
+                    <span className='font-bold text-green-600'>{percentageIncrease}%</span> plus que la semaine précédente
                 </span>
             </div>
         </div>

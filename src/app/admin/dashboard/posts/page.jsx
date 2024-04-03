@@ -20,7 +20,7 @@ const Posts = async ({ searchParams }) => {
   const page = searchParams?.page || 1;
   
   // Fetch posts
-  const { posts, totalCount  } = await fetchPosts(q, page);
+  const { posts, count  } = await fetchPosts(q, page);
 
   console.log(posts)
 
@@ -29,7 +29,7 @@ const Posts = async ({ searchParams }) => {
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche une poste..." />
         <Link href="/admin/dashboard/posts/Add">
-          <button className="p-[10px] bg-[#5d57c9] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
@@ -39,10 +39,10 @@ const Posts = async ({ searchParams }) => {
             <td className="font-bold border border-gray-300">Image</td>
             <td className="font-bold border border-gray-300">Titre</td>
             {/* <td className="font-bold">Description</td> */}
-            <td className="font-bold border border-gray-300">Created At</td>
-            <td className="font-bold border border-gray-300">Location</td>
-            <td className="font-bold border border-gray-300">Category</td>
-            <td className="font-bold border border-gray-300">Phone</td>
+            <td className="font-bold border border-gray-300">Créé à</td>
+            <td className="font-bold border border-gray-300">Emplacement</td>
+            <td className="font-bold border border-gray-300">Catégories</td>
+            <td className="font-bold border border-gray-300">Téléphone</td>
             <td className="font-bold border border-gray-300">isWhatsapp</td>
             <td className="font-bold border border-gray-300">Action</td>
             
@@ -120,7 +120,7 @@ const Posts = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Pagination totalCount={totalCount} />
+      <Pagination count={count} />
     </div>
   )
 }

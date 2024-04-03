@@ -7,6 +7,10 @@ export const GET = async (req, { params }) => {
     // Fetch user
     const user = await db.User.findUnique({
       where: { id },
+      include: {
+        DonPosts: true,
+        ReqPost: true
+      }
     });
 
     if (!user) {
@@ -20,7 +24,8 @@ export const GET = async (req, { params }) => {
     const userWithPosts = await db.User.findUnique({
       where: { id },
       include: {
-        DonPosts: true // Assuming DonPosts is the relation to the posts
+        DonPosts: true,
+        ReqPost: true
       }
     });
 

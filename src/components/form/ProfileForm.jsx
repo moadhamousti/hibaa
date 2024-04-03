@@ -90,7 +90,7 @@ const ProfileForm = () => {
               </div>
               
               <div className="">
-                  <div className=" bg-[--btnBlue] text-xl font-normal py-2 px-4 rounded-2xl text-[--bg]   justify-center   mb-6   w-fit mx-auto cursor-pointer relative">
+                  <div className=" text-xl font-normal py-2 px-4 rounded-2xl   justify-center   mb-6   w-fit mx-auto cursor-pointer relative">
                   <img
                     className="w-20 h-20 rounded-full mb-4"
                     src={imagePreview || 'https://github.com/shadcn.png'}
@@ -100,7 +100,7 @@ const ProfileForm = () => {
                   />
                   <label
                     htmlFor="profile-image"
-                    className="block mt-2 px-4 py-2 bg-gray-200 rounded-md cursor-pointer text-center"
+                    className="block mt-2 px-4 py-2 bg-[--darkishBlue] text-white rounded-md cursor-pointer text-center"
                   >
                     Upload Image
                     <input
@@ -137,7 +137,7 @@ const ProfileForm = () => {
                       id="username"
                       type="text"
                       placeholder="Username"
-                      value={newUserName || ''} // Ensure this value is always defined
+                      value={newUserName || ''}
                       onChange={(e) => setNewUserName(e.target.value)}
                       className="w-full shadow-inner rounded-xl p-2 border outline-none mx-1"
                     />

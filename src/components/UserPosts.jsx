@@ -24,16 +24,19 @@ const UserPosts = ({ id }) => {
           throw new Error('Failed to fetch user posts');
         }
         const data = await res.json();
-        setUserPosts(data.DonPosts || []);
+        const donPosts = data.DonPosts || [];
+        const reqPosts = data.ReqPost || [];
+        const combinedPosts = [...donPosts, ...reqPosts];
+        setUserPosts(combinedPosts);
       } catch (error) {
         console.error(error);
         // Handle error appropriately (e.g., display an error message)
       }
     };
-
+  
     fetchUserPosts();
   }, [id]);
-
+  
   if (status === "loading") {
     return (
       <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
@@ -53,7 +56,7 @@ const UserPosts = ({ id }) => {
                 pagination={{ clickable: true }} // Make pagination dots clickable
                 modules={[Navigation, Pagination]}
                 slidesPerView={3}
-                className='h-96 w-full rounded-lg'
+                className='h-full w-full rounded-lg'
               >
                 {/* Wrap posts in SwiperSlide components */}
                 {userPosts.map((post) => (
@@ -66,7 +69,7 @@ const UserPosts = ({ id }) => {
             {userPosts.length < 4 && ( // Render cards individually if less than 4
               <div className="w-full flex-col-3 ">
                 {userPosts.map((post) => (
-                  <div key={post.id} className="px-4 mb-4">
+                  <div key={post.id} className="h-full px-4 mb-4">
                     <Card item={post} />
                   </div>
                 ))}

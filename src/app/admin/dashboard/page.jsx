@@ -1,8 +1,6 @@
-"use client"
+// "use client"
 import Footer from '@/components/Footer';
 import NavbarAdmin from '@/components/NavbarAdmin';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import React from 'react';
 import loader from '../../../../public/loader.gif'
 import Image from 'next/image';
@@ -12,15 +10,18 @@ import Users from '@/components/Admin/users/users';
 import Chart from '@/components/Admin/chart/chart';
 import CardPost from '@/components/Admin/card/cardPost';
 import CardCategory from '@/components/Admin/card/cardCategory';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 
 
-const AdminPage = () => {
-  const { data: session, status: sessionStatus } = useSession();
-  const router = useRouter();
+const AdminPage = async () => {
+  // const { data: session, status: sessionStatus } = useSession();
+  const session = await getServerSession(authOptions);
+  // const router = useRouter();
 
-  // Check if session is loading
-  if (sessionStatus === 'loading') {
+  // // Check if session is loading
+  if (session === 'loading') {
     return (
       <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
         <Image src={loader} height={50} width={45} alt="" />
@@ -30,7 +31,7 @@ const AdminPage = () => {
 
   // Redirect to home page if session is not available or user is not an admin
   if (!session || session.user.role !== 'ADMIN') {
-    router.push('/lost');
+    // router.push('/lost');
     return null;
   }
 

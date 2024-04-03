@@ -23,16 +23,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body >
-        <Provider>
-          <main className=''>
-            <div className=''>
-              {/* <Navbar /> */}
-                {children}
-              {/* <Footer/> */}
-            </div>
-          </main>
-          <Toaster/>
-        </Provider>
+          <Provider>
+              <main className=''>
+                <div className=''>
+                  {/* <Navbar /> */}
+                    {children}
+                  {/* <Footer/> */}
+                </div>
+              </main>
+              <Toaster/>
+          </Provider>
       </body>
     </html>
     // className={inter.className}

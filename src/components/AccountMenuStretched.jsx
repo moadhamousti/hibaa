@@ -12,9 +12,9 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Skeleton from '@mui/material/Skeleton';
 
 export const navItems = [
-    { name: "Home", href: "/", icon: HomeIcon },
+    { name: "Acceuil", href: "/", icon: HomeIcon },
     { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-    { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
+    { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
 ];
 
 const SkeletonComponent = () => (
@@ -44,14 +44,14 @@ const AccountMenuStretched = () => {
     }
 
     const navItems = session && session.user.role === 'ADMIN' ? [
-        { name: "Home", href: "/", icon: HomeIcon },
+        { name: "Acceuil", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-        { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
-        { name: "Admin", href: "/admin/dashboard", icon: SupervisorAccountIcon }
+        { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
+        { name: "Administration", href: "/admin/dashboard", icon: SupervisorAccountIcon }
     ] : [
-        { name: "Home", href: "/", icon: HomeIcon },
+        { name: "Acceuil", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-        { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
+        { name: "Confidentialité", href: "/", icon: PrivacyTipIcon }
     ];
 
     return (

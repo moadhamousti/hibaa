@@ -2,18 +2,25 @@
     padding: 10px;
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
 
 .button{
     padding: 5px 10px;
     cursor: pointer;
-    background-color: rgb(12, 167, 245);
+    color: white;
+    background-color: #EF507F;
     border-radius: 5px;
 }
 
+.button:hover{
+
+    background-color: #f57ca0;
+}
 
 .button:disabled{
     cursor: not-allowed;
+    background-color: #7f1535;
     /* background-color: rgb(30, 52, 62); */
 
 }

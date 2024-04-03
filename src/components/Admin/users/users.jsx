@@ -1,69 +1,82 @@
-"use client"
-
-import { Badge } from '@/components/ui/badge';
-
-import React, { useState, useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import Search from "@/components/Admin/users/search"
+import UsersAction from "@/components/Admin/users/usersAction"
+import Image from "next/image"
+import Link from "next/link"
+import styles from "./users.module.css"
+import Pagination from "@/components/Admin/pagination/pagination"
 import { format } from 'date-fns';
+import { Badge } from '@/components/ui/badge';
+import { deleteUser } from "@/lib/actions"
+import { fetchUsersByPosts } from "@/lib/data"
 
-const dateFormat = 'yyyy-MM-dd HH:mm:ss';
 
-const getUsers = async () => {
-  const res = await fetch("http://localhost:3000/api/admin/users", {
-    cache: "no-store",
-  });
 
-  if (!res.ok) {
-    throw new Error("Could not load users");
-  }
+const Users = async ({searchParams}) => {
 
-  return res.json();
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const {users,count} = await fetchUsersByPosts(q,page)
+  // console.log("users",users)
+  return (
+    <div className="bg-gray-300 p-[20px] rounded-sm mt-[20px]">
+      <div className="flex align-center justify-between">
+        <h1 className="mb-2 text-[20px] font-semibold">Utilisateurs les plus contributeurs</h1>
+        {/* <Search placeholder="Recherche un utilisateur..."/> */}
+        {/* <Link href="/admin/dashboard/users/Add">
+          <button className="p-[10px] bg-[#5d57c9] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+        </Link> */}
+      </div>
+      <table className={styles.table}>
+        <thead className="px-4 py-2 bg-white text-center">
+          <tr>
+            <td className="font-bold border border-gray-300">Image</td>
+            <td className="font-bold border border-gray-300">Nom</td>
+            <td className="font-bold border border-gray-300">Nom d'utilisateur</td>
+            <td className="font-bold border border-gray-300">E-mail</td>
+            <td className="font-bold border border-gray-300">Créé à</td>
+            <td className="font-bold border border-gray-300">Nombre postes</td>
+            <td className="font-bold border border-gray-300">Rôle</td>
+          </tr>
+        </thead>
+        <tbody className="text-center">
+          {users.map((user)=>(
+            <tr key={user.id}>
+            <td className="border border-white">
+              <div className={styles.user}>
+                <Image
+                  src={user.image || "https://github.com/shadcn.png"}
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="rounded-full"
+                />
+              </div>
+            </td>
+            <td className="border border-white">{user.name}</td>
+            <td className="border border-white">{user.username}</td>
+            <td className="border border-white">{user.email}</td>
+            <td className="border border-white">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+            <td className="font-bold border border-gray-300">{user.DonPosts.length + user.ReqPost.length}</td>
+
+            <td className="border border-white">
+              <Badge
+                variant="light"
+                className={user.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[#3b83c6]'}
+              >
+              {user.role}
+              </Badge>
+            </td>
+          </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* <Pagination count={count}/> */}
+      
+    </div>
+  )
 }
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
+export default Users
 
-  useEffect(() => {
-    getUsers()
-      .then(data => setUsers(data))
-      .catch(error => console.error(error));
-  }, []);
-
-  const columns = [
-    { field: 'image', headerName: 'Image', width: 100, renderCell: (params) => <img className='w-10 h-10 rounded-full' src={params.row.image} alt={params.row.name} /> },
-    { field: 'name', headerName: 'Name', width: 150 },
-    { field: 'username', headerName: 'Username', width: 150 },
-    { field: 'email', headerName: 'Email', width: 200 },
-    { field: 'postCount', headerName: 'Post Count', width: 120 },
-    { field: 'createdAt', headerName: 'Created At', width: 150, renderCell: (params) => (
-        <span>{format(new Date(params.row.createdAt), dateFormat)}</span>
-      )},
-    { field: 'updatedAt', headerName: 'Updated At', width: 150, renderCell: (params) => (
-        <span>{format(new Date(params.row.updatedAt), dateFormat)}</span>
-      )},
-    { field: 'role', headerName: 'Role', width: 120 , renderCell: (params) => (
-        <Badge
-            variant="light" className={params.row.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[#3b83c6]'} // Change role to params.row.role
-        >
-          {params.row.role} {/* Display role value */}
-        </Badge>
-    )}
-  ];
-
-  return (
-    <div className="bg-gray-200 rounded-md p-4">
-      <div className="max-w-screen-xl">
-        <DataGrid
-          rows={users}
-          columns={columns}
-          pageSize={5}
-          checkboxSelection
-        />
-      </div>
-    </div>
-  );
-};
-
-export default Users;
 
 

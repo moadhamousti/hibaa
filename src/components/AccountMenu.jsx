@@ -107,14 +107,15 @@ import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export const navItems = [
-    { name: "Home", href: "/", icon: HomeIcon },
+    { name: "Acceuil", href: "/", icon: HomeIcon },
     { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-    { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
+    { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
 ];
 
 const AccountMenu = () => {
     const { data: session } = useSession();
     const [imageLoaded, setImageLoaded] = useState(false);
+
 
     const handleImageLoad = () => {
         setImageLoaded(true);
@@ -123,15 +124,18 @@ const AccountMenu = () => {
     const user = session?.user;
     const avatarSrc = session?.user?.image || "https://github.com/shadcn.png";
 
+    console.log(session?.user.role)
+
+
     const navItems = session && session.user.role === 'ADMIN' ? [
-        { name: "Home", href: "/", icon: HomeIcon },
+        { name: "Acceuil", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-        { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon },
-        { name: "Admin", href: "/admin/dashboard", icon: SupervisorAccountIcon }
+        { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
+        { name: "Administration", href: "/admin/dashboard", icon: SupervisorAccountIcon }
     ] : [
-        { name: "Home", href: "/", icon: HomeIcon },
+        { name: "Acceuil", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-        { name: "Privacy Policy", href: "/", icon: PrivacyTipIcon }
+        { name: "Confidentialité", href: "/", icon: PrivacyTipIcon }
     ];
 
     return (

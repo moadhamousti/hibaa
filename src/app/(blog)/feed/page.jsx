@@ -6,6 +6,7 @@ import CategoryList from '@/components/CategoriesList';
 import LocationList from '@/components/LocationList';
 import FooterFeed from '@/components/FooterFeed';
 import TypeSelect from '@/components/TypeList';
+import SmoothScroller from '@/components/SmoothScrool';
 
 
 export default function Page({ searchParams }) {

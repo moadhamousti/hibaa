@@ -22,17 +22,17 @@ const Users = async ({searchParams}) => {
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche un utilisateur..."/>
         <Link href="/admin/dashboard/users/Add">
-          <button className="p-[10px] bg-[#5d57c9] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
         <thead className="px-4 py-2 bg-white text-center">
           <tr>
-            <td className="font-bold border border-gray-300">Name</td>
-            <td className="font-bold border border-gray-300">Username</td>
+            <td className="font-bold border border-gray-300">Nom</td>
+            <td className="font-bold border border-gray-300">Nom d'utilisateur</td>
             <td className="font-bold border border-gray-300">E-mail</td>
-            <td className="font-bold border border-gray-300">Created At</td>
-            <td className="font-bold border border-gray-300">Role</td>
+            <td className="font-bold border border-gray-300">Créé à</td>
+            <td className="font-bold border border-gray-300">Rôle</td>
             <td className="font-bold border border-gray-300 ">Action</td>
           </tr>
         </thead>

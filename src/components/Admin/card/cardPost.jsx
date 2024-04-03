@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 const CardPost = () => {
     const [totalReqPosts, setTotalReqPosts] = useState(0);
@@ -56,12 +56,12 @@ const CardPost = () => {
 
     return (
         <div className="bg-gray-300 p-[20px] rounded-lg flex gap-[20px] cursor-pointer w-full hover:bg-blue-300">
-            <PeopleAltIcon sx={{ fontSize: 24 }} />
+            <PostAddIcon sx={{ fontSize: 24 }} />
             <div className="flex flex-col gap-[20px]">
-                <span className=''>Total Posts</span>
+                <span className=''>Total Postes</span>
                 <span className='text-2xl font-semibold'>{totalDonPosts + totalReqPosts}</span>
                 <span className='text-base font-light'>
-                    <span className='font-bold text-green-600'>{percentageIncrease}%</span> more than previous week
+                    <span className='font-bold text-green-600'>{percentageIncrease}%</span> plus que la semaine précédente
                 </span>
             </div>
         </div>

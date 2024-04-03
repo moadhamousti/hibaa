@@ -4,7 +4,7 @@ import styles from "./pagination.module.css"
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 
-const Pagination = ({totalCount}) => {
+const Pagination = ({count}) => {
   const searchParams = useSearchParams();
   const {replace} = useRouter()
   const pathname = usePathname();
@@ -15,7 +15,7 @@ const Pagination = ({totalCount}) => {
   const ITEM_PER_PAGE = 3
 
   const hasPrev = ITEM_PER_PAGE * (parseInt(page)-1) > 0
-  const hasNext = ITEM_PER_PAGE * (parseInt(page)-1) + ITEM_PER_PAGE < totalCount
+  const hasNext = ITEM_PER_PAGE * (parseInt(page)-1) + ITEM_PER_PAGE < count
 
   const handleChangePage= (type) =>{
     type === "prev"
@@ -26,8 +26,8 @@ const Pagination = ({totalCount}) => {
 
   return (
     <div className={styles.container}>
-        <button className={styles.button} disabled={!hasPrev} onClick={()=>handleChangePage("prev")}>Previous</button>
-        <button className={styles.button} onClick={()=>handleChangePage("next")}>Next</button>
+        <button className={styles.button} disabled={!hasPrev} onClick={()=>handleChangePage("prev")}>Précédente</button>
+        <button className={styles.button} disabled={!hasNext} onClick={()=>handleChangePage("next")}>Suivante</button>
     </div>
   )
 }

@@ -34,48 +34,93 @@
 
 
 
-// Import necessary dependencies
-// Import necessary dependencies
 import { db } from '@/lib/db';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
+import bcrypt from 'bcrypt'; // Import for password hashing
 
-// Define the update profile function
 export const UPDATE = async (req) => {
-    // Get the user's session
-    const session = await getServerSession();
+  const session = await getServerSession();
 
-    // Check if user is authenticated
-    if (!session) {
-        return new NextResponse(
-            JSON.stringify({ message: 'Not Authenticated' }, { status: 401 })
-        );
+  if (!session) {
+    return new NextResponse(
+      JSON.stringify({ message: 'Not Authenticated' }, { status: 401 })
+    );
+  }
+
+  try {
+    const { name, username, email, password } = await req.json();
+
+    const updateData = {};
+
+    if (name) updateData.name = name;
+    if (username) updateData.username = username;
+    if (email) updateData.email = email;
+
+    // Hash password before updating (if provided)
+    if (password) {
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+      updateData.password = hashedPassword;
     }
 
-    try {
-        // Parse request body
-        const { name, username, email, password } = await req.json();
+    const updatedUser = await db.user.update({
+      where: { id: session.user.id },
+      data: updateData,
+    });
 
-        // Update user credentials in the database
-        const updatedUser = await db.user.update({
-            where: { id: session.user.id },
-            data: {
-                name,
-                username,
-                email,
-                password, // Include password field if provided
-            },
-        });
+    // Consider returning only relevant user information
+    return new NextResponse(JSON.stringify(updatedUser, { status: 200 }), {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
-        // Return success response
-        return new NextResponse(JSON.stringify(updatedUser, { status: 200 }));
-    } catch (error) {
-        // Handle errors
-        console.error(error);
-        return new NextResponse(
-            JSON.stringify({ message: 'Something went wrong!' }, { status: 500 })
-        );
-    }
+  } catch (error) {
+    console.error(error);
+    return new NextResponse(
+      JSON.stringify({ message: 'Something went wrong!' }, { status: 500 })
+    );
+  }
 };
 
 
+
+
+// export const PUT = async (req) => {
+//     console.log('Request body:', req.body);
+//     console.log('Query parameters:', req.query);
+
+//     let id;
+//     if (req.query && req.query.id) {
+//         id = req.query.id;
+//     } else if (req.body && req.body.id) {
+//         id = req.body.id;
+//     }
+
+//     const { name, username, email, password, image } = await req.json();
+
+//     try {
+//         if (!id) {
+//             return new NextResponse(JSON.stringify({ message: 'User ID is required' }, { status: 400 }));
+//         }
+
+//         const existingUser = await db.user.findUnique({
+//             where: { id }
+//         });
+
+//         if (!existingUser) {
+//             return new NextResponse(JSON.stringify({ message: 'User not found' }, { status: 404 }));
+//         }
+
+//         const updatedUser = await db.user.update({
+//             where: { id },
+//             data: { name, username, email, password, image }
+//         });
+
+//         return new NextResponse(JSON.stringify(updatedUser, { status: 200 }));
+//     } catch (error) {
+//         console.error(error);
+//         return new NextResponse(JSON.stringify({ message: 'Something went wrong' }, { status: 500 }));
+//     }
+// };

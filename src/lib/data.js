@@ -45,7 +45,7 @@ export const fetchUsers = async (q, page) => {
             take: ITEM_PER_PAGE, // use 'take' instead of 'limit'
             skip: skip,
         });
-        const count = await db.user.findMany({
+        const count = await db.user.count({
             where: {
                 OR: [
                   { email: { contains: q } },
@@ -54,11 +54,66 @@ export const fetchUsers = async (q, page) => {
                 ]
             },
         });
+        console.log(count);
+
         return {users,count};
     } catch (err) {
         throw new Error("Failed to fetch users");
     }
 };
+
+
+
+
+
+
+
+
+
+export const fetchUsersByPosts = async (q, page) => {
+    const ITEM_PER_PAGE = 6;
+    const skip = ITEM_PER_PAGE * (page - 1);
+
+    try {
+        // Fetch users with the specified query
+        const users = await db.user.findMany({
+            where: {
+                OR: [
+                    { email: { contains: q } },
+                    { username: { contains: q } },
+                    { name: { contains: q } }
+                ]
+            },
+            include: {
+                DonPosts: true,
+                ReqPost: true,
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+
+        // Calculate total post count for each user
+        const usersWithCount = await Promise.all(users.map(async user => {
+            const donPostCount = user.DonPosts.length; // Count donation posts
+            const reqPostCount = user.ReqPost.length; // Count request posts
+            const totalPostCount = donPostCount + reqPostCount;
+            return { ...user, totalPostCount };
+        }));
+
+        // Sort users by total post count in descending order
+        const sortedUsers = usersWithCount.sort((a, b) => b.totalPostCount - a.totalPostCount);
+
+        return { users: sortedUsers, count: sortedUsers.length };
+    } catch (err) {
+        throw new Error("Failed to fetch users");
+    }
+};
+
+
+
+
+
+
 
 
 
@@ -102,7 +157,7 @@ export const fetchPosts = async (q, page) => {
 
         const posts = [...donPosts, ...reqPosts];
 
-        const count = await db.DonPost.count({
+        const countDon = await db.DonPost.count({
             where: {
                 OR: [
                     { title: { contains: q } },
@@ -112,6 +167,22 @@ export const fetchPosts = async (q, page) => {
                 ]
             },
         });
+
+        const countReq = await db.ReqPost.count({
+            where: {
+                OR: [
+                    { title: { contains: q } },
+                    { desc: { contains: q } },
+                    { location: { contains: q } },
+                    { category: { contains: q } }
+                ]
+            },
+        });
+
+        // Sum the counts to get the total count
+        const count = countDon + countReq;
+
+        console.log(count)
 
         return { posts, count };
     } catch (err) {
@@ -223,6 +294,8 @@ export const fetchcategories = async (q, page) => {
                 ]
             },
         });
+
+        console.log(count)
         return { categories, count };
     } catch (err) {
         throw new Error("Failed to fetch categories");

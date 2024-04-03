@@ -54,10 +54,10 @@ export const authOptions = {
             id: existingUser.id,
             username: existingUser.username,
             email:existingUser.email,
-          }; // Return only ID and username
+          };
         } catch (error) {
           console.error("Error during authorization:", error);
-          return null; // Handle database or other errors
+          return null;
         }
       },
     }),
@@ -68,7 +68,7 @@ export const authOptions = {
   ],
   callbacks: {
     async jwt({ token,user, session,trigger}){
-        console.log(token, user, session);
+        console.log("JWT callback" ,token, user, session);
         if (trigger === "update") {
           if (session?.name) {
               token.name = session.name;
@@ -82,12 +82,19 @@ export const authOptions = {
           if (session?.image) {
             token.image = session.image;
           }
+          if (session?.password) {
+            token.password = session.password;
+          }
       }
+
+      //pass in to token
         if(user) {
             return {
                 ...token,
+                id:user.id,
                 username:user.username,
                 name:user.name,
+                password:user.password,
                 image:user.image,
                 role: user.role, 
                 email: user.email,           
@@ -102,12 +109,10 @@ export const authOptions = {
           data:{
             name:token.name,
             username:token.username,
+            password:token.password,
             email:token.email,
             image:token.image,
             role:token.role,
-
-
-
           },
         })
         console.log(newUser);
@@ -115,37 +120,22 @@ export const authOptions = {
         return token
     },
     async session({session, user,token } ){
-        console.log(session, user, token);
+        console.log("session callback" ,session, user, token);
+        //pass to session
         return{
             ...session,
             user:{
                 ...session.user,
-                username: token.username || session.user.username,
-                name: token.name || session.user.name,
-                email: token.email || session.user.email,
-                image:token.image || session.user.image,
-                role: token.role || session.user.role,
-
-
-
+                id:token.id,
+                username: token.username,
+                name: token.name,
+                password: token.password,
+                email: token.email,
+                image:token.image,
+                role: token.role,
 
             }
         }
     },
   }
 };
-
-// export const getServerSession = () => getServerSession(authOptions);
-// import { PrismaAdapter } from "@auth/prisma-adapter"
-// import GoogleProvider from "next-auth/providers/google"
-// import prisma from "./connect"
-
-// export const authOptions ={
-//     adapter: PrismaAdapter(prisma),
-//     providers: [
-//         GoogleProvider({
-//             clientId: process.env.GOOGLE_ID,
-//             clientSecret: process.env.GOOGLE_SECRET,
-//         }),
-//     ]
-// }

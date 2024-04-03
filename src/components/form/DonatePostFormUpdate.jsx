@@ -16,6 +16,8 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
+import { useToast } from "@/components/ui/use-toast"
+
 
 
 
@@ -195,8 +197,20 @@ const DonatePostFormUpdate = ({ params }) => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update post");
+      if (response.ok) {
+        toast({
+          title: "Success",
+          description: "Post added successfully",
+          variant: "success",
+          className: "bg-green-500 text-white", 
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "An error occurred",
+          variant: "error",
+          className: "bg-red-500 text-white", 
+        });
       }
 
       // Handle success, for example, redirect to another page
