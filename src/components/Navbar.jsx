@@ -66,23 +66,43 @@
 import styles from './Styles.css'
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import { signOut, useSession } from 'next-auth/react'; // Import useSession
 import LoginIcon from '@mui/icons-material/Login';
 import MenuIcon from '@mui/icons-material/Menu';
 // Assuming you have styles and LoginIcon imported
 import CallMadeIcon from '@mui/icons-material/CallMade';
-import { Button, IconButton , Menu, MenuItem } from '@mui/material';
+import { Button, IconButton , ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
 import AccountMenu from './AccountMenu';
-
+import Logo from '../../public/logo.svg'
+import Image from 'next/image';
+import PostAddIcon from '@mui/icons-material/PostAdd';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
 const Navbar = () => {
   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
   const [open, setOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEll, setAnchorEll] = useState(null);
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -104,7 +124,9 @@ const Navbar = () => {
   return (
     <div className='flex items-center justify-between h-24 '>
       <div className="text-left text-xl font-bold lg:text-2xl md:text-l text-softTextColor ">
-        <Link href='/'>Charity</Link>
+        <Link href='/'>
+          <Image src={Logo} alt="Logo" width={100} height={100} />
+        </Link>
       </div>
       <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
           <Link href="/#about" className="text-[18px]">•À Propos</Link>
@@ -164,7 +186,14 @@ const Navbar = () => {
         PUBLISH
       </Button> */}
       <IconButton onClick={handleClick}>
-        <CreateIcon />
+        <PostAddIcon 
+          sx={{
+            color: '#EF507F',
+            fontSize: '1.8rem',
+          }}
+        
+        />
+        
       </IconButton>
       <Menu
         anchorEl={anchorEl}
@@ -172,10 +201,23 @@ const Navbar = () => {
         onClose={handleClose}
       >
         <Link href='/publish/requestPost'>
-          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem>
+          {/* <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem> */}
+          <MenuItem onClick={() => handleOptionSelect('Request Post')}>
+            <ListItemIcon>
+              <VolunteerActivismIcon />
+            </ListItemIcon>
+            <ListItemText/>
+            Poste Donation
+          </MenuItem>
         </Link>
         <Link href='/publish/donatePost'>
-          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Poste Donation</MenuItem>
+          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>
+            <ListItemIcon>
+              <PersonSearchIcon />
+            </ListItemIcon>
+            <ListItemText/>
+            Poste Demande
+          </MenuItem>
         </Link>
       </Menu>
         <AccountMenu />
@@ -197,7 +239,7 @@ const Navbar = () => {
         </div>
 
         {open && (
-          <div className='fixed top-24 right-0 rounded-sm bg-gray-500 h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-white z-50'>
+          <div ref={menuRef} className='fixed top-24 right-0 rounded-sm bg-[rgba(255,255,255,0.5)] backdrop-blur-lg h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-black z-50'>
             <Link href="/#about" className="text-[17px]">•À Propos</Link>
             <Link href="/#features" className="text-[17px]">•Caractéristiques </Link>
             <Link href="/#faq" className="text-[17px]">•FAQ</Link> 

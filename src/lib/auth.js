@@ -23,7 +23,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null; // Handle missing credentials
+          return null;
         }
 
         try {
@@ -33,12 +33,6 @@ export const authOptions = {
           if (!existingUser) {
             return null; // User not found
           }
-
-          // if (!existingUser.active) {
-          //   throw new Error('User is not active'); 
-          // }
-
-          
           
           if(existingUser.password){
             const passwordMatch = await bcryptjs.compare(
@@ -54,6 +48,9 @@ export const authOptions = {
             id: existingUser.id,
             username: existingUser.username,
             email:existingUser.email,
+            role:existingUser.role,
+            name:existingUser.name,
+            image:existingUser.image,
           };
         } catch (error) {
           console.error("Error during authorization:", error);
@@ -67,75 +64,153 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token,user, session,trigger}){
-        console.log("JWT callback" ,token, user, session);
-        if (trigger === "update") {
-          if (session?.name) {
-              token.name = session.name;
-          }
-          if (session?.username) {
-              token.username = session.username;
-          }
-          if (session?.email) {
-            token.email = session.email;
-          }
-          if (session?.image) {
-            token.image = session.image;
-          }
-          if (session?.password) {
-            token.password = session.password;
-          }
+    async jwt({ token, user, session, trigger }) {
+      console.log("JWT callback", token, user, session);
+  
+      // Update token with session data if available
+      if (trigger === "update"  && session?.name) {
+          token.name = session.name || token.name;
+          token.username = session.username || token.username;
+          token.email = session.email || token.email;
+          token.image = session.image || token.image;
+          token.password = session.password || token.password;
+          token.role = session.role || token.role;
       }
-
-      //pass in to token
-        if(user) {
-            return {
-                ...token,
-                id:user.id,
-                username:user.username,
-                name:user.name,
-                password:user.password,
-                image:user.image,
-                role: user.role, 
-                email: user.email,           
-            }
-        }
-
-        // update user in database 
-        const newUser = await db.user.update({
-          where: {
+  
+      // If a user is present, update token with user data
+      if (user) {
+        return {
+          ...token,
+          id: user.id,
+          username: user.username,
+          name: user.name,
+          password: user.password,
+          email: user.email,
+          image: user.image,
+          role: user.role,
+        };
+      }
+  
+      if (trigger === "/api/user" && token.email) {
+        const updatedUser = await db.user.update({
+          where: { email: token.email },
+          data: {
+            name: token.name,
+            username: token.username,
+            password: token.password,
             email: token.email,
+            image: token.image,
+            role: token.role,
           },
-          data:{
-            name:token.name,
-            username:token.username,
-            password:token.password,
-            email:token.email,
-            image:token.image,
-            role:token.role,
-          },
-        })
-        console.log(newUser);
-
-        return token
+        });
+        console.log("Updated user in database:", updatedUser);
+      }
+    
+      return token;
     },
-    async session({session, user,token } ){
-        console.log("session callback" ,session, user, token);
-        //pass to session
-        return{
-            ...session,
-            user:{
-                ...session.user,
-                id:token.id,
-                username: token.username,
-                name: token.name,
-                password: token.password,
-                email: token.email,
-                image:token.image,
-                role: token.role,
-
-            }
-        }
+  
+    async session({ session, user, token }) {
+      console.log("Session callback", session, user, token);
+  
+      // Pass session data to session
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          username: token.username,
+          name: token.name,
+          password: token.password,
+          email: token.email,
+          image: token.image,
+          role: token.role,
+        },
+      };
     },
   }
-};
+};  
+
+
+
+
+
+
+
+
+
+// callbacks: {
+//   async jwt({ token,user, session,trigger}){
+//       console.log("JWT callback" ,token, user, session);
+//       if (trigger === "update") {
+//         if (session?.name) {
+//             token.name = session.name;
+//         }
+//         if (session?.username) {
+//             token.username = session.username;
+//         }
+//         if (session?.email) {
+//           token.email = session.email;
+//         }
+//         if (session?.image) {
+//           token.image = session.image;
+//         }
+//         if (session?.password) {
+//           token.password = session.password;
+//         }
+//         if (session?.role) {
+//           token.role = session.role;
+//         }
+//     }
+
+//     //pass in to token
+//       if(user) {
+//           return {
+//               ...token,
+//               id:user.id,
+//               username:user.username,
+//               name:user.name,
+//               password:user.password,
+//               image:user.image,
+//               role: user.role, 
+//               email: user.email,           
+//           }
+//       }
+
+//       // update user in database 
+//       const newUser = await db.user.update({
+//         where: {
+//           email: token.email,
+//         },
+//         data:{
+//           name:token.name,
+//           username:token.username,
+//           password:token.password,
+//           email:token.email,
+//           image:token.image,
+//           role:token.role,
+//         },
+//       })
+//       console.log(newUser);
+
+//       return token
+//   },
+//   async session({session, user,token } ){
+//       console.log("session callback" ,session, user, token);
+//       //pass to session
+//       return{
+//           ...session,
+//           user:{
+//               ...session.user,
+//               id:token.id,
+//               username: token.username,
+//               name: token.name,
+//               password: token.password,
+//               email: token.email,
+//               image:token.image,
+//               role: token.role,
+
+//           }
+//       }
+//   },
+// }
+// };

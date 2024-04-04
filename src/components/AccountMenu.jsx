@@ -141,15 +141,16 @@ const AccountMenu = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                    <Button variant='ghost' className='relative h-10 w-10 rounded-full'>
-                        <Avatar className='h-10 w-10 rounded-full'>
+                    <Button variant="ghost" className=' h-10 w-10 rounded-full'>
+                        <Avatar className='relative h-10 w-10 rounded-full'>
                             {!imageLoaded && (
                                 <Skeleton variant="circular" sx={{ backgroundColor: '#E0E0E0' }} width={40} height={40} animation="wave" />
                             )}
                             <img
                                 src={avatarSrc}
                                 alt=""
-                                style={{ display: imageLoaded ? 'block' : 'none' }}
+                                style={{ display: imageLoaded ? 'block'  : 'none' }}
+                                className="absolute inset-0 w-full h-full object-cover"
                                 onLoad={handleImageLoad}
                             />
                             {/* <AvatarFallback>
@@ -159,7 +160,7 @@ const AccountMenu = () => {
                     </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-                className="w-50 bg-gray-200 rounded-xl p-4"
+                className="w-50 bg-gray-200 rounded-xl"
                 align="end"
                 forceMount
             >
