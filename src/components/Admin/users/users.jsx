@@ -42,21 +42,21 @@ const Users = async ({searchParams}) => {
           {users.map((user)=>(
             <tr key={user.id}>
             <td className="border border-white">
-              <div className={styles.user}>
-                <Image
-                  src={user.image || "https://github.com/shadcn.png"}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="rounded-full"
-                />
-              </div>
+            <div className="rounded-full bg-cover" style={{ width: 40, height: 40 }}>
+              <Image
+                src={user.image || "https://github.com/shadcn.png"}
+                alt=""
+                width={40}
+                height={40}
+                className="w-[40px] h-[40px] items-center rounded-full mb-4"
+              />
+            </div>
             </td>
             <td className="border border-white">{user.name}</td>
             <td className="border border-white">{user.username}</td>
             <td className="border border-white">{user.email}</td>
             <td className="border border-white">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-            <td className="font-bold border border-gray-300">{user.DonPosts.length + user.ReqPost.length}</td>
+            <td className="font-bold border border-white">{user.DonPosts.length + user.ReqPost.length}</td>
 
             <td className="border border-white">
               <Badge

@@ -60,8 +60,8 @@ const Card =  ({ item}) => {
         </Link>
           <p className="mt-2 font-sans text-l font-normal leading-relaxed text-[#626262] text-wrap antialiased">
             {item.desc ? 
-              (item.desc.length > 38 ? 
-                item.desc.slice(0, 38) + '...' : 
+              (item.desc.length > 40 ? 
+                item.desc.slice(0, 40) + '...' : 
                 item.desc) : 
               ''}
           </p>

@@ -24,6 +24,7 @@ import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteDonPost from '@/components/deleteDonPost';
 import DeleteReqPost from '@/components/deleteReqPost';
+import ApiMed from '@/components/ApiMed';
 
 
 
@@ -95,11 +96,11 @@ const Page = async ({ params }) => {
                     <Link href={profileLink}>
                       {data.user.image ? (
                           <div className='mr-2 w-[50px] h-[50px] relative'>
-                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover"/>
+                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className="w-[50px] h-[50px] items-center rounded-full"/>
                           </div>
                         ) : (
                           <div className='mr-2 w-[50px] h-[50px] relative'>
-                            <Image src="https://github.com/shadcn.png" alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover"/>
+                            <Image src="https://github.com/shadcn.png" alt="Avatar" height={50} width={50} className="w-[50px] h-[50px] items-center rounded-full mb-4"/>
                           </div>
                         )}
                       </Link>
@@ -229,6 +230,7 @@ const Page = async ({ params }) => {
           </div>
         </div>
       </div>
+      <ApiMed/>
       {/* <Footer /> */}
     </>
   );

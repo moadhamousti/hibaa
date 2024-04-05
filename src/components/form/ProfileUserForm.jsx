@@ -36,6 +36,8 @@ const ProfileUserForm = () => {
     fetchData();
   }, []);
 
+  console.log(userData)
+
   if (status === "loading") {
     return (
       <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
@@ -46,10 +48,11 @@ const ProfileUserForm = () => {
 
 
   return (
+    <>
     <div className="flex flex-wrap justify-center">
       <div className='column'>
         <div className=' pt-8 text-center'>
-          <h1 className="text-4xl font-extrabold tracking-normal">Profile de <span className='text-[#3b83c6]'>{userData?.username || userData?.name}</span></h1>
+          <h1 className="text-4xl font-extrabold tracking-normal">Profile de <span className='text-[--darkishBlue]'>{userData?.username || userData?.name}</span></h1>
         </div>
           <div className='mt-7'>
             {userData && (
@@ -66,24 +69,25 @@ const ProfileUserForm = () => {
                   <h2 className="text-lg font-semibold">{userData.username}</h2>
                   <p className="text-sm text-grat-500">{userData.email}</p>
                   <p className="text-sm text-black">
-                    <Badge variant="light" className={userData.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[#3b83c6]'}>
+                    <Badge variant="light" className={userData.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[--darkishBlue]'}>
                       {userData.role}
                     </Badge>
                   </p>
                 </div>
               </>
             )}
-            <div className="">
-                  <h2 className="text-lg font-semibold mt-8">Postes d'utilisateur</h2>
-
-            </div>
-
-                <div>
-                  <UserPosts id={userData?.id} />
-                </div>
+            
           </div>
       </div>
     </div>
+    <div className="text-left">
+      <h3 className='text-left text-[20px] font-semibold'><span className='text-[--darkishBlue]'>{userData?.name || userData?.username} </span>Postes</h3>
+    </div>
+
+    <div>
+      <UserPosts id={userData?.id} image={userData?.image} />
+    </div>
+    </>
   );
 };
 

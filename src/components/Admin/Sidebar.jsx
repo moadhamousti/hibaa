@@ -73,19 +73,19 @@ const Sidebar = () => {
   const [open, setOpen] = useState(true);
 
   return (
-    <div className={`px-2 duration-300 ${open ? "w-72" : "w-14"} relative`}>
+    <div className={`duration-300 ${open ? "w-auto" : "w-auto"} relative`}>
       
 
       {/* <div className={`p-2 duration-300 ${open ? "w-72" : "w-14"}  relative`}></div> */}
 
       <div className='inline-flex items-center relative mb-4 justify-between '>
         <Image
-          src='/tiktok.png'
-          width={250}
-          height={250}
+          src='/logo.svg'
+          width={1000}
+          height={1000}
 
-          className={` mb-3 rounded-full cursor-pointer block float-left duration-500 ${open ? 'w-full' : 'w-1/2 absolute top-10 mb-4 -left-0'
-            } ${!open && 'rotate-[360deg]'}`}
+          className={` mb-3 cursor-pointer block float-left duration-500 ${open ? 'w-full' : 'w-1/2 absolute top-10 mb-4 -left-0'
+            } ${!open && ''}`}
         />
         <h1 className={`ml-1 text-[--softBg] text-italic origin-left font-bold text-2xl duration-300 ${!open && 'scale-0'
           }`}>
@@ -95,7 +95,7 @@ const Sidebar = () => {
 
       <DoubleArrowIcon
       sx={{ color: '#EF507F' }} 
-        className={` text-4xl ml-6 rounded-full absolute right-6  top-0 cursor-pointer ${
+        className={` text-3xl  absolute right-0  top-0 cursor-pointer ${
           !open && 'rotate-180'
         } `}
         onClick={() => setOpen(!open)}

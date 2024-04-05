@@ -50,6 +50,10 @@ const RequestPostFormUpdate = ({ params }) => {
   const [locationCategories, setLocationCategories] = useState([]);
   const [toolsCategories, setToolsCategories] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [titleError, setTitleError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+  const [categoryError, setCategoryError] = useState("");
+  const [locationError, setLocationError] = useState("");
 
 
   const [selectedToolsCategories, setSelectedToolsCategories] = useState("");
@@ -177,7 +181,39 @@ const RequestPostFormUpdate = ({ params }) => {
     );
   }
 
-  const handleUpdatePost = async () => {
+  const handleUpdatePost = async (e) => {
+    e.preventDefault();
+
+    // Validation
+    let titleErrorMessage = "";
+    let descriptionErrorMessage = "";
+
+    if (title.length < 5) {
+      titleErrorMessage = "Le titre doit comporter au moins 5 caractères";
+    }
+
+    if (desc.length < 40) {
+      descriptionErrorMessage = "La description doit comporter au moins 38 caractères";
+    }
+
+    setTitleError(titleErrorMessage);
+    setDescriptionError(descriptionErrorMessage);
+
+    // If there are errors, prevent form submission
+    if (titleErrorMessage || descriptionErrorMessage) {
+      return;
+    }
+
+    if (!selectedToolsCategories) {
+      setCategoryError("Veuillez sélectionner une catégorie");
+      return; // Prevent form submission
+    }
+
+    if (!selectedLocationCategory) {
+      setLocationError("Veuillez sélectionner un emplacement");
+      return; // Prevent form submission
+    }
+
     try {
       const response = await fetch(`http://localhost:3000/api/posts/reqPost/${id}`, {
         method: "PUT",
@@ -218,6 +254,8 @@ const RequestPostFormUpdate = ({ params }) => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
+                <p className="text-red-600 text-[16px] mb-4">{titleError}</p>
+
                 <Label htmlFor="title">Description</Label>
                 <Textarea
                   id="desc"
@@ -226,6 +264,8 @@ const RequestPostFormUpdate = ({ params }) => {
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
                 />
+                <p className="text-red-600 text-[16px] mb-4">{descriptionError}</p>
+
 
               <div className='mt-3'>
                 <Label htmlFor="locationCategory">Sélectionnez un emplacement:</Label>
@@ -246,6 +286,8 @@ const RequestPostFormUpdate = ({ params }) => {
                       </option>
                     ))}
                   </select>
+                  <p className="text-red-600 text-[16px] mb-4">{locationError}</p>
+
                 </div>
                 <div className='mt-3'>
                 <Label htmlFor="toolsCategory">Choisir une catégorie:</Label>
@@ -265,6 +307,8 @@ const RequestPostFormUpdate = ({ params }) => {
                     </option>
                   ))}
                 </select>
+                <p className="text-red-600 text-[16px] mb-4">{categoryError}</p>
+
                 </div>
 
                 <div className="mt-3">

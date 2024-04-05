@@ -28,6 +28,7 @@ const Users = async ({searchParams}) => {
       <table className={styles.table}>
         <thead className="px-4 py-2 bg-white text-center">
           <tr>
+            <td className="font-bold border border-gray-300">Image</td>
             <td className="font-bold border border-gray-300">Nom</td>
             <td className="font-bold border border-gray-300">Nom d'utilisateur</td>
             <td className="font-bold border border-gray-300">E-mail</td>
@@ -40,24 +41,24 @@ const Users = async ({searchParams}) => {
           {users.map((user)=>(
             <tr key={user.id}>
             <td className="border border-white">
-              <div className={styles.user}>
+              <div className="rounded-full bg-cover" style={{ width: 40, height: 40 }}>
                 <Image
                   src={user.image || "https://github.com/shadcn.png"}
                   alt=""
                   width={40}
                   height={40}
-                  className="rounded-full"
+                  className="w-[40px] h-[40px] items-center rounded-full mb-4"
                 />
-                {user.name}
               </div>
             </td>
+            <td className="border border-white">{user.name}</td>
             <td className="border border-white">{user.username}</td>
             <td className="border border-white">{user.email}</td>
             <td className="border border-white">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
             <td className="border border-white">
               <Badge
                 variant="light"
-                className={user.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[#3b83c6]'}
+                className={user.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[--darkishBlue]'}
               >
               {user.role}
               </Badge>

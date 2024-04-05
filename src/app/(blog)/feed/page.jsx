@@ -25,7 +25,7 @@ export default function Page({ searchParams }) {
       <div className='min-h-screen bg-bg text-textColor'>
         <div className='max-w-screen-xl mx-auto'>
           <div className="flex justify-between items-center">
-            <div className='pt-10 pl-8'>
+            <div className='pt-10'>
               {/* <h1 className="text-4xl font-extrabold tracking-normal"></h1> */}
               <h1 className="text-3xl font-extrabold tracking-normal hidden sm:block">Postes</h1>
             </div>

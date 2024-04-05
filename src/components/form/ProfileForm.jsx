@@ -145,10 +145,8 @@ const ProfileForm = () => {
 
   const storage = getStorage(app);
 
-  const [imagePreview, setImagePreview] = useState(() => {
-    const storedImagePreview = localStorage.getItem('imagePreview');
-    return storedImagePreview || 'https://github.com/shadcn.png';
-  });
+  const [imagePreview, setImagePreview] = useState(session?.user?.image || 'https://github.com/shadcn.png');
+
 
   const handleUpdateProfile = async () => {
     try {
@@ -271,7 +269,7 @@ const ProfileForm = () => {
                 className="w-[150px] h-[150px] items-center rounded-full mb-4"
                 src={imagePreview || 'https://github.com/shadcn.png'}
                 alt="Profile"
-                value={session?.user.image}
+                // value={session?.user.image}
               />
             )}
             </>

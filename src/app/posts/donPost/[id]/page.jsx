@@ -95,7 +95,7 @@ const Page = async ({ params }) => {
                     <Link href={profileLink}>
                       {data.user.image ? (
                           <div className='mr-2 w-[50px] h-[50px] relative'>
-                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover"/>
+                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className=" rounded-full mr-2 object-cover"/>
                           </div>
                         ) : (
                           <div className='mr-2 w-[50px] h-[50px] relative'>

@@ -182,7 +182,7 @@ useEffect(() => {
       titleErrorMessage = "Le titre doit comporter au moins 5 caractères";
     }
 
-    if (desc.length < 38) {
+    if (desc.length < 40) {
       descriptionErrorMessage = "La description doit comporter au moins 38 caractères";
     }
 
