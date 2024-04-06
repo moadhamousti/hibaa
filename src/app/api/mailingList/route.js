@@ -1,11 +1,16 @@
 import https from "https";
 
+
 async function addToMailingList(email) {
-    const SENDGRID_SECRET = "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";
-    const SENDGRID_MAILING_ID = "a8795f87-96eb-4258-9494-1e3bf5996acb";
+    const SECRET = process.env.SENDGRID_SECRET || "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";
+    const ID = process.env.SENDGRID_MAILING_ID || "a8795f87-96eb-4258-9494-1e3bf5996acb";
+
+    console.log("hihi",SECRET)
+    console.log("hojo",ID)
+
     const data = JSON.stringify({
         contacts: [{ email }],
-        list_ids: [SENDGRID_MAILING_ID],
+        list_ids: [ID],
     });
 
     const options = {
@@ -16,7 +21,7 @@ async function addToMailingList(email) {
         headers: {
             "Content-Type": "application/json",
             "Content-Length": data.length,
-            Authorization: `Bearer ${SENDGRID_SECRET}`,
+            Authorization: `Bearer ${SECRET}`,
         },
     };
 
