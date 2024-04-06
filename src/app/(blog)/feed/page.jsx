@@ -37,12 +37,13 @@ export default function Page({ searchParams }) {
             </div>
           </div>
           
-          <div className='flex flex-col items-center pt-8 mb-10'>
+          <div className='flex flex-col items-center pt-8'>
               <div className="w-[140px] ml-auto">
                 <TypeSelect />
               </div>
-            <CardList page={page} cat={cat} loc={loc} type={type}/>
           </div>
+            <CardList page={page} cat={cat} loc={loc} type={type}/>
+
         </div>
         <FooterFeed/>
       </div>

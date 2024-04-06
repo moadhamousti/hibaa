@@ -25,6 +25,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteDonPost from '@/components/deleteDonPost';
 import DeleteReqPost from '@/components/deleteReqPost';
 import ApiMed from '@/components/ApiMed';
+import ReqRelatedPosts from '@/components/ReqRelatedPosts';
 
 
 
@@ -39,6 +40,8 @@ const getData = async (id) => {
 
   return res.json();
 };
+
+
 
 
 
@@ -230,8 +233,14 @@ const Page = async ({ params }) => {
           </div>
         </div>
       </div>
-      <ApiMed/>
+      {/* <ApiMed/> */}
       {/* <Footer /> */}
+      {/* <RelatedPosts category={data?.category}/> */}
+      {/* <RelatedPosts category={data?.category} /> */}
+      
+      <ReqRelatedPosts category={data?.category} postId={data?.id} />
+
+
     </>
   );
 };

@@ -267,7 +267,7 @@ const ProfileForm = () => {
             {imagePreview && (
               <img
                 className="w-[150px] h-[150px] items-center rounded-full mb-4"
-                src={imagePreview || 'https://github.com/shadcn.png'}
+                src={session?.user.image}
                 alt="Profile"
                 // value={session?.user.image}
               />

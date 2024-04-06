@@ -126,7 +126,7 @@ useEffect(() => {
                 <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
                   <Input
-                    type='password'
+                  type='password'
                     placeholder='Tapez votre mot de passe'
                     {...field}
                   />

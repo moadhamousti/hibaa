@@ -1,18 +1,16 @@
 import { db } from "@/lib/db"; // Assuming this imports your Prisma client
 import { NextResponse } from "next/server";
 
+
 export const GET = async (req) => {
   try {
-    const category = req.params.category;
-
-    if (!category) {
-      return new NextResponse(JSON.stringify({ message: "Category parameter is missing" }), { status: 400 });
-    }
+    const { searchParams } = new URL(req.url);
+    const cat = searchParams.get("cat");
 
     const reqPosts = await db.reqPost.findMany({
       include: { user: true }, // Include related user data if needed
       where: {
-        category: category
+        ...(cat && { category: cat }), // Filter by category if provided
       },
     });
 

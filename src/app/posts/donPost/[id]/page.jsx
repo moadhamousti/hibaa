@@ -24,6 +24,7 @@ import { IconButton, Menu, MenuItem } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import DeleteDonPost from '@/components/deleteDonPost';
 import DeleteReqPost from '@/components/deleteReqPost';
+import DonRelatedPosts from '@/components/DonRelatedPosts';
 
 
 
@@ -95,11 +96,11 @@ const Page = async ({ params }) => {
                     <Link href={profileLink}>
                       {data.user.image ? (
                           <div className='mr-2 w-[50px] h-[50px] relative'>
-                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className=" rounded-full mr-2 object-cover"/>
+                            <Image src={data.user.image} alt="Avatar" height={50} width={50} className=" w-[50px] h-[50px] items-center rounded-full"/>
                           </div>
                         ) : (
                           <div className='mr-2 w-[50px] h-[50px] relative'>
-                            <Image src="https://github.com/shadcn.png" alt="Avatar" height={50} width={50} className="rounded-full mr-2 object-cover"/>
+                            <Image src="https://github.com/shadcn.png" alt="Avatar" height={50} width={50} className="w-[50px] h-[50px] items-center rounded-full"/>
                           </div>
                         )}
                       </Link>
@@ -165,7 +166,20 @@ const Page = async ({ params }) => {
                       width={20} height={20}
                     />
                   )}
-                  <h3 className='underline'><Link href={`https://wa.me/+212${data.phone}`}>{data.phone}</Link></h3>
+
+                  <h3 className='underline'>
+                  {data.isWhatsapp ? (
+                    <Link href={`https://wa.me/+212${data.phone}`}>
+                      {data.phone}
+                    </Link>
+                  ) : (
+                    <Link href="#" className="pointer-events-none">
+                      {data.phone}
+                    </Link>
+                  )}
+                  </h3>
+
+
                   </div>                
                   {/* <p className="flex items-center gap-1">{data?.userEmail}</p> */}
                   <div className="flex gap-2">
@@ -223,6 +237,8 @@ const Page = async ({ params }) => {
         </div>
       </div>
       {/* <Footer /> */}
+      <DonRelatedPosts category={data?.category} postId={data?.id} />
+
     </>
   );
 };

@@ -11,7 +11,7 @@ export const GET = async (req) =>{
 
 
 
-    const POST_PER_PAGE = 9;
+    const POST_PER_PAGE = 4;
     
     try{
         const ReqPost = await db.ReqPost.findMany({

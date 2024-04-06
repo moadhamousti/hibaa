@@ -57,3 +57,22 @@ export const PUT = async (req , {params}) =>{
 }
 
 
+
+export const getRelatedPostsByCategory = async (req, res) => {
+  const { category } = req.query;
+
+  try {
+    const relatedPosts = await db.ReqPost.findMany({
+      where: {
+        category: {
+          equals: category
+        }
+      },
+      include: { user: true }
+    });
+
+    res.status(200).json(relatedPosts);
+  } catch (error) {
+    res.status(500).json({ message: 'Something went wrong' });
+  }
+};
