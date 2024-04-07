@@ -74,53 +74,28 @@ model User {
   sessions      Session[]
   DonPosts      DonPost[]
   role          UserRole  @default(USER)
-  resetToken       String?     // New field for password reset token
-  resetTokenExpiry DateTime?   // New field for token expiry
+  resetToken       String?    
+  resetTokenExpiry DateTime? 
   // posts         Post[]
   ReqPost       ReqPost[]
+  form          DonatorForm[]
 }
 
-// model Category {
-//   id    String  @id @default(cuid()) @map("_id")
-//   slug  String  @unique
-//   title String
-//   img   String?
-// }
 
-// model Post {
-//   id        String    @id @default(cuid()) @map("_id")
-//   createdAt DateTime  @default(now())
-//   title     String
-//   desc      String
-//   img       String
-//   phone           String
-//   isWhatsapp      Boolean          @default(false)
-//   views     Int       @default(0)
-//   userEmail String
-//   user      User      @relation(fields: [userEmail], references: [email])
-// }
+model DonatorForm{
+  id            String    @id @default(cuid())
+  createdAt     DateTime  @default(now())
+  name          String
+  phoneNumber   String
+  isWhatsapp    Boolean   @default(false) 
+  Description   String?
+  adress        String
+  location      String
+  userEmail     String
+  user          User      @relation(fields: [userEmail], references: [email])
 
-
-
-model MedCategory {
-  id        String    @id @default(cuid())
-  title     String   @unique
-  DonPosts  DonPost[]
-  ReqPost   ReqPost[]
 }
 
-model LocationCategory {
-  id        String    @id @default(cuid())
-  title     String    @unique
-  DonPosts  DonPost[]
-  ReqPost   ReqPost[]  
-}
-
-// model PostType {
-//   id        String    @id @default(cuid())
-//   title     String    @unique
-//   DonPosts  DonPost[]
-// }
 
 enum PostType {
   DONATION
@@ -147,6 +122,7 @@ model DonPost {
   type          PostType  @default(DONATION) 
 }
 
+
 model ReqPost {
   id        String    @id @default(cuid()) @map("_id")
   createdAt DateTime  @default(now())
@@ -165,16 +141,22 @@ model ReqPost {
   type          PostType   @default(REQUEST) 
 }
 
+model MedCategory {
+  id        String    @id @default(cuid())
+  title     String   @unique
+  DonPosts  DonPost[]
+  ReqPost   ReqPost[]
+}
 
-// model DonatePost{
-//   id              String           @id @default(cuid())
-//   slug            String           @unique
-//   title           String
-//   createdAt       DateTime         @default(now())
-//   description     String
-//   userEmail       String
-//   user            User             @relation(fields: [userEmail], references: [email])
-// }
+model LocationCategory {
+  id        String    @id @default(cuid())
+  title     String    @unique
+  DonPosts  DonPost[]
+  ReqPost   ReqPost[]  
+}
+
+
+
 
 model ActivateToken{
   id            String    @id @default(cuid())
@@ -197,3 +179,45 @@ model VerificationToken {
 
 
 
+
+// model DonatePost{
+//   id              String           @id @default(cuid())
+//   slug            String           @unique
+//   title           String
+//   createdAt       DateTime         @default(now())
+//   description     String
+//   userEmail       String
+//   user            User             @relation(fields: [userEmail], references: [email])
+// }
+
+
+
+// model Category {
+//   id    String  @id @default(cuid()) @map("_id")
+//   slug  String  @unique
+//   title String
+//   img   String?
+// }
+
+// model Post {
+//   id        String    @id @default(cuid()) @map("_id")
+//   createdAt DateTime  @default(now())
+//   title     String
+//   desc      String
+//   img       String
+//   phone           String
+//   isWhatsapp      Boolean          @default(false)
+//   views     Int       @default(0)
+//   userEmail String
+//   user      User      @relation(fields: [userEmail], references: [email])
+// }
+
+
+
+
+
+// model PostType {
+//   id        String    @id @default(cuid())
+//   title     String    @unique
+//   DonPosts  DonPost[]
+// }
