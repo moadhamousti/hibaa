@@ -32,18 +32,23 @@ const page = async ({params}) => {
                 <label>Type</label>
                 <input className='bg-gray-400' name="type" id="type" value={post.type} placeholder={post.title} required/>
                 
-                <label>Title</label>
+                <label>Titre</label>
                 <input type="text" name='title' defaultValue={post.title}  placeholder={post.title} required/>
                 <label>Description</label>
                 <textarea name="desc" id="desc" rows="10" defaultValue={post.desc} placeholder={post.desc} required></textarea>
-                <label>Phone</label>
+                <label>Numéros de téléphone</label>
                 <input type="text" name='Phone' defaultValue={post.phone}  placeholder={post.phone}/>
-                <label>Email</label>
+                <label>E-mail</label>
                 <input type="email" name='userEmail' value={post.userEmail}  placeholder={post.userEmail} required />
                 <div className="flex gap-5 items-center">
-                    <p>WhatsApp Number ?</p>
-                    <input type="radio" name="isWhatsapp" value="true"/>
+                    <p>WhatsApp Numero ?</p>
+                    <input
+                        type="radio"
+                        name="isWhatsapp"
+                        value={post.isWhatsapp}
+                    />
                 </div>
+                <label className='mt-5'>Location</label>
                 <select name="location" id="location" defaultValue={post.location}>
                     <option value="">Choose a Location</option>
                     <option value="Agadir">Agadir</option>
@@ -78,6 +83,7 @@ const page = async ({params}) => {
                     <option value="Tetouan">Tetouan</option>
   
                 </select>
+                <label>Category</label>
                 <select name="category" id="category" defaultValue={post.category}>
                     <option value="">Choose a Category</option>
                     <option value="Bedside Tables">Bedside Tables</option>
@@ -102,7 +108,7 @@ const page = async ({params}) => {
                     <option value="Wheeled Shower Chairs">Wheeled Shower Chairs</option>
                     </select>
                 <button type='submit'>
-                    Update
+                    Modifier
                 </button>
             </form>
         </div>

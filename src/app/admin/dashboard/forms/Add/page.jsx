@@ -3,7 +3,7 @@ import styles from "./add.module.css";
 import CategoryList from '@/components/CategoriesList';
 import LocationList from '@/components/LocationList';
 import Image from 'next/image';
-import { addPost } from '@/lib/actions';
+import { addForm, addPost } from '@/lib/actions';
 import MedToolsTypeFilter from '@/components/MedToolsTypeFilter';
 
 // const defaultImageUrl = "https://www.medisave.co.uk/cdn/shop/collections/Tom.jpg?v=1683730716";
@@ -11,7 +11,7 @@ import MedToolsTypeFilter from '@/components/MedToolsTypeFilter';
 const AddPost = () => (
   
   <div className={styles.container}>
-    <form action={addPost} className={styles.form}>
+    <form action={addForm} className={styles.form}>
       <div>
         {/* <Image
           src={defaultImageUrl}
@@ -21,36 +21,16 @@ const AddPost = () => (
           name="img"
           className="item-center rounded-sm"
         /> */}
-        <select name="type" id="type">
-          <option value="DONATION">Poste Type</option>
-          <option value="DONATION">DONATION</option>
-          <option value="REQUEST">DEMANDE</option>
-        </select>
-        <input type="text" name='title' placeholder='Titre' required />
-        <input type="email" name='userEmail' placeholder="E-mail d'utilisateur" required />
-        <select name="category" id="category" required>
-          <option value="">Choose a Category</option>
-          <option value="Bedside Tables">Bedside Tables</option>
-          <option value="Blood Glucose Monitors">Blood Glucose Monitors</option>
-          <option value="Blood Pressure Monitors">Blood Pressure Monitors</option>
-          <option value="Canes">Canes</option>
-          <option value="Commodes">Commodes</option>
-          <option value="Crutches">Crutches</option>
-          <option value="Eyeglasses">Eyeglasses</option>
-          <option value="Feeding Tubes">Feeding Tubes</option>
-          <option value="Hearing Aids">Hearing Aids</option>
-          <option value="Hospital Beds">Hospital Beds</option>
-          <option value="Medical Alert Systems">Medical Alert Systems</option>
-          <option value="Nebulizers">Nebulizers</option>
-          <option value="Orthopedic Braces">Orthopedic Braces</option>
-          <option value="Orthopedic Shoes">Orthopedic Shoes</option>
-          <option value="Oxygen Tanks">Oxygen Tanks</option>
-          <option value="Prosthetic Limbs">Prosthetic Limbs</option>
-          <option value="Stethoscopes">Stethoscopes</option>
-          <option value="Walkers">Walkers</option>
-          <option value="Wheelchairs">Wheelchairs</option>
-          <option value="Wheeled Shower Chairs">Wheeled Shower Chairs</option>
-        </select>
+        <input id='phaName' type="text" name='phaName' placeholder='pharmacie Nom' />
+        <input id='ownerName' type="text" name='ownerName' placeholder='Propriétaire Nom' />
+        <textarea
+          required
+          name="desc"
+          id="desc"
+          rows="10"
+          placeholder="Description"
+        ></textarea>
+        <input id='phone' type="tel" name='phone' placeholder='Phone' />
         <select name="location" id="location" required>
           <option value="">Choose a Location</option>
           <option value="Agadir">Agadir</option>
@@ -83,22 +63,54 @@ const AddPost = () => (
           <option value="Taroudant">Taroudant</option>
           <option value="Taza">Taza</option>
           <option value="Tetouan">Tetouan</option>
-
-
-          
         </select>
-        <input type="tel" name='phone' placeholder='Phone' />
         <div className="flex">
             <p>WhatsApp Numero ?</p>
-            <input type="radio" name="isWhatsapp" value="true" />
+        <label htmlFor="whatsapp-yes" className="ml-2 mb-1">
+          <input 
+              type="radio"
+              id="whatsapp-yes"
+              name="isWhatsapp" // Change to isWhatsapp
+              value="WHATSAPP" 
+              // checked={form.isWhatsapp === "WHATSAPP"} 
+              readOnly
+          />
+          Yes
+      </label>
+      <label htmlFor="whatsapp-no" className="ml-2 mb-1">
+          <input 
+              type="radio"
+              id="whatsapp-no"
+              name="isWhatsapp" // Change to isWhatsapp
+              value="REGULAR" 
+              // checked={form.isWhatsapp === "REGULAR"} 
+              readOnly
+          />
+          No
+      </label>
+      </div>
+        <input type="email" name='userEmail' id='userEmail' placeholder="E-mail d'utilisateur" required />
+        <input type="text" name='address' id='address' placeholder="Adresse" required />
+        <br/>
+        <label >Social Links:</label>
+        <div className="className='mt-4'">
+          <input type="text" name='facebook' id='facebook' placeholder="Facebook"  />
+          <input type="text" name='instagram' id='instagram' placeholder="Instagram"  />
+          <input type="text" name='twitter' id='twitter' placeholder="Twitter"  />
         </div>
-        <textarea
-          required
-          name="desc"
-          id="desc"
-          rows="10"
-          placeholder="Description"
-        ></textarea>
+        <select name="isValidated" id="isValidated" defaultValue="NONVALIDER">
+    <option value="VALIDER">Valider</option>
+    <option value="NONVALIDER">Non Valider</option>
+</select>
+
+        
+
+
+
+
+
+
+        
       </div>
       <button type='submit'>Ajouter</button>
     </form> 

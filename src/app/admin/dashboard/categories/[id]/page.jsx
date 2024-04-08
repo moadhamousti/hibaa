@@ -24,7 +24,7 @@ const SingleCategoryPage = async ({ params }) => {
                             <label>Title</label>
                             <input type="text" name='title' placeholder={category.title}/>
                             <button type='submit'>
-                                Update
+                                Modifier
                             </button>
  
                         </form>

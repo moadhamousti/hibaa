@@ -269,6 +269,26 @@ export const fetchPost = async (id) => {
 
 
 
+export const fetchForm = async (id) => {
+    console.log(id)
+    try {
+        const DonatorForm = await db.DonatorForm.findUnique({
+            where: { id }
+        });
+        // Check if either reqPost or donPost is not null
+        if (DonatorForm) {
+            return DonatorForm;
+        } else {
+            throw new Error("Form not found"); // Throw an error if both are null
+        }
+    } catch (err) {
+        throw new Error("Failed to fetch post: " + err.message); // Include the error message from the caught error
+    }
+};
+
+
+
+
 
 
 export const fetchcategories = async (q, page) => {
@@ -333,3 +353,49 @@ export const fetchlocations = async (q, page) => {
 
 
 
+
+
+
+
+
+export const fetchForms = async (q, page) => {
+    const ITEM_PER_PAGE = 5;
+    const skip = ITEM_PER_PAGE * (page - 1);
+
+    try {
+        const forms = await db.DonatorForm.findMany({
+            where: {
+                OR: [
+                    { phaName: { contains: q } },
+                    { desc: { contains: q } },
+                    { ownerName: { contains: q } },
+                    { location: { contains: q } }
+                ]
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+        
+        // Ensure forms is an array
+        if (!Array.isArray(forms)) {
+            throw new Error("Forms data is not an array");
+        }
+        
+        const count = await db.DonatorForm.count({
+            where: {
+                OR: [
+                    { phaName: { contains: q } },
+                    { desc: { contains: q } },
+                    { ownerName: { contains: q } },
+                    { location: { contains: q } }
+                ]
+            },
+        });
+        
+        return { forms, count };
+        
+    } catch (err) {
+        console.error(err);
+        throw new Error("Failed to fetch form");
+    }
+};

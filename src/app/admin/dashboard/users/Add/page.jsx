@@ -33,23 +33,23 @@ const AddUser = () => {
   return (
     <div className={styles.container}>
       <form action={addUser} className={styles.form}>
-        <input type="text" placeholder="name" name="name" required />
-        <input type="text" placeholder="username" name="username" required />
-        <input type="email" placeholder="email" name="email" required />
+        <input type="text" placeholder="Nom" name="name" required />
+        <input type="text" placeholder="Nom d'utilisateur" name="username" required />
+        <input type="email" placeholder="E-mail" name="email" required />
         <input
           type="password"
-          placeholder="password"
+          placeholder="Mot de passe"
           name="password"
           required
         />
         <select name="role" id="role">
           <option value="USER">
-            Role
+            Rôle
           </option>
-          <option value="ADMIN">Admin</option>
-          <option value="USER">User</option>
+          <option value="ADMIN">Administrateur</option>
+          <option value="USER">Utilisateur</option>
         </select>
-        <button type="submit">Submit</button>
+        <button type="submit">Ajouter</button>
       </form>
     </div>
   );

@@ -25,22 +25,20 @@ const SingleUserPage = async ({ params }) => {
                     <div className={styles.formContainer}>
                         <form action={updateUser} className={styles.form}>
                             <input name='id' value={user.id} hidden/>
-                            <label>Name</label>
+                            <label>Nom</label>
                             <input type="text" name='name' placeholder={user.name}/>
-                            <label>Username</label>
+                            <label>Nom d'Utilisateur</label>
                             <input type="text" name='username' placeholder={user.username} />
-                            <label>Email</label>
-                            <input type="email" name='email' placeholder={user.email} />
-                            <label>password</label>
-                            <input type="password" name='password' placeholder='password' />
-                            <label>Is Admin</label>
+                            <label>E-mail</label>
+                            <input type="email" name='email' placeholder={user.email} value={user.email}  readOnly/>
+                            <label>Rôle</label>
                             <select name='role' id='role' defaultValue={user.role}>
-                              <option value="ADMIN" selected={user.role ==="ADMIN"} >Admin</option>
-                              <option value="USER" selected={!user.role ==="USER"}>User</option>
+                              <option value="ADMIN" selected={user.role ==="ADMIN"} >Administrateur</option>
+                              <option value="USER" selected={!user.role ==="USER"}>Utilisateur</option>
                             </select>
 
                             <button type='submit'>
-                                Update
+                                Modifier
                             </button>
  
                         </form>

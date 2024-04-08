@@ -78,28 +78,50 @@ model User {
   resetTokenExpiry DateTime? 
   // posts         Post[]
   ReqPost       ReqPost[]
-  form          DonatorForm[]
+  form    DonatorForm[]
 }
 
 
-model DonatorForm{
-  id            String    @id @default(cuid())
-  createdAt     DateTime  @default(now())
-  name          String
-  phoneNumber   String
-  isWhatsapp    Boolean   @default(false) 
-  Description   String?
-  adress        String
-  location      String
-  userEmail     String
-  user          User      @relation(fields: [userEmail], references: [email])
 
-}
+
 
 
 enum PostType {
   DONATION
   REQUEST
+}
+
+
+enum Validation {
+  VALIDER
+  NONVALIDER
+}
+
+enum NType {
+  WHATSAPP
+  REGULAR
+}
+
+
+model DonatorForm {
+  id        String    @id @default(cuid()) @map("_id")
+  createdAt DateTime  @default(now())
+  phaName   String
+  ownerName     String
+  address     String
+  facebook   String?
+  twitter   String?
+  instagram   String?
+  desc      String
+  img           String?  @default("https://static.medias24.com/content/uploads/2020/01/pharmacie1.jpg")
+  phone           String
+  isWhatsapp      NType
+  views     Int       @default(0)
+  userEmail String
+  location String
+  user      User      @relation(fields: [userEmail], references: [email])
+  cat       LocationCategory  @relation(fields: [location], references: [title])
+  isValidated  Validation   @default(NONVALIDER)
 }
 
 
@@ -153,6 +175,7 @@ model LocationCategory {
   title     String    @unique
   DonPosts  DonPost[]
   ReqPost   ReqPost[]  
+  form   DonatorForm[]
 }
 
 

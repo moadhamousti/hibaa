@@ -9,6 +9,7 @@ import AddchartSharpIcon from '@mui/icons-material/AddchartSharp';
 import SettingsApplicationsSharpIcon from '@mui/icons-material/SettingsApplicationsSharp';
 import LogoutIcon from '@mui/icons-material/Logout';
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import ListAltIcon from '@mui/icons-material/ListAlt';
 import { Badge } from "@/components/ui/badge";
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MapIcon from '@mui/icons-material/Map';
@@ -57,12 +58,12 @@ const menuItems = [
     ],
   },
   {
-    title: 'Settings',
+    title: 'Demandes',
     items: [
       {
-        title: 'Settings',
-        path: '/admin/dashboard/settings',
-        icon: <SettingsApplicationsSharpIcon />,
+        title: 'Formes',
+        path: '/admin/dashboard/forms',
+        icon: <ListAltIcon />,
       },
     ],
   },

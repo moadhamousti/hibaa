@@ -26,6 +26,7 @@ import DeleteDonPost from '@/components/deleteDonPost';
 import DeleteReqPost from '@/components/deleteReqPost';
 import ApiMed from '@/components/ApiMed';
 import ReqRelatedPosts from '@/components/ReqRelatedPosts';
+import FormRelated from '@/components/FormRelated';
 
 
 
@@ -239,6 +240,7 @@ const Page = async ({ params }) => {
       {/* <RelatedPosts category={data?.category} /> */}
       
       <ReqRelatedPosts category={data?.category} postId={data?.id} />
+      <FormRelated/>
 
 
     </>

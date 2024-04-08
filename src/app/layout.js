@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     }, 3000)
   }, [pathname]);
   return (
-    <html lang='en'>
+    <html lang='en' className="!scroll-smooth">
       <body >
           <Provider>
               <main className=''>

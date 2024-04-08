@@ -263,14 +263,66 @@ export const addPost = async (formData) => {
 
 
 
+
+export const addForm = async (formData) => {
+  const { phaName,ownerName, desc,address, phone,facebook,twitter,instagram, userEmail,location,img,isValidated,isWhatsapp } = Object.fromEntries(formData); 
+         
+  
+  console.log(formData)
+
+  try {
+
+    const DonatorForm = await db.DonatorForm.create({
+      data: {
+        phaName, 
+        ownerName,
+        address, 
+        facebook,
+        twitter,
+        instagram,
+        desc,
+        img,
+        phone, 
+        isWhatsapp,
+        userEmail,
+        location,
+        isValidated,
+        
+      },
+    });
+
+    console.log("Don Post added successfully:", DonatorForm); // Log the created user object
+
+
+
+    return DonatorForm; // Optionally return the created user object
+  } catch (error) {
+    console.error("Error adding user:", error);
+    throw new Error("Failed to create user!");
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export const updatePost = async (formData) => {
   const { id, title, desc, phone, userEmail, location, category, img, type } = Object.fromEntries(formData);
   const isWhatsapp = formData.get('isWhatsapp') === 'true';
-
   
   try {
     const updateFields = {
-      title, desc, phone, userEmail, isWhatsapp, location, category, img, type
+      title, desc, phone, userEmail, isWhatsapp, location, category, img, type,
+      isWhatsapp
     };
 
     // Remove empty or undefined fields from updateFields object
@@ -302,6 +354,40 @@ export const updatePost = async (formData) => {
   } catch (error) {
     console.error("Error updating post:", error);
     throw new Error("Failed to update post!");
+  }
+};
+
+
+
+export const updateForm = async (formData) => {
+  try {
+    // Extract data from formData
+    const { id, phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated,isWhatsapp} = Object.fromEntries(formData);
+     
+
+    // Construct updateFields object
+    const updateFields = {
+      phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated, isWhatsapp
+    };
+
+    // Remove empty or undefined fields from updateFields object
+    Object.keys(updateFields).forEach((key) => {
+      if (updateFields[key] === "" || updateFields[key] === undefined) {
+        delete updateFields[key];
+      }
+    });
+
+    // Update the DonatorForm record in the database
+    await db.DonatorForm.update({
+      where: { id },
+      data: updateFields,
+    });
+
+    // Return the updated form object
+    return { id, ...updateFields };
+  } catch (error) {
+    console.error("Error updating form:", error);
+    throw new Error("Failed to update form!");
   }
 };
 

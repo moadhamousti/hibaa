@@ -13,6 +13,12 @@ const titleMap = {
   '/admin/dashboard/categories': 'Catégories',
   '/admin/dashboard/locations': 'Emplacements',
   '/admin/dashboard/posting': 'Publication',
+  '/admin/dashboard/users/Add': 'Ajouter un utilisateur',
+  '/admin/dashboard/posts/Add': 'Ajouter une poste',
+  "/admin/dashboard/categories/Add": 'Ajouter une catégorie',
+  "/admin/dashboard/locations/Add": 'Ajouter une location',
+
+  
 };
 
 const DashboardNavbar = () => {
