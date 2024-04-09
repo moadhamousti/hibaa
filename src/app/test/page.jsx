@@ -518,46 +518,48 @@
 
 
 
-
-
+"use client"
 
 import FormCard from '@/components/FormCard';
 import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
-import React from 'react'
+import { getServerSession, useSession } from 'next-auth/react';
+import React, { useState, useEffect } from 'react';
 
-const getData = async () => {
-  const res = await fetch('http://localhost:3000/api/form', {
-    cache: "no-store",
-  });
+const FormRelated = () => {
+  const { data: session } = useSession();
+  const [forms, setForms] = useState([]);
 
-  if (!res.ok) {
-    throw new Error("Could not load forms");
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/form', {
+          cache: "no-store",
+        });
 
-  const data = await res.json(); // Parse JSON from the response
-  console.log("data", data); // Log the parsed data
+        if (!res.ok) {
+          throw new Error("Could not load forms");
+        }
 
-  return data; // Return the parsed data
-}
+        const data = await res.json(); // Parse JSON from the response
+        setForms(data);
+      } catch (error) {
+        console.error(error);
+        // Handle error
+      }
+    };
 
-
-
-const FormRelated = async () => {
-  const { data: session } = getServerSession(authOptions);
-  console.log("session", session);
-
-  const forms = await getData();
+    fetchData();
+  }, []);
 
   return (
-      <div className="max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
-          {forms?.map((item) => (
-            <FormCard item={item} key={item.id}/>
-          ))}
-        </div>
+    <div className="max-w-screen-xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-6">
+        {forms.map((item) => (
+          <FormCard item={item} key={item.id}/>
+        ))}
       </div>
-    );
+    </div>
+  );
 };
 
-export default FormRelated
+export default FormRelated;

@@ -187,7 +187,7 @@ const Page = async ({ params }) => {
                         </button>
                       </Link>
                     )}
-                    <h3 className='underline'><Link href={email} passHref>{data.user.email}</Link></h3>
+                    {/* <h3 className='underline'><Link href={email} passHref>{data.user.email}</Link></h3> */}
                   </div>
                 </div>
                 <div className="flex gap-5">

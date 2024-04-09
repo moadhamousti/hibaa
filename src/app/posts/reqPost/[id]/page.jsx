@@ -27,6 +27,7 @@ import DeleteReqPost from '@/components/deleteReqPost';
 import ApiMed from '@/components/ApiMed';
 import ReqRelatedPosts from '@/components/ReqRelatedPosts';
 import FormRelated from '@/components/FormRelated';
+import DonRelatedPosts from '@/components/DonRelatedPosts';
 
 
 
@@ -42,6 +43,18 @@ const getData = async (id) => {
   return res.json();
 };
 
+
+
+const getRandomComponent = () => {
+  const randomNumber = Math.random();
+  const threshold = 0.5; // Adjust this value to control the randomness
+
+  if (randomNumber > threshold) {
+    return <DonRelatedPosts />;
+  } else {
+    return <FormRelated />;
+  }
+};
 
 
 
@@ -202,7 +215,18 @@ const Page = async ({ params }) => {
                         </button>
                       </Link>
                     )}
-                    <h3 className='underline'><Link href={email} passHref>{data.user.email}</Link></h3>
+                    {/* <h3 className='underline'><Link href={email} passHref>{data.user.email}</Link></h3> */}
+                    {emailServiceLink && (
+                      <h3 className='underline'>
+                        <Link href={emailServiceLink} passHref>{data.user.email}</Link>
+                      </h3>
+                    )}
+                    {/* Render the email link with default href if emailServiceLink doesn't exist */}
+                    {!emailServiceLink && (
+                      <h3 className='underline text-[30] font-semibold'>
+                        <Link href={`mailto:${data.user.email}`} passHref>{data.user.email}</Link>
+                      </h3>
+                    )}
                   </div>
                 </div>
                 <div className="flex gap-5">
@@ -222,10 +246,6 @@ const Page = async ({ params }) => {
                     Via WhatsApp
                   </button>
                 )}
-
-      
-
-
                   
                   <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full">Via E-mail</button>
                 </div>
@@ -239,8 +259,11 @@ const Page = async ({ params }) => {
       {/* <RelatedPosts category={data?.category}/> */}
       {/* <RelatedPosts category={data?.category} /> */}
       
-      <ReqRelatedPosts category={data?.category} postId={data?.id} />
-      <FormRelated/>
+      {/* <ReqRelatedPosts category={data?.category} postId={data?.id} /> */}
+      {/* <DonRelatedPosts category={data?.category} postId={data?.id} />
+      <FormRelated/> */}
+
+      {getRandomComponent()}
 
 
     </>

@@ -34,11 +34,11 @@ const DonRelatedPosts = ({ category, postId }) => {
     <PageLayout>
       <div>
         <div className="mt-5 mb-5">
-          <h2 className='text-2xl font-semibold'>Related Posts</h2>
+          <h2 className='text-2xl font-semibold'>Articles Similaires</h2>
         </div>
         {limitedPosts.length === 0 ? (
           <div className="items-center text-center p-[50px] mb=[40px]">
-            <p className=''>No related posts with the same category</p>
+            <p className=''>Aucun article associé dans la même catégorie</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

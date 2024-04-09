@@ -400,6 +400,48 @@ export const updateForm = async (formData) => {
 
 
 
+// export const updateForm = async (formData) => {
+//   try {
+//     // Extract data from formData
+//     const { id, phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated, isWhatsapp } = Object.fromEntries(formData);
+     
+
+//     // Construct updateFields object
+//     const updateFields = {
+//       phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated, isWhatsapp
+//     };
+
+//     // Remove empty or undefined fields from updateFields object
+//     Object.keys(updateFields).forEach((key) => {
+//       if (updateFields[key] === "" || updateFields[key] === undefined) {
+//         delete updateFields[key];
+//       }
+//     });
+
+//     // Update the DonatorForm record in the database
+//     await db.DonatorForm.update({
+//       where: { id },
+//       data: updateFields,
+//     });
+
+//     // Send notification to the user if the form is validated
+//     if (isValidated === "VALIDER") {
+//       await sendNotificationToUser(userEmail, "Your form has been accepted!");
+//     }
+
+//     // Return the updated form object
+//     return { id, ...updateFields };
+//   } catch (error) {
+//     console.error("Error updating form:", error);
+//     throw new Error("Failed to update form!");
+//   }
+// };
+
+
+
+
+
+
 export const deletePost = async (formData) => {
   const { id, postType } = Object.fromEntries(formData);
   console.log("Deleting post with ID:", id, "and type:", postType);

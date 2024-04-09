@@ -55,7 +55,12 @@ const Card =  ({ item}) => {
         <div className="p-4">
         <Link href={item.type === 'DONATION' ? `/posts/donPost/${item.id}` : `/posts/reqPost/${item.id}`}>
           <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-black antialiased">
-            {item?.title ? item.title : <Skeleton width={200} />}
+            {/* {item?.title} */}
+            {item.title ? 
+              (item.title.length > 20 ? 
+                item.title.slice(0, 20) + '...' : 
+                item.title) : 
+              ''}
           </h4>
         </Link>
           <p className="mt-2 font-sans text-l font-normal leading-relaxed text-[#626262] text-wrap antialiased">

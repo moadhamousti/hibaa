@@ -35,8 +35,8 @@ const FooterFeed = () => {
             </Link>
           </li>
           <li>
-            <Link href="/" className="  text-[--textColor]     "  >
-            charité 
+            <Link href="/pharmaForm" className="  text-[--textColor]"  >
+            Ajouter votre Pharmacie 
             </Link>
           </li>
         </ul>
