@@ -266,7 +266,7 @@ useEffect(() => {
 
           <Label htmlFor="phone">Numéro de téléphone</Label>
           <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
-          <div className='flex gap-3'>
+          {/* <div className='flex gap-3'>
             <Image src={whatsapp} alt='' width={20} height={20}/>
             <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
             <RadioGroup
@@ -288,7 +288,34 @@ useEffect(() => {
                 <Label htmlFor="whatsapp-yes" className="ml-2 mb-1">Yes</Label>
               </div>
             </RadioGroup>
-          </div>
+          </div> */}
+
+<div className='flex gap-3'>
+  <Image src={whatsapp} alt='' width={20} height={20}/>
+  <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+  
+  <input 
+    type="radio"
+    id="whatsapp-yes"
+    checked={isWhatsapp === true} 
+    name="whatsapp-option"
+    value="true"
+    onChange={() => setisWhatsapp(true)}
+  />
+  <label htmlFor="whatsapp-yes" className="">Yes</label>
+  
+  <input 
+    type="radio"
+    id="whatsapp-no"
+    checked={isWhatsapp === false} 
+    name="whatsapp-option"
+    value="false"
+    onChange={() => setisWhatsapp(false)}
+  />
+  <label htmlFor="whatsapp-no" className="">No</label>
+</div>
+
+
 
           <Label htmlFor="locationCategory">Choisir une catégorie:</Label>
           <select

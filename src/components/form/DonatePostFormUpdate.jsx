@@ -17,6 +17,8 @@ import Image from 'next/image';
 import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
 import { useToast } from "@/components/ui/use-toast"
+import whatsapp from '../../../public/whatsapp.png'
+
 
 
 
@@ -56,6 +58,9 @@ const DonatePostFormUpdate = ({ params }) => {
   const [descriptionError, setDescriptionError] = useState("");
   const [categoryError, setCategoryError] = useState("");
   const [locationError, setLocationError] = useState("");
+  const { toast } = useToast();
+
+
 
 
 
@@ -118,6 +123,7 @@ const DonatePostFormUpdate = ({ params }) => {
 
     fetchToolsCategories();
   }, []);
+
 
   useEffect(() => {
     const upload = () => {
@@ -238,15 +244,15 @@ const DonatePostFormUpdate = ({ params }) => {
 
       if (response.ok) {
         toast({
-          title: "Success",
-          description: "Post added successfully",
+          title: "Succès",
+          description: "Donation Poste mis à jour avec succès",
           variant: "success",
           className: "bg-green-500 text-white", 
         });
       } else {
         toast({
-          title: "Error",
-          description: "An error occurred",
+          title: "Erreur",
+          description: "Une erreur s'est produite",
           variant: "error",
           className: "bg-red-500 text-white", 
         });
@@ -257,6 +263,7 @@ const DonatePostFormUpdate = ({ params }) => {
       console.error(error);
       // Handle error
     }
+
   };
 
   return (
@@ -337,7 +344,7 @@ const DonatePostFormUpdate = ({ params }) => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-                <div className='flex gap-3 mt-2 mb-4'>
+                {/* <div className='flex gap-3 mt-2 mb-4'>
                    <img src="/whatsapp.png" alt='' width={18} height={18} />
                    <span className='text-[14px] '>Est-ce un numéro WhatsApp ?</span>
                    <input
@@ -346,7 +353,32 @@ const DonatePostFormUpdate = ({ params }) => {
                     onChange={(e) => setIsWhatsapp(e.target.checked)}
                     
                   />
+                </div> */}
+                <div className='flex gap-3 mt-4 mb-6'>
+                  <Image src={whatsapp} alt='' width={20} height={20}/>
+                  <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+                  
+                  <input 
+                    type="radio"
+                    id="whatsapp-yes"
+                    checked={isWhatsapp === true} 
+                    name="whatsapp-option"
+                    value="true"
+                    onChange={() => setIsWhatsapp(true)}
+                  />
+                  <label htmlFor="whatsapp-yes" className="">Yes</label>
+                  
+                  <input 
+                    type="radio"
+                    id="whatsapp-no"
+                    checked={isWhatsapp === false} 
+                    name="whatsapp-option"
+                    value="false"
+                    onChange={() => setIsWhatsapp(false)}
+                  />
+                  <label htmlFor="whatsapp-no" className="">No</label>
                 </div>
+
                 </div>
                 <div className='flex flex-col items-center justify-center'>
                   <input

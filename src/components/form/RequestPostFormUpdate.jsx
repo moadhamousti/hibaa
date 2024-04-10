@@ -16,6 +16,9 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
+import whatsapp from '../../../public/whatsapp.png'
+import { useToast } from "@/components/ui/use-toast"
+
 
 
 
@@ -40,6 +43,7 @@ const RequestPostFormUpdate = ({ params }) => {
   console.log(session)
   const { id } = params;
   const [postData, setPostData] = useState(null);
+  const { toast } = useToast();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [phone, setPhone] = useState('');
@@ -231,8 +235,20 @@ const RequestPostFormUpdate = ({ params }) => {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to update post");
+      if (response.ok) {
+        toast({
+          title: "Succès",
+          description: "Demande Poste mis à jour avec succès",
+          variant: "success",
+          className: "bg-green-500 text-white", 
+        });
+      } else {
+        toast({
+          title: "Erreur",
+          description: "Une erreur s'est produite",
+          variant: "error",
+          className: "bg-red-500 text-white", 
+        });
       }
 
       // Handle success, for example, redirect to another page
@@ -320,7 +336,7 @@ const RequestPostFormUpdate = ({ params }) => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
-                <div className='flex gap-3 mt-2 mb-4'>
+                {/* <div className='flex gap-3 mt-2 mb-4'>
                    <img src="/whatsapp.png" alt='' width={18} height={18} />
                    <span className='text-[14px] '>Est-ce un numéro WhatsApp ?</span>
                    <input
@@ -329,6 +345,30 @@ const RequestPostFormUpdate = ({ params }) => {
                     onChange={(e) => setIsWhatsapp(e.target.checked)}
                     
                   />
+                </div> */}
+                <div className='flex gap-3 mt-4 mb-6'>
+                  <Image src={whatsapp} alt='' width={20} height={20}/>
+                  <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+                  
+                  <input 
+                    type="radio"
+                    id="whatsapp-yes"
+                    checked={isWhatsapp === true} 
+                    name="whatsapp-option"
+                    value="true"
+                    onChange={() => setIsWhatsapp(true)}
+                  />
+                  <label htmlFor="whatsapp-yes" className="">Yes</label>
+                  
+                  <input 
+                    type="radio"
+                    id="whatsapp-no"
+                    checked={isWhatsapp === false} 
+                    name="whatsapp-option"
+                    value="false"
+                    onChange={() => setIsWhatsapp(false)}
+                  />
+                  <label htmlFor="whatsapp-no" className="">No</label>
                 </div>
                 </div>
                 <div className='flex flex-col items-center justify-center'>

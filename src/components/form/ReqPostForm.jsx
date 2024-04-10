@@ -347,28 +347,29 @@ useEffect(() => {
             <Label htmlFor="phone">Numéro de téléphone</Label>
           <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
           <div className='flex gap-3'>
-            <Image src={whatsapp} alt='' width={20} height={20}/>
-            <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
-            <RadioGroup
-              aria-label="whatsapp-option"
-              name="whatsapp-option"
-              value={isWhatsapp ? "yes" : ""}
-              onChange={(e) => setisWhatsapp(e.target.value === "yes")}
-              
-            >
-              <div className=''>
-                <input 
-                  type="radio"
-                  className="w-3 h-3 rounded-full border-[#B0BAC3] checked:bg-[#EF507F] checked:border-[#EF507F]"
-                  id="whatsapp-yes" 
-                  value="yes" 
-                  checked={isWhatsapp} 
-                  onChange={() => setisWhatsapp(!isWhatsapp)} 
-                />
-                <Label htmlFor="whatsapp-yes" className="ml-2 mb-1">Yes</Label>
-              </div>
-            </RadioGroup>
-          </div>
+  <Image src={whatsapp} alt='' width={20} height={20}/>
+  <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+  
+  <input 
+    type="radio"
+    id="whatsapp-yes"
+    checked={isWhatsapp === true} 
+    name="whatsapp-option"
+    value="true"
+    onChange={() => setisWhatsapp(true)}
+  />
+  <label htmlFor="whatsapp-yes" className="">Yes</label>
+  
+  <input 
+    type="radio"
+    id="whatsapp-no"
+    checked={isWhatsapp === false} 
+    name="whatsapp-option"
+    value="false"
+    onChange={() => setisWhatsapp(false)}
+  />
+  <label htmlFor="whatsapp-no" className="">No</label>
+</div>
           
 {/* 
             <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
