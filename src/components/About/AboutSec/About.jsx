@@ -11,10 +11,10 @@ const About = () => {
         /> 
 
         <div className='w-full text-[--bg] lg:w-full p-1 sm:p-2 md:p-3 lg:p-4 flex flex-col items-start justify-center z-10 min-h-9'>
-          <h1 className='font-bold py-4 capitalize text-xl sm:text-2xl md:text-3xl p-3 lg:text-5xl text-left'>ABOUT US</h1>
+          <h1 className='font-bold py-4 capitalize text-xl sm:text-2xl md:text-3xl p-3 lg:text-5xl text-left'>À PROPOS</h1>
   
           <p className='mt-4 md:text-lg lg:text-xl w-full sm:w-6/12 text-left p-3 sm:text-left lg:text-left'>
-            At <span className='font-extrabold'> Heba&aTaa</span>, our mission is to Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro alias ut explicabo reprehenderit voluptatem omnis aliquam rerum aspernatur eos, itaque maxime quibusdam molestiae soluta.
+            At <span className='font-extrabold'> Heba&aTaa</span>, Hiba&ataa, nous offrons aux utilisateurs la possibilité de rechercher et de trouver les équipements médicaux dont ils ont besoin pour améliorer leur bien-être et leur santé. Nous invitons également les personnes à se joindre à notre mission qui vise à rendre les soins de santé accessibles à tous.
           </p>
         </div>
       </article>

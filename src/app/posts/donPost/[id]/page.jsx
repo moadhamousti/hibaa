@@ -249,12 +249,8 @@ const Page = async ({ params }) => {
                     Via WhatsApp
                   </button>
                 )}
-
-      
-
-
                   
-                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full">Via E-mail</button>
+                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full"> <Link href={emailServiceLink}>Via E-mail</Link></button>
                 </div>
               </div>
             </div>

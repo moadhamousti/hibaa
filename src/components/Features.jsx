@@ -1,48 +1,51 @@
-import React from 'react'
-import { IconButton } from '@mui/material';
+import React from 'react';
+import PolicyIcon from '@mui/icons-material/Policy';
+import Person4Icon from '@mui/icons-material/Person4';
+import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
+import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
 
 const Services = () => {
   const servicesData = [
     { 
-      icon: 'flaticon-test', 
-      title: "MAKE DONATION", 
-      description: "Simply select the items you'd like to donate, fill out a brief form...",
-      image: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2F23%2F5f%2F2d235f733c7fd7553ff283646bdf5bd1.png&tbnid=Tpim_PmaZSJ13M&vet=12ahUKEwiV8NTWgf-EAxX5TKQEHRhODIoQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F838021443157224675%2F&docid=muZuV7moV2cbfM&w=2380&h=1490&q=pixels&hl=en&client=opera-gx&ved=2ahUKEwiV8NTWgf-EAxX5TKQEHRhODIoQMygAegQIARBT"  // change with your actual image links
+      icon: <PolicyIcon />, 
+      title: "Recherche Avancée", 
+      description: "An advanced search function enabling users to easily find the equipment they need based on specific criteria such as equipment type.",
     },
     { 
-      icon: 'flaticon-test', 
-      title: "MAKE DONATION", 
-      description: "Simply select the items you'd like to donate, fill out a brief form...",
-      image: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2F23%2F5f%2F2d235f733c7fd7553ff283646bdf5bd1.png&tbnid=Tpim_PmaZSJ13M&vet=12ahUKEwiV8NTWgf-EAxX5TKQEHRhODIoQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F838021443157224675%2F&docid=muZuV7moV2cbfM&w=2380&h=1490&q=pixels&hl=en&client=opera-gx&ved=2ahUKEwiV8NTWgf-EAxX5TKQEHRhODIoQMygAegQIARBT"  // change with your actual image links
+      icon:<Person4Icon/>, 
+      title: "Profils d'utilisateurs:", 
+      description: "Permettre aux utilisateurs de créer des profils personnalisés afin de définir leurs besoins en équipements médicaux et de recevoir des notifications lorsqu'ils sont disponibles.",
     },
     { 
-      icon: 'flaticon-test', 
-      title: "MAKE DONATION", 
-      description: "Simply select the items you'd like to donate, fill out a brief form...",
-      image: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F2d%2F23%2F5f%2F2d235f733c7fd7553ff283646bdf5bd1.png&tbnid=Tpim_PmaZSJ13M&vet=12ahUKEwiV8NTWgf-EAxX5TKQEHRhODIoQMygAegQIARBT..i&imgrefurl=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F838021443157224675%2F&docid=muZuV7moV2cbfM&w=2380&h=1490&q=pixels&hl=en&client=opera-gx&ved=2ahUKEwiV8NTWgf-EAxX5TKQEHRhODIoQMygAegQIARBT"  // change with your actual image links
+      icon: <ContactPhoneIcon/>, 
+      title: "Fonctionnalités de communication:", 
+      description:"Les outils de communication intégrés, tels que la messagerie instantanée ou les forums de discussion, facilitent les interactions entre utilisateurs.",
     },
-    // add as many services as you like
+    { 
+      icon: <AccessibilityNewIcon/>, 
+      title: "Accessibilité:", 
+      description: "Assurer que le site web est facilement accessible aux personnes handicapées conformément aux normes d'accessibilité Web.",
+    },
   ];
 
   return (
-    <section id="features" aria-labelledby="services-heading" className="mt-8" >
-      <div className="mx-auto p-2 rounded-xl mb-[50px]">
+    <section id="services" aria-labelledby="services-heading" className="mt-8 mb-10">
+      <div className="mx-auto p-2 rounded-xl">
         <h2 id="services-heading" className="text-[50px] font-bold text-center text-[black] mb-8">Traits</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 group  lg:grid-cols-4 gap-2">
           {servicesData.map((service, index) => (
             <div 
               key={index}
-              style={{ imageUrl: `url(${service.image})` }}
-              className="rounded-xl shadow px-4 bg-cover bg-[#00A4BF] rounded-l-none rounded-b-none" data-aos="fade-up" data-aos-delay="">
-              <i className={`fa ${service.icon}`}></i>
-              <h3 className="text-lg text-center py-6 text-[white] h-24 font-bold">{service.title}</h3>
-              <p className="text-[white] text-md py-4 pb-12">{service.description}</p>
+              className="rounded-3xl shadow shadow-[#00A4BF] duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.90]  hover:!scale hover:shadow-black px-4 bg-cover text-[#00A4BF] hover:bg-[#00A4BF] hover:text-[--bg] rounded-tl-none rounded-br-none" data-aos="fade-up" data-aos-delay="">
+              <div className="text-3xl text-[#852844] text-center py-2  font-bold" fontSize='medium'>{service.icon}</div>
+              <h3 className="text-lg text-center py-2 h-fit font-bold ">{service.title}</h3>
+              <p className=" text-md  pb-2">{service.description}</p>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default Services
+export default Services;

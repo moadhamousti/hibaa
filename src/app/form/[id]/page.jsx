@@ -126,8 +126,11 @@ const Page = async ({params}) => {
               <h2 className="text-lg font-normal text-left text-[--pink]">{data.location}</h2>
             </div>
           </div>
-          <div className="p-5 items-center text-center">
-              <p>{data.desc}</p>
+          <div className="items-center text-center mb-5 mt-6">
+            <h1 className='font-semibold text-[30px]	'>Pharmacie Informations</h1>
+            <div className="p-5 items-center text-center">
+                <p>{data.desc}</p>
+            </div>
           </div>
           
           <div className="p-7 ">

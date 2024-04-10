@@ -200,9 +200,9 @@ const Navbar = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <Link href='/publish/requestPost'>
+        <Link href='/publish/donatePost'>
           {/* <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem> */}
-          <MenuItem onClick={() => handleOptionSelect('Request Post')}>
+          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>
             <ListItemIcon>
               <VolunteerActivismIcon />
             </ListItemIcon>
@@ -210,8 +210,8 @@ const Navbar = () => {
             Poste Donation
           </MenuItem>
         </Link>
-        <Link href='/publish/donatePost'>
-          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>
+        <Link href='/publish/requestPost'>
+          <MenuItem onClick={() => handleOptionSelect('Request Post')}>
             <ListItemIcon>
               <PersonSearchIcon />
             </ListItemIcon>

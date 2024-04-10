@@ -65,7 +65,7 @@ const CardPost = () => {
                         <span className=''>Total Postes</span>
                         <span className='text-2xl font-semibold'>{totalDonPosts + totalReqPosts}</span>
                         <span className='text-base font-light'>
-                            <span className='font-bold text-green-600'>{percentageIncrease}%</span> plus que la semaine précédente
+                            <span className='font-bold text-green-600'>{percentageIncrease.toFixed(2).split('.')[1]}%</span> plus que la semaine précédente
                         </span>
                     </div>
                 </div>

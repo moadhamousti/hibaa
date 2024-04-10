@@ -422,40 +422,46 @@ useEffect(() => {
           <div className="flex flex-col items-center justify-center">
 
           <label htmlFor="image" className="relative">
-          <input
-            type="file"
-            id="image"
-            accept="image/*"
-            onChange={handleImageChange}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            className="hidden"
-          />
-          {loading ? (
-            <div className="w-full h-full flex items-center justify-center">
-              <Loader /> {/* Replace Loader with your loader component */}
-            </div>
-          ) : file ? (
-            <img
-              src={URL.createObjectURL(file)}
-              alt="Preview"
-              className="w-full h-full object-cover rounded-md border-2 border-gray-300"
-            />
-          ) : (
-            <div
-              className=" w-full h-full flex items-center justify-center border-2 border-dashed border-[#00A4BF] bg-[#F8F8FF] rounded-md"
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-            >
-              <div className="column self-center bg-white px-10 py-10" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-                <Image alt="" className="mb-6" src={uploadIcon} width={100} height={100} />
-                <p className="text-gray-400 text-center ">
-                  Glisser-déposer des fichiers ou <strong className="text-[#00A4BF] font-bold underline">Parcourir</strong>
-                </p>
-              </div>
-            </div>
-          )}
-        </label>
+  <input
+    type="file"
+    id="image"
+    accept="image/*"
+    onChange={handleImageChange}
+    onDrop={handleDrop}
+    onDragOver={handleDragOver}
+    className="hidden"
+  />
+  {loading ? (
+    <div className="w-full h-full flex items-center justify-center">
+      <Loader /> {/* Replace Loader with your loader component */}
+    </div>
+  ) : (
+    <>
+      {file || (formData && formData.img) ? (
+        <img
+          src={file ? URL.createObjectURL(file) : formData.img}
+          alt={file ? "Preview" : "Current Image"}
+          className="w-full h-full object-cover rounded-md border-2 border-gray-300 cursor-pointer"
+          onClick={() => document.getElementById("image").click()} // Trigger file input click when image is clicked
+        />
+      ) : (
+        <div
+          className="w-full h-full flex items-center justify-center border-2 border-dashed border-[#00A4BF] bg-[#F8F8FF] rounded-md cursor-pointer"
+          onDrop={handleDrop}
+          onDragOver={handleDragOver}
+        >
+          <div className="column self-center bg-white px-10 py-10" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Image alt="" className="mb-6" src={uploadIcon} width={100} height={100} />
+            <p className="text-gray-400 text-center ">
+              Glisser-déposer des fichiers ou <strong className="text-[#00A4BF] font-bold underline">Parcourir</strong>
+            </p>
+          </div>
+        </div>
+      )}
+    </>
+  )}
+</label>
+
     </div>
           <button type="submit" className='mt-8 h-[48px] w-[197px] text-base font-normal leading-7 text-white rounded-[20px] bg-[#00A4BF] block mx-auto' onClick={handleUpdate}>Modifier</button>
         </form>

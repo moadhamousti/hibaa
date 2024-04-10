@@ -18,7 +18,7 @@ const page = () => {
               <PharmaForm/>
           </div>
       </div>
-        <Footer/>
+        {/* <Footer /> */}
       </PageLayout>
     </>
 
