@@ -3,28 +3,32 @@ import PolicyIcon from '@mui/icons-material/Policy';
 import Person4Icon from '@mui/icons-material/Person4';
 import ContactPhoneIcon from '@mui/icons-material/ContactPhone';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import AdsClickIcon from '@mui/icons-material/AdsClick';
+import ThreePIcon from '@mui/icons-material/ThreeP';
 
 const Services = () => {
   const servicesData = [
     { 
-      icon: <PolicyIcon />, 
-      title: "Recherche Avancée", 
-      description: "An advanced search function enabling users to easily find the equipment they need based on specific criteria such as equipment type.",
+      icon: <DynamicFeedIcon />, 
+      title: "Donation / Demande", 
+      description: "L'utilisateur peut soit créer une publication de don, soit demander du matériel également sur le site aux autre utilisateurs.",
     },
     { 
       icon:<Person4Icon/>, 
-      title: "Profils d'utilisateurs:", 
-      description: "Permettre aux utilisateurs de créer des profils personnalisés afin de définir leurs besoins en équipements médicaux et de recevoir des notifications lorsqu'ils sont disponibles.",
+      title: "Profils d'utilisateurs", 
+      description: "Permet aux utilisateurs de créer un profil personnel, où ils peuvent modifier leurs informations et voir leurs publications.",
     },
     { 
-      icon: <ContactPhoneIcon/>, 
-      title: "Fonctionnalités de communication:", 
-      description:"Les outils de communication intégrés, tels que la messagerie instantanée ou les forums de discussion, facilitent les interactions entre utilisateurs.",
+      icon: <AdsClickIcon/>, 
+      title: "Promotion", 
+      description:"Vous pouvez promouvoir votre activité pharmaceutique afin que les autres utilisateurs puissent la voir une fois qu'elle aura été approuvée par l'administration.",
     },
+    
     { 
-      icon: <AccessibilityNewIcon/>, 
-      title: "Accessibilité:", 
-      description: "Assurer que le site web est facilement accessible aux personnes handicapées conformément aux normes d'accessibilité Web.",
+      icon: <ThreePIcon/>, 
+      title: "Communication", 
+      description: "La possibilité de communiquer avec d'autres utilisateurs pour obtenir des dons ou les donner, via différentes manières comme WhatsApp ou par e-mail.",
     },
   ];
 

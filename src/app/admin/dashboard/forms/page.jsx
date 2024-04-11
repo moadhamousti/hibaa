@@ -9,7 +9,7 @@ import { format } from 'date-fns';
 import WhatsApp from "../../../../../public/whatsapp.png"
 import Phone from "../../../../../public/phone.png"
 import { Badge } from '@/components/ui/badge';
-import { deletePost } from '@/lib/actions'
+import { deleteForm, deletePost } from '@/lib/actions'
 
 
 
@@ -73,8 +73,8 @@ const Form = async ({ searchParams }) => {
               </td>
               <td className="border border-white">{forms.phaName}</td>
               <td className="border border-white">{forms.ownerName}</td>
-              <td>{forms.address}</td>
-              <td>{forms.phone}</td>
+              <td className="border border-white">{forms.address}</td>
+              <td className="border border-white">{forms.phone}</td>
               <td className="border border-white">{format(forms.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
               <td className="border border-white">{forms.location}</td>
               {/* <td>{posts.isWhatsapp}</td> */}
@@ -103,11 +103,10 @@ const Form = async ({ searchParams }) => {
                   <Link href={`/admin/dashboard/forms/${forms.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>
                   </Link>
-                  {/* <form action={deletePost}>
-                    <input type='text' defaultValue={posts.id} name='id' hidden/>
-                    <input type='text' defaultValue={posts.type} name='postType' hidden/>
+                  <form action={deleteForm}>
+                    <input type='text' defaultValue={forms.id} name='id' hidden/>
                     <button className={`${styles.button} ${styles.delete}`}>Supprimer</button>
-                  </form> */}
+                  </form>
 
                 </div>
               </td>

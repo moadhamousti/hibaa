@@ -131,7 +131,7 @@ export const fetchPosts = async (q, page) => {
             where: {
                 OR: [
                     { title: { contains: q } },
-                    { desc: { contains: q } },
+                    { phone: { contains: q } },
                     { location: { contains: q } },
                     { category: { contains: q } }
                 ]
@@ -144,9 +144,10 @@ export const fetchPosts = async (q, page) => {
             where: {
                 OR: [
                     { title: { contains: q } },
-                    { desc: { contains: q } },
+                    { phone: { contains: q } },
                     { location: { contains: q } },
                     { category: { contains: q } }
+
                 ]
             },
             take: ITEM_PER_PAGE,
@@ -164,6 +165,8 @@ export const fetchPosts = async (q, page) => {
                     { desc: { contains: q } },
                     { location: { contains: q } },
                     { category: { contains: q } }
+
+                    
                 ]
             },
         });

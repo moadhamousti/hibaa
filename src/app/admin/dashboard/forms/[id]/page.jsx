@@ -37,6 +37,31 @@ const page = async ({params}) => {
                 <textarea name="desc" id="desc" rows="10" defaultValue={form.desc} placeholder={form.desc} required></textarea>
                 <label>Phone</label>
                 <input type="text" name='Phone' defaultValue={form.phone}  placeholder={form.phone}/>
+                <div className='flex gap-3'>
+                    <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+                    <label htmlFor="whatsapp-yes" className="ml-2 mb-1">
+                        <input 
+                            type="radio"
+                            id="whatsapp-yes"
+                            name="isWhatsapp" // Change to isWhatsapp
+                            value="WHATSAPP" 
+                            // checked={form.isWhatsapp === "WHATSAPP"} 
+                            readOnly
+                        />
+                        Yes
+                    </label>
+                    <label htmlFor="whatsapp-no" className="ml-2 mb-1">
+                        <input 
+                            type="radio"
+                            id="whatsapp-no"
+                            name="isWhatsapp" // Change to isWhatsapp
+                            value="REGULAR" 
+                            // checked={form.isWhatsapp === "REGULAR"} 
+                            readOnly
+                        />
+                        No
+                    </label>
+                </div>
                 <label>Email</label>
                 <input className='bg-gray-400' type="email" name='userEmail' value={form.userEmail}  placeholder={form.userEmail} required />
                 <label>Facebook</label>
@@ -49,32 +74,7 @@ const page = async ({params}) => {
                     <p>WhatsApp Number ?</p>
                     <input type="radio" name="isWhatsapp" id="isWhatsapp" placeholder={form.isWhatsapp} value={form.isWhatsapp}/>
                 </div> */}
-                <div className='flex gap-3'>
-    <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
-    <label htmlFor="whatsapp-yes" className="ml-2 mb-1">
-        <input 
-            type="radio"
-            id="whatsapp-yes"
-            name="isWhatsapp" // Change to isWhatsapp
-            value="WHATSAPP" 
-            // checked={form.isWhatsapp === "WHATSAPP"} 
-            readOnly
-        />
-        Yes
-    </label>
-    <label htmlFor="whatsapp-no" className="ml-2 mb-1">
-        <input 
-            type="radio"
-            id="whatsapp-no"
-            name="isWhatsapp" // Change to isWhatsapp
-            value="REGULAR" 
-            // checked={form.isWhatsapp === "REGULAR"} 
-            readOnly
-        />
-        No
-    </label>
-</div>
-
+                
 
                 
                 {/* <select name="type" id="isValidated">

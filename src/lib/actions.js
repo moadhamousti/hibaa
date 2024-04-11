@@ -465,6 +465,22 @@ export const deletePost = async (formData) => {
 };
 
 
+export const deleteForm = async (formData) => {
+  const { id } = Object.fromEntries(formData);
+
+  try {
+    
+      await db.DonatorForm.delete({ where: { id } });
+    
+
+    console.log("Form deleted successfully");
+  } catch (error) {
+    console.error("Error deleting form:", error);
+    throw new Error("Failed to delete form!");
+  }
+};
+
+
 
 
 

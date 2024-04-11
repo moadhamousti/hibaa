@@ -30,26 +30,27 @@ const AddPost = () => (
         <input type="email" name='userEmail' placeholder="E-mail d'utilisateur" required />
         <select name="category" id="category" required>
           <option value="">Choose a Category</option>
-          <option value="Bedside Tables">Bedside Tables</option>
-          <option value="Blood Glucose Monitors">Blood Glucose Monitors</option>
-          <option value="Blood Pressure Monitors">Blood Pressure Monitors</option>
-          <option value="Canes">Canes</option>
+          <option value="Appareils_orthopediques">Appareils orthopédiques</option>
+          <option value="Attelle">Attelle</option>
+          <option value="Bequilles">Béquilles</option>
+          <option value="Cannes">Cannes</option>
+          <option value="Chaises_de_douche_a_roulettes">Chaises de douche à roulettes</option>
+          <option value="Chaussures_orthopediques">Chaussures orthopédiques</option>
           <option value="Commodes">Commodes</option>
-          <option value="Crutches">Crutches</option>
-          <option value="Eyeglasses">Eyeglasses</option>
-          <option value="Feeding Tubes">Feeding Tubes</option>
-          <option value="Hearing Aids">Hearing Aids</option>
-          <option value="Hospital Beds">Hospital Beds</option>
-          <option value="Medical Alert Systems">Medical Alert Systems</option>
-          <option value="Nebulizers">Nebulizers</option>
-          <option value="Orthopedic Braces">Orthopedic Braces</option>
-          <option value="Orthopedic Shoes">Orthopedic Shoes</option>
-          <option value="Oxygen Tanks">Oxygen Tanks</option>
-          <option value="Prosthetic Limbs">Prosthetic Limbs</option>
-          <option value="Stethoscopes">Stethoscopes</option>
-          <option value="Walkers">Walkers</option>
-          <option value="Wheelchairs">Wheelchairs</option>
-          <option value="Wheeled Shower Chairs">Wheeled Shower Chairs</option>
+          <option value="Fauteuils_roulants">Fauteuils roulants</option>
+          <option value="Lits_hopitaux">Lits hôpitaux</option>
+          <option value="Lunettes">Lunettes</option>
+          <option value="Marcheuses">Marcheuses</option>
+          <option value="Moniteurs_de_glycemie">Moniteurs de glycémie</option>
+          <option value="Nebuliseurs">Nébuliseurs</option>
+          <option value="Protheses">Prothèses</option>
+          <option value="Protheses_auditives">Prothèses auditives</option>
+          <option value="Reservoirs_oxygene">Réservoirs oxygène</option>
+          <option value="Stethoscopes">Stéthoscopes</option>
+          <option value="Systemes_alerte_medicale">Systèmes alerte médicale</option>
+          <option value="Tables_de_nuit">Tables de nuit</option>
+          <option value="Tensiometres">Tensiomètres</option>
+          <option value="Tubes_alimentation">Tubes alimentation</option>
         </select>
         <select name="location" id="location" required>
           <option value="">Choose a Location</option>
@@ -88,9 +89,11 @@ const AddPost = () => (
           
         </select>
         <input type="tel" name='phone' placeholder='Phone' />
-        <div className="flex">
+        <div className="">
             <p>WhatsApp Numero ?</p>
-            <input type="radio" name="isWhatsapp" value="true" />
+            <input type="radio" name="isWhatsapp" value="true" /> Oui
+            <br/>
+            <input type="radio" name="isWhatsapp" value="false" /> Non
         </div>
         <textarea
           required

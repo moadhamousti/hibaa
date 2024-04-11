@@ -272,7 +272,7 @@ useEffect(() => {
 
           <div className="space-y-2">
             <Label htmlFor="phaName">Pharmacie Propriétaire</Label>
-            <Input id="phaName" className="bg-gray-200" placeholder="Pharmacie owner Name" onChange={e => setOwnerName(e.target.value)} />
+            <Input id="phaName" className="bg-gray-200" placeholder="Pharmacie Nom Propriétaire" onChange={e => setOwnerName(e.target.value)} />
           </div>
 
           <div className="space-y-2">
