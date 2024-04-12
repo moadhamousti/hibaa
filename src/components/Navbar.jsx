@@ -82,6 +82,7 @@ import Image from 'next/image';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
 
 const Navbar = () => {
   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
@@ -186,10 +187,11 @@ const Navbar = () => {
         PUBLISH
       </Button> */}
       <IconButton onClick={handleClick}>
-        <PostAddIcon 
+      
+        <AddToPhotosIcon 
           sx={{
             color: '#EF507F',
-            fontSize: '1.8rem',
+            fontSize: '1.5rem',
           }}
         
         />

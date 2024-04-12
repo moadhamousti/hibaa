@@ -267,9 +267,10 @@ const ProfileForm = () => {
             {imagePreview && (
               <img
                 className="w-[150px] h-[150px] items-center rounded-full mb-4"
-                src={session?.user.image}
+                // src={session?.user.image}
+                value={imagePreview}
                 alt="Profile"
-                // value={session?.user.image}
+                src={session?.user.image}
               />
             )}
             </>

@@ -67,7 +67,7 @@ const UserPosts = ({ id }) => {
               </Swiper>
             )}
             {userPosts.length < 4 && ( // Render cards individually if less than 4
-              <div className="w-full flex-col-3 ">
+              <div className="w-full flex ">
                 {userPosts.map((post) => (
                   <div key={post.id} className="h-full px-4 mb-4">
                     <Card item={post} />

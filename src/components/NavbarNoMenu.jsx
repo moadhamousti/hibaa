@@ -11,10 +11,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountMenu from './AccountMenu';
 // Assuming you have styles and LoginIcon imported
 import CallMadeIcon from '@mui/icons-material/CallMade';
-import { Button, IconButton , Menu, MenuItem } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
 import AccountMenuStretched from './AccountMenuStretched';
+import Logo from '../../public/logo.svg'
+import Image from 'next/image';
+import { Button, IconButton , ListItemIcon, ListItemText, Menu, MenuItem } from '@mui/material';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+
 
 const NavbarNoMenu = () => {
   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
@@ -40,8 +46,10 @@ const NavbarNoMenu = () => {
 
   return (
     <div className='flex items-center justify-between h-24 '>
-      <div className="text-left text-3xl font-bold lg:text-3xl md:text-x2 text-softTextColor ">
-        <Link href='/'>Charity</Link>
+      <div className="text-left text-xl font-bold lg:text-2xl md:text-l text-softTextColor ">
+        <Link href='/'>
+          <Image src={Logo} alt="Logo" width={100} height={100} />
+        </Link>
       </div>
       {/* <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
           <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
@@ -100,20 +108,41 @@ const NavbarNoMenu = () => {
         PUBLISH
       </Button> */}
       <IconButton onClick={handleClick}>
-        <CreateIcon />
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <Link href='/publish/requestPost'>
-          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem>
-        </Link>
-        <Link href='/publish/donatePost'>
-          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Poste Donation</MenuItem>
-        </Link>
-      </Menu>
+      
+      <AddToPhotosIcon 
+        sx={{
+          color: '#EF507F',
+          fontSize: '1.5rem',
+        }}
+      
+      />
+      
+    </IconButton>
+    <Menu
+      anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+    >
+      <Link href='/publish/donatePost'>
+        {/* <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem> */}
+        <MenuItem onClick={() => handleOptionSelect('Donate Post')}>
+          <ListItemIcon>
+            <VolunteerActivismIcon />
+          </ListItemIcon>
+          <ListItemText/>
+          Poste Donation
+        </MenuItem>
+      </Link>
+      <Link href='/publish/requestPost'>
+        <MenuItem onClick={() => handleOptionSelect('Request Post')}>
+          <ListItemIcon>
+            <PersonSearchIcon />
+          </ListItemIcon>
+          <ListItemText/>
+          Poste Demande
+        </MenuItem>
+      </Link>
+    </Menu>
         <AccountMenuStretched />
         {/* <Button
           variant="outlined"

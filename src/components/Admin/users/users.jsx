@@ -73,7 +73,7 @@ const Users = async ({searchParams}) => {
       </table>
       {/* <Pagination count={count}/> */}
       
-    // </div>
+    </div>
     </>
   )
 }

@@ -43,7 +43,6 @@ const AdminPage = async () => {
     console.log(session.user.role);
     console.log(session);
   
-    // Rest of your code when session is valid
 
 
   return (

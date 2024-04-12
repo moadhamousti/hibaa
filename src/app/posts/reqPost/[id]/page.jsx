@@ -190,7 +190,18 @@ const Page = async ({ params }) => {
                       width={20} height={20}
                     />
                   )}
-                  <h3 className='underline'><Link href={`https://wa.me/+212${data.phone}`}>{data.phone}</Link></h3>
+                  {/* <h3 className='underline'><Link href={`https://wa.me/+212${data.phone}`}>{data.phone}</Link></h3> */}
+                  <h3 className='underline'>
+                  {data.isWhatsapp ? (
+                    <Link href={`https://wa.me/+212${data.phone}`}>
+                      {data.phone}
+                    </Link>
+                  ) : (
+                    <Link href="#" className="pointer-events-none">
+                      {data.phone}
+                    </Link>
+                  )}
+                  </h3>
                   </div>                
                   {/* <p className="flex items-center gap-1">{data?.userEmail}</p> */}
                   <div className="flex gap-2">

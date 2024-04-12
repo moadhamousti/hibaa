@@ -7,10 +7,15 @@ import LocationList from '@/components/LocationList';
 import FooterFeed from '@/components/FooterFeed';
 import TypeSelect from '@/components/TypeList';
 import SmoothScroller from '@/components/SmoothScrool';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
+import NavbarFeed from '@/components/NavbarFeed';
+import NavbarNoMenu from '@/components/NavbarNoMenu';
 
 
 export default function Page({ searchParams }) {
 
+  const session = getServerSession(authOptions);
 
   const page = parseInt(searchParams.page) || 1
   const {cat} = searchParams;
@@ -21,7 +26,8 @@ export default function Page({ searchParams }) {
   
   return (
     <>
-    <Navbar />
+    {/* <Navbar /> */}
+    {session ? <NavbarNoMenu /> : <Navbar />}
       <div className='min-h-screen bg-bg text-textColor'>
         <div className='max-w-screen-xl mx-auto'>
           <div className="flex justify-between items-center">

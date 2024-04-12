@@ -8,10 +8,10 @@ import TwitterIcon from '../../public/Twitter.svg';
 import Image from 'next/image';
 
 const FooterFeed = () => {
-  const { data: session } = useSession(); // Use useSession hook to retrieve session data
+  const { data: session } = useSession();
 
   if (session) {
-    return null; // If there's a session (user signed in), don't render the footer
+    return null; 
   }
 
   return (

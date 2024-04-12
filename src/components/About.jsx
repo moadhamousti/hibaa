@@ -127,14 +127,16 @@ const About = () => {
               <h2 id="services-heading" className="text-[50px] font-bold text-center text-black mb-5">À Propos</h2>
             <div className="sm:grid grid-cols-2 gap-0 ">
             <div className="sm:py-6   ">
-            <p className="mt-5 sm:p-0 w-full sm:text-5xl text-sm sm:font-semibold font-bold  text-center sm:text-start   uppercase  ">
-            Rejoignez-nous dans notre  mission.            
+            <p className="mt-5 sm:p-0 w-full sm:text-5xl text-sm sm:font-semibold font-bold hidden sm:block text-center sm:text-start uppercase">
+                Rejoignez-nous dans notre mission.
             </p>
+
             </div>
             <div className="sm:w-4/5 w-full sm:text-justify text-normal">
-            <p className="sm:py-2 sm:text-lg  font-medium  text-[--softTextColor] leading-8">
-            Hiba&ataa vous permet de rechercher, de trouver et de recevoir les équipements médicaux nécessaires pour améliorer votre bien-être et votre santé, Rejoignez-nous dans notre mission visant à rendre les soins de santé accessible à tous.            
+            <p className="sm:py-2 sm:text-lg font-medium text-[--softTextColor] leading-8 text-center sm:text-left">
+                Hiba&ataa vous permet de rechercher, de trouver et de recevoir les équipements médicaux nécessaires pour améliorer votre bien-être et votre santé, Rejoignez-nous dans notre mission visant à rendre les soins de santé accessible à tous.
             </p>
+
                 <Link href={'/about'} className='sm:w-full flex  mt-5  text-[--pink]  items-center sm:justify-start justify-center gap-2'>
             <button className="underline  py-2 px-0 rounded-full sm:text-xl    font-semibold capitalize">
                 Read More

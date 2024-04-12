@@ -57,6 +57,33 @@ export const GET = async (req) => {
 
 
 
+// export const GET = async (req) => {
+//   try {
+//     const { searchParams } = new URL(req.url);
+//     const loc = searchParams.get("loc");
+//     const posts = await db.DonatorForm.findMany({
+//       where: {
+//         isValidated: 'VALIDER',
+//         ...(loc && { location: loc }),
+//       },
+//       include: {
+//         user: true
+//       }
+//     });
+
+//     return new NextResponse(JSON.stringify(posts, null, 2), { status: 200 });
+//   } catch (err) {
+//     console.error(err);
+//     return new NextResponse(
+//       JSON.stringify({ message: "Something went wrong!" }), { status: 500 }
+//     );
+//   }
+// };
+
+
+
+
+
 
 export const PUT = async (req , {params}) =>{
   const {id} = params;
