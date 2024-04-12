@@ -30,8 +30,8 @@ const Layout = async ({ children }) => {
 
   // Render the layout only if the user is logged in and is an admin
   return (
-    <div className="flex">
-      <div className="bg-black bg-bgSoft min-h-screen p-[20px]">
+    <div className="flex bg-[#F4F4F4]">
+      <div className="bg-white bg-bgSoft min-h-screen p-[20px]">
         <Sidebar />
       </div>
       <div className="content flex-1 p-[20px]">

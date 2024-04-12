@@ -26,7 +26,7 @@ const DashboardNavbar = () => {
   const pageTitle = titleMap[pathname] || pathname.split("/").pop(); // If path exists in titleMap, use the translated title, otherwise use the last part of the path as title
 
   return (
-    <div className='p-[20px] rounded-lg bg-gray-300 flex items-center justify-between'>
+    <div className='p-[20px] rounded-lg bg-white flex items-center justify-between'>
       <div className='text-black font-bold capitalize'>{pageTitle}</div>
       <div className='flex items-center gap-[20px]'>
         <div className='flex items-center gap-[10px] bg-gray-200 p-[10px] rounded-lg'>

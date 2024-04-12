@@ -40,10 +40,10 @@ const Users = async ({searchParams}) => {
         <tbody className="text-center">
           {users.map((user)=>(
             <tr key={user.id}>
-            <td className="border border-white">
+            <td className="border bg-white border-gray-300">
               <div className="rounded-full bg-cover" style={{ width: 40, height: 40 }}>
                 <Image
-                  src={user.image || "https://github.com/shadcn.png"}
+                src={user.image || "https://github.com/shadcn.png"}
                   alt=""
                   width={40}
                   height={40}
@@ -51,21 +51,21 @@ const Users = async ({searchParams}) => {
                 />
               </div>
             </td>
-            <td className="border border-white">{user.name}</td>
-            <td className="border border-white">{user.username}</td>
-            <td className="border border-white">{user.email}</td>
-            <td className="border border-white">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-            <td className="border border-white">
+            <td className="border bg-white border-gray-300">{user.name}</td>
+            <td className="border bg-white border-gray-300">{user.username}</td>
+            <td className="border bg-white border-gray-300">{user.email}</td>
+            <td className="border bg-white border-gray-300">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+            <td className="border bg-white border-gray-300">
               <Badge
                 variant="light"
-                className={user.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[--darkishBlue]'}
+                className={user.role === 'ADMIN' ? 'bg-[#c1bc31] text-white' : 'bg-[--darkishBlue] text-white'}
               >
               {user.role}
               </Badge>
             </td>
 
 
-            <td className="border border-white">
+            <td className="border bg-white border-gray-300">
               <div className={styles.buttons}>
                 <Link href={`/admin/dashboard/users/${user.id}`}>
                   <button className={`${styles.button} ${styles.view}`}>Voir</button>

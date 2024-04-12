@@ -33,26 +33,37 @@ const Posts = async ({ searchParams }) => {
         </Link>
       </div>
       <table className={styles.table}>
-        <thead className='px-4 py-2 bg-white text-center'>
+        <thead className='px-4 py-2 bg-white border-gray-300 text-center'>
           <tr>
-            <td className="font-bold border border-gray-300">Type</td>
-            <td className="font-bold border border-gray-300">Image</td>
-            <td className="font-bold border border-gray-300">Titre</td>
+            <td className="font-bold border bg-white border-gray-300">Type</td>
+            <td className="font-bold border bg-white border-gray-300">Image</td>
+            <td className="font-bold border bg-white border-gray-300">Titre</td>
             {/* <td className="font-bold">Description</td> */}
-            <td className="font-bold border border-gray-300">Créé à</td>
-            <td className="font-bold border border-gray-300">Emplacement</td>
-            <td className="font-bold border border-gray-300">Catégories</td>
-            <td className="font-bold border border-gray-300">Téléphone</td>
-            <td className="font-bold border border-gray-300">isWhatsapp</td>
-            <td className="font-bold border border-gray-300">Action</td>
+            <td className="font-bold border bg-white border-gray-300">Créé à</td>
+            <td className="font-bold border bg-white border-gray-300">Emplacement</td>
+            <td className="font-bold border bg-white border-gray-300">Catégories</td>
+            <td className="font-bold border bg-white border-gray-300">Téléphone</td>
+            <td className="font-bold border bg-white border-gray-300">Type Numéro</td>
+            <td className="font-bold border bg-white border-gray-300">Action</td>
             
           </tr>
         </thead>
         <tbody className='text-center '>
           {posts.map(posts => (
             <tr key={posts.id}>
-              <td className="border border-white">{posts.type}</td>
-              <td className="border border-white">
+             <td className="border bg-white border-gray-300">
+              {posts.type === 'DONATION' && (
+                  <Badge variant="light" className="bg-[--pink] text-white">
+                    Donation
+                  </Badge>
+                )}
+                {posts.type === 'REQUEST' && (
+                  <Badge variant="light" className="bg-[--darkishBlue] text-white">
+                    Demande
+                  </Badge>
+                )}
+            </td>
+              <td className="border bg-white border-gray-300">
                 <div className={styles.user}>
                   <Image
                     src={posts.img || "https://www.medisave.co.uk/cdn/shop/collections/Tom.jpg?v=1683730716"}
@@ -63,14 +74,14 @@ const Posts = async ({ searchParams }) => {
                   />
                 </div>
               </td>
-              <td className="border border-white">{posts.title.length > 4 ? posts.title.substring(0, 4) + '...' : posts.title}</td>
+              <td className="border bg-white border-gray-300">{posts.title.length > 4 ? posts.title.substring(0, 4) + '...' : posts.title}</td>
               {/* <td>{posts.desc.length > 4 ? posts.desc.substring(0, 10) + '...' : posts.desc}</td> */}
-              <td className="border border-white">{format(posts.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-              <td className="border border-white">{posts.location}</td>
-              <td className="border border-white">{posts.category}</td>
-              <td className="border border-white">{posts.phone}</td>
+              <td className="border bg-white border-gray-300">{format(posts.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+              <td className="border bg-white border-gray-300">{posts.location}</td>
+              <td className="border bg-white border-gray-300">{posts.category}</td>
+              <td className="border bg-white border-gray-300">{posts.phone}</td>
               {/* <td>{posts.isWhatsapp}</td> */}
-              <td className="border border-white">
+              <td className="border bg-white border-gray-300">
                 {posts.isWhatsapp ? (
                   <div className="flex gap-2">
                     
@@ -82,7 +93,7 @@ const Posts = async ({ searchParams }) => {
                       className="rounded-sm"
                     />
                     <Badge
-                        variant="light" className="bg-[#33a833] text-black">WhatsApp
+                        variant="light" className="bg-[#33a833] text-white">WhatsApp
                     </Badge>
                   </div>
                   
@@ -97,13 +108,13 @@ const Posts = async ({ searchParams }) => {
                       className="rounded-sm"
                     />
                     <Badge
-                        variant="light" className="bg-[#3269ad] text-white">Regular
+                        variant="light" className="bg-[#3269ad] text-white">Normal
                     </Badge>
                   </div>
                 )}
               </td>
 
-              <td className='border border-white'>
+              <td className='border bg-white border-gray-300'>
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/posts/${posts.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

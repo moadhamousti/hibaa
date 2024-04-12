@@ -106,7 +106,7 @@ const Sidebar = () => {
         {menuItems.map((section) => (
           <React.Fragment key={section.title}>
             <li className={`py-2 ${!open && 'hidden'}`}>
-              <span className='text-[--softBg] text-sm'>{section.title}</span>
+              <span className='text-[#B1B1B1] text-sm'>{section.title}</span>
             </li>
             {section.items.map((item) => (
               <MenuLink item={item} key={item.title} open={open} />
