@@ -3,7 +3,7 @@
 import styles from './Styles.css'
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BiMenu } from 'react-icons/bi';
 import { signOut, useSession } from 'next-auth/react'; // Import useSession
 import LoginIcon from '@mui/icons-material/Login';
@@ -34,6 +34,23 @@ const NavbarNoMenu = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  const menuRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleOptionSelect = (option) => {
     console.log(option); // Handle selected option here
@@ -157,16 +174,16 @@ const NavbarNoMenu = () => {
         </>
       )}
 
-        <div className='w-6 h-5 flex flex-col mt-2 justify-between cursor-pointer sm:hidden md:hidden lg:hidden' onClick={toggleMobileMenu}>
+<div className='w-6 h-5 flex flex-col mt-2 justify-between cursor-pointer sm:hidden md:hidden lg:hidden' onClick={toggleMobileMenu}>
           {open ? <CloseIcon /> : <MenuIcon />}
         </div>
 
-        {/* {open && (
-          <div className='fixed top-24 right-0 rounded-sm bg-gray-500 h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-white z-50'>
-            <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
-            <Link href="/#features" className="text-[19px]">• Features</Link>
-            <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
-            <Link href="/#contact" className="text-[19px]">• Contact</Link>  
+        {open && (
+          <div ref={menuRef} className='fixed top-24 right-0 rounded-sm bg-[rgba(255,255,255,0.5)] backdrop-blur-lg h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-black z-50'>
+            <Link href="/#about" className="text-[17px]">•À Propos</Link>
+            <Link href="/#features" className="text-[17px]">•Caractéristiques </Link>
+            <Link href="/#faq" className="text-[17px]">•FAQ</Link> 
+            <Link href="/#contact" className="text-[17px]">•Contact</Link>  
             {status === "unauthenticated" ? (
               // <button href="/" className={styles.button}>Login</button>
               <Button
@@ -183,11 +200,11 @@ const NavbarNoMenu = () => {
                   }
                 }}
                 
-                endIcon={<CallMadeIcon />}
+                endIcon={<CallMadeIcon  />}
               >
               COMMENCER
             </Button>
-            ) : ( */}
+            ) : (
               <>
                 {/* <Button
                   variant="contained"
@@ -198,9 +215,9 @@ const NavbarNoMenu = () => {
                 </Button> */}
                 {/* <span className='cursor-pointer' onClick={signOut}>Logout</span> */}
               </>
-        {/* //     )} */}
-        {/* //   </div> */}
-        {/* // )} */}
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

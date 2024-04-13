@@ -19,6 +19,7 @@ import loacation from "../../../../public/Location.png";
 
 
 import phone from "../../../../public/phone.png";
+import Map from '@/components/Map';
 
 
 const getData = async (id) => {
@@ -219,6 +220,9 @@ const Page = async ({params}) => {
           </div>
           </div>
         </div>
+        {/* <div className="flex-2 h-[100%] bg-white">
+          <Map/>
+        </div> */}
       </div>
   )
 }

@@ -44,7 +44,7 @@ const getData = async (id) => {
 
 const getRandomComponent = () => {
   const randomNumber = Math.random();
-  const threshold = 0.5; // Adjust this value to control the randomness
+  const threshold = 0.5;
 
   if (randomNumber > threshold) {
     return <DonRelatedPosts />;

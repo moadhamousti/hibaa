@@ -299,6 +299,7 @@ useEffect(() => {
     id="whatsapp-yes"
     checked={isWhatsapp === true} 
     name="whatsapp-option"
+    className='bg-[--pink] border-[--pink]'
     value="true"
     onChange={() => setisWhatsapp(true)}
   />
