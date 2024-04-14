@@ -35,7 +35,7 @@ const FormRelated = ({ location, formId }) => {
   }, [location]);
 
   // Filter and limit forms
-  const filteredForms = relatedForms.filter(form => form.id !== formId);
+  const filteredForms = relatedForms.filter(form => form.id !== formId && form.isValidated === 'VALIDER');
   const limitedForms = filteredForms.slice(0, 3);
 
   return (

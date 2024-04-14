@@ -28,7 +28,7 @@ export default function Page({ searchParams }) {
   return (
     <>
     {/* <Navbar /> */}
-    {session?.user ? <NavbarSimple /> : <NavbarNoMenu />}
+    <NavbarFeed/>
 
 
 

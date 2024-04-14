@@ -11,10 +11,16 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AccountMenu from './AccountMenu';
 // Assuming you have styles and LoginIcon imported
 import CallMadeIcon from '@mui/icons-material/CallMade';
-import { Button, IconButton , Menu, MenuItem } from '@mui/material';
+import { Button, IconButton , Menu, MenuItem ,ListItemIcon, ListItemText} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CreateIcon from '@mui/icons-material/Create';
 import AccountMenuStretched from './AccountMenuStretched';
+import Logo from '../../public/logo.svg'
+import Image from 'next/image';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import PersonSearchIcon from '@mui/icons-material/PersonSearch';
+import AddToPhotosIcon from '@mui/icons-material/AddToPhotos';
+
 
 const NavbarFeed = () => {
   const { data: session, status } = useSession(); // Destructure session and status from useSession hook
@@ -40,14 +46,16 @@ const NavbarFeed = () => {
 
   return (
     <div className='flex items-center justify-between h-24 '>
-      <div className="text-left text-3xl font-bold lg:text-3xl md:text-x2 text-softTextColor ">
-        <Link href='/'>Charity</Link>
+      <div className="text-left text-xl font-bold lg:text-2xl md:text-l text-softTextColor ">
+        <Link href='/'>
+          <Image src={Logo} alt="Logo" width={100} height={100} />
+        </Link>
       </div>
-      {/* <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
-          <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
-          <Link href="/#features" className="text-[19px]">• Features</Link>
-          <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
-          <Link href="/#contact" className="text-[19px]">• Contact</Link>       
+      {/* <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
+          <Link href="/#about" className="text-[18px]">•À Propos</Link>
+          <Link href="/#features" className="text-[18px]">•Traits </Link>
+          <Link href="/#faq" className="text-[18px]">•FAQ</Link> 
+          <Link href="/#contact" className="text-[18px]">•Contact</Link>       
       </div> */}
 
       <div className='flex gap-4'>
@@ -100,20 +108,41 @@ const NavbarFeed = () => {
         PUBLISH
       </Button> */}
       <IconButton onClick={handleClick}>
-        <CreateIcon />
-      </IconButton>
-      <Menu
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <Link href='/publish/requestPost'>
-          <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem>
-        </Link>
-        <Link href='/publish/donatePost'>
-          <MenuItem onClick={() => handleOptionSelect('Donate Post')}>Poste Donation</MenuItem>
-        </Link>
-      </Menu>
+      
+      <AddToPhotosIcon 
+        sx={{
+          color: '#EF507F',
+          fontSize: '1.5rem',
+        }}
+      
+      />
+      
+    </IconButton>
+    <Menu
+      anchorEl={anchorEl}
+      open={Boolean(anchorEl)}
+      onClose={handleClose}
+    >
+      <Link href='/publish/donatePost'>
+        {/* <MenuItem onClick={() => handleOptionSelect('Request Post')}>Poste Demande</MenuItem> */}
+        <MenuItem onClick={() => handleOptionSelect('Donate Post')}>
+          <ListItemIcon>
+            <VolunteerActivismIcon />
+          </ListItemIcon>
+          <ListItemText/>
+          Poste Donation
+        </MenuItem>
+      </Link>
+      <Link href='/publish/requestPost'>
+        <MenuItem onClick={() => handleOptionSelect('Request Post')}>
+          <ListItemIcon>
+            <PersonSearchIcon />
+          </ListItemIcon>
+          <ListItemText/>
+          Poste Demande
+        </MenuItem>
+      </Link>
+    </Menu>
         <AccountMenuStretched />
         {/* <Button
           variant="outlined"
@@ -128,9 +157,9 @@ const NavbarFeed = () => {
         </>
       )}
 
-        <div className='w-6 h-5 flex flex-col mt-2 justify-between cursor-pointer sm:hidden md:hidden lg:hidden' onClick={toggleMobileMenu}>
+        {/* <div className='w-6 h-5 flex flex-col mt-2 justify-between cursor-pointer sm:hidden md:hidden lg:hidden' onClick={toggleMobileMenu}>
           {open ? <CloseIcon /> : <MenuIcon />}
-        </div>
+        </div> */}
 
         {/* {open && (
           <div className='fixed top-24 right-0 rounded-sm bg-gray-500 h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-white z-50'>

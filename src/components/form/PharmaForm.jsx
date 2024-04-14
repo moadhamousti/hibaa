@@ -28,6 +28,7 @@ import * as z from 'zod';
 import loader from '../../../public/loader.gif'
 import { useToast } from "@/components/ui/use-toast"
 import Loader from '../../components/Loader';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 
 const storage = getStorage(app);
 
@@ -42,7 +43,7 @@ const PharmaForm = () => {
 //   const [toolsCategories, setToolsCategories] = useState([]);
 //   const [selectedToolsCategories, setSelectedToolsCategories] = useState("");
   const [file, setFile] = useState(null);
-  const [media, setMedia] = useState("");
+  const [media, setMedia] = useState("https://static.medias24.com/content/uploads/2020/01/pharmacie1.jpg");
   const [desc, setDesc] = useState("");
   const [phaName, setPhaName] = useState("");
   const [ownerName, setOwnerName] = useState("");
@@ -58,8 +59,14 @@ const PharmaForm = () => {
   const [slug, setSlug] = useState("");
   const [location, setlocation] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
+  const [ownerNameError, setOwnerNameError] = useState("");
+  const [phaNameError, setPhaNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [addressError, setAddressError] = useState("");
+
   const [categoryError, setCategoryError] = useState("");
   const [locationError, setLocationError] = useState("");
+
 
 
 
@@ -68,7 +75,7 @@ const PharmaForm = () => {
   const [cat, setCat] = useState("");
   const [locCat, setLocCat] = useState("");
   const [phone, setPhone] = useState("");
-  const [isWhatsapp, setisWhatsapp] = useState(false);
+  const [isWhatsapp, setisWhatsapp] = useState("REGULAR");
 
   const [user, setUser] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -184,17 +191,52 @@ useEffect(() => {
     e.preventDefault();
 
     // Validation
+    let phaNameErrorMessage = "";
+    let ownerNameErrorMessage = "";
+    let phoneErrorMessage = "";
+    let addressErrorMessage = "";
     let descriptionErrorMessage = "";
 
 
+    if (phaName.length < 4) {
+      phaNameErrorMessage = "Pharmacie nom doit comporter au moins 4 caractères";
+    }
+    if (phone.length !== 10 || phone[0] !== '0') {
+      phoneErrorMessage = "Le numéro de téléphone doit comporter 10 caractères et commencer par 0";
+    }  
+
+    if (address.trim() === "") {
+      addressErrorMessage = "L'adresse est obligatoire";
+    }
+
+    if (ownerName.length < 5) {
+      ownerNameErrorMessage = "Pharmacie Propriétaire nom doit comporter au moins 5 caractères";
+    }
     if (desc.length < 40) {
       descriptionErrorMessage = "La description doit comporter au moins 38 caractères";
     }
 
+    setPhaNameError(phaNameErrorMessage);
+    setAddressError(addressErrorMessage);
+    setPhoneError(phoneErrorMessage);
+    setOwnerNameError(ownerNameErrorMessage);
     setDescriptionError(descriptionErrorMessage);
+
 
     // If there are errors, prevent form submission
     if ( descriptionErrorMessage) {
+      return;
+    }
+    if ( addressErrorMessage) {
+      return;
+    }
+    if ( phoneErrorMessage) {
+      return;
+    }
+    if ( ownerNameErrorMessage) {
+      return;
+    }
+    if ( phaNameErrorMessage) {
       return;
     }
 
@@ -208,6 +250,7 @@ useEffect(() => {
       setLocationError("Veuillez sélectionner un emplacement");
       return; // Prevent form submission
     }
+    
 
     const res = await fetch("/api/form", {
       method: "POST",
@@ -261,34 +304,40 @@ useEffect(() => {
       <div className="max-w-md mx-auto mb-[60px] mt-[50px]">
         <form className="grid gap-4">
           {/* <Label htmlFor="title">Titre</Label>
-          <Input id="title" className="bg-gray-200" placeholder="Titre" onChange={e => setTitle(e.target.value)} /> */}
+          <Input id="title" className="bg-gray-100" placeholder="Titre" onChange={e => setTitle(e.target.value)} /> */}
 
           {/* <div className="space-y-2">
             <Label htmlFor="title">Titre</Label>
-            <Input id="title" className="bg-gray-200" placeholder="Titre" onChange={e => setTitle(e.target.value)} />
+            <Input id="title" className="bg-gray-100" placeholder="Titre" onChange={e => setTitle(e.target.value)} />
             <p className="text-red-600 text-[16px] mb-4">{titleError}</p>
           </div> */}
+          {/* <HoverCard><b className='text-red-600 font-extrabold'>*</b></HoverCard> */}
+          {/* <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white'>Ce champs est obligatoire</HoverCardContent></HoverCard> */}
 
           <div className="space-y-2">
-            <Label htmlFor="phaName">Pharmacie Nom</Label>
-            <Input id="phaName" className="bg-gray-200" placeholder="Pharmacie Nom" onChange={e => setPhaName(e.target.value)} />
+            <Label htmlFor="phaName">Pharmacie Nom <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Input id="phaName" className="bg-gray-100" placeholder="Pharmacie Nom" onChange={e => setPhaName(e.target.value)} />
+            <p className="text-red-600 text-[16px] mb-4">{phaNameError}</p>
           </div>
 
 
           <div className="space-y-2">
-            <Label htmlFor="phaName">Pharmacie Propriétaire</Label>
-            <Input id="phaName" className="bg-gray-200" placeholder="Pharmacie Nom Propriétaire" onChange={e => setOwnerName(e.target.value)} />
+            <Label htmlFor="ownerName">Pharmacie Propriétaire <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Input id="ownerName" className="bg-gray-100" placeholder="Pharmacie Nom Propriétaire" onChange={e => setOwnerName(e.target.value)} />
+            <p className="text-red-600 text-[16px] mb-4">{ownerNameError}</p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
+            <Label htmlFor="description">Description <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-100 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
             <p className="text-red-600 text-[16px] mb-4">{descriptionError}</p>
           </div>
 
-
-          <Label htmlFor="phone">Numéro de téléphone</Label>
-          <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
+          <div className="space-y-2">
+            <Label htmlFor="phone">Numéro de téléphone <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-100 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
+            <p className="text-red-600 text-[16px] mb-4">{phoneError}</p>
+          </div>
           <div className='flex gap-3'>
           <div className='flex gap-3'>
             <Image src={whatsapp} alt='' width={20} height={20}/>
@@ -335,12 +384,13 @@ useEffect(() => {
             <p className="text-red-600 text-[16px] mb-4">{categoryError}</p> */}
 
           <div className="space-y-2">
-            <Label htmlFor="address">Address</Label>
-            <Input id="address" className="bg-gray-200" placeholder="Address" onChange={e => setAddress(e.target.value)} />
+            <Label htmlFor="address">Address <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Input id="address" className="bg-gray-100" placeholder="Address" onChange={e => setAddress(e.target.value)} />
+            <p className="text-red-600 text-[16px] mb-4">{addressError}</p>
           </div>
             
 
-            <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
+            <Label htmlFor="toolsCategory">Choisir un emplacement: <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
             
             <select
               id="locationCategory"
@@ -350,7 +400,7 @@ useEffect(() => {
               onBlur={(e) => setSelectedLocationCategory(e.target.value)} // Handle onBlur event for immediate validation feedback
               required 
             >
-              <option value="">Select Emplacement</option>
+              <option value="">Sélect Emplacement</option>
               {/* <option value="">Sélectionner une catégorie de lieu</option> */}
               {locationCategories.map((category) => (
                 <option key={category.id} value={category.title}>
@@ -363,22 +413,22 @@ useEffect(() => {
 
             <div className="space-y-2">
               <Label htmlFor="facebook">Facebook Lien</Label>
-              <Input id="facebook" className="bg-gray-200" placeholder="Facebook" onChange={e => setFacebook(e.target.value)} />
+              <Input id="facebook" className="bg-gray-100" placeholder="Facebook" onChange={e => setFacebook(e.target.value)} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="twitter">Twitter Lien</Label>
-              <Input id="fwitter" className="bg-gray-200" placeholder="Twitter" onChange={e => setTwitter(e.target.value)} />
+              <Input id="fwitter" className="bg-gray-100" placeholder="Twitter" onChange={e => setTwitter(e.target.value)} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="instagram">Instagram Lien</Label>
-              <Input id="instagram" className="bg-gray-200" placeholder="Instagram" onChange={e => setInstagram(e.target.value)} />
+              <Input id="instagram" className="bg-gray-100" placeholder="Instagram" onChange={e => setInstagram(e.target.value)} />
             </div>
 
 
 
-            <div className="p-5 bg-gray-200 rounded-sm">
+            <div className="p-5 bg-gray-100 rounded-sm">
 
               <p className='mb-4 text-gray-600'>Pour afficher votre Pharmacie sur la carte, veuillez saisir sa localisation  <b className='text-[--pink]'>Latitude</b> et <b className='text-[--pink]'>Longitude</b> ci-dessous.</p>
               <div className="space-y-2">
@@ -395,7 +445,8 @@ useEffect(() => {
 
 
 
-          <Label htmlFor="toolsCategory">Ajouter une image</Label>
+          <Label htmlFor="toolsCategory" className=''>Ajouter une image </Label>
+          <span className='text-gray-500 font-light text-[14px]'>(Pour plus de clarté,nous vous conseillons d'ajouter une image)</span>
 
           <div className="flex flex-col items-center justify-center">
 

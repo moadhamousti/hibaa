@@ -133,13 +133,15 @@ import Loader from '../Loader';
 
 
 const ProfileForm = () => {
-  const [newName, setNewName] = useState('');
-  const [newUserName, setNewUserName] = useState('');
-  const [newEmail, setNewEmail] = useState('');
+  const { data: session,update } = useSession();
+  const [newName, setNewName] = useState(session?.user?.name || '');
+  const [newUserName, setNewUserName] = useState(session?.user?.username || '');
+  const [newEmail, setNewEmail] = useState(session?.user?.email || '');
+  const [newPassword, setNewPassword] = useState(session?.user?.password || '');
+
   // const [imagePreview, setImagePreview] = useState("");
   const [file, setFile] = useState(null);
   const [media, setMedia] = useState("");
-  const { data: session,update } = useSession();
   const [loading, setLoading] = useState(false);
 
 
@@ -160,7 +162,8 @@ const ProfileForm = () => {
           name: newName,
           username: newUserName,
           email: newEmail,
-          image: media
+          image: media,
+          password:newPassword
         }),
       });
   
@@ -320,9 +323,22 @@ const ProfileForm = () => {
                         type="email" 
                         id="email"
                         placeholder={session?.user?.email || ''} 
-                        value={newEmail} 
-                        readOnly 
-                        className="w-full bg-gray-200 shadow-inner rounded-xl p-2 border outline-none mx-1"
+                        // value={newEmail} 
+                        value={newEmail} onChange={(e) => setNewEmail(e.target.value)} 
+                        // readOnly 
+                        className="w-full bg-gray-100 shadow-inner rounded-xl p-2 border outline-none mx-1"
+                      />
+                  </div>
+                </div>
+                <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
+                  <div className="mb-4">
+                    <label className="block uppercase tracking-wide text-xs font-bold">Password</label>   
+                      <input 
+                        type="password" 
+                        id="password"
+                        placeholder='Password' 
+                        value={newPassword} onChange={(e) => setNewPassword(e.target.value)} 
+                        className="w-full bg-gray-100 shadow-inner rounded-xl p-2 border outline-none mx-1"
                       />
                   </div>
                 </div>

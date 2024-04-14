@@ -28,6 +28,8 @@ import * as z from 'zod';
 import loader from '../../../public/loader.gif'
 import { useToast } from "@/components/ui/use-toast"
 import Loader from '../../components/Loader';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
+
 
 const storage = getStorage(app);
 
@@ -73,6 +75,10 @@ const[formData,setFormData] = useState(null);
   const [slug, setSlug] = useState("");
   const [location, setlocation] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
+  const [ownerNameError, setOwnerNameError] = useState("");
+  const [phaNameError, setPhaNameError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [addressError, setAddressError] = useState("");
   const [categoryError, setCategoryError] = useState("");
   const [locationError, setLocationError] = useState("");
   const [latitude, setLatitude] = useState("");
@@ -236,29 +242,53 @@ useEffect(() => {
     e.preventDefault();
 
     // Validation
+    let phaNameErrorMessage = "";
+    let ownerNameErrorMessage = "";
+    let phoneErrorMessage = "";
+    let addressErrorMessage = "";
     let descriptionErrorMessage = "";
 
 
+    if (phaName.length < 4) {
+      phaNameErrorMessage = "Pharmacie nom doit comporter au moins 4 caractères";
+    }
+    if (phone.length !== 10 || phone[0] !== '0') {
+      phoneErrorMessage = "Le numéro de téléphone doit comporter 10 caractères et commencer par 0";
+    }  
+
+    if (address.trim() === "") {
+      addressErrorMessage = "L'adresse est obligatoire";
+    }
+
+    if (ownerName.length < 5) {
+      ownerNameErrorMessage = "Pharmacie Propriétaire nom doit comporter au moins 5 caractères";
+    }
     if (desc.length < 40) {
       descriptionErrorMessage = "La description doit comporter au moins 38 caractères";
     }
 
+    setPhaNameError(phaNameErrorMessage);
+    setAddressError(addressErrorMessage);
+    setPhoneError(phoneErrorMessage);
+    setOwnerNameError(ownerNameErrorMessage);
     setDescriptionError(descriptionErrorMessage);
+
 
     // If there are errors, prevent form submission
     if ( descriptionErrorMessage) {
       return;
     }
-
-
-    // if (!selectedToolsCategories) {
-    //   setCategoryError("Veuillez sélectionner une catégorie");
-    //   return; // Prevent form submission
-    // }
-
-    if (!selectedLocationCategory) {
-      setLocationError("Veuillez sélectionner un emplacement");
-      return; // Prevent form submission
+    if ( addressErrorMessage) {
+      return;
+    }
+    if ( phoneErrorMessage) {
+      return;
+    }
+    if ( ownerNameErrorMessage) {
+      return;
+    }
+    if ( phaNameErrorMessage) {
+      return;
     }
 
     const res = await fetch(`/api/form/${id}`, {
@@ -313,25 +343,29 @@ useEffect(() => {
         <form className="grid gap-4">
 
           <div className="space-y-2">
-            <Label htmlFor="phaName">Pharmacie Nom</Label>
-            <Input value={phaName} id="phaName" className="bg-gray-200"  placeholder="Pharmacie Nom" onChange={e => setPhaName(e.target.value)} />
+            <Label htmlFor="phaName">Pharmacie Nom <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white text-[14px] text-center'>Ce champs est obligatoire</HoverCardContent></HoverCard></Label>
+            <Input value={phaName} id="phaName" className="bg-gray-100"  placeholder="Pharmacie Nom" onChange={e => setPhaName(e.target.value)} />
+            <p className="text-red-600 text-[16px] mb-4">{phaNameError}</p>
           </div>
 
 
           <div className="space-y-2">
-            <Label htmlFor="phaName">Pharmacie Propriétaire</Label>
-            <Input value={ownerName} id="phaName" className="bg-gray-200" placeholder="Pharmacie owner Name" onChange={e => setOwnerName(e.target.value)} />
+            <Label htmlFor="phaName">Pharmacie Propriétaire <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white text-[14px] text-center'>Ce champs est obligatoire</HoverCardContent></HoverCard></Label>
+            <Input value={ownerName} id="phaName" className="bg-gray-100" placeholder="Pharmacie owner Name" onChange={e => setOwnerName(e.target.value)} />
+            <p className="text-red-600 text-[16px] mb-4">{ownerNameError}</p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea value={desc} onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
+            <Label htmlFor="description">Description <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white text-[14px] text-center'>Ce champs est obligatoire</HoverCardContent></HoverCard></Label>
+            <Textarea value={desc} onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-100 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
             <p className="text-red-600 text-[16px] mb-4">{descriptionError}</p>
           </div>
 
-
-          <Label htmlFor="phone">Numéro de téléphone</Label>
-          <Input value={phone}  onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
+          <div className="space-y-2">
+            <Label htmlFor="phone">Numéro de téléphone <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white text-[14px] text-center'>Ce champs est obligatoire</HoverCardContent></HoverCard></Label>
+            <Input value={phone}  onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-100 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
+            <p className="text-red-600 text-[16px] mb-4">{phoneError}</p>
+          </div>
           <div className='flex gap-3'>
           <div className='flex gap-3'>
             <Image src={whatsapp} alt='' width={20} height={20}/>
@@ -345,7 +379,7 @@ useEffect(() => {
               checked={isWhatsapp === "WHATSAPP"} 
               onChange={() => setisWhatsapp("WHATSAPP")} 
             />
-            <label htmlFor="whatsapp-yes" className="">Yes</label>
+            <label htmlFor="whatsapp-yes" className="">Oui</label>
             <input 
               type="radio"
               id="whatsapp-no"
@@ -355,7 +389,7 @@ useEffect(() => {
               checked={isWhatsapp === "REGULAR"} 
               onChange={() => setisWhatsapp("REGULAR")} 
             />
-            <label htmlFor="whatsapp-no" className="">No</label>
+            <label htmlFor="whatsapp-no" className="">Non</label>
           </div>
             
           </div>
@@ -380,12 +414,13 @@ useEffect(() => {
             <p className="text-red-600 text-[16px] mb-4">{categoryError}</p> */}
 
           <div className="space-y-2">
-            <Label htmlFor="address">Address</Label>
-            <Input value={address} id="address" className="bg-gray-200" placeholder="Address" onChange={e => setAddress(e.target.value)} />
+            <Label htmlFor="address">Address <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white text-[14px] text-center'>Ce champs est obligatoire</HoverCardContent></HoverCard></Label>
+            <Input value={address} id="address" className="bg-gray-100" placeholder="Address" onChange={e => setAddress(e.target.value)} />
+            <p className="text-red-600 text-[16px] mb-4">{addressError}</p>
           </div>
             
 
-            <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
+            <Label htmlFor="toolsCategory">Choisir un emplacement: <HoverCard><HoverCardTrigger><b className='text-red-600 font-extrabold'>*</b></HoverCardTrigger><HoverCardContent className='bg-[--pink] text-white text-[14px] text-center'>Ce champs est obligatoire</HoverCardContent></HoverCard></Label>
             
             <select
               id="locationCategory"
@@ -395,7 +430,7 @@ useEffect(() => {
               onBlur={(e) => setSelectedLocationCategory(e.target.value)} // Handle onBlur event for immediate validation feedback
               required 
             >
-              <option value={location}>Select Emplacement</option>
+              <option value={location}>Sélect Emplacement</option>
               {/* <option value="">Sélectionner une catégorie de lieu</option> */}
               {locationCategories.map((category) => (
                 <option key={category.id} value={category.title}>
@@ -408,22 +443,22 @@ useEffect(() => {
 
             <div className="space-y-2">
               <Label htmlFor="facebook">Facebook Lien</Label>
-              <Input value={facebook} id="facebook" className="bg-gray-200" placeholder="Facebook" onChange={e => setFacebook(e.target.value)} />
+              <Input value={facebook} id="facebook" className="bg-gray-100" placeholder="Facebook" onChange={e => setFacebook(e.target.value)} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="twitter">Twitter Lien</Label>
-              <Input value={twitter} id="twitter" className="bg-gray-200" placeholder="Twitter" onChange={e => setTwitter(e.target.value)} />
+              <Input value={twitter} id="twitter" className="bg-gray-100" placeholder="Twitter" onChange={e => setTwitter(e.target.value)} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="instagram">Instagram Lien</Label>
-              <Input value={instagram} id="instagram" className="bg-gray-200" placeholder="Instagram" onChange={e => setInstagram(e.target.value)} />
+              <Input value={instagram} id="instagram" className="bg-gray-100" placeholder="Instagram" onChange={e => setInstagram(e.target.value)} />
             </div>
 
 
 
-            <div className="p-5 bg-gray-200 rounded-sm">
+            <div className="p-5 bg-gray-100 rounded-sm">
 
               <p className='mb-4 text-gray-600'>Pour afficher votre Pharmacie sur la carte, veuillez saisir sa localisation  <b className='text-[--pink]'>Latitude</b> et <b className='text-[--pink]'>Longitude</b> ci-dessous.</p>
               <div className="space-y-2">
@@ -453,6 +488,7 @@ useEffect(() => {
 
 
           <Label htmlFor="toolsCategory">Ajouter une image</Label>
+
 
           <div className='flex flex-col items-center justify-center'>
                   <input

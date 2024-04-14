@@ -43,7 +43,7 @@ const TypeList = () => {
       <select
         value={selectedType}
         onChange={handleTypeChange}
-        className="block appearance-none w-full bg-gray-100 border hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
+        className="block appearance-none w-full text-white bg-[--darkishBlue] border hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
       >
         <option value="">Poste type</option>
         {types.map((type) => (
@@ -52,7 +52,7 @@ const TypeList = () => {
           </option>
         ))}
       </select>
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-white">
           <svg
             className="fill-current h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"

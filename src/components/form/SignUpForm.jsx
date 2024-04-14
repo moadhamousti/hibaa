@@ -30,17 +30,26 @@ import loaderGif from '../../../public/loaderB.gif'
 
 const FormSchema = z
   .object({
-    username: z.string().min(1, 'Nom d\'utilisateur est nécessaire').max(100),
-    email: z.string().min(1, 'L\'e-mail est requis').email('L\'Email invalide'),
+    username: z.string().min(1, "Nom d'utilisateur est nécessaire").max(100),
+    email: z
+      .string()
+      .min(1, "L'e-mail est requis")
+      .email("L'Email invalide")
+      .refine((value) => {
+        // Custom validation function to check email domain
+        const allowedDomains = ["gmail.com", "hotmail.com", "yahoo.com"];
+        const emailParts = value.split("@");
+        return allowedDomains.includes(emailParts[emailParts.length - 1]);
+      }, "l'e-mail n'est pas valide"),
     password: z
       .string()
-      .min(1, 'Mot de passe requis')
-      .min(8, 'Le mot de passe doit comporter plus de 8 caractères'),
-    confirmPassword: z.string().min(1, 'Une confirmation du mot de passe est requise'),
+      .min(1, "Mot de passe requis")
+      .min(8, "Le mot de passe doit comporter plus de 8 caractères"),
+    confirmPassword: z.string().min(1, "Une confirmation du mot de passe est requise"),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    path: ['confirmPassword'],
-    message: 'Le mot de passe ne correspond pas',
+    path: ["confirmPassword"],
+    message: "Le mot de passe ne correspond pas",
   });
 
 

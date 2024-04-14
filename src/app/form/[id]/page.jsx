@@ -167,18 +167,27 @@ const Page = async ({params}) => {
                     )}
                     </h3>
               </div>
-              <div className="flex gap-2 mb-3">
-                    <Image width={25} height={25} src={instagram}/>
-                    <Link href={instagramURL}><h3 className='underline text-[30] font-semibold'>{data.facebook}</h3></Link>
-              </div>
-              <div className="flex gap-2 mb-3">
-                    <Image width={25} height={25} src={facebook}/>
-                    <Link href={facebookURL}><h3 className='underline text-[30] font-semibold'>{data.instagram}</h3></Link>
-              </div>
-              <div className="flex gap-2 mb-3">
-                    <Image width={25} height={25} src={twitter}/>
-                    <Link href={twitterURL}><h3 className='underline text-[30] font-semibold'>{data.twitter}</h3></Link>
-              </div>
+              {data.instagram && (
+                <div className="flex gap-2 mb-3">
+                  <Image width={25} height={25} src={instagram}/>
+                  <Link href={instagramURL}><h3 className='underline text-[30] font-semibold'>{data.instagram}</h3></Link>
+                </div>
+              )}
+
+              {data.facebook && (
+                <div className="flex gap-2 mb-3">
+                  <Image width={25} height={25} src={facebook}/>
+                  <Link href={facebookURL}><h3 className='underline text-[30] font-semibold'>{data.facebook}</h3></Link>
+                </div>
+              )}
+
+              {data.twitter && (
+                <div className="flex gap-2 mb-3">
+                  <Image width={25} height={25} src={twitter}/>
+                  <Link href={twitterURL}><h3 className='underline text-[30] font-semibold'>{data.twitter}</h3></Link>
+                </div>
+              )}
+
               <div className="flex gap-2 mb-3">
                     {emailServiceLink && (
                       <Link href={emailServiceLink} passHref>
@@ -220,10 +229,12 @@ const Page = async ({params}) => {
                     <h3 className='underline text-[30] font-semibold'>{data.address}</h3>
               </div>
 
-              <div className="flex-2 h-[100%] bg-white mt-5">
-                {/* <Map items={data}/> */}
-                <Map items={[data]}/>
-              </div>
+              {data.longitude && data.latitude && (
+                <div className="flex-2 h-[100%] bg-white mt-5">
+                  <Map items={[data]}/>
+                </div>
+              )}
+
           </div>
           </div>
         </div>

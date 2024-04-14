@@ -115,7 +115,7 @@ model DonatorForm {
   desc      String
   img           String?  @default("https://static.medias24.com/content/uploads/2020/01/pharmacie1.jpg")
   phone           String
-  isWhatsapp      NType
+  isWhatsapp      NType @default(REGULAR)
   latitude       String?
   longitude       String?
   views     Int       @default(0)
@@ -152,7 +152,7 @@ model ReqPost {
   createdAt DateTime  @default(now())
   title     String
   desc      String
-  img       String
+  img       String?   @default("https://www.medisave.co.uk/cdn/shop/collections/Tom.jpg?v=1683730716")
   phone           String
   isWhatsapp      Boolean          @default(false)
   views     Int       @default(0)

@@ -18,6 +18,8 @@ import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
 import { useToast } from "@/components/ui/use-toast"
 import whatsapp from '../../../public/whatsapp.png'
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
+
 
 
 
@@ -59,6 +61,8 @@ const DonatePostFormUpdate = ({ params }) => {
   const [categoryError, setCategoryError] = useState("");
   const [locationError, setLocationError] = useState("");
   const { toast } = useToast();
+  const [phoneError, setPhoneError] = useState("");
+
 
 
 
@@ -195,22 +199,33 @@ const DonatePostFormUpdate = ({ params }) => {
 
     e.preventDefault();
 
+    // Validation
     let titleErrorMessage = "";
     let descriptionErrorMessage = "";
+    let phoneErrorMessage = "";
+
 
     if (title.length < 5) {
       titleErrorMessage = "Le titre doit comporter au moins 5 caractères";
     }
+    if (phone.length !== 10 || phone[0] !== '0') {
+      phoneErrorMessage = "Le numéro de téléphone doit comporter 10 caractères et commencer par 0";
+    }
 
-    if (desc.length < 40) {
+    if (desc.length < 38) {
       descriptionErrorMessage = "La description doit comporter au moins 38 caractères";
     }
 
     setTitleError(titleErrorMessage);
     setDescriptionError(descriptionErrorMessage);
+    setPhoneError(phoneErrorMessage);
 
     // If there are errors, prevent form submission
     if (titleErrorMessage || descriptionErrorMessage) {
+      return;
+    }
+
+    if ( phoneErrorMessage) {
       return;
     }
 
@@ -223,6 +238,7 @@ const DonatePostFormUpdate = ({ params }) => {
       setLocationError("Veuillez sélectionner un emplacement");
       return; // Prevent form submission
     }
+
 
 
     try {
@@ -272,18 +288,18 @@ const DonatePostFormUpdate = ({ params }) => {
           <div className='max-w-md mx-auto mb-[60px] mt-[50px]'>
             {postData && (
               <form className='max-w-md mx-auto gap-4'>
-                <Label htmlFor="title">Titre</Label>
-                <Input id="Titre" className="bg-gray-200 mb-3" 
+                <Label htmlFor="title">Titre <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+                <Input id="Titre" className="bg-gray-100 mb-3" 
                   placeholder="Title"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <p className="text-red-600 text-[16px] mb-4">{titleError}</p>
 
-                <Label htmlFor="title">Description</Label>
+                <Label htmlFor="title">Description <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
                 <Textarea
                   id="desc"
-                  className="mb-3 bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="mb-3 bg-gray-100 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                   placeholder="Description"
                   value={desc}
                   onChange={(e) => setDesc(e.target.value)}
@@ -292,7 +308,7 @@ const DonatePostFormUpdate = ({ params }) => {
 
 
               <div className='mt-3'>
-                <Label htmlFor="locationCategory">Sélectionnez un emplacement:</Label>
+                <Label htmlFor="locationCategory">Sélectionnez un emplacement: <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
                   <select
                     id="locationCategory"
                     value={selectedLocationCategory}
@@ -314,10 +330,10 @@ const DonatePostFormUpdate = ({ params }) => {
 
                 </div>
                 <div className='mt-3'>
-                <Label htmlFor="toolsCategory">Choisir une catégorie:</Label>
+                <Label htmlFor="toolsCategory">Choisir une catégorie: <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
                 <select 
                   id="toolsCategory"
-            className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px] w-full'
+                  className='bg-[#B0BAC31C] px-2 py-2 rounded-[20px] w-full'
 
                   value={selectedToolsCategories}
                   onChange={(e) => {
@@ -336,14 +352,17 @@ const DonatePostFormUpdate = ({ params }) => {
                 </div>
 
                 <div className="mt-3">
-                <Label htmlFor="title">Numéro de téléphone</Label>
-                <Input
-                  id="phone"
-                  className="bg-gray-200"
-                  placeholder="Phone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
+                <div className="space-y-2">
+                <Label htmlFor="title">Numéro de téléphone <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+                  <Input
+                    id="phone"
+                    className="bg-gray-100"
+                    placeholder="Phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                <p className="text-red-600 text-[16px] mb-4">{phoneError}</p>
+                </div>
                 {/* <div className='flex gap-3 mt-2 mb-4'>
                    <img src="/whatsapp.png" alt='' width={18} height={18} />
                    <span className='text-[14px] '>Est-ce un numéro WhatsApp ?</span>
@@ -366,7 +385,7 @@ const DonatePostFormUpdate = ({ params }) => {
                     value="true"
                     onChange={() => setIsWhatsapp(true)}
                   />
-                  <label htmlFor="whatsapp-yes" className="">Yes</label>
+                  <label htmlFor="whatsapp-yes" className="">Oui</label>
                   
                   <input 
                     type="radio"
@@ -376,11 +395,14 @@ const DonatePostFormUpdate = ({ params }) => {
                     value="false"
                     onChange={() => setIsWhatsapp(false)}
                   />
-                  <label htmlFor="whatsapp-no" className="">No</label>
+                  <label htmlFor="whatsapp-no" className="">Non</label>
                 </div>
 
                 </div>
-                <div className='flex flex-col items-center justify-center'>
+                <Label htmlFor="toolsCategory">Ajouter une image</Label>
+                <div className='flex flex-col items-center justify-center mt-4'>
+
+                  
                   <input
                     type="file"
                     id="image"
@@ -648,7 +670,7 @@ export default DonatePostFormUpdate;
 //             {postData && (
 //               <div>
 //                 <Label htmlFor="title">Title</Label>
-//                 <Input id="title" className="bg-gray-200 mb-3" 
+//                 <Input id="title" className="bg-gray-100 mb-3" 
 //                   placeholder="Title"
 //                   value={title}
 //                   onChange={(e) => setTitle(e.target.value)}
@@ -656,7 +678,7 @@ export default DonatePostFormUpdate;
 //                 <Label htmlFor="title">Description</Label>
 //                 <Textarea
 //                   id="desc"
-//                   className="mb-3 bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+//                   className="mb-3 bg-gray-100 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
 //                   placeholder="Description"
 //                   value={desc}
 //                   onChange={(e) => setDesc(e.target.value)}
@@ -664,7 +686,7 @@ export default DonatePostFormUpdate;
 //                 {/* <Label htmlFor="title">Phone</Label>
 //                 <Input
 //                   id="phone"
-//                   className="bg-gray-200"
+//                   className="bg-gray-100"
 //                   placeholder="Phone"
 //                   value={phone}
 //                   onChange={(e) => setPhone(e.target.value)}

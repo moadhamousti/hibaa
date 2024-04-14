@@ -85,17 +85,19 @@ const Page = async ({ params }) => {
   const getEmailServiceLink = (email) => {
     const domain = email.split('@')[1];
     switch (domain) {
-      case 'gmail.com':
-        return 'https://mail.google.com';
-      case 'yahoo.com':
-        return 'https://mail.yahoo.com';
-      case 'hotmail.com':
-        return 'https://outlook.live.com';
-      default:
-        return null;
+        case 'gmail.com':
+            return `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+        case 'yahoo.com':
+            return `https://compose.mail.yahoo.com/?to=${email}`;
+        case 'hotmail.com':
+            return `https://outlook.live.com/owa/?path=/mail/action/compose&to=${email}`;
+        default:
+            return null;
     }
-  };
-  const emailServiceLink = getEmailServiceLink(data.user.email);
+};
+
+const emailServiceLink = getEmailServiceLink(data.user.email);
+
   
 
   
@@ -261,7 +263,7 @@ const Page = async ({ params }) => {
                   </button>
                 )}
                   
-                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full">Via E-mail</button>
+                  <button role="button" aria-label="Subscribe" className="sm:mt-1 w-1/2 h-12 text-[white] bg-[#00A4BF] shadow-md text-base sm:text-xl hover:text-[#00A4BF] hover:bg-[white] hover:border-2 hover:border-[white ] hover:border-[#00A4BF] rounded-full"><Link href={emailServiceLink}>Via E-mail</Link></button>
                 </div>
               </div>
             </div>

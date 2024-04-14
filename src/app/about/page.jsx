@@ -6,6 +6,7 @@ import MakeDifference from '@/components/About/MakeDifference/MakeDifference';
 import About from '@/components/About/AboutSec/About';
 import Navbar from '@/components/Navbar';
 import PageLayout from '../(blog)/layout';
+import Footer from '@/components/Footer';
 
 const AboutPage = () => {
   return (
@@ -19,6 +20,7 @@ const AboutPage = () => {
       <JoinUs/>
       <MakeDifference/>
     </div >
+    <Footer/>
   </>
   );
 };

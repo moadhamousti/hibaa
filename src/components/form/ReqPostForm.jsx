@@ -30,6 +30,8 @@ import { useToast } from "@/components/ui/use-toast"
 import Loader from '../Loader';
 import FetchedPosts from '../FetchedPosts';
 import FetchedPostsLoc from '../FetchedPostsLoc';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
+
 
 const storage = getStorage(app);
 
@@ -44,7 +46,7 @@ const ReqPostsForm = () => {
   const [toolsCategories, setToolsCategories] = useState([]);
   const [selectedToolsCategories, setSelectedToolsCategories] = useState('');
   const [file, setFile] = useState(null);
-  const [media, setMedia] = useState("");
+  const [media, setMedia] = useState("https://www.medisave.co.uk/cdn/shop/collections/Tom.jpg?v=1683730716");
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [slug, setSlug] = useState("");
@@ -52,6 +54,7 @@ const ReqPostsForm = () => {
   const [titleError, setTitleError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
   const [categoryError, setCategoryError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [locationError, setLocationError] = useState("");
 
 
@@ -190,9 +193,14 @@ useEffect(() => {
     // Validation
     let titleErrorMessage = "";
     let descriptionErrorMessage = "";
+    let phoneErrorMessage = "";
+
 
     if (title.length < 5) {
       titleErrorMessage = "Le titre doit comporter au moins 5 caractères";
+    }
+    if (phone.length !== 10 || phone[0] !== '0') {
+      phoneErrorMessage = "Le numéro de téléphone doit comporter 10 caractères et commencer par 0";
     }
 
     if (desc.length < 38) {
@@ -201,12 +209,16 @@ useEffect(() => {
 
     setTitleError(titleErrorMessage);
     setDescriptionError(descriptionErrorMessage);
+    setPhoneError(phoneErrorMessage);
 
     // If there are errors, prevent form submission
     if (titleErrorMessage || descriptionErrorMessage) {
       return;
     }
 
+    if ( phoneErrorMessage) {
+      return;
+    }
 
     if (!selectedToolsCategories) {
       setCategoryError("Veuillez sélectionner une catégorie");
@@ -262,9 +274,9 @@ useEffect(() => {
       <div className="max-w-md mx-auto mb-[60px] mt-[50px]">
         <form className="grid gap-4">
           {/* <Label htmlFor="title">Titre</Label>
-          <Input id="title" className="bg-gray-200" placeholder="Titre" onChange={e => setTitle(e.target.value)} /> */}
+          <Input id="title" className="bg-gray-100" placeholder="Titre" onChange={e => setTitle(e.target.value)} /> */}
 
-          <Label htmlFor="locationCategory">Choisir une catégorie:</Label>
+          <Label htmlFor="locationCategory">Choisir une catégorie: <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
           <div>
           {/* <label htmlFor="toolsCategory">Choisir une catégorie:</label> */}
           <select
@@ -275,7 +287,7 @@ useEffect(() => {
             onBlur={handleCategorySelect} // Handle onBlur event for immediate validation feedback
             required
           >
-            <option value="">Select Category</option>
+            <option value="">Sélect Catégorie</option>
             {toolsCategories.map((category) => (
               <option key={category.id} value={category.title}>
                 {category.title}
@@ -289,7 +301,7 @@ useEffect(() => {
         </div>
 
 
-        <Label htmlFor="toolsCategory">Sélectionnez un emplacement:</Label>
+        <Label htmlFor="toolsCategory">Choisir un emplacement: <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
             
         <div>
             <select
@@ -315,37 +327,23 @@ useEffect(() => {
           </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           <div className="space-y-2">
-            <Label htmlFor="title">Titre</Label>
-            <Input id="title" className="bg-gray-200" placeholder="Titre" onChange={e => setTitle(e.target.value)} />
+            <Label htmlFor="title">Titre <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Input id="title" className="bg-gray-100" placeholder="Titre" onChange={e => setTitle(e.target.value)} />
             <p className="text-red-600 text-[16px] mb-4">{titleError}</p>
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
-            <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-200 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
+            <Label htmlFor="description">Description <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Textarea onChange={e => setDesc(e.target.value)} id="description" placeholder="Description" className="bg-gray-100 w-full h-32 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" />
             <p className="text-red-600 text-[16px] mb-4">{descriptionError}</p>
           </div>
             
-
-            <Label htmlFor="phone">Numéro de téléphone</Label>
-          <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
+          <div className="space-y-2">
+            <Label htmlFor="phone">Numéro de téléphone <b className='text-red-600 font-extrabold' title="Ce champs est obligatoire">*</b></Label>
+            <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-100 border-[#B0BAC3]' placeholder="Numéro de téléphone" />
+            <p className="text-red-600 text-[16px] mb-4">{phoneError}</p>
+          </div>
           <div className='flex gap-3'>
   <Image src={whatsapp} alt='' width={20} height={20}/>
   <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
@@ -358,7 +356,7 @@ useEffect(() => {
     value="true"
     onChange={() => setisWhatsapp(true)}
   />
-  <label htmlFor="whatsapp-yes" className="">Yes</label>
+  <label htmlFor="whatsapp-yes" className="">Oui</label>
   
   <input 
     type="radio"
@@ -368,7 +366,7 @@ useEffect(() => {
     value="false"
     onChange={() => setisWhatsapp(false)}
   />
-  <label htmlFor="whatsapp-no" className="">No</label>
+  <label htmlFor="whatsapp-no" className="">Non</label>
 </div>
           
 {/* 
@@ -395,6 +393,8 @@ useEffect(() => {
 
 
           <Label htmlFor="toolsCategory">Ajouter une image</Label>
+          <span className='text-gray-500 font-light text-[14px]'>(Pour Clarete, il est conseillé d'ajouter une image)</span>
+
 
           <div className="flex flex-col items-center justify-center">
 
