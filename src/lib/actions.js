@@ -265,7 +265,7 @@ export const addPost = async (formData) => {
 
 
 export const addForm = async (formData) => {
-  const { phaName,ownerName, desc,address, phone,facebook,twitter,instagram, userEmail,location,img,isValidated,isWhatsapp } = Object.fromEntries(formData); 
+  const { phaName,ownerName, desc,address, phone,facebook,twitter,instagram, userEmail,location,img,isValidated,isWhatsapp,latitude,longitude } = Object.fromEntries(formData); 
          
   
   console.log(formData)
@@ -287,6 +287,8 @@ export const addForm = async (formData) => {
         userEmail,
         location,
         isValidated,
+        latitude,
+        longitude,
         
       },
     });
@@ -362,12 +364,12 @@ export const updatePost = async (formData) => {
 export const updateForm = async (formData) => {
   try {
     // Extract data from formData
-    const { id, phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated,isWhatsapp} = Object.fromEntries(formData);
+    const { id, phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated,isWhatsapp,latitude,longitude} = Object.fromEntries(formData);
      
 
     // Construct updateFields object
     const updateFields = {
-      phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated, isWhatsapp
+      phaName, ownerName, desc, address, phone, facebook, twitter, instagram, userEmail, location, img, isValidated, isWhatsapp,latitude,longitude
     };
 
     // Remove empty or undefined fields from updateFields object

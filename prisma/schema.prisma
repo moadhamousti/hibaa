@@ -116,6 +116,8 @@ model DonatorForm {
   img           String?  @default("https://static.medias24.com/content/uploads/2020/01/pharmacie1.jpg")
   phone           String
   isWhatsapp      NType
+  latitude       String?
+  longitude       String?
   views     Int       @default(0)
   userEmail String
   location String

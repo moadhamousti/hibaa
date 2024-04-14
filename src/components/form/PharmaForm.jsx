@@ -50,6 +50,9 @@ const PharmaForm = () => {
   const [facebook, setFacebook] = useState("");
   const [instagram, setInstagram] = useState("");
   const [twitter, setTwitter] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
 
 
   const [slug, setSlug] = useState("");
@@ -220,6 +223,8 @@ useEffect(() => {
         img: media,
         phone,
         isWhatsapp,
+        latitude,
+        longitude,
         location: selectedLocationCategory,
         // slug: slugify(title),
         // catSlug: catSlug || "style",
@@ -235,7 +240,7 @@ useEffect(() => {
         variant: "success",
         className: "bg-green-500 text-white", 
       });
-      router.push('/test'); 
+      // router.push('/'); 
     } else {
       toast({
         title: "Error",
@@ -369,6 +374,22 @@ useEffect(() => {
             <div className="space-y-2">
               <Label htmlFor="instagram">Instagram Lien</Label>
               <Input id="instagram" className="bg-gray-200" placeholder="Instagram" onChange={e => setInstagram(e.target.value)} />
+            </div>
+
+
+
+            <div className="p-5 bg-gray-200 rounded-sm">
+
+              <p className='mb-4 text-gray-600'>Pour afficher votre Pharmacie sur la carte, veuillez saisir sa localisation  <b className='text-[--pink]'>Latitude</b> et <b className='text-[--pink]'>Longitude</b> ci-dessous.</p>
+              <div className="space-y-2">
+                <Label htmlFor="latidude">Latitude</Label>
+                <Input id="latidude" className="bg-white " placeholder="Latidude" onChange={e => setLatitude(e.target.value)} />
+              </div>
+
+              <div className="space-y-2 mt-2">
+                <Label htmlFor="longitude">Longitude</Label>
+                <Input id="longitude" className="bg-white text-black" placeholder="Longitude" onChange={e => setLongitude(e.target.value)} />
+              </div>
             </div>
 
 

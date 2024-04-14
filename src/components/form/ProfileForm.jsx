@@ -315,7 +315,7 @@ const ProfileForm = () => {
                 </div>
                 <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
                   <div className="mb-4">
-                    <label className="block uppercase tracking-wide text-xs font-bold">Username</label>   
+                    <label className="block uppercase tracking-wide text-xs font-bold">Email</label>   
                       <input 
                         type="email" 
                         id="email"

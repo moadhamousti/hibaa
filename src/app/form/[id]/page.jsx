@@ -16,10 +16,11 @@ import facebook from "../../../../public/CFacebook.png";
 import twitter from "../../../../public/CTwitter.png";
 import instagram from "../../../../public/CInstagram.png";
 import loacation from "../../../../public/Location.png";
-
-
+import dynamic from 'next/dynamic';
 import phone from "../../../../public/phone.png";
 import Map from '@/components/Map';
+
+
 
 
 const getData = async (id) => {
@@ -38,6 +39,7 @@ const getData = async (id) => {
 
 
 const Page = async ({params}) => {
+  
 
   const { id } = params;
   const data = await getData(id);
@@ -217,12 +219,15 @@ const Page = async ({params}) => {
                     <Image width={25} height={25} src={loacation}/>
                     <h3 className='underline text-[30] font-semibold'>{data.address}</h3>
               </div>
+
+              <div className="flex-2 h-[100%] bg-white mt-5">
+                {/* <Map items={data}/> */}
+                <Map items={[data]}/>
+              </div>
           </div>
           </div>
         </div>
-        {/* <div className="flex-2 h-[100%] bg-white">
-          <Map/>
-        </div> */}
+        
       </div>
   )
 }

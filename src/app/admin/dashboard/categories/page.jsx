@@ -29,10 +29,10 @@ const Categories = async ({ searchParams }) => {
       <table className={styles.table}>
         <thead className="px-4 py-2 bg-white text-center">
           <tr>
-            <td className="font-bold border border-gray-300">Title</td>
-            <td className="font-bold border border-gray-300">Don Postes</td>
-            <td className="font-bold border border-gray-300">Demande Postes</td> 
-            <td className="font-bold border border-gray-300">Action</td> 
+            <td className="font-bold border bg-white border-gray-300">Title</td>
+            <td className="font-bold border bg-white border-gray-300">Don Postes</td>
+            <td className="font-bold border bg-white border-gray-300">Demande Postes</td> 
+            <td className="font-bold border bg-white border-gray-300">Action</td> 
 
 
           </tr>
@@ -40,13 +40,13 @@ const Categories = async ({ searchParams }) => {
         <tbody className="text-center">
           {categories.map((category) => (
             <tr key={category.id}>
-              <td className="border border-white">{category.title}</td>
-              <td className="border border-white">{category.DonPosts ? category.DonPosts.length : 0}</td>
-              <td className="border border-white">{category.ReqPost ? category.ReqPost.length : 0}</td>
+              <td className="border bg-white border-gray-300">{category.title}</td>
+              <td className="border bg-white border-gray-300">{category.DonPosts ? category.DonPosts.length : 0}</td>
+              <td className="border bg-white border-gray-300">{category.ReqPost ? category.ReqPost.length : 0}</td>
               
 
 
-              <td className="border border-white items-center">
+              <td className="border bg-white border-gray-300 items-center">
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/categories/${category.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

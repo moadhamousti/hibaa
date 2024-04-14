@@ -98,6 +98,8 @@ const AddPost = () => (
           <input type="text" name='instagram' id='instagram' placeholder="Instagram"  />
           <input type="text" name='twitter' id='twitter' placeholder="Twitter"  />
         </div>
+        <input type="text" name='latitude' id='latitude' placeholder="latitude"  />
+        <input type="text" name='longitude' id='longitude' placeholder="longitude"  />
         <select name="isValidated" id="isValidated" defaultValue="NONVALIDER">
     <option value="VALIDER">Valider</option>
     <option value="NONVALIDER">Non Valider</option>

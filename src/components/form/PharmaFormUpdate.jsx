@@ -75,6 +75,9 @@ const[formData,setFormData] = useState(null);
   const [descriptionError, setDescriptionError] = useState("");
   const [categoryError, setCategoryError] = useState("");
   const [locationError, setLocationError] = useState("");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
 
 
 
@@ -118,11 +121,14 @@ useEffect(() => {
         setOwnerName(data.ownerName || ""); 
         setDesc(data.desc || ""); 
         setPhone(data.phone || ""); 
+        setFile(data.file || ""); 
         setisWhatsapp(data.isWhatsapp || false); 
         setAddress(data.address || "");
         setFacebook(data.facebook || "");
         setInstagram(data.instagram || "");
         setTwitter(data.twitter || ""); 
+        setLongitude(data.longitude || ""); 
+        setLatitude(data.latitude || ""); 
         setSelectedLocationCategory(data.location || "");
       } catch (error) {
         console.error(error);
@@ -269,6 +275,8 @@ useEffect(() => {
         img: media,
         phone,
         isWhatsapp,
+        latitude,
+        longitude,
         location: selectedLocationCategory,
         // slug: slugify(title),
         // catSlug: catSlug || "style",
@@ -284,7 +292,6 @@ useEffect(() => {
         variant: "success",
         className: "bg-green-500 text-white", 
       });
-    //   router.push('/'); 
     } else {
       toast({
         title: "Error",
@@ -416,53 +423,86 @@ useEffect(() => {
 
 
 
+            <div className="p-5 bg-gray-200 rounded-sm">
+
+              <p className='mb-4 text-gray-600'>Pour afficher votre Pharmacie sur la carte, veuillez saisir sa localisation  <b className='text-[--pink]'>Latitude</b> et <b className='text-[--pink]'>Longitude</b> ci-dessous.</p>
+              <div className="space-y-2">
+                <Label htmlFor="latitude">Latitude</Label>
+                <Input
+                  value={latitude}  
+                  id="latitude"
+                  className="bg-white "
+                  placeholder="Latitude"
+                  onChange={e => setLatitude(e.target.value)}  // Ensure that setLatitude updates the latitude state variable
+                />
+              </div>
+
+              <div className="space-y-2 mt-2">
+                <Label htmlFor="longitude">Longitude</Label>
+                <Input
+                  value={longitude}  // Ensure that the value attribute is bound to the longitude state variable
+                  id="longitude"
+                  className="bg-white text-black"
+                  placeholder="Longitude"
+                  onChange={e => setLongitude(e.target.value)}  // Ensure that setLongitude updates the longitude state variable
+                />
+              </div>
+            </div>
+
+
+
 
           <Label htmlFor="toolsCategory">Ajouter une image</Label>
 
-          <div className="flex flex-col items-center justify-center">
-
-          <label htmlFor="image" className="relative">
-  <input
-    type="file"
-    id="image"
-    accept="image/*"
-    onChange={handleImageChange}
-    onDrop={handleDrop}
-    onDragOver={handleDragOver}
-    className="hidden"
-  />
-  {loading ? (
-    <div className="w-full h-full flex items-center justify-center">
-      <Loader /> {/* Replace Loader with your loader component */}
-    </div>
-  ) : (
-    <>
-      {file || (formData && formData.img) ? (
-        <img
-          src={file ? URL.createObjectURL(file) : formData.img}
-          alt={file ? "Preview" : "Current Image"}
-          className="w-full h-full object-cover rounded-md border-2 border-gray-300 cursor-pointer"
-          onClick={() => document.getElementById("image").click()} // Trigger file input click when image is clicked
-        />
-      ) : (
-        <div
-          className="w-full h-full flex items-center justify-center border-2 border-dashed border-[#00A4BF] bg-[#F8F8FF] rounded-md cursor-pointer"
-          onDrop={handleDrop}
-          onDragOver={handleDragOver}
-        >
-          <div className="column self-center bg-white px-10 py-10" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <Image alt="" className="mb-6" src={uploadIcon} width={100} height={100} />
-            <p className="text-gray-400 text-center ">
-              Glisser-déposer des fichiers ou <strong className="text-[#00A4BF] font-bold underline">Parcourir</strong>
-            </p>
-          </div>
-        </div>
-      )}
-    </>
-  )}
-</label>
-
-    </div>
+          <div className='flex flex-col items-center justify-center'>
+                  <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    className="hidden" // Hide on medium and large screens
+                  />
+                  {loading ? (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Loader /> {/* Replace Loader with your loader component */}
+                    </div>
+                  ) : (
+                    <>
+                      {file ? (
+                        <label htmlFor="image" className="cursor-pointer">
+                          <img
+                            src={URL.createObjectURL(file)}
+                            alt="Preview"
+                            className="w-full h-full object-cover rounded-md border-2 border-gray-300"
+                          />
+                        </label>
+                      ) : formData && formData.img ? (
+                        <label htmlFor="image" className="cursor-pointer">
+                          <img
+                            src={formData.img}
+                            alt="Current Image"
+                            className="w-full h-full object-cover rounded-md border-2 border-gray-300"
+                          />
+                        </label>
+                      ) : (
+                        <div
+                          className="w-[430px] h-full flex items-center justify-center border-2 border-dashed border-[#00A4BF] bg-[#F8F8FF] rounded-md"
+                          onDrop={handleDrop}
+                          onDragOver={handleDragOver}
+                        >
+                          <label htmlFor="image" className="cursor-pointer">
+                            <div className='column self-center bg-white px-10 py-10' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                              <Image className='mb-6' src={uploadIcon} width={100} height={100} />
+                              <p className="text-gray-400">Glisser-déposer des fichiers ou <strong className='text-[#00A4BF] font-bold underline'>Parcourir</strong></p>
+                            </div>
+                          </label>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
           <button type="submit" className='mt-8 h-[48px] w-[197px] text-base font-normal leading-7 text-white rounded-[20px] bg-[#00A4BF] block mx-auto' onClick={handleUpdate}>Modifier</button>
         </form>
         )}

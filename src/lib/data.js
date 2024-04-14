@@ -295,7 +295,7 @@ export const fetchForm = async (id) => {
 
 
 export const fetchcategories = async (q, page) => {
-    const ITEM_PER_PAGE = 5;
+    const ITEM_PER_PAGE = 100;
     const skip = ITEM_PER_PAGE * (page - 1);
 
     try {
@@ -326,7 +326,7 @@ export const fetchcategories = async (q, page) => {
 };
 
 export const fetchlocations = async (q, page) => {
-    const ITEM_PER_PAGE = 6;
+    const ITEM_PER_PAGE = 100;
     const skip = ITEM_PER_PAGE * (page - 1);
 
     try {

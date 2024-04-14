@@ -3,7 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import CategoryIcon from '@mui/icons-material/Category';
 import Link from "next/link"
-
+import Image from 'next/image';
+import nomoon from '../../../../public/numone.svg'
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 const CardCategory = () => {
     const [totalCategories, setTotalCategories] = useState(0);
@@ -60,20 +62,41 @@ const CardCategory = () => {
     };
 
     return (
-        <div className="bg-gray-300 p-[20px] rounded-lg flex gap-[20px] cursor-pointer w-full hover:bg-[--lightishBlue]">
-            <Link href="/admin/dashboard/categories">
-                <div className="flex gap-[20px]">
-                    <CategoryIcon sx={{ fontSize: 24 }} />
-                    <div className="flex flex-col gap-[20px]">
-                        <span className=''>Total Catégories</span>
-                        <span className='text-2xl font-semibold'>{totalCategories}</span>
-                        <span className='text-base font-light'>
-                            <span className='font-bold text-green-600'>{percentageIncrease}%</span> plus que la semaine précédente
-                        </span>
-                    </div>
-                </div>
-            </Link>
+        // <div className="bg-gray-300 p-[20px] rounded-lg flex gap-[20px] cursor-pointer w-full hover:bg-[--lightishBlue]">
+        //     <Link href="/admin/dashboard/categories">
+        //         <div className="flex gap-[20px]">
+        //             <CategoryIcon sx={{ fontSize: 24 }} />
+        //             <div className="flex flex-col gap-[20px]">
+        //                 <span className=''>Total Catégories</span>
+        //                 <span className='text-2xl font-semibold'>{totalCategories}</span>
+        //                 <span className='text-base font-light'>
+        //                     <span className='font-bold text-green-600'>{percentageIncrease}%</span> plus que la semaine précédente
+        //                 </span>
+        //             </div>
+        //         </div>
+        //     </Link>
+        // </div>
+        <Link href="/admin/dashboard/categories">
+        <div className=" px-2 py-8  md:flex justify-between  items-center  group-hover:blur-sm hover:!blur-none">
+            <div className=" rounded-full   overflow-hidden  ">
+                <Image src={nomoon} alt="Mountain" height={80} width={80} className=" "/>
+            </div>
+            <div className='flex flex-col text-center md:text-start'>
+                <h3 className='text-[#ACACAC] text-xs'>
+                Total Catégories
+                </h3>
+            <h2 className='text-[--textColor] text-xl font-bold'>
+            {totalCategories}
+            </h2>
+            <p className='text-[#292D32] text-sm '>
+                <span className='text-[#EF507F] text-sm'>
+                <ArrowUpwardIcon/>{percentageIncrease}%
+                </span>
+                plus que la semaine précédente 
+            </p>
+            </div>
         </div>
+        </Link>
     );
 };
 

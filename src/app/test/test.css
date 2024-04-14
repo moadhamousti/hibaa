@@ -1,0 +1,12 @@
+.map{
+    height:100%;
+    width: 100%;
+    border-radius: 20px;
+}
+
+
+.mapContainer{
+    flex:2;
+    height: 100%;
+    background-color: #0a0a0a;
+}

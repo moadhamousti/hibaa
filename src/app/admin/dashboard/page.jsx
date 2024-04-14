@@ -51,8 +51,8 @@ const AdminPage = async () => {
               <h2 className='mt-8 mb-6 font-bold text-[22px]'>Welcome <span className='text-[--darkishBlue] text-[20px] font-semibold'>{session?.user.name || session.user.username} 👋🏻</span> </h2>
             </div>
       <div className='flex gap-[10px] mt-[20px]'>
-        <div className='flex-[3_3_0%] flex flex-col gap-[20px]'>
-          <div className='flex gap-[20px] justify-between'>
+      <div className=' rounded-xl p-2  '>
+        <div className='sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 justify-between rounded-xl  items-center shadow-md shadow-black  bg-[--bg] group '>
             
             <Card/>
             <CardPost/>

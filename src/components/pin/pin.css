@@ -1,0 +1,27 @@
+.pin{
+    display: flex;
+    gap: 20px;
+}
+
+
+.image{
+    width: 64px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.name{
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+

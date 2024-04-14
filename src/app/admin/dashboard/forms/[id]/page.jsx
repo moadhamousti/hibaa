@@ -85,6 +85,11 @@ const page = async ({params}) => {
                     <option value="VALIDER" selected={form.isValidated ==="VALIDER"} >Valider</option>
                     <option value="NONVALIDER" selected={!form.isValidated ==="NONVALIDER"}>Non valider</option>
                 </select>
+                <input type="latitude" name='latitude' value={form.latitude}  placeholder={form.latitude} />
+
+                <input type="longitude" name='longitude' value={form.longitude}  placeholder={form.longitude} />
+
+
 
                 <button type='submit'>
                     Modifier

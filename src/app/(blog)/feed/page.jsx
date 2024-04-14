@@ -11,11 +11,12 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import NavbarFeed from '@/components/NavbarFeed';
 import NavbarNoMenu from '@/components/NavbarNoMenu';
+import NavbarSimple from '@/components/NavbarSimple';
 
 
 export default function Page({ searchParams }) {
 
-  const session = getServerSession(authOptions);
+  const {data:session} = getServerSession(authOptions);
 
   const page = parseInt(searchParams.page) || 1
   const {cat} = searchParams;
@@ -27,7 +28,10 @@ export default function Page({ searchParams }) {
   return (
     <>
     {/* <Navbar /> */}
-    {session ? <NavbarNoMenu /> : <Navbar />}
+    {session?.user ? <NavbarSimple /> : <NavbarNoMenu />}
+
+
+
       <div className='min-h-screen bg-bg text-textColor'>
         <div className='max-w-screen-xl mx-auto'>
           <div className="flex justify-between items-center">

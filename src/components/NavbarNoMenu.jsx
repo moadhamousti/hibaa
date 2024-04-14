@@ -68,12 +68,12 @@ const NavbarNoMenu = () => {
           <Image src={Logo} alt="Logo" width={100} height={100} />
         </Link>
       </div>
-      {/* <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
-          <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
-          <Link href="/#features" className="text-[19px]">• Features</Link>
-          <Link href="/#faq" className="text-[19px]">• FAQ</Link> 
-          <Link href="/#contact" className="text-[19px]">• Contact</Link>       
-      </div> */}
+      <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
+          <Link href="/#about" className="text-[18px]">•À Propos</Link>
+          <Link href="/#features" className="text-[18px]">•Traits </Link>
+          <Link href="/#faq" className="text-[18px]">•FAQ</Link> 
+          <Link href="/#contact" className="text-[18px]">•Contact</Link>       
+      </div>
 
       <div className='flex gap-4'>
       {status === "unauthenticated" ? (

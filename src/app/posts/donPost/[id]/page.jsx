@@ -42,17 +42,16 @@ const getData = async (id) => {
 };
 
 
-const getRandomComponent = () => {
+const getRandomComponent = (data) => {
   const randomNumber = Math.random();
-  const threshold = 0.5;
+  const threshold = 0.5; 
 
   if (randomNumber > threshold) {
-    return <DonRelatedPosts />;
+    return <DonRelatedPosts category={data?.category} postId={data?.id}/>;
   } else {
-    return <FormRelated />;
+    return <FormRelated location={data?.location} formId={data?.id} />;
   }
-};
-
+}
 
 
 
@@ -259,7 +258,8 @@ const Page = async ({ params }) => {
       </div>
       {/* <Footer /> */}
       {/* <DonRelatedPosts category={data?.category} postId={data?.id} /> */}
-      {getRandomComponent()}
+      {getRandomComponent(data)}
+
 
 
     </>

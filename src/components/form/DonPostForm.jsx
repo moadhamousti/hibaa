@@ -28,6 +28,7 @@ import * as z from 'zod';
 import loader from '../../../public/loader.gif'
 import { useToast } from "@/components/ui/use-toast"
 import Loader from '../Loader';
+import './radio.css'
 
 const storage = getStorage(app);
 
@@ -299,8 +300,8 @@ useEffect(() => {
     id="whatsapp-yes"
     checked={isWhatsapp === true} 
     name="whatsapp-option"
-    className='bg-[--pink] border-[--pink]'
     value="true"
+    className="hidden"
     onChange={() => setisWhatsapp(true)}
   />
   <label htmlFor="whatsapp-yes" className="">Yes</label>
@@ -311,6 +312,7 @@ useEffect(() => {
     checked={isWhatsapp === false} 
     name="whatsapp-option"
     value="false"
+    className="hidden"
     onChange={() => setisWhatsapp(false)}
   />
   <label htmlFor="whatsapp-no" className="">No</label>
