@@ -33,14 +33,14 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" aria-labelledby="services-heading" className="mt-8 mb-10">
+    <section id="features" aria-labelledby="services-heading" className="mt-8 mb-10" >
       <div className="mx-auto p-2 rounded-xl">
         <h2 id="services-heading" className="text-[50px] font-bold text-center text-[black] mb-8">Traits</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 group  lg:grid-cols-4 gap-2">
           {servicesData.map((service, index) => (
             <div 
               key={index}
-              className="rounded-3xl shadow shadow-[#00A4BF] duration-500 group-hover:scale-[0.90]  group-hover:!scale hover:shadow-black px-4 bg-cover text-[#00A4BF] hover:bg-[#00A4BF] hover:text-[--bg] rounded-tl-none rounded-br-none" data-aos="fade-up" data-aos-delay="">
+              className="rounded-3xl shadow shadow-[#00A4BF] duration-500 group-hover:blur-sm hover:!blur-none group-hover:scale-[0.90]  hover:!scale hover:shadow-black px-4 bg-cover text-[#00A4BF] hover:bg-[#00A4BF] hover:text-[--bg] rounded-tl-none rounded-br-none" data-aos="fade-up" data-aos-delay="">
               <div className="text-3xl  text-center py-2  font-bold" fontSize='medium'>{service.icon}</div>
               <h3 className="text-lg text-center py-2 h-fit font-bold ">{service.title}</h3>
               <p className=" text-md  pb-2">{service.description}</p>

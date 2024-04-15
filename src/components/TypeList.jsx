@@ -43,9 +43,9 @@ const TypeList = () => {
       <select
         value={selectedType}
         onChange={handleTypeChange}
-        className="block appearance-none w-full text-white bg-[--darkishBlue] border hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
+        className="block appearance-none w-full text-white bg-[--darkishBlue] border  px-4 py-2 pr-8 rounded-xl shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
       >
-        <option value="">Poste type</option>
+        <option value="">Post type</option>
         {types.map((type) => (
           <option key={type} value={type}>
             {type === 'DONATION' ? 'Donation' : type === 'REQUEST' ? 'Demande' : type}

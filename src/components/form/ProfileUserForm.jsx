@@ -49,11 +49,13 @@ const ProfileUserForm = () => {
 
   return (
     <>
-    <div className="flex flex-wrap justify-center">
+    <div className="">
+      <div className=' pt-8 text-left items-start'>
+        <h1 className="text-3xl font-extrabold tracking-normal">Profile de <span className='text-[--darkishBlue]'>{userData?.username || userData?.name}</span></h1>
+      </div>
+    </div>
+    <div className="flex flex-wrap justify-center mb-5">
       <div className='column'>
-        <div className=' pt-8 text-center'>
-          <h1 className="text-4xl font-extrabold tracking-normal">Profile de <span className='text-[--darkishBlue]'>{userData?.username || userData?.name}</span></h1>
-        </div>
           <div className='mt-7'>
             {userData && (
               <>
@@ -64,15 +66,12 @@ const ProfileUserForm = () => {
                     alt="Profile"
                   />
                 </div>
-                <div className="text-center gap-5">
-                  <h2 className="text-lg font-semibold">{userData.name}</h2>
-                  <h2 className="text-lg font-semibold">{userData.username}</h2>
-                  <p className="text-sm text-grat-500">{userData.email}</p>
-                  <p className="text-sm text-black">
-                    <Badge variant="light" className={userData.role === 'ADMIN' ? 'bg-[#c1bc31]' : 'bg-[--darkishBlue]'}>
-                      {userData.role}
-                    </Badge>
-                  </p>
+                <div className="text-center gap-10">
+                  <h2 className="text-lg font-semibold mb-2">{userData?.name || userData?.username}</h2>
+                  <p className="text-sm text-grat-500 mb-2">{userData.email}</p>
+                  {userData.role === 'ADMIN' && (
+                    <p className=" text-[--darkishBlue]">Admin</p>
+                  )}
                 </div>
               </>
             )}

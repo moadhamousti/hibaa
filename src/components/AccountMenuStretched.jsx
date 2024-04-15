@@ -14,7 +14,7 @@ import Skeleton from '@mui/material/Skeleton';
 export const navItems = [
     { name: "Acceuil", href: "/", icon: HomeIcon },
     { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-    { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
+    // { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
 ];
 
 const SkeletonComponent = () => (
@@ -46,12 +46,12 @@ const AccountMenuStretched = () => {
     const navItems = session && session.user.role === 'ADMIN' ? [
         { name: "Acceuil", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-        { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
+        // { name: "Confidentialité", href: "/", icon: PrivacyTipIcon },
         { name: "Administration", href: "/admin/dashboard", icon: SupervisorAccountIcon }
     ] : [
         { name: "Acceuil", href: "/", icon: HomeIcon },
         { name: "Profile", href: "/profile", icon: AccountCircleIcon },
-        { name: "Confidentialité", href: "/", icon: PrivacyTipIcon }
+        // { name: "Confidentialité", href: "/", icon: PrivacyTipIcon }
     ];
 
     return (

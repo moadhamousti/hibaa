@@ -9,12 +9,15 @@ import 'swiper/css/pagination';
 import Card from '@/components/Card';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
+import loader from '../../../public/loader.gif'
+
 
 const CurrentUserPosts = ({item}) => {
   const [userPosts, setUserPosts] = useState([]);
   const { data: session, status } = useSession();
 
   const id = session?.user.id;
+
 
 
   useEffect(() => {
@@ -39,11 +42,19 @@ const CurrentUserPosts = ({item}) => {
     fetchUserPosts();
   }, [id]);
 
+  if (status === "loading") {
+    return (
+      <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
+        <Image src={loader} height={50} width={45} alt="" />
+      </div>
+    );
+  }
+
   return (
     <>
     <h3 className='text-left text-[20px] font-semibold'><span className='text-[--darkishBlue]'>{session?.user.name || session?.user.username} </span>Postes</h3>
     <section className='py-12'>
-      <div className='container'>
+      <div className=''>
         {userPosts.length > 0 && (
           <>
             {userPosts.length >= 4 && ( // Render Swiper only if 4 or more cards
@@ -63,18 +74,19 @@ const CurrentUserPosts = ({item}) => {
               </Swiper>
             )}
             {userPosts.length < 4 && ( // Render cards individually if less than 4
-              <div className="w-full flex ">
-                {userPosts.map((post) => (
-                  <div key={post.id} className="px-4 mb-4">
+              <div className="w-full flex flex-wrap">
+                {userPosts.map((post, index) => (
+                  <div key={post.id} className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/3 px-4 mb-4 ${index % 3 === 0 ? '' : 'sm:pl-2 md:pl-2 lg:pl-2'}`}>
+                    {/* Adjust the width classes (sm:w-1/2, md:w-1/3, lg:w-1/3) based on your design requirements */}
                     <Card item={post} />
                   </div>
                 ))}
-              </div>
+            </div>
             )}
           </>
         )}
         {userPosts.length === 0 && ( // Handle the case of no posts
-          <p className="text-center">No posts found.</p>
+          <p className="text-center">Aucun Postes Trouvé</p>
         )}
       </div>
     </section>

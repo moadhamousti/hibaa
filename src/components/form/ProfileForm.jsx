@@ -130,10 +130,13 @@ import { useSession } from 'next-auth/react';
 import React, { useState, useEffect } from 'react';
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Loader from '../Loader';
+import loader from '../../../public/loader.gif'
+import Image from 'next/image';
+
 
 
 const ProfileForm = () => {
-  const { data: session,update } = useSession();
+  const { data: session,update ,status} = useSession();
   const [newName, setNewName] = useState(session?.user?.name || '');
   const [newUserName, setNewUserName] = useState(session?.user?.username || '');
   const [newEmail, setNewEmail] = useState(session?.user?.email || '');
@@ -248,6 +251,14 @@ const ProfileForm = () => {
     onChange(e);
   };
 
+  if (status === "loading") {
+    return (
+      <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50'>
+        <Image src={loader} height={50} width={45} alt="" />
+      </div>
+    );
+  }
+
   return (
     <div className=" min-h-screen font-sans leading-normal overflow-x-hidden lg:overflow-auto">
         <section className=" p-4 shadow">
@@ -293,7 +304,7 @@ const ProfileForm = () => {
         </div>
         </div>
         <div className=' mt-[80px]   w-full  '>
-          <div className="md:flex mb-8  flex flex-col justify-center sm:w-1/2 w-full ">
+          <div className="md:flex mb-8  flex flex-col justify-center sm:w-4/5 w-full ">
             <div className="md:flex-1 mt-2 mb:mt-0 md:px-3">
               <div className="mb-4">
                 <label className="block uppercase tracking-wide text-xs font-bold">Full name</label>
@@ -302,7 +313,7 @@ const ProfileForm = () => {
                     id="name"
                     placeholder={session?.user?.name || ''} 
                     value={newName} onChange={(e) => setNewName(e.target.value)} 
-                    className="w-full shadow-inner rounded-xl p-2 border outline-none mx-1"
+                    className="w-full bg-[#F6F7F8] rounded-xl p-2 border outline-none mx-1"
                   />
               </div>
               <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
@@ -313,7 +324,7 @@ const ProfileForm = () => {
                         placeholder={session?.user?.username || ''} 
                         id="username"
                         value={newUserName} onChange={(e) => setNewUserName(e.target.value)} 
-                        className="w-full shadow-inner rounded-xl p-2 border outline-none mx-1"
+                        className="w-full bg-[#F6F7F8] rounded-xl p-2 border outline-none mx-1"
                       />
                 </div>
                 <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
@@ -326,7 +337,7 @@ const ProfileForm = () => {
                         // value={newEmail} 
                         value={newEmail} onChange={(e) => setNewEmail(e.target.value)} 
                         // readOnly 
-                        className="w-full bg-gray-100 shadow-inner rounded-xl p-2 border outline-none mx-1"
+                        className="w-full bg-[#F6F7F8] rounded-xl p-2 border outline-none mx-1"
                       />
                   </div>
                 </div>
@@ -338,7 +349,7 @@ const ProfileForm = () => {
                         id="password"
                         placeholder='Password' 
                         value={newPassword} onChange={(e) => setNewPassword(e.target.value)} 
-                        className="w-full bg-gray-100 shadow-inner rounded-xl p-2 border outline-none mx-1"
+                        className="w-full bg-[#F6F7F8] rounded-xl p-2 border outline-none mx-1"
                       />
                   </div>
                 </div>

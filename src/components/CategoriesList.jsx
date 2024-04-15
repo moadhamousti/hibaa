@@ -48,14 +48,14 @@ const CategoryList = () => {
 
   return (
     <div className="mt-8">
-      <h1 className="my-3">Category:</h1>
+      <h1 className="my-3">Catégories:</h1>
       <div className="relative">
         <select
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
+          className="block appearance-none w-full bg-white border border-gray-200  px-4 py-2 pr-8 rounded-xl shadow leading-tight focus:outline-none focus:shadow-outline h-10 overflow-y-auto"
         >
-          <option value="">Sélectionnez material</option>
+          <option value="">Sélectionnez matériel</option>
           {categories.map((category) => (
             <option key={category.id} value={category.title}>
               {category.title}

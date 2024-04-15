@@ -47,7 +47,7 @@ const UserPosts = ({ id }) => {
 
   return (
     <section className='py-12'>
-      <div className='container'>
+      <div className=''>
         {userPosts.length > 0 && (
           <>
             {userPosts.length >= 4 && ( // Render Swiper only if 4 or more cards
@@ -67,9 +67,10 @@ const UserPosts = ({ id }) => {
               </Swiper>
             )}
             {userPosts.length < 4 && ( // Render cards individually if less than 4
-              <div className="w-full flex ">
-                {userPosts.map((post) => (
-                  <div key={post.id} className="h-full px-4 mb-4">
+              <div className="w-full flex flex-wrap">
+                {userPosts.map((post, index) => (
+                  <div key={post.id} className={`w-full sm:w-1/2 md:w-1/3 lg:w-1/3 px-4 mb-4 ${index % 3 === 0 ? '' : 'sm:pl-2 md:pl-2 lg:pl-2'}`}>
+                    {/* Adjust the width classes (sm:w-1/2, md:w-1/3, lg:w-1/3) based on your design requirements */}
                     <Card item={post} />
                   </div>
                 ))}

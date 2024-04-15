@@ -139,7 +139,7 @@ const About = () => {
 
                 <Link href={'/about'} className='sm:w-full flex  mt-5  text-[--pink]  items-center sm:justify-start justify-center gap-2'>
             <button className="underline  py-2 px-0 rounded-full sm:text-xl    font-semibold capitalize">
-                Read More
+                En savoir plus
                 </button>
                 <EastIcon />
                 {/* <ArrowForwardIcon fontSize='large'/> */}

@@ -28,7 +28,7 @@ const Card =  ({ item}) => {
 
   return (
     <div className="w-full pt-5 mb-8 mx-auto rounded-bl-xl rounded-br-xl">
-      <div className="relative flex max-w-[26rem] gap-5 flex-col rounded-xl bg-white bg-clip-border shadow-opacity-50 text-gray-700 shadow-md shadow-gray-400">
+      <div className="relative flex max-w-[26rem] gap-5 flex-col rounded-xl bg-white  shadow-opacity-50 text-gray-700 shadow shadow-gray-500">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
           <Link href={`/posts/${item.id}`}>
             <div className="relative h-48">
@@ -71,17 +71,17 @@ const Card =  ({ item}) => {
               ''}
           </p>
         </div>
-        <div className="bg-gray-100 rounded-bl-xl rounded-br-xl flex items-start justify-between gap-2 p-4">
+        <div className="bg-white rounded-bl-xl rounded-br-xl flex items-start justify-between gap-2 p-4">
           <div className="flex items-center gap-2">
             <div>
               <Link href={profileLink}>
                 {item?.user?.image ? (
                   <div className='w-[30px] h-[30px] relative'>
-                    <Image src={item.user.image} alt="" fill className="rounded-full border-2 border-rose-500 object-cover object-center hover:z-10"/>
+                    <Image src={item.user.image} alt="" fill className="rounded-full object-cover object-center hover:z-10"/>
                   </div>
                 ) : (
                   <div className='w-[30px] h-[30px] relative'>
-                    <Image src="https://github.com/shadcn.png" alt="Default Image" fill className="rounded-full border-2 border-rose-500 object-cover object-center hover:z-10"/>
+                    <Image src="https://github.com/shadcn.png" alt="Default Image" fill className="rounded-full object-cover object-center hover:z-10"/>
                   </div>
                 )}
               </Link>
@@ -109,7 +109,7 @@ const Card =  ({ item}) => {
             </div>
           </div>
           <Badge>
-            <p className="font-sans text-[14px] text-white antialiased">
+            <p className="font-sans p-1 text-[14px] text-white antialiased">
               {item.category ? (item.category.length > 6 ? item.category.slice(0, 6) + '...' : item.category) : <Skeleton width={60} />}
             </p>
           </Badge>

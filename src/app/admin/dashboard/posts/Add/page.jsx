@@ -5,15 +5,15 @@ import LocationList from '@/components/LocationList';
 import Image from 'next/image';
 import { addPost } from '@/lib/actions';
 import MedToolsTypeFilter from '@/components/MedToolsTypeFilter';
-import { fetchcategories, fetchlocations } from '@/lib/data';
+import { fetchcat, fetchloca } from '@/lib/data';
 
 
 const AddPost = async({ searchParams }) => {
 
   const q = searchParams?.q || "";
   const page = searchParams?.page || 1;
-  const { locations  } = await fetchlocations(q, page);
-  const {categories} = await fetchcategories(q, page);
+  const { locations  } = await fetchloca(q, page);
+  const {categories} = await fetchcat(q, page);
 
   console.log(locations)
   console.log(categories)

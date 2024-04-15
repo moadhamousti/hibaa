@@ -249,7 +249,7 @@ useEffect(() => {
     if (res.ok) {
       toast({
         title: "Success",
-        description: "Post added successfully",
+        description: "Demande Poste mis à jour avec succès",
         variant: "success",
         className: "bg-green-500 text-white", 
       });
@@ -257,7 +257,7 @@ useEffect(() => {
     } else {
       toast({
         title: "Error",
-        description: "An error occurred",
+        description: "Une erreur s'est produite",
         variant: "error",
         className: "bg-red-500 text-white", 
       });

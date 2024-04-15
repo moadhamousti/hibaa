@@ -295,6 +295,38 @@ export const fetchForm = async (id) => {
 
 
 export const fetchcategories = async (q, page) => {
+    const ITEM_PER_PAGE = 6;
+    const skip = ITEM_PER_PAGE * (page - 1);
+
+    try {
+        const categories = await db.MedCategory.findMany({
+            where: {
+                OR: [{ title: { contains: q } }],
+            },
+            include: {
+                DonPosts: true,
+                ReqPost: true,
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+        const count = await db.MedCategory.count({
+            where: {
+                OR: [
+                  { title: { contains: q } },
+                ]
+            },
+        });
+
+        console.log(count)
+        return { categories, count };
+    } catch (err) {
+        throw new Error("Failed to fetch categories");
+    }
+};
+
+
+export const fetchcat = async (q, page) => {
     const ITEM_PER_PAGE = 100;
     const skip = ITEM_PER_PAGE * (page - 1);
 
@@ -326,6 +358,37 @@ export const fetchcategories = async (q, page) => {
 };
 
 export const fetchlocations = async (q, page) => {
+    const ITEM_PER_PAGE = 6;
+    const skip = ITEM_PER_PAGE * (page - 1);
+
+    try {
+        const locations = await db.LocationCategory.findMany({
+            where: {
+                OR: [{ title: { contains: q } }],
+            },
+            include: {
+                DonPosts: true,
+                ReqPost: true,
+            },
+            take: ITEM_PER_PAGE,
+            skip: skip,
+        });
+        const count = await db.MedCategory.count({
+            where: {
+                OR: [
+                  { title: { contains: q } },
+                ]
+            },
+        });
+        return { locations, count };
+    } catch (err) {
+        throw new Error("Failed to fetch categories");
+    }
+};
+
+
+
+export const fetchloca = async (q, page) => {
     const ITEM_PER_PAGE = 100;
     const skip = ITEM_PER_PAGE * (page - 1);
 

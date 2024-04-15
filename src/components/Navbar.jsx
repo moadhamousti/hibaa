@@ -140,24 +140,24 @@ const Navbar = () => {
       {status === "unauthenticated" ? (
         // <Button href="/login" ></Button>
         <Button
-        href="/sign-in"
-        variant="outlined"
-        sx={{
-          color: 'black',
-          borderColor: 'black',
-          textTransform: 'none',
-          borderRadius:'50px',
-          '&:hover': {
-            backgroundColor: '#b5b3b3',
-            borderColor: 'black',
-          }
-          
-        }}
-        
-        endIcon={<CallMadeIcon />}
-      >
-        COMMENCER
-      </Button>
+  href="/sign-in"
+  variant="outlined"
+  sx={{
+    color: 'black',
+    borderColor: 'black',
+    textTransform: 'none',
+    borderRadius: '50px',
+    '&:hover': {
+      backgroundColor: 'black', 
+      color: '#ffffff',
+      borderColor: 'black',
+    },
+  }}
+  endIcon={<CallMadeIcon />}
+>
+  COMMENCER
+</Button>
+
       
         // <Link href="/login" >Login</Link>
 
@@ -248,24 +248,8 @@ const Navbar = () => {
             <Link href="/#contact" className="text-[17px]">•Contact</Link>  
             {status === "unauthenticated" ? (
               // <button href="/" className={styles.button}>Login</button>
-              <Button
-                href="/sign-in"
-                variant="outlined"
-                sx={{
-                  color: 'white',
-                  borderColor: 'white',
-                  textTransform: 'none',
-                  borderRadius:'50px',
-                  '&:hover': {
-                    backgroundColor: '#b5b3b3',
-                    borderColor: 'white',
-                  }
-                }}
-                
-                endIcon={<CallMadeIcon  />}
-              >
-              COMMENCER
-            </Button>
+              <>
+              </>
             ) : (
               <>
                 {/* <Button

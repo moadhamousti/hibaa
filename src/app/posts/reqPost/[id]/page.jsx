@@ -107,10 +107,17 @@ const emailServiceLink = getEmailServiceLink(data.user.email);
         <div className='max-w-screen-xl mx-auto px-2'>
           <NavbarSimple />
           <div className='py-6 shadow-lg'>
-            <h1 className="text-4xl text-[black] font-bold fsm:my-4 capitalize text-center sm:text-left">Détails poste</h1>
+            <h1 className="text-4xl text-[black] font-bold fsm:my-4 capitalize text-center sm:text-left">Détails post</h1>
             <div className="sm:flex justify-between">
               <div className="mt-10 bg-[white] h-[450px] w-full rounded overflow-hidden max-w-xl sm:w-full">
-                <Image width={100} height={100} src={data.img ? data.img : defaultImage} alt="Mountain" className="w-full h-full sm:object-cover object-fill" />
+              <Image
+                width={1000}
+                height={1000}
+                quality={100}
+                src={data.img ? data.img : defaultImage}
+                alt="Mountain"
+                className="w-full h-full sm:object-cover object-fill"
+              />
               </div>
               <div className="p-6 w-full rounded-lg overflow-hidden max-w-lg sm:w-full py-10">
                 <div className="flex justify-between items-center py-10 text-[textColor]">
@@ -134,9 +141,11 @@ const emailServiceLink = getEmailServiceLink(data.user.email);
                   </div>
                   
                   <div className="flex gap-3">
-                    {!session || !session.user || !data || !data.id || session.user.email !== data.userEmail &&(
+                    {/* {!session || !session.user || !data || !data.id || session.user.email !== data.userEmail &&(
                       <span className="text-[#626262]">{formattedDate}</span>
-                    )}
+                    )} */}
+                    <span className="text-[#626262]">{formattedDate}</span>
+
 
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
                       <>
@@ -163,19 +172,23 @@ const emailServiceLink = getEmailServiceLink(data.user.email);
 
                   
                 </div>
+                <h4 className="text-[black] font-bold text-[18px] leading-tight mb-6">
+                  {data?.title}
+                </h4>
                 <div className="mb-3">
-                    <Badge className="bg-blue-500">{data.type === 'DONATION' ? 'Donation' : 'Demande'}</Badge>
+                    <Badge className="bg-[--darkishBlue]">{data.type === 'DONATION' ? 'Donation' : 'Demande'}</Badge>
                   </div>
                 
                 <div className="">
+                  
                   <h4 className="text-[black] leading-tight mb-3">
                     {data?.desc}
                   </h4>
-                  <h4 className="text-[black] leading-tight mb-4">
+                  {/* <h4 className="text-[black] leading-tight mb-4">
                     
                     <Badge variant="destructive" >{data?.category}</Badge>
 
-                  </h4>
+                  </h4> */}
                 </div>
 
                 <div className="py-10">
@@ -186,6 +199,7 @@ const emailServiceLink = getEmailServiceLink(data.user.email);
                         src={whatsapp}
                         alt="WhatsApp"
                         width={20} height={20}
+                        
                       />
                     </Link>
                   ) : (

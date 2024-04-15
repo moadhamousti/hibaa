@@ -32,8 +32,9 @@ const Landing = () => {
                         textTransform: 'none',
                         borderRadius:'50px',
                         '&:hover': {
-                          backgroundColor: '#b5b3b3',
-                          borderColor: 'white',
+                          backgroundColor: 'white', 
+                          color: 'black',
+                          borderColor: 'black',
                         }
                       }}
                       

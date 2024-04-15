@@ -53,24 +53,24 @@ const NavbarAdmin = () => {
       {status === "unauthenticated" ? (
         // <Button href="/login" ></Button>
         <Button
-        href="/sign-in"
-        variant="outlined"
-        sx={{
-          color: 'black',
-          borderColor: 'black',
-          textTransform: 'none',
-          borderRadius:'50px',
-          '&:hover': {
-            backgroundColor: '#b5b3b3',
-            borderColor: 'black',
-          }
-          
-        }}
-        
-        endIcon={<CallMadeIcon />}
-      >
-        COMMENCER
-      </Button>
+  href="/sign-in"
+  variant="outlined"
+  sx={{
+    color: 'black',
+    borderColor: 'black',
+    textTransform: 'none',
+    borderRadius: '50px',
+    '&:hover': {
+      backgroundColor: 'black', // Change background color to black on hover
+      color: '#ffffff', // Change text color to white on hover
+      borderColor: 'black',
+    },
+  }}
+  endIcon={<CallMadeIcon />}
+>
+  COMMENCER
+</Button>
+
         // <Link href="/login" >Login</Link>
 
 

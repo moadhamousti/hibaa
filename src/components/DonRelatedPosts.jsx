@@ -34,7 +34,7 @@ const DonRelatedPosts = ({ category, postId }) => {
     <PageLayout>
       <div>
         <div className="mt-5 mb-5">
-          <h2 className='text-2xl font-semibold'>Articles Similaires</h2>
+          <h2 className='text-2xl font-semibold'>Postes Similaires</h2>
         </div>
         {limitedPosts.length === 0 ? (
           <div className="items-center text-center p-[50px] mb=[40px]">

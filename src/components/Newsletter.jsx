@@ -103,18 +103,18 @@ const Newsletter = () => {
     <div className="bg-black py-12 text-white mt-[60px] mb-[50px] shadow-lg" id="contact">
       <div className="container mx-auto text-center">
         <div className="pl-8 pr-8">
-          <h2 className="text-[20px] lg:text-3xl text-white md:text-2xl font-bold mb-8">
+          <h2 className="text-[20px] lg:text-3xl text-white md:text-2xl font-medium	 mb-8">
             "RESTEZ À JOUR DE NOS DERNIERS EFFORTS POUR PARTAGER DES ÉQUIPEMENTS MÉDICAUX EN VOUS ABONNANT À NOTRE NEWSLETTER"
           </h2>
         </div>
       </div> 
 
-      <div className="max-w-md mx-auto">
+      <div className="max-w-[1151px] mx-auto mt-[40px]">
         <form onSubmit={Subscribe} className="flex flex-col items-center gap-5">
           <input
             type="email"
-            className="peer block w-full rounded-md border-gray-300 bg-gray-200 py-3 pl-7 pr-12 text-black focus:border-white focus:ring-white peer-invalid:text-pink-600 dark:border-zinc-500 dark:bg-zinc-900 dark:focus:ring-white sm:text-sm"
-            placeholder="Your Email"
+            className="block w-full rounded-[50px] border-[#F5F1EE] bg-black py-3 pl-7 pr-12 border-[1px]"
+            placeholder="Votre Email ici ..."
             autoComplete="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -124,7 +124,7 @@ const Newsletter = () => {
           <button
             disabled={loading}
             type="submit"
-            className="mt-4 py-2 px-6 bg-white text-black rounded-md transition duration-300 hover:bg-gray-200 disabled:cursor-not-allowed disabled:bg-opacity-60 md:mt-0 md:w-auto"
+            className=" mt-[40px] py-2 px-6 rounded-[50px] hover:bg-gray-300 hover:text-black border-[#F5F1EE] bg-black border-[1px] disabled:cursor-not-allowed md:mt-0 md:w-auto"
           >
             {!loading ? (
               "SUBSCRIBE"

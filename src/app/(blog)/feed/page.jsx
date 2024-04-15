@@ -37,7 +37,7 @@ export default function Page({ searchParams }) {
           <div className="flex justify-between items-center">
             <div className='pt-10'>
               {/* <h1 className="text-4xl font-extrabold tracking-normal"></h1> */}
-              <h1 className="text-3xl font-extrabold tracking-normal hidden sm:block">Postes</h1>
+              <h1 className="text-3xl font-extrabold tracking-normal hidden sm:block">Posts</h1>
             </div>
             {/* <Menu page={page}/> */}
             <div className="flex gap-6">
@@ -55,7 +55,7 @@ export default function Page({ searchParams }) {
             <CardList page={page} cat={cat} loc={loc} type={type}/>
 
         </div>
-        <FooterFeed/>
+        {/* <FooterFeed/> */}
       </div>
     </>
   )

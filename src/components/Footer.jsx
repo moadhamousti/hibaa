@@ -1,9 +1,11 @@
 
 import Link from 'next/link';
-import FacebookIcon from '../../public/Facebook.svg'; 
-import InstagramIcon from '../../public/Instagram.svg';
-import TwitterIcon from '../../public/Twitter.svg';
+import FacebookIcon from '../../public/Fb.svg'; 
+import InstagramIcon from '../../public/In.svg';
+import TwitterIcon from '../../public/x.svg';
 import Image from 'next/image';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 const Footer = () => {
   
@@ -25,7 +27,7 @@ const Footer = () => {
             Services
             </Link>
           <li>
-            <Link href="/" className="  text-[--textColor]     "  >
+            <Link href="/publish/donatePost" className="  text-[--textColor]     "  >
             Donner
             </Link>
           </li>
@@ -40,12 +42,12 @@ const Footer = () => {
             À propos 
             </Link>
           <li>
-            <Link href="/" className="  text-[--textColor]     "  >
+            <Link href="/about" className="  text-[--textColor]     "  >
             Qui nous sommes 
             </Link>
           </li>
           <li>
-            <Link href="/" className="  text-[--textColor]     "  >
+            <Link href="/about" className="  text-[--textColor]     "  >
             Notre vision
             </Link>
           </li>

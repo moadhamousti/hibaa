@@ -20,7 +20,9 @@ const AboutPage = () => {
       <JoinUs/>
       <MakeDifference/>
     </div >
+    <PageLayout>
     <Footer/>
+    </PageLayout>
   </>
   );
 };
