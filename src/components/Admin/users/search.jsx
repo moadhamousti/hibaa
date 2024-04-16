@@ -29,9 +29,14 @@ const Search = ({placeholder}) => {
     replace(`${pathname}?${params}`)
   },300);
   return (
-    <div className='flex items-center gap-[10px] bg-gray-200 p-[10px] rounded-lg'>
-        <SearchIcon/>
-        <input className="bg-transparent border-none bg-gray-400" type='text' 
+    <div className='flex items-center gap-[10px] border-2 border-gray-300 bg-white  p-[10px] rounded-3xl'>
+        <SearchIcon
+        sx={{
+          color: '#00A4BF',
+        }}
+        
+        />
+        <input className="bg-transparent border-none bg-white outline-none " type='text' 
           placeholder={placeholder}
           onChange={handleSearch}
         />

@@ -18,11 +18,11 @@ const Users = async ({searchParams}) => {
   const {users,count} = await fetchUsers(q,page)
   // console.log("users",users)
   return (
-    <div className="bg-gray-300 p-[20px] rounded-sm mt-[20px]">
+    <div className=" p-[20px] rounded-sm mt-[20px]">
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche un utilisateur..."/>
         <Link href="/admin/dashboard/users/Add">
-          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-lg cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
@@ -58,7 +58,7 @@ const Users = async ({searchParams}) => {
             <td className="border bg-white border-gray-300">
               <Badge
                 variant="light"
-                className={user.role === 'ADMIN' ? 'bg-[#c1bc31] text-white' : 'bg-[--darkishBlue] text-white'}
+                className={user.role === 'ADMIN' ? 'bg-[--darkishBlue] text-white' : 'bg-[--pink] text-white'}
               >
               {user.role}
               </Badge>

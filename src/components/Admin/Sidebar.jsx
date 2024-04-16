@@ -1,6 +1,5 @@
 "use client"
 import React, { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import PostAddSharpIcon from '@mui/icons-material/PostAddSharp';
@@ -15,6 +14,7 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import MapIcon from '@mui/icons-material/Map';
 import MenuLink from './menuLink';
 import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
 const menuItems = [
   {
@@ -48,16 +48,6 @@ const menuItems = [
     ],
   },
   {
-    title: 'Statistiques',
-    items: [
-      {
-        title: 'Publication',
-        path: '/admin/dashboard/posting',
-        icon: <AddchartSharpIcon />,
-      },
-    ],
-  },
-  {
     title: 'Demandes',
     items: [
       {
@@ -72,6 +62,7 @@ const menuItems = [
 const Sidebar = () => {
   const { data: session } = useSession();
   const [open, setOpen] = useState(true);
+  const [activeLink, setActiveLink] = useState('');
 
   return (
     <div className={`duration-300 ${open ? "w-auto" : "w-auto"} relative`}>
@@ -102,14 +93,20 @@ const Sidebar = () => {
         onClick={() => setOpen(!open)}
       />
 
-      <ul className='pt-2'>
+<ul className='pt-2'>
         {menuItems.map((section) => (
           <React.Fragment key={section.title}>
             <li className={`py-2 ${!open && 'hidden'}`}>
               <span className='text-black text-sm'>{section.title}</span>
             </li>
             {section.items.map((item) => (
-              <MenuLink item={item} key={item.title} open={open} />
+              <MenuLink 
+                item={item} 
+                key={item.title} 
+                open={open} 
+                activeLink={activeLink}
+                setActiveLink={setActiveLink} 
+              />
             ))}
           </React.Fragment>
         ))}

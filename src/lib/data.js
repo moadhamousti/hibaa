@@ -30,7 +30,7 @@ import { db } from "./db";
 
 
 export const fetchUsers = async (q, page) => {
-    const ITEM_PER_PAGE = 3;
+    const ITEM_PER_PAGE = 6;
     const skip = ITEM_PER_PAGE * (page - 1);
 
     try {
@@ -425,7 +425,7 @@ export const fetchloca = async (q, page) => {
 
 
 export const fetchForms = async (q, page) => {
-    const ITEM_PER_PAGE = 5;
+    const ITEM_PER_PAGE = 6;
     const skip = ITEM_PER_PAGE * (page - 1);
 
     try {

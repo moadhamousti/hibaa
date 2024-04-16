@@ -52,7 +52,7 @@ const AdminPage = async () => {
             </div>
       <div className='flex gap-[10px] mt-[20px]'>
       <div className=' rounded-xl p-2  '>
-        <div className='sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 justify-between rounded-xl  items-center shadow-md shadow-black  bg-[--bg] group '>
+        <div className='sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 justify-between rounded-xl  items-center shadow-sm shadow-black  bg-[--bg] group '>
             
             <Card/>
             <CardPost/>

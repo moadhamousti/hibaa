@@ -29,10 +29,10 @@ const DashboardNavbar = () => {
     <div className='p-[20px] rounded-lg bg-white flex items-center justify-between'>
       <div className='text-black font-bold capitalize'>{pageTitle}</div>
       <div className='flex items-center gap-[20px]'>
-        <div className='flex items-center gap-[10px] bg-gray-200 p-[10px] rounded-lg'>
+        {/* <div className='flex items-center gap-[10px] bg-gray-200 p-[10px] rounded-lg'>
           <SearchIcon />
           <input className="bg-transparent border-none text-gray-500" type='text' placeholder='Search...' />
-        </div>
+        </div> */}
         <div>
           <AccountMenu />
         </div>

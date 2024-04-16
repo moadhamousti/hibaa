@@ -19,11 +19,11 @@ const Categories = async ({ searchParams }) => {
   
 
   return (
-    <div className="bg-gray-300 p-[20px] rounded-sm mt-[20px]">
+    <div className="p-[20px] rounded-sm mt-[20px]">
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche une catégorie..." />
         <Link href="/admin/dashboard/categories/Add"> {/* Corrected href */}
-          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-lg cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>

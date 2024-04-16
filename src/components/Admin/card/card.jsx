@@ -5,7 +5,7 @@ import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import Link from "next/link"
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Image from 'next/image';
-import nomoon from '../../../../public/numone.svg'
+import nomoon from '../../../../public/numtwo.svg'
 
 
 
@@ -79,7 +79,7 @@ const Card = () => {
         //     </Link>   
         // </div>
 <Link href="/admin/dashboard/users">
-    <div className=" px-2 py-8  md:flex justify-between  items-center  group-hover:blur-sm hover:!blur-none">
+    <div className=" px-2 py-8  md:flex justify-between  items-center gap-3 ">
         <div className=" rounded-full   overflow-hidden  ">
             <Image src={nomoon} alt="Mountain" height={80} width={80} className=" "/>
         </div>
@@ -87,15 +87,15 @@ const Card = () => {
             <h3 className='text-[#ACACAC] text-xs'>
                 total users 
             </h3>
-        <h2 className='text-[--textColor] text-xl font-bold'>
-            {totalUsers}
-        </h2>
-        <p className='text-[#292D32] text-sm '>
-            <span className='text-[#EF507F] text-sm'>
-            <ArrowUpwardIcon/>{percentageIncrease}% 
-            </span>
-            plus que la semaine précédente 
-        </p>
+            <h2 className='text-[--textColor] text-xl font-bold'>
+                {totalUsers}
+            </h2>
+            <p className='text-[#292D32] text-sm '>
+                <span className='text-[#EF507F] text-sm'>
+                <ArrowUpwardIcon/>{percentageIncrease.toFixed(2).split('.')[1]}% 
+                </span>
+                <span className='ml-2'>plus que la semaine précédente </span>
+            </p>
         </div>
     </div>
     </Link>

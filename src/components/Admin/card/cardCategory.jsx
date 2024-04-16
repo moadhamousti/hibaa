@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import CategoryIcon from '@mui/icons-material/Category';
 import Link from "next/link"
 import Image from 'next/image';
-import nomoon from '../../../../public/numone.svg'
+import nomoon from '../../../../public/numthree.svg'
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
 const CardCategory = () => {
@@ -77,7 +77,7 @@ const CardCategory = () => {
         //     </Link>
         // </div>
         <Link href="/admin/dashboard/categories">
-        <div className=" px-2 py-8  md:flex justify-between  items-center  group-hover:blur-sm hover:!blur-none">
+        <div className=" px-2 py-8  md:flex justify-between  items-center gap-3">
             <div className=" rounded-full   overflow-hidden  ">
                 <Image src={nomoon} alt="Mountain" height={80} width={80} className=" "/>
             </div>
@@ -92,7 +92,7 @@ const CardCategory = () => {
                 <span className='text-[#EF507F] text-sm'>
                 <ArrowUpwardIcon/>{percentageIncrease}%
                 </span>
-                plus que la semaine précédente 
+                <span className='ml-2'>plus que la semaine précédente </span> 
             </p>
             </div>
         </div>

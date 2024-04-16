@@ -25,11 +25,11 @@ const Posts = async ({ searchParams }) => {
   console.log(posts)
 
   return (
-    <div className="bg-gray-300 p-[20px] rounded-sm mt-[20px]">
+    <div className=" p-[20px] rounded-sm mt-[20px]">
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche une poste..." />
         <Link href="/admin/dashboard/posts/Add">
-          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none cursor-pointer rounded-lg">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
@@ -92,9 +92,9 @@ const Posts = async ({ searchParams }) => {
                       height={20}
                       className="rounded-sm"
                     />
-                    <Badge
-                        variant="light" className="bg-[#33a833] text-white">WhatsApp
-                    </Badge>
+                    <p
+                        className=" text-black text-[14px]">WhatsApp
+                    </p>
                   </div>
                   
                 ) : (
@@ -107,9 +107,9 @@ const Posts = async ({ searchParams }) => {
                       height={20}
                       className="rounded-sm"
                     />
-                    <Badge
-                        variant="light" className="bg-[#3269ad] text-white">Normal
-                    </Badge>
+                    <p
+                        className="text-black text-[14px]">Normal
+                    </p>
                   </div>
                 )}
               </td>

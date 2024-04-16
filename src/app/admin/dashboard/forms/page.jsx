@@ -26,41 +26,41 @@ const Form = async ({ searchParams }) => {
   console.log(forms)
 
   return (
-    <div className="bg-gray-300 p-[20px] rounded-sm mt-[20px]">
+    <div className=" p-[20px] rounded-sm mt-[20px]">
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche une poste..." />
         <Link href="/admin/dashboard/forms/Add">
-          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-lg cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
         <thead className='px-4 py-2 bg-white text-center'>
           <tr>
-            <td className="font-bold border border-gray-300">Status</td>
-            <td className="font-bold border border-gray-300">Image</td>
-            <td className="font-bold border border-gray-300">Nom Pharmacie</td>
-            <td className="font-bold border border-gray-300">Propriétaire</td>
-            <td className="font-bold border border-gray-300">Adresse</td>
-            <td className="font-bold border border-gray-300">Téléphone</td>
-            <td className="font-bold border border-gray-300">Créé à</td>
-            <td className="font-bold border border-gray-300">Emplacement</td>
-            <td className="font-bold border border-gray-300">isWhatsapp</td>
-            <td className="font-bold border border-gray-300">Action</td>
+            <td className="font-bold border bg-white border-gray-300">Status</td>
+            <td className="font-bold border bg-white border-gray-300">Image</td>
+            <td className="font-bold border bg-white border-gray-300">Nom Pharmacie</td>
+            <td className="font-bold border bg-white border-gray-300">Propriétaire</td>
+            <td className="font-bold border bg-white border-gray-300">Adresse</td>
+            <td className="font-bold border bg-white border-gray-300">Téléphone</td>
+            <td className="font-bold border bg-white border-gray-300">Créé à</td>
+            <td className="font-bold border bg-white border-gray-300">Emplacement</td>
+            <td className="font-bold border bg-white border-gray-300">Type Numéro</td>
+            <td className="font-bold border bg-white border-gray-300">Action</td>
             
           </tr>
         </thead>
         <tbody className='text-center '>
           {forms.map(forms => (
             <tr key={forms.id}>
-              <td className="border border-white">
+              <td className="border bg-white border-gray-300">
                 <Badge
                   variant="light"
-                  className={forms.isValidated === 'VALIDER' ? 'bg-[#c1bc31]' : 'bg-[--darkishBlue]'}
+                  className={forms.isValidated === 'VALIDER' ? 'bg-[--pink] text-white' : 'text-white bg-[--darkishBlue]'}
                 >
                 {forms.isValidated}
                 </Badge>
               </td>
-              <td className="border border-white">
+              <td className="border bg-white border-gray-300">
                 <div className={styles.user}>
                   <Image
                     src={forms.img}
@@ -71,14 +71,14 @@ const Form = async ({ searchParams }) => {
                   />
                 </div>
               </td>
-              <td className="border border-white">{forms.phaName}</td>
-              <td className="border border-white">{forms.ownerName}</td>
-              <td className="border border-white">{forms.address}</td>
-              <td className="border border-white">{forms.phone}</td>
-              <td className="border border-white">{format(forms.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-              <td className="border border-white">{forms.location}</td>
+              <td className="border bg-white border-gray-300">{forms.phaName}</td>
+              <td className="border bg-white border-gray-300">{forms.ownerName}</td>
+              <td className="border bg-white border-gray-300">{forms.address}</td>
+              <td className="border bg-white border-gray-300">{forms.phone}</td>
+              <td className="border bg-white border-gray-300">{format(forms.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+              <td className="border bg-white border-gray-300">{forms.location}</td>
               {/* <td>{posts.isWhatsapp}</td> */}
-              <td className="border border-white">
+              <td className="border bg-white border-gray-300">
                 <div className="flex gap-2">
                   <Image
                     src={forms.isWhatsapp === 'WHATSAPP' ? WhatsApp : Phone}
@@ -87,18 +87,17 @@ const Form = async ({ searchParams }) => {
                     height={20}
                     className="rounded-sm"
                   />
-                  <Badge
-                    variant="light"
-                    className={forms.isWhatsapp === 'WHATSAPP' ? 'bg-[#33a833] text-black' : 'bg-[#3269ad] text-white'}
+                  <p
+                    className={forms.isWhatsapp === 'WHATSAPP' ? ' text-black text-[14px]' : ' text-black text-[14px]'}
                   >
-                    {forms.isWhatsapp === 'WHATSAPP' ? 'WhatsApp' : 'Regular'}
-                  </Badge>
+                    {forms.isWhatsapp === 'WHATSAPP' ? 'WhatsApp' : 'Normal'}
+                  </p>
                 </div>
               </td>
 
 
 
-              <td className='border border-white'>
+              <td className='border bg-white border-gray-300'>
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/forms/${forms.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>
