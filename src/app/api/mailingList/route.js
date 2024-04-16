@@ -2,8 +2,8 @@ import https from "https";
 
 
 async function addToMailingList(email) {
-    const SECRET = "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";
-    const ID = "a8795f87-96eb-4258-9494-1e3bf5996acb";
+    const SECRET = "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";
+    const ID = "b307268a-a192-48d6-8e27-68cdef5d82ff";
 
     console.log("hihi",SECRET)
     console.log("hojo",ID)
