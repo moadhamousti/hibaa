@@ -92,10 +92,10 @@ const Newsletter = () => {
     try {
       const response = await addToMailingList(email);
       setLoading(false);
-      setMessageState(response.data.message); // Update message state based on response
+      setMessageState(response.data.message);
     } catch (err) {
       setLoading(false);
-      setMessageState(String(err.message)); // Update message state based on error
+      setMessageState(String(err.message));
     }
   };
 

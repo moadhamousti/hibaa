@@ -29,29 +29,29 @@ const Posts = async ({ searchParams }) => {
       <div className="flex align-center justify-between">
         <Search placeholder="Recherche une poste..." />
         <Link href="/admin/dashboard/posts/Add">
-          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none cursor-pointer rounded-lg">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] -none cursor-pointer rounded-lg">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
-        <thead className='px-4 py-2 bg-white border-gray-300 text-center'>
+        <thead className='px-4 py-2 bg-white  text-center border'>
           <tr>
-            <td className="font-bold border bg-white border-gray-300">Type</td>
-            <td className="font-bold border bg-white border-gray-300">Image</td>
-            <td className="font-bold border bg-white border-gray-300">Titre</td>
+            <td className="font-bold  bg-white ">Type</td>
+            <td className="font-bold  bg-white ">Image</td>
+            <td className="font-bold  bg-white ">Titre</td>
             {/* <td className="font-bold">Description</td> */}
-            <td className="font-bold border bg-white border-gray-300">Créé à</td>
-            <td className="font-bold border bg-white border-gray-300">Emplacement</td>
-            <td className="font-bold border bg-white border-gray-300">Catégories</td>
-            <td className="font-bold border bg-white border-gray-300">Téléphone</td>
-            <td className="font-bold border bg-white border-gray-300">Type Numéro</td>
-            <td className="font-bold border bg-white border-gray-300">Action</td>
+            <td className="font-bold  bg-white ">Créé à</td>
+            <td className="font-bold  bg-white ">Emplacement</td>
+            <td className="font-bold  bg-white ">Catégories</td>
+            <td className="font-bold  bg-white ">Téléphone</td>
+            <td className="font-bold  bg-white ">Type Numéro</td>
+            <td className="font-bold  bg-white ">Action</td>
             
           </tr>
         </thead>
-        <tbody className='text-center '>
+        <tbody className='text-center'>
           {posts.map(posts => (
-            <tr key={posts.id}>
-             <td className="border bg-white border-gray-300">
+            <tr key={posts.id} className='divide-y divide-slate-200' >
+             <td className=" bg-white border-y">
               {posts.type === 'DONATION' && (
                   <Badge variant="light" className="bg-[--pink] text-white">
                     Donation
@@ -62,8 +62,8 @@ const Posts = async ({ searchParams }) => {
                     Demande
                   </Badge>
                 )}
-            </td>
-              <td className="border bg-white border-gray-300">
+              </td>
+              <td className=" bg-white ">
                 <div className={styles.user}>
                   <Image
                     src={posts.img || "https://www.medisave.co.uk/cdn/shop/collections/Tom.jpg?v=1683730716"}
@@ -74,14 +74,14 @@ const Posts = async ({ searchParams }) => {
                   />
                 </div>
               </td>
-              <td className="border bg-white border-gray-300">{posts.title.length > 4 ? posts.title.substring(0, 4) + '...' : posts.title}</td>
+              <td className=" bg-white ">{posts.title.length > 4 ? posts.title.substring(0, 4) + '...' : posts.title}</td>
               {/* <td>{posts.desc.length > 4 ? posts.desc.substring(0, 10) + '...' : posts.desc}</td> */}
-              <td className="border bg-white border-gray-300">{format(posts.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-              <td className="border bg-white border-gray-300">{posts.location}</td>
-              <td className="border bg-white border-gray-300">{posts.category}</td>
-              <td className="border bg-white border-gray-300">{posts.phone}</td>
+              <td className=" bg-white ">{format(posts.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+              <td className=" bg-white ">{posts.location}</td>
+              <td className=" bg-white ">{posts.category}</td>
+              <td className=" bg-white ">{posts.phone}</td>
               {/* <td>{posts.isWhatsapp}</td> */}
-              <td className="border bg-white border-gray-300">
+              <td className=" bg-white ">
                 {posts.isWhatsapp ? (
                   <div className="flex gap-2">
                     
@@ -114,7 +114,7 @@ const Posts = async ({ searchParams }) => {
                 )}
               </td>
 
-              <td className='border bg-white border-gray-300'>
+              <td className=' bg-white '>
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/posts/${posts.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

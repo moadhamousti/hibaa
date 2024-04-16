@@ -102,8 +102,12 @@ const ResetPassword = ({params}) => {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen">
-      <div className="lg:w-1/2 max-h-screen hidden lg:block">
+      {/* <div className="lg:w-1/2 max-h-screen hidden lg:block">
         <Image src={imageFit} alt="Your Image" />
+      </div> */}
+      <div className="lg:w-1/2 max-h-screen hidden lg:block bg-gradient-to-t from-[#E7DDDB] to-[#00A4BF] relative">
+          {/* <Image src={imageFit} alt="Your Image" /> */}
+          {/* <p className="absolute bottom-0 mb-10 text-[#2B3D40] px-8 left-0 right-0 text-center text-2xl">Rejoignez-nous. Faites la différence. Connectez-vous <br/> aujourd'hui.</p> */}
       </div>
       <div className="lg:w-1/2 p-8">
         <Button variant="outline" size="icon" onClick={goBack}>
@@ -120,7 +124,7 @@ const ResetPassword = ({params}) => {
           <div className="space-y-2">
             <Input
               type="password"
-              className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
+              className="w-full border border-gray-300 text-white rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
               placeholder="password"
               required
             />
@@ -129,7 +133,7 @@ const ResetPassword = ({params}) => {
           <button
             type="submit"
             disabled={error.length > 0}
-            className='bg-[#38867D87] w-[300px] h-[50px] top-[581px] left-[873px] rounded-[50px] mt-6 block mx-auto disabled:bg-[#5fccbf87] disabled:cursor-not-allowed'
+            className='bg-[--darkishBlue] w-[300px] h-[50px] top-[581px] left-[873px] rounded-[50px] mt-6 block mx-auto disabled:bg-[--lightishBlue] disabled:cursor-not-allowed'
 
           >
             Reset Password

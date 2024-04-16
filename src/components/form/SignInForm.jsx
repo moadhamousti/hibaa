@@ -19,7 +19,7 @@ import Link from 'next/link';
 import GoogleSignInButton from '../GoogleSignInButton';
 import { useRouter } from 'next/navigation';
 import {useToast} from "@/components/ui/use-toast"
-import imageFit from '../../../public/Blank.png'
+import imageFit from '../../../public/img.svg'
 import Image from 'next/image';
 import SignUpButton from '../SignInButton';
 import { ChevronLeftIcon } from "@radix-ui/react-icons"
@@ -89,17 +89,19 @@ useEffect(() => {
 
 
   return (
-    <div className='flex flex-col lg:flex-row min-h-screen'>
-      <div className="lg:w-1/2 max-h-screen hidden lg:block bg-gradient-to-t from-[#E7DDDB] to-[#00A4BF] relative">
+    <div className='flex flex-col lg:flex-row min-h-screen '>
+      {/* <div className="lg:w-1/2 max-h-screen hidden lg:block  relative"> */}
+      <div className="lg:w-1/2 max-h-screen hidden lg:block relative" style={{backgroundImage: "url('./img.svg')", backgroundSize: 'fit', backgroundPosition:'center'}} />
+
           {/* <Image src={imageFit} alt="Your Image" /> */}
-          <p className="absolute bottom-0 mb-10 text-[#2B3D40] px-8 left-0 right-0 text-center text-2xl">Rejoignez-nous. Faites la différence. Connectez-vous <br/> aujourd'hui.</p>
-      </div>
-      <div className="lg:w-1/2 p-8">
+          {/* <p className="absolute bottom-0 mb-10 text-[#2B3D40] px-8 left-0 right-0 text-center text-2xl">Rejoignez-nous. Faites la différence. Connectez-vous <br/> aujourd'hui.</p> */}
+      {/* </div> */}
+      <div className="lg:w-1/2 p-8 ">
           <Button variant="outline" size="icon" onClick={goBack}>
             <ChevronLeftIcon className="h-4 w-4" />
           </Button>
       <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='w-full'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className=' '>
           <div className="text-center mb-4">
             <h1 className="text-4xl font-bold">Bienvenue!</h1>
             <br />
@@ -137,7 +139,7 @@ useEffect(() => {
             )}
           />
           <div>
-            <Link href='/forget-password'><p className='mt-2 text-black font-normal text-end text-[16px] hover:text-[#2a645d87] '>Mot de passe oublié?</p></Link>
+            <Link href='/forget-password'><p className='mt-2 text-black font-normal text-end text-[16px] hover:text-[--darkishBlue] '>Mot de passe oublié?</p></Link>
           </div>
         </div>
         {/* <Button className='w-full mt-6' type='submit'>

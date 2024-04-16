@@ -141,10 +141,10 @@ const emailServiceLink = getEmailServiceLink(data.user.email);
                   </div>
                   
                   <div className="flex gap-3">
-                    {/* {!session || !session.user || !data || !data.id || session.user.email !== data.userEmail &&(
+                    {!session || !session.user || !data || !data.id || session.user.email !== data.userEmail &&(
                       <span className="text-[#626262]">{formattedDate}</span>
-                    )} */}
-                    <span className="text-[#626262]">{formattedDate}</span>
+                    )}
+                    {/* <span className="text-[#626262]">{formattedDate}</span> */}
 
 
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
@@ -159,7 +159,7 @@ const emailServiceLink = getEmailServiceLink(data.user.email);
                     {/* Your other page content */}
                     {session && session.user && data && data.id && session.user.email === data.userEmail && (
                       <>
-                          <Link href='/feed'>
+                          <Link href=''>
                           {data.type === 'DONATION' ? (
                               <DeleteDonPost data={data} />
                             ) : (

@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './singlePostPage.module.css'
 import Image from 'next/image'
-import { fetchPost, fetchcategories, fetchlocations } from '@/lib/data';
+import { fetchPost, fetchcat, fetchcategories, fetchloca, fetchlocations } from '@/lib/data';
 import { updatePost } from '@/lib/actions';
 
 
@@ -11,8 +11,8 @@ const page = async ({params, searchParams}) => {
 
     const q = searchParams?.q || "";
     const page = searchParams?.page || 1;
-    const { locations  } = await fetchlocations(q, page);
-    const {categories} = await fetchcategories(q, page);
+    const { locations  } = await fetchloca(q, page);
+    const {categories} = await fetchcat(q, page);
 
     console.log(locations)
     console.log(categories)

@@ -51,7 +51,7 @@ const menuItems = [
     title: 'Demandes',
     items: [
       {
-        title: 'Formes',
+        title: 'Pharma Form',
         path: '/admin/dashboard/forms',
         icon: <ListAltIcon />,
       },

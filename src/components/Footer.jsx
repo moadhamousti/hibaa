@@ -60,15 +60,15 @@ const Footer = () => {
 
           <div className="flex items-center gap-2">
             <div>
-              <Link href="/" ><Image src={FacebookIcon} height={30} width={30}  alt="Facebook" className='w-auto h-auto' /></Link>
+              <Link href="https://www.facebook.com/profile.php?id=61558213481300" ><Image src={FacebookIcon} height={30} width={30}  alt="Facebook" className='w-auto h-auto' /></Link>
 
             </div>
             <div>
-            <Link href="/" ><Image src={InstagramIcon} height={30} width={30} alt="Instagram" className='w-auto h-auto' /></Link>
+            <Link href="https://www.instagram.com/hibaxaata/" ><Image src={InstagramIcon} height={30} width={30} alt="Instagram" className='w-auto h-auto' /></Link>
 
             </div>
             <div>
-            <Link  href="/"><Image src={TwitterIcon} height={30} width={30} alt="Tiktok" className='w-auto h-auto' /></Link>
+            <Link  href="https://twitter.com/HibaAata"><Image src={TwitterIcon} height={30} width={30} alt="Tiktok" className='w-auto h-auto' /></Link>
 
             </div>
           </div>

@@ -24,25 +24,25 @@ const Users = async ({searchParams}) => {
         <h1 className="mb-2 text-[20px] font-semibold">Utilisateurs les plus contributeurs</h1>
         {/* <Search placeholder="Recherche un utilisateur..."/> */}
         {/* <Link href="/admin/dashboard/users/Add">
-          <button className="p-[10px] bg-[#5d57c9] text-[white] border-none rounded-sm cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[#5d57c9] text-[white] -none rounded-sm cursor-pointer">Ajouter Nouveau</button>
         </Link> */}
       </div>
       <table className={styles.table}>
-        <thead className="px-4 py-2 bg-white border-gray-300 text-center">
+        <thead className="px-4 py-2 bg-white  text-center border">
           <tr>
-            <td className="font-bold border bg-white border-gray-300">Image</td>
-            <td className="font-bold border bg-white border-gray-300">Nom</td>
-            <td className="font-bold border bg-white border-gray-300">Nom d'utilisateur</td>
-            <td className="font-bold border bg-white border-gray-300">E-mail</td>
-            <td className="font-bold border bg-white border-gray-300">Créé à</td>
-            <td className="font-bold border bg-white border-gray-300">Nombre postes</td>
-            <td className="font-bold border bg-white border-gray-300">Rôle</td>
+            <td className="font-bold  bg-white ">Image</td>
+            <td className="font-bold  bg-white ">Nom</td>
+            <td className="font-bold  bg-white ">Nom d'utilisateur</td>
+            <td className="font-bold  bg-white ">E-mail</td>
+            <td className="font-bold  bg-white ">Créé à</td>
+            <td className="font-bold  bg-white ">Nombre postes</td>
+            <td className="font-bold  bg-white ">Rôle</td>
           </tr>
         </thead>
         <tbody className="text-center">
           {users.map((user)=>(
-            <tr key={user.id}>
-            <td className="border bg-white border-gray-300">
+            <tr key={user.id} className="border">
+            <td className=" bg-white ">
             <div className="rounded-full bg-cover" style={{ width: 40, height: 40 }}>
               <Image
                 src={user.image || "https://github.com/shadcn.png"}
@@ -53,13 +53,13 @@ const Users = async ({searchParams}) => {
               />
             </div>
             </td>
-            <td className="border bg-white border-gray-300">{user.name}</td>
-            <td className="border bg-white border-gray-300">{user.username}</td>
-            <td className="border bg-white border-gray-300">{user.email}</td>
-            <td className="border bg-white border-gray-300">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
-            <td className="font-bold border bg-white border-gray-300">{user.DonPosts.length + user.ReqPost.length}</td>
+            <td className=" bg-white ">{user.name}</td>
+            <td className=" bg-white ">{user.username}</td>
+            <td className=" bg-white ">{user.email}</td>
+            <td className=" bg-white ">{format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}</td>
+            <td className="font-bold  bg-white ">{user.DonPosts.length + user.ReqPost.length}</td>
 
-            <td className="border bg-white border-gray-300">
+            <td className=" bg-white ">
               <Badge
                 variant="light"
                 className={user.role === 'ADMIN' ? 'bg-[--darkishBlue] text-white' : 'bg-[--pink] text-white'}

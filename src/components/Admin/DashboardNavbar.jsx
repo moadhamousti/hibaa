@@ -13,10 +13,13 @@ const titleMap = {
   '/admin/dashboard/categories': 'Catégories',
   '/admin/dashboard/locations': 'Emplacements',
   '/admin/dashboard/posting': 'Publication',
+  '/admin/dashboard/forms': 'Pharma Formulaire',
   '/admin/dashboard/users/Add': 'Ajouter un utilisateur',
   '/admin/dashboard/posts/Add': 'Ajouter une poste',
   "/admin/dashboard/categories/Add": 'Ajouter une catégorie',
   "/admin/dashboard/locations/Add": 'Ajouter une location',
+  "/admin/dashboard/forms/Add": 'Ajouter une pharmacie',
+
 
   
 };

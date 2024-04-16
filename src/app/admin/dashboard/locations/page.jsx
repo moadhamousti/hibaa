@@ -21,32 +21,32 @@ const Categories = async ({ searchParams }) => {
   return (
     <div className=" p-[20px] rounded-sm mt-[20px]">
       <div className="flex align-center justify-between">
-        <Search placeholder="Recherche une catégorie..." />
+        <Search placeholder="Recherche un emplacement..." />
         <Link href="/admin/dashboard/locations/Add">
-          <button className="p-[10px] bg-[--darkishBlue] text-[white] border-none rounded-lg cursor-pointer">Ajouter Nouveau</button>
+          <button className="p-[10px] bg-[--darkishBlue] text-[white] -none rounded-lg cursor-pointer">Ajouter Nouveau</button>
         </Link>
       </div>
       <table className={styles.table}>
-        <thead className="px-4 py-2 bg-white text-center">
+        <thead className="px-4 py-2 bg-white text-center border">
           <tr>
-            <td className="font-bold border bg-white border-gray-300">Titre</td>
-            <td className="font-bold border bg-white border-gray-300">Don Postes</td>
-            <td className="font-bold border bg-white border-gray-300">Demande Postes</td> 
-            <td className="font-bold border bg-white border-gray-300">Action</td> 
+            <td className="font-bold  bg-white ">Titre</td>
+            <td className="font-bold  bg-white ">Don Postes</td>
+            <td className="font-bold  bg-white ">Demande Postes</td> 
+            <td className="font-bold  bg-white ">Action</td> 
 
 
           </tr>
         </thead>
         <tbody className="text-center">
           {locations.map((location) => (
-            <tr key={location.id}>
-              <td className="border bg-white border-gray-300">{location.title}</td>
-              <td className="border bg-white border-gray-300">{location.DonPosts ? location.DonPosts.length : 0}</td>
-              <td className="border bg-white border-gray-300">{location.ReqPost ? location.ReqPost.length : 0}</td>
+            <tr key={location.id} className="border">
+              <td className=" bg-white ">{location.title}</td>
+              <td className=" bg-white ">{location.DonPosts ? location.DonPosts.length : 0}</td>
+              <td className=" bg-white ">{location.ReqPost ? location.ReqPost.length : 0}</td>
               
 
 
-              <td className="border bg-white border-gray-300">
+              <td className=" bg-white ">
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/locations/${location.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

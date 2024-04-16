@@ -130,10 +130,10 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="hidden sm:flex items-center gap-5 lg:gap-5 lg:text-md md:gap-5 sm:gap-4 md:text-md text-black">
-          <Link href="/#about" className="text-[18px]">•À Propos</Link>
-          <Link href="/#features" className="text-[18px]">•Traits </Link>
-          <Link href="/#faq" className="text-[18px]">•FAQ</Link> 
-          <Link href="/#contact" className="text-[18px]">•Contact</Link>       
+          <Link href="/#about" className="font-semibold text-[18px]">•À Propos</Link>
+          <Link href="/#features" className="font-semibold text-[18px]">•Traits </Link>
+          <Link href="/#faq" className="font-semibold text-[18px]">•FAQ</Link> 
+          <Link href="/#contact" className="font-semibold text-[18px]">•Contact</Link>       
       </div>
 
       <div className='flex gap-1'>
@@ -242,10 +242,10 @@ const Navbar = () => {
 
         {open && (
           <div ref={menuRef} className='fixed top-24 right-0 rounded-sm bg-[rgba(255,255,255,0.5)] backdrop-blur-lg h-[calc(100vh-6.25rem)] w-[300px] flex flex-col items-center justify-center gap-12 text-3xl text-black z-50'>
-            <Link href="/#about" className="text-[17px]">•À Propos</Link>
-            <Link href="/#features" className="text-[17px]">•Caractéristiques </Link>
-            <Link href="/#faq" className="text-[17px]">•FAQ</Link> 
-            <Link href="/#contact" className="text-[17px]">•Contact</Link>  
+            <Link href="/#about" className="font-semibold text-[17px]">•À Propos</Link>
+            <Link href="/#features" className="font-semibold text-[17px]">•Caractéristiques </Link>
+            <Link href="/#faq" className="font-semibold text-[17px]">•FAQ</Link> 
+            <Link href="/#contact" className="font-semibold text-[17px]">•Contact</Link>  
             {status === "unauthenticated" ? (
               // <button href="/" className={styles.button}>Login</button>
               <>
