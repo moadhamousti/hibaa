@@ -1,10 +1,10 @@
+"use client"
 import React, { useState, useEffect } from 'react';
 import CardList from '@/components/CardList';
 import Menu from '@/components/Menu';
 import Navbar from '@/components/Navbar';
 import { authOptions } from '@/lib/auth'
 import { getServerSession } from 'next-auth'
-import PageLayout from '../layout';
 import Footer from '@/components/Footer';
 import Pagination from '@/components/Pagination';
 
