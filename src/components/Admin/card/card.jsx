@@ -6,7 +6,7 @@ import Link from "next/link"
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Image from 'next/image';
 import nomoon from '../../../../public/numtwo.svg'
-
+ 
 
 
 const Card = () => {
