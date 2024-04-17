@@ -19,6 +19,7 @@ import loacation from "../../../../public/Location.png";
 import dynamic from 'next/dynamic';
 import phone from "../../../../public/phone.png";
 import Map from '@/components/Map';
+import { fr } from 'date-fns/locale';
 
 
 
@@ -56,9 +57,9 @@ const Page = async ({params}) => {
   const profileLink = isCurrentUser ? (session ? '/profile': '') : (data.user ? `/profile/user/${data.user.id}` : '');
   console.log("profileLink", profileLink);
 
-  const formattedDate = data.createdAt ? 
-  formatDistanceToNowStrict(new Date(data.createdAt), { addSuffix: true }) : 
-  'Unknown';
+  const formattedDate = data.createdAt ?
+  formatDistanceToNowStrict(new Date(data.createdAt), { addSuffix: true, locale: fr }) :
+  'Inconnu';
 
 
   

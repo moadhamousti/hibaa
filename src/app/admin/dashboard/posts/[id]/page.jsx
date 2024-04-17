@@ -38,16 +38,16 @@ const page = async ({params, searchParams}) => {
                     <option value="REQUEST">REQUEST</option>
                 </select> */}
                 <label>Type</label>
-                <input className='bg-gray-400' name="type" id="type" value={post.type} placeholder={post.title} required/>
+                <input className='bg-gray-100 mb-3' name="type" id="type" value={post.type} placeholder={post.title}  required/>
                 
                 <label>Titre</label>
-                <input type="text" name='title' defaultValue={post.title}  placeholder={post.title} required/>
+                <input  className='bg-gray-100 mb-3' type="text" name='title' defaultValue={post.title}  placeholder={post.title} required/>
                 <label>Description</label>
-                <textarea name="desc" id="desc" rows="10" defaultValue={post.desc} placeholder={post.desc} required></textarea>
+                <textarea className='bg-gray-100 mb-3' name="desc" id="desc" rows="10" defaultValue={post.desc} placeholder={post.desc} required></textarea>
                 <label>Numéros de téléphone</label>
-                <input type="text" name='Phone' defaultValue={post.phone}  placeholder={post.phone}/>
+                <input className='bg-gray-100 mb-3' type="text" name='Phone' defaultValue={post.phone}  placeholder={post.phone}/>
                 <label>E-mail</label>
-                <input type="email" name='userEmail' value={post.userEmail}  placeholder={post.userEmail} required />
+                <input className='bg-gray-100 mb-3' type="email" name='userEmail' value={post.userEmail}  placeholder={post.userEmail} required />
                 <div className="flex gap-5 items-center">
                     <p>WhatsApp Numero ?</p>
                     <input
@@ -64,7 +64,7 @@ const page = async ({params, searchParams}) => {
                     Non
                 </div>
                 <label className='mt-5'>Catégorie</label>
-                <select name="category" id="category" defaultValue={post.category} required>
+                <select className='bg-gray-100 mb-3' name="category" id="category" defaultValue={post.category} required>
                     <option value="">Choisir un Emplacement</option>
                     {categories.map(category => (
                     <option  key={category.id} value={category.title}>{category.title}</option>
@@ -72,7 +72,7 @@ const page = async ({params, searchParams}) => {
                 </select>
                 <label className='mt-5'>Emplacement</label>
 
-                <select name="location" id="location"  defaultValue={post.location} required>
+                <select className='bg-gray-100 mb-3' name="location" id="location"  defaultValue={post.location} required>
                     <option value="">Choisir une Catégorie</option>
                     {locations.map(location => (
                     <option key={location.id} value={location.title}>{location.title}</option>

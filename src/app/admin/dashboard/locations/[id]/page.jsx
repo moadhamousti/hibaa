@@ -20,9 +20,9 @@ const SingleLocationPage = async ({ params }) => {
                     </div>
                     <div className={styles.formContainer}>
                         <form action={updateLocation} className={styles.form}>
-                            <input name='id' value={location.id} hidden/>
+                            <input name='id' className='bg-gray-100 mb-3' value={location.id} hidden/>
                             <label>Titre</label>
-                            <input type="text" name='title' placeholder={location.title}/>
+                            <input type="text" className='bg-gray-100 mb-3' name='title' placeholder={location.title}/>
                             <button type='submit'>
                                 Modifier
                             </button>

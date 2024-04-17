@@ -34,7 +34,7 @@ const Form = async ({ searchParams }) => {
         </Link>
       </div>
       <table className={styles.table}>
-        <thead className='px-4 py-2 bg-white text-center'>
+        <thead className='px-4 py-2 bg-white text-center border'>
           <tr>
             <td className="font-bold  bg-white ">Status</td>
             <td className="font-bold  bg-white ">Image</td>
@@ -51,7 +51,7 @@ const Form = async ({ searchParams }) => {
         </thead>
         <tbody className='text-center '>
           {forms.map(forms => (
-            <tr key={forms.id}>
+            <tr key={forms.id} className='border'>
               <td className=" bg-white ">
                 <Badge
                   variant="light"
@@ -97,7 +97,7 @@ const Form = async ({ searchParams }) => {
 
 
 
-              <td className='border bg-white '>
+              <td className=' bg-white '>
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/forms/${forms.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

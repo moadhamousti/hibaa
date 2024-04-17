@@ -85,7 +85,7 @@ const Card = () => {
         </div>
         <div className='flex flex-col text-center md:text-start'>
             <h3 className='text-[#ACACAC] text-xs'>
-                total users 
+                Total Utilisateurs
             </h3>
             <h2 className='text-[--textColor] text-xl font-bold'>
                 {totalUsers}

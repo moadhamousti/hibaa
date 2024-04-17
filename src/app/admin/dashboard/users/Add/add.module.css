@@ -3,6 +3,9 @@
     padding: 20px;
     border-radius: 10px;
     margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
   }
   
   .form {
@@ -17,9 +20,9 @@
     padding: 15px;
     background-color: var(--bg);
     color: var(--text);
-    border: 2px solid #2e374a;
-    border-radius: 5px;
-    margin-bottom: 30px;
+    border: 1px solid #a1a1a1;
+    border-radius: 15px;
+    margin-bottom: 20px;
   }
   
   .form input, .form select {
@@ -32,10 +35,11 @@
   
   .form button{
     width: 100%;
-    padding: 30px;
+    padding: 20px;
     background-color: var(--darkishBlue);
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+    align-items: center;
   }

@@ -64,7 +64,7 @@ const Users = async ({searchParams}) => {
                 variant="light"
                 className={user.role === 'ADMIN' ? 'bg-[--darkishBlue] text-white' : 'bg-[--pink] text-white'}
               >
-              {user.role}
+              {user.role === 'ADMIN' ? 'Admin' : 'Utilisateur'}
               </Badge>
             </td>
           </tr>

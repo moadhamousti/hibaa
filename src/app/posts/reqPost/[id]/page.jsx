@@ -28,6 +28,7 @@ import ApiMed from '@/components/ApiMed';
 import ReqRelatedPosts from '@/components/ReqRelatedPosts';
 import FormRelated from '@/components/FormRelated';
 import DonRelatedPosts from '@/components/DonRelatedPosts';
+import { fr } from 'date-fns/locale';
 
 
 
@@ -78,9 +79,9 @@ const Page = async ({ params }) => {
   const profileLink = isCurrentUser ? (session ? '/profile': '') : (data.user ? `/profile/user/${data.user.id}` : '');
   console.log("profileLink", profileLink);
 
-  const formattedDate = data.createdAt ? 
-  formatDistanceToNowStrict(new Date(data.createdAt), { addSuffix: true }) : 
-  'Unknown';
+  const formattedDate = data.createdAt ?
+  formatDistanceToNowStrict(new Date(data.createdAt), { addSuffix: true, locale: fr }) :
+  'Inconnu';
 
   const getEmailServiceLink = (email) => {
     const domain = email.split('@')[1];

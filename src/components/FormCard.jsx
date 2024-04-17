@@ -68,7 +68,7 @@ const FormCard =  ({item}) => {
             <div className="">
                 <Link href=''>
                   <p className="text-sm text-black">
-                    <strong className='font-bold text-[14px] mr-2'>By:</strong>{item.ownerName}
+                    <strong className='font-bold text-[14px] mr-2'>Par:</strong>{item.ownerName}
                     </p>
                 </Link>
             </div>

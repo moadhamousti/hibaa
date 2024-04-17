@@ -30,7 +30,7 @@ const Categories = async ({ searchParams }) => {
         <thead className="px-4 py-2 bg-white text-center border">
           <tr>
             <td className="font-bold  bg-white ">Titre</td>
-            <td className="font-bold  bg-white ">Don Postes</td>
+            <td className="font-bold  bg-white ">Donation Postes</td>
             <td className="font-bold  bg-white ">Demande Postes</td> 
             <td className="font-bold  bg-white ">Action</td> 
 

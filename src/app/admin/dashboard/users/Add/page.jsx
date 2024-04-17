@@ -33,23 +33,25 @@ const AddUser = () => {
   return (
     <div className={styles.container}>
       <form action={addUser} className={styles.form}>
-        <input type="text" placeholder="Nom" name="name" required />
-        <input type="text" placeholder="Nom d'utilisateur" name="username" required />
-        <input type="email" placeholder="E-mail" name="email" required />
+        <input type="text" placeholder="Nom" name="name" required className='bg-gray-100 mb-3' />
+        
+        <input type="text" placeholder="Nom d'utilisateur" name="username" required className='bg-gray-100 mb-3' />
+        <input type="email" placeholder="E-mail" name="email" required className='bg-gray-100 mb-3' />
         <input
           type="password"
           placeholder="Mot de passe"
           name="password"
           required
+          className='bg-gray-100 mb-3'
         />
         <select name="role" id="role">
-          <option value="USER">
+          <option value="USER" className='bg-gray-100 mb-3'>
             Rôle
           </option>
           <option value="ADMIN">Administrateur</option>
           <option value="USER">Utilisateur</option>
         </select>
-        <button type="submit">Ajouter</button>
+        <button type="submit" >Ajouter</button>
       </form>
     </div>
   );

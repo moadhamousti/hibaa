@@ -20,9 +20,9 @@ const SingleCategoryPage = async ({ params }) => {
                     </div>
                     <div className={styles.formContainer}>
                         <form action={updateCategory} className={styles.form}>
-                            <input name='id' value={category.id} hidden/>
+                            <input name='id' value={category.id} className='bg-gray-100 mb-3' hidden/>
                             <label>Title</label>
-                            <input type="text" name='title' placeholder={category.title}/>
+                            <input type="text" name='title' className='bg-gray-100 mb-3' placeholder={category.title}/>
                             <button type='submit'>
                                 Modifier
                             </button>

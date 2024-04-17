@@ -6,10 +6,11 @@ import 'leaflet/dist/leaflet.css'; // Import Leaflet CSS
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Pin from './pin/Pin';
 import Link from 'next/link';
+import pin from '../../public/pin.png'
 
 // Define custom marker icon
 const customMarkerIcon = L.icon({
-  iconUrl: 'https://images.rawpixel.com/image_png_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTA4L3Jhd3BpeGVsX29mZmljZV8yM19pbGx1c3RyYXRpb25fb2ZfYV9sb2NhdGlvbl9waW5faWNvbl9mdWxsX2JvZF84NDY0YzUyMy1iZjIyLTQ2MDMtYTdlYi0yYjhlYjZkYTJjN2MucG5n.png', // Replace 'path/to/your/icon.png' with the path to your custom icon
+  iconUrl: "https://static.vecteezy.com/system/resources/previews/010/157/991/original/pin-location-icon-sign-symbol-design-free-png.png",
   iconSize: [32, 32], 
 });
 

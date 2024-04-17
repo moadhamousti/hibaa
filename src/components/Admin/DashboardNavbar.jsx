@@ -17,9 +17,8 @@ const titleMap = {
   '/admin/dashboard/users/Add': 'Ajouter un utilisateur',
   '/admin/dashboard/posts/Add': 'Ajouter une poste',
   "/admin/dashboard/categories/Add": 'Ajouter une catégorie',
-  "/admin/dashboard/locations/Add": 'Ajouter une location',
+  "/admin/dashboard/locations/Add": 'Ajouter un emplacement',
   "/admin/dashboard/forms/Add": 'Ajouter une pharmacie',
-
 
   
 };

@@ -290,7 +290,7 @@ const ProfileForm = () => {
             </>
           
             <label htmlFor='image' className="block mt-2 px-4 py-2 bg-[--darkishBlue] rounded-[20px] cursor-pointer text-center">
-            Upload Image
+            Choisir une image
             <input 
               type='file' 
               id='image' 
@@ -307,7 +307,7 @@ const ProfileForm = () => {
           <div className="md:flex mb-8  flex flex-col justify-center sm:w-4/5 w-full ">
             <div className="md:flex-1 mt-2 mb:mt-0 md:px-3">
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-xs font-bold">Full name</label>
+                <label className="block uppercase tracking-wide text-xs font-bold">Nom et prénom</label>
                   <input 
                     type="text" 
                     id="name"
@@ -318,7 +318,7 @@ const ProfileForm = () => {
               </div>
               <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
                   <div className="mb-4">
-                    <label className="block uppercase tracking-wide text-xs font-bold">Username</label>
+                    <label className="block uppercase tracking-wide text-xs font-bold">Nom d'utilisateur</label>
                       <input 
                         type="text" 
                         placeholder={session?.user?.username || ''} 
@@ -329,7 +329,7 @@ const ProfileForm = () => {
                 </div>
                 <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
                   <div className="mb-4">
-                    <label className="block uppercase tracking-wide text-xs font-bold">Email</label>   
+                    <label className="block uppercase tracking-wide text-xs font-bold">E-mail</label>   
                       <input 
                         type="email" 
                         id="email"
@@ -343,7 +343,7 @@ const ProfileForm = () => {
                 </div>
                 <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
                   <div className="mb-4">
-                    <label className="block uppercase tracking-wide text-xs font-bold">Password</label>   
+                    <label className="block uppercase tracking-wide text-xs font-bold">Mot de passe</label>   
                       <input 
                         type="password" 
                         id="password"
