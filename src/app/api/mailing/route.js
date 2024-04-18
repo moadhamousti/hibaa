@@ -2,10 +2,9 @@ import https from "https";
 
 
 async function addToMailingList(email) {
-    // const SECRET = "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";
-    // const SECRET = process.env.SEND_SECRET
-    // const ID = "eede4bd4-0224-487d-aa1c-48bb9f8d97ce";
-    // const ID = process.env.SEND_ID
+    const SECRET = process.env.NEXT_PUBLIC_SENDGRID_SECRET
+    const ID = process.env.NEXT_PUBLIC_SENDGRID_MAILING_ID
+
 
     console.log("hihi",SECRET)
     console.log("hojo",ID)

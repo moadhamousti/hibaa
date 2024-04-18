@@ -566,78 +566,78 @@
 
 
 
-import React from 'react'
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+// import React from 'react'
+// import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 
-const page = () => {
-  return (
+// const page = () => {
+//   return (
     
-    <div className=' rounded-xl p-2  '>
-    <div className='sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 justify-between rounded-xl  items-center shadow-md shadow-black  bg-[--bg] group '>
-      <div className=" px-2 py-8  md:flex justify-between  items-center  group-hover:blur-sm hover:!blur-none">
-        <div className=" rounded-full   overflow-hidden  ">
-          <img src="numone.svg" alt="Mountain" className=" "/>
-          </div>
-          <div className='flex flex-col text-center md:text-start'>
-          <h3 className='text-[#ACACAC] text-xs'>
-            total users 
-          </h3>
-          <h2 className='text-[--textColor] text-xl font-bold'>
-            234
-          </h2>
-          <p className='text-[#292D32] text-sm '>
-          <span className='text-[#EF507F] text-sm'>
-          <ArrowUpwardIcon/> 16% 
-          </span>
-          this week
-          </p>
-        </div>
-      </div>
-      <div className="  p-2  md:flex  justify-between  items-center group-hover:blur-sm hover:!blur-none">
-        <div className=" rounded-full   overflow-hidden mx-2 ">
-          <img src="numtwo.svg" alt="Mountain" className=" sm:object-cover object-fill"/>
-          </div>
-          <div className='flex flex-col text-center md:text-start'>
-          <h3 className='text-[#ACACAC] text-xs'>
-            total posts 
-          </h3>
-          <h2 className='text-[--textColor] text-xl font-bold'>
-            70
-          </h2>
-          <p className='text-[#292D32] text-sm'>
-          <span className='text-[#EF507F] text-sm'>
-          <ArrowUpwardIcon/> 14.75% 
-          </span>
-          this week
-          </p>
-        </div>
-      </div>
-      <div className="  p-2  md:flex  justify-between  items-center group-hover:blur-sm hover:!blur-none">
-        <div className=" rounded-full   overflow-hidden mx-2 ">
-          <img src="numthree.svg" alt="Mountain" className=" sm:object-cover object-fill"/>
-          </div>
-          <div className='flex flex-col text-center md:text-start'>
-          <h3 className='text-[#ACACAC] text-xs'>
-            Active Now  
-          </h3>
-          <h2 className='text-[--textColor] text-xl font-bold'>
-            189
-          </h2>
-          <p className='text-[#292D32] text-sm'>
-          <span className='text-[#EF507F] text-sm'>
-          <ArrowUpwardIcon/> 56% 
-          </span>
-          this week
-          </p>
-        </div>
-      </div>
+//     <div className=' rounded-xl p-2  '>
+//     <div className='sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2 justify-between rounded-xl  items-center shadow-md shadow-black  bg-[--bg] group '>
+//       <div className=" px-2 py-8  md:flex justify-between  items-center  group-hover:blur-sm hover:!blur-none">
+//         <div className=" rounded-full   overflow-hidden  ">
+//           <img src="numone.svg" alt="Mountain" className=" "/>
+//           </div>
+//           <div className='flex flex-col text-center md:text-start'>
+//           <h3 className='text-[#ACACAC] text-xs'>
+//             total users 
+//           </h3>
+//           <h2 className='text-[--textColor] text-xl font-bold'>
+//             234
+//           </h2>
+//           <p className='text-[#292D32] text-sm '>
+//           <span className='text-[#EF507F] text-sm'>
+//           <ArrowUpwardIcon/> 16% 
+//           </span>
+//           this week
+//           </p>
+//         </div>
+//       </div>
+//       <div className="  p-2  md:flex  justify-between  items-center group-hover:blur-sm hover:!blur-none">
+//         <div className=" rounded-full   overflow-hidden mx-2 ">
+//           <img src="numtwo.svg" alt="Mountain" className=" sm:object-cover object-fill"/>
+//           </div>
+//           <div className='flex flex-col text-center md:text-start'>
+//           <h3 className='text-[#ACACAC] text-xs'>
+//             total posts 
+//           </h3>
+//           <h2 className='text-[--textColor] text-xl font-bold'>
+//             70
+//           </h2>
+//           <p className='text-[#292D32] text-sm'>
+//           <span className='text-[#EF507F] text-sm'>
+//           <ArrowUpwardIcon/> 14.75% 
+//           </span>
+//           this week
+//           </p>
+//         </div>
+//       </div>
+//       <div className="  p-2  md:flex  justify-between  items-center group-hover:blur-sm hover:!blur-none">
+//         <div className=" rounded-full   overflow-hidden mx-2 ">
+//           <img src="numthree.svg" alt="Mountain" className=" sm:object-cover object-fill"/>
+//           </div>
+//           <div className='flex flex-col text-center md:text-start'>
+//           <h3 className='text-[#ACACAC] text-xs'>
+//             Active Now  
+//           </h3>
+//           <h2 className='text-[--textColor] text-xl font-bold'>
+//             189
+//           </h2>
+//           <p className='text-[#292D32] text-sm'>
+//           <span className='text-[#EF507F] text-sm'>
+//           <ArrowUpwardIcon/> 56% 
+//           </span>
+//           this week
+//           </p>
+//         </div>
+//       </div>
       
-      </div>
-    </div>
-  )
-}
+//       </div>
+//     </div>
+//   )
+// }
 
-export default page
+// export default page
 
 
 
@@ -674,3 +674,18 @@ export default page
 // }
 
 // export default Map
+
+
+
+import React from 'react'
+
+const page = async(email) => {
+  const response = await addToMailingList(email);
+
+  console.log(response);
+  return (
+    <div>page</div>
+  )
+}
+
+export default page

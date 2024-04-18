@@ -75,10 +75,10 @@
 
 
 "use client"
+import addToMailingList from "@/app/api/mailing/route";
 import axios from "axios";
 import { useState } from "react";
 import { RiLoader5Fill } from "react-icons/ri";
-import addToMailingList from "../app/api/mailingList/route";
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
