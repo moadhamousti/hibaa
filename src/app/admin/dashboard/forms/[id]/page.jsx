@@ -91,9 +91,9 @@ const page = async ({params}) => {
                     <option value="NONVALIDER" selected={!form.isValidated ==="NONVALIDER"}>Non valider</option>
                 </select>
                 <label>Latitude</label>
-                <input  className='bg-gray-100 mb-3' type="latitude" name='latitude' value={form.latitude}  placeholder={form.latitude} />
+                <input  className='bg-gray-100 mb-3' type="latitude" id="latitude" name='latitude' defaultValue={form.latitude}/>
                 <label>Longitude</label>
-                <input  className='bg-gray-100 mb-3' type="longitude" name='longitude' value={form.longitude}  placeholder={form.longitude} />
+                <input  className='bg-gray-100 mb-3' type="longitude" id="longitude" name='longitude' defaultValue={form.longitude} />
 
 
 

@@ -79,14 +79,18 @@ const AddPost = async({ searchParams }) => {
         <input type="email" name='userEmail' className='bg-gray-100 mb-3' id='userEmail' placeholder="E-mail d'utilisateur" required />
         <input type="text" className='bg-gray-100 mb-3' name='address' id='address' placeholder="Adresse" required />
         <br/>
-        <label >Social Links:</label>
+        <label >Liens sociaux:</label>
         <div className="className='mt-4'">
           <input type="text" name='facebook' className='bg-gray-100 mb-3' id='facebook' placeholder="Facebook"  />
           <input type="text" name='instagram' className='bg-gray-100 mb-3' id='instagram' placeholder="Instagram"  />
           <input type="text" name='twitter' className='bg-gray-100 mb-3' id='twitter' placeholder="Twitter"  />
         </div>
-        <input type="text" name='latitude' className='bg-gray-100 mb-3' id='latitude' placeholder="Latitude"  />
-        <input type="text" name='longitude' className='bg-gray-100 mb-3' id='longitude' placeholder="Longitude"  />
+        <br/>
+        <label >Coordonnées de la carte (Map):</label>
+        <div className="">
+          <input type="text" name='latitude' className='bg-gray-100 mb-3' id='latitude' placeholder="Latitude"  />
+          <input type="text" name='longitude' className='bg-gray-100 mb-3' id='longitude' placeholder="Longitude"  />
+        </div>
         <select name="isValidated" id="isValidated" defaultValue="NONVALIDER" className='bg-gray-100 mb-3' required>
     <option value="VALIDER">Valider</option>
     <option value="NONVALIDER">Non Valider</option>

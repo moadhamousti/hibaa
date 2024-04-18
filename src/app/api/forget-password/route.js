@@ -45,7 +45,7 @@ export const POST = async (req) => {
 
     const msg = {
       to: email,
-      from: "moadhamousti@gmail.com",
+      from: "hibaxaata@gmail.com",
       subject: "Reset Password",
       text: body,
     };

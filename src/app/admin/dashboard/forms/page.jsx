@@ -79,7 +79,7 @@ const Form = async ({ searchParams }) => {
               <td className=" bg-white ">{forms.location}</td>
               {/* <td>{posts.isWhatsapp}</td> */}
               <td className=" bg-white ">
-                <div className="flex gap-2">
+                <div className="flex gap-1">
                   <Image
                     src={forms.isWhatsapp === 'WHATSAPP' ? WhatsApp : Phone}
                     alt={forms.isWhatsapp === 'WHATSAPP' ? 'WhatsApp' : 'Regular'}
@@ -97,7 +97,7 @@ const Form = async ({ searchParams }) => {
 
 
 
-              <td className=' bg-white '>
+              <td className=' bg-white'>
                 <div className={styles.buttons}>
                   <Link href={`/admin/dashboard/forms/${forms.id}`}>
                     <button className={`${styles.button} ${styles.view}`}>Voir</button>

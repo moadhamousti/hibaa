@@ -91,10 +91,10 @@ useEffect(() => {
   return (
     <div className='flex flex-col lg:flex-row min-h-screen '>
       {/* <div className="lg:w-1/2 max-h-screen hidden lg:block  relative"> */}
-      <div className="lg:w-1/2 max-h-screen hidden lg:block relative bg-no-repeat" style={{backgroundImage: "url('./bg.svg')" , backgroundSize: '100%', backgroundPosition:'center'}} >
-        <div className="flex justify-center items-center h-full">
+      <div className="lg:w-1/2 max-h-screen hidden lg:block relative bg-no-repeat" style={{backgroundImage: "url('./img2.svg')" , backgroundSize: '100%', backgroundPosition:'center'}} >
+        {/* <div className="flex justify-center items-center w-[750px] h-full">
           <p className="text-[34px] mb-[200px] px-[160px] font-semibold text-[#1E2833]">Bienvenue dans notre communauté de charité. Rejoignez-nous dans le monde de la charité</p>
-        </div>
+        </div> */}
       </div>
           
           {/* <Image src={imageFit} alt="Your Image" /> */}

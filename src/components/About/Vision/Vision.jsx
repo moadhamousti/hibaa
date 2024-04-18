@@ -2,7 +2,7 @@ import React from 'react';
 
 const OurVision = () => {
   return (
-    <div className='sm:relative bg-white w-full left-0 sm:flex sm:h-[480px] z-10'>
+    <div className='sm:relative bg-[#EAEAEA] w-full left-0 sm:flex sm:h-[480px] z-10'>
       <div className='sm:pl-5 lg:pl-5 sm:w-[503px]'>
         <img
           src="donors.png"

@@ -222,37 +222,54 @@ export const updateLocation = async (formData) => {
 
 
 export const addPost = async (formData) => {
-  const { title, desc, phone, userEmail,location,category,img, type } = Object.fromEntries(formData);
+  const { title, desc, phone, userEmail, location, category, img, type } = Object.fromEntries(formData);
   const isWhatsapp = formData.get('isWhatsapp') === 'true';
   
-  console.log(formData)
+  console.log(formData);
 
   try {
+    let newPost;
 
-    const newDonPost = await db.DonPost.create({
-      data: {
-        title, 
-        desc, 
-        phone, 
-        userEmail,
-        isWhatsapp,
-        location,
-        category,
-        img,
-        type,
-      },
-    });
+    if (type === 'DONATION') {
+      newPost = await db.DonPost.create({
+        data: {
+          title, 
+          desc, 
+          phone, 
+          userEmail,
+          isWhatsapp,
+          location,
+          category,
+          img,
+          type,
+        },
+      });
+    } else if (type === 'REQUEST') {
+      newPost = await db.ReqPost.create({
+        data: {
+          title, 
+          desc, 
+          phone, 
+          userEmail,
+          location,
+          category,
+          img,
+          type,
+        },
+      });
+    } else {
+      throw new Error('Invalid post type');
+    }
 
-    console.log("Don Post added successfully:", newDonPost); // Log the created user object
+    console.log("Post added successfully:", newPost); // Log the created post object
 
-
-
-    return newDonPost; // Optionally return the created user object
+    return newPost; // Optionally return the created post object
   } catch (error) {
-    console.error("Error adding user:", error);
-    throw new Error("Failed to create user!");
+    console.error("Error adding post:", error);
+    throw new Error("Failed to add post!");
   }
 };
+
 
 
 

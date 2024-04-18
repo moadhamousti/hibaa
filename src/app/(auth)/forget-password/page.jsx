@@ -69,7 +69,12 @@ const ForgetPassword = () => {
       {/* <div className="lg:w-1/2 max-h-screen hidden lg:block">
         <Image src={imageFit} alt="Your Image" />
       </div> */}
-      <div className="lg:w-1/2 max-h-screen hidden lg:block relative" style={{backgroundImage: "url('./img.svg')", backgroundSize: 'fit', backgroundPosition:'center'}} />
+      <div className="lg:w-1/2 max-h-screen hidden lg:block relative bg-no-repeat" style={{backgroundImage: "url('./bge.svg')" , backgroundSize: '100%', backgroundPosition:'center'}} >
+        {/* <div className="flex justify-center items-center w-[750px] h-full">
+          <p className="text-[34px] mb-[200px] px-[160px] font-semibold text-[#1E2833]">Bienvenue dans notre communauté de charité. Rejoignez-nous dans le monde de la charité</p>
+        </div> */}
+      </div>
+
       {/* <div className="lg:w-1/2 max-h-screen hidden lg:block bg-gradient-to-t from-[#E7DDDB] to-[#00A4BF] relative"> */}
           {/* <Image src={imageFit} alt="Your Image" /> */}
           {/* <p className="absolute bottom-0 mb-10 text-[#2B3D40] px-8 left-0 right-0 text-center text-2xl">Rejoignez-nous. Faites la différence. Connectez-vous <br/> aujourd'hui.</p> */}

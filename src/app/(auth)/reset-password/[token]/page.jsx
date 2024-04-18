@@ -9,7 +9,7 @@ import { ChevronLeftIcon } from "@radix-ui/react-icons";
 import { Input } from "../../../../components/ui/input";
 import { Button } from "../../../../components/ui/button";
 import { useSession } from "next-auth/react";
-import imageFit from '../../../../../public/Blank.png'
+// import imageFit from '../../../../../public/Blank.png'
 import loader from '../../../../../public/loader.gif'
 
 
@@ -105,7 +105,13 @@ const ResetPassword = ({params}) => {
       {/* <div className="lg:w-1/2 max-h-screen hidden lg:block">
         <Image src={imageFit} alt="Your Image" />
       </div> */}
-      <div className="lg:w-1/2 max-h-screen hidden lg:block relative" style={{backgroundImage: "url('./img.svg')", backgroundSize: 'fit', backgroundPosition:'center'}} />
+            {/* <div className="lg:w-1/2 max-h-screen hidden lg:block relative" style={{backgroundImage: "url('./img.svg')", backgroundSize: 'fit', backgroundPosition:'center'}} /> */}
+
+      <div className="lg:w-1/2 max-h-screen hidden lg:block relative bg-no-repeat" style={{backgroundImage: "url('./bge.svg')" , backgroundSize: '100%', backgroundPosition:'center'}} >
+        {/* <div className="flex justify-center items-center w-[750px] h-full">
+          <p className="text-[34px] mb-[200px] px-[160px] font-semibold text-[#1E2833]">Bienvenue dans notre communauté de charité. Rejoignez-nous dans le monde de la charité</p>
+        </div> */}
+      </div>
       {/* <div className="lg:w-1/2 max-h-screen hidden lg:block bg-gradient-to-t from-[#E7DDDB] to-[#00A4BF] relative"> */}
           {/* <Image src={imageFit} alt="Your Image" /> */}
           {/* <p className="absolute bottom-0 mb-10 text-[#2B3D40] px-8 left-0 right-0 text-center text-2xl">Rejoignez-nous. Faites la différence. Connectez-vous <br/> aujourd'hui.</p> */}
@@ -134,7 +140,7 @@ const ResetPassword = ({params}) => {
           <button
             type="submit"
             disabled={error.length > 0}
-            className='bg-[--darkishBlue] w-[300px] h-[50px] top-[581px] left-[873px] rounded-[50px] mt-6 block mx-auto disabled:bg-[--lightishBlue] disabled:cursor-not-allowed'
+            className='bg-[--darkishBlue] text-white w-[300px] h-[50px] top-[581px] left-[873px] rounded-[50px] mt-6 block mx-auto disabled:bg-[--lightishBlue] disabled:cursor-not-allowed'
 
           >
             Reset Password

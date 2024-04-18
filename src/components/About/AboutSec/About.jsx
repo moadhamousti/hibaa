@@ -1,30 +1,42 @@
 import React from 'react';
+import bg from '../../../../public/aboutBg.png';
+import next from '../../../../public/nextt.svg';
+import Image from 'next/image';
 
 const About = () => {
   return (
-    <div className='w-full sm:h-[100vh] relative overflow-hidden'>
-      <article className='flex flex-col items-start justify-center sm:mx-10 h-[60vh] sm:h-[85vh]'>
-        <div className='absolute top-0 left-0 bottom-0 right-0 h-full w-full z-0' style={{backgroundImage: "url('aboutBg.png')", backgroundSize: 'cover', backgroundPosition:'center'}} />
-       
-  <div 
-          className='absolute bottom-0 top-0 left-0 w-full h-full   bg-gradient-to-b from-transparent to-[--softTextColor] opacity-80 z-10' 
-        /> 
-
-        <div className='w-full text-[--bg] lg:w-full p-1 sm:p-2 md:p-3 lg:p-4 flex flex-col items-start justify-center z-10 min-h-9'>
-          <h1 className='font-bold py-4 capitalize text-xl sm:text-2xl md:text-3xl p-3 lg:text-5xl text-left'>À PROPOS</h1>
-  
-          <p className='mt-4 md:text-lg lg:text-xl w-full sm:w-6/12 text-left p-3 sm:text-left lg:text-left'>
-            At <span className='font-extrabold'> Heba&aTaa</span>, Hiba&ataa, nous offrons aux utilisateurs la possibilité de rechercher et de trouver les équipements médicaux dont ils ont besoin pour améliorer leur bien-être et leur santé. Nous invitons également les personnes à se joindre à notre mission qui vise à rendre les soins de santé accessibles à tous.
+    <div className='flex flex-col md:flex-row'>
+      <div className='w-full md:w-1/2 bg-white text-black flex items-center justify-center p-8 md:p-20'>
+        <div className='max-w-lg mx-auto'>
+          <h3 className='font-bold text-sm md:text-base lg:text-lg mb-2 text-center md:text-left text-pink-500'>Healing Hearts, Healing Lives</h3>
+          <div className="flex items-center"> {/* Ensure the image stays aligned with the text */}
+            <h1 className='text-4xl md:text-5xl lg:text-6xl lg:leading-[80px] font-bold mb-4 text-center md:text-left'>
+              Being Part Of
+              Donation Is A 
+              Way To Share
+            </h1>
+            {/* <Image src={next} alt="" height={50} width={50} className='hidden lg:block ml-2' /> Adjust margin and display */}
+          </div>
+          <p className='text-sm md:text-base lg:text-lg text-center md:text-left text-gray-500'>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere provident ipsam. Pariatur consectetur minima voluptas commodi iusto?
           </p>
         </div>
-      </article>
+      </div>
+      <div className='hidden md:block w-full md:w-1/2 relative'> {/* Add relative positioning */}
+        <Image src={bg} alt='' layout='fill' objectFit='cover' /> {/* Ensure the image fills its container */}
+      </div>
     </div>
   );
-}
+};
 
 export default About;
 
 
+
+
+
+
+        {/* <div className='absolute top-0 left-0 bottom-0 right-0 h-full w-full z-0' style={{backgroundImage: "url('aboutBg.png')", backgroundSize: 'cover', backgroundPosition:'center'}} /> */}
 
 
 

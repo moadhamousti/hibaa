@@ -31,13 +31,13 @@ const AddPost = async({ searchParams }) => {
         <input type="email" name='userEmail' placeholder="E-mail d'utilisateur" required className='bg-gray-100 mb-3'/>
         {/* <form action={fetchCategories}></form> */}
         <select name="location" id="location" className='bg-gray-100 mb-3' required>
-            <option value="">Choisir une Catégorie</option>
+            <option value="">Choisir un Emplacement</option>
             {locations.map(location => (
               <option key={location.id} value={location.title}>{location.title}</option>
             ))}
           </select>
           <select name="category" id="category" className='bg-gray-100 mb-3' required>
-            <option value="">Choisir un Emplacement</option>
+            <option value="">Choisir une Catégorie</option>
             {categories.map(category => (
               <option key={category.id} value={category.title}>{category.title}</option>
             ))}
@@ -45,16 +45,16 @@ const AddPost = async({ searchParams }) => {
 
 
           
-        <input type="tel" name='phone' placeholder='Phone' className='bg-gray-100 mb-3'/>
+        <input type="tel" name='phone' id="phone" placeholder='Numéro de téléphone' className='bg-gray-100 mb-3'/>
         <div className="flex w-1/2 gap-4">
             <p className='w-full'>Est-ce un numéro WhatsApp ?</p>
             <div className="flex">
-              <input type="radio" name="isWhatsapp" value="true" className=''/> 
+              <input type="radio" name="isWhatsapp" id="isWhatsapp" value="true" className=''/> 
               <p className='mt-1'>Oui</p>
             </div>
             <br/>
             <div className="flex">
-              <input type="radio" name="isWhatsapp" value="false" className=''/>
+              <input type="radio" name="isWhatsapp" id="isWhatsapp" value="false" className=''/>
               <p className='mt-1'>Non</p>
             </div>
         </div>
