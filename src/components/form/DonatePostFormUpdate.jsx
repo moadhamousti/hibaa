@@ -17,7 +17,7 @@ import Image from 'next/image';
 import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
 import { useToast } from "@/components/ui/use-toast"
-import whatsapp from '../../../public/whatsapp.png'
+import whatsapp from '../../../public/phone.png'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 
 

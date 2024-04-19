@@ -16,7 +16,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
-import whatsapp from '../../../public/whatsapp.png'
+import whatsapp from '../../../public/phone.png'
 import { useToast } from "@/components/ui/use-toast"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 
