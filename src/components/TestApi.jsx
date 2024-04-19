@@ -8,7 +8,7 @@ const TestApi = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const res = await fetch('http://localhost:3000/api/posts/donatePosts');
+          const res = await fetch('https://hibaatae.vercel.app/api/posts/donatePosts');
   
           if (!res.ok) {
             throw new Error('Failed to fetch data');

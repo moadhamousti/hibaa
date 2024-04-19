@@ -12,7 +12,7 @@ const GoogleSignInButton = ({ children }) => {
 
   const loginWithGoogle = async () => {
     setLoading(true); // Set loading state to true when clicked
-    await signIn('google', { callbackUrl: 'http://localhost:3000/feed' });
+    await signIn('google', { callbackUrl: 'https://hibaatae.vercel.app/feed' });
     setLoading(false); // Reset loading state after sign-in attempt
   };
 

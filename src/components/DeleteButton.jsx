@@ -6,7 +6,7 @@ import deleteIcon from "../../public/Gmail.png";
 const DeleteButton = ({ id }) => { // Accept id as a prop
   const handleDeleteClick = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/posts/${id}`, {
+      const response = await fetch(`https://hibaatae.vercel.app/api/posts/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

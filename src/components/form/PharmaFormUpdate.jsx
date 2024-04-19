@@ -34,7 +34,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
 const storage = getStorage(app);
 
 const getData = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/form/${id}`, {
+    const res = await fetch(`https://hibaatae.vercel.app/api/form/${id}`, {
       cache: "no-store",
     });
   

@@ -38,7 +38,7 @@ export const POST = async (req) => {
       },
     });
 
-    const resetUrl = `localhost:3000/reset-password/${resetToken}`;
+    const resetUrl = `https://hibaatae.vercel.app/reset-password/${resetToken}`;
     const body = "Reset Password by clicking on following URL: " + resetUrl;
 
     sgMail.setApiKey(process.env.SENDGRID_API_KEY || "");

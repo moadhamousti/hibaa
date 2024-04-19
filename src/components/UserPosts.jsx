@@ -19,7 +19,7 @@ const UserPosts = ({ id }) => {
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/user/${id}`);
+        const res = await fetch(`https://hibaatae.vercel.app/api/user/${id}`);
         if (!res.ok) {
           throw new Error('Failed to fetch user posts');
         }
