@@ -5,10 +5,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./categoryList.module.css";
 import { useRouter } from "next/navigation";
 
-const API_BASE_URL = process.env.NEXTAUTH_URL|| 'http://localhost:3000';
-
 const getData = async () => {
-  const res = await fetch(`${API_BASE_URL}/api/categories`, {
+  const res = await fetch("https://hibaatae.vercel.app/api/categories", {
     cache: "no-store",
   });
 

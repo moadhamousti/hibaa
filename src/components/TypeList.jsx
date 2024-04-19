@@ -9,13 +9,10 @@ const TypeList = () => {
   const [selectedType, setSelectedType] = useState("");
   const router = useRouter();
 
-const API_BASE_URL = process.env.NEXTAUTH_URL || 'http://localhost:3000';
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/api/typePost`, {
+        const res = await fetch("https://hibaatae.vercel.app/api/typePost", {
           cache: "no-store"
         });
         if (!res.ok) {

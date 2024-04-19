@@ -4,15 +4,13 @@ import Pagination from './Pagination';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const API_BASE_URL = process.env.NEXTAUTH_URL|| 'http://localhost:3000';
-
 
 const getData = async ({ page, cat,loc,type }) => {
-  const resDon = await fetch(`${API_BASE_URL}/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
+  const resDon = await fetch(`https://hibaatae.vercel.app/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
     cache: "no-store",
   });
 
-  const resReq = await fetch(`${API_BASE_URL}/api/posts/requestPosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
+  const resReq = await fetch(`https://hibaatae.vercel.app/api/posts/requestPosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
     cache: "no-store",
   });
 
