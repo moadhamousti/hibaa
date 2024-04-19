@@ -9,10 +9,13 @@ const TypeList = () => {
   const [selectedType, setSelectedType] = useState("");
   const router = useRouter();
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/typePost", {
+        const res = await fetch(`${API_BASE_URL}/api/typePost`, {
           cache: "no-store"
         });
         if (!res.ok) {

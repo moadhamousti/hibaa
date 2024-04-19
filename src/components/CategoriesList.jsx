@@ -5,8 +5,10 @@ import React, { useState, useEffect } from "react";
 import styles from "./categoryList.module.css";
 import { useRouter } from "next/navigation";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
+
 const getData = async () => {
-  const res = await fetch("http://localhost:3000/api/categories", {
+  const res = await fetch(`${API_BASE_URL}/api/categories`, {
     cache: "no-store",
   });
 
