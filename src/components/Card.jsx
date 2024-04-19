@@ -30,7 +30,7 @@ const Card =  ({ item}) => {
     <div className="w-full pt-5 mb-8 mx-auto rounded-bl-xl rounded-br-xl">
       <div className="relative flex max-w-[26rem] gap-5 flex-col rounded-xl bg-white  shadow-opacity-50 text-gray-700 shadow shadow-gray-500">
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <Link href={`/posts/${item.id}`}>
+          <Link href={item.type === 'DONATION' ? `/posts/donPost/${item.id}` : `/posts/reqPost/${item.id}`}>
             <div className="relative h-48">
               {item.img ? (
                 <Image
