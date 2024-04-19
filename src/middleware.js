@@ -2,6 +2,6 @@
 
 export { default } from 'next-auth/middleware';
 
-export const config = { matcher: ["/profile","/pharmaForm"] }
+export const config = { matcher: ["/pharmaForm"] }
 
 
