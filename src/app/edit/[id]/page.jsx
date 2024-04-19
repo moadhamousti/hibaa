@@ -13,7 +13,7 @@ import PostTypeFilter from '@/components/PostTypeFilter';
 import LocationFilter from '@/components/LocationFilter';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
-import whatsapp from '../../../../public/whatsapp.png'
+import Whatsapp from '../../../../public/whatsapp.png'
 import MedToolsTypeFilter from '@/components/MedToolsTypeFilter';
 import { useDropzone } from 'react-dropzone';
 import FileUploader from '@/components/FileUploader';
@@ -266,7 +266,7 @@ const Page = () => {
           <Label htmlFor="phone">Phone</Label>
           <Input onChange={e => setPhone(e.target.value)} id="phone" className='bg-gray-200' placeholder="Phone Number" />
           <div className='flex gap-3'>
-            <Image src={whatsapp} alt='' width={20} height={20}/>
+            <Image src={Whatsapp} alt='' width={20} height={20}/>
             <span>Is this a whatsapp Number?</span>
             <RadioGroup
               aria-label="whatsapp-option"
