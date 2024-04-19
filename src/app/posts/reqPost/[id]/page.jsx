@@ -33,7 +33,7 @@ import { fr } from 'date-fns/locale';
 
 
 const getData = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/posts/reqPost/${id}`, {
+  const res = await fetch(`https://hibaatae.vercel.app/api/posts/reqPost/${id}`, {
     cache: "no-store",
   });
 
