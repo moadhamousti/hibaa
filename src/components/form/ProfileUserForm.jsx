@@ -60,10 +60,12 @@ const ProfileUserForm = () => {
             {userData && (
               <>
                 <div className="flex items-center justify-center">
-                  <img
+                  <Image
                     className="w-20 h-20 rounded-full mb-4"
                     src={userData.image || "https://github.com/shadcn.png"}
                     alt="Profile"
+                    height={100}
+                    width={100}
                   />
                 </div>
                 <div className="text-center gap-10">

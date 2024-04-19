@@ -170,21 +170,21 @@ const Page = async ({params}) => {
               </div>
               {data.instagram && (
                 <div className="flex gap-2 mb-3">
-                  <Image width={25} height={25} src={instagram}/>
+                  <Image width={25} height={25} src={instagram} alt=''/>
                   <Link href={instagramURL}><h3 className='underline text-[30] font-semibold'>{data.instagram}</h3></Link>
                 </div>
               )}
 
               {data.facebook && (
                 <div className="flex gap-2 mb-3">
-                  <Image width={25} height={25} src={facebook}/>
+                  <Image width={25} height={25} src={facebook} alt=''/>
                   <Link href={facebookURL}><h3 className='underline text-[30] font-semibold'>{data.facebook}</h3></Link>
                 </div>
               )}
 
               {data.twitter && (
                 <div className="flex gap-2 mb-3">
-                  <Image width={25} height={25} src={twitter}/>
+                  <Image width={25} height={25} src={twitter} alt=''/>
                   <Link href={twitterURL}><h3 className='underline text-[30] font-semibold'>{data.twitter}</h3></Link>
                 </div>
               )}
@@ -226,7 +226,7 @@ const Page = async ({params}) => {
                   </div>
               </div>
               <div className="flex gap-2">
-                    <Image width={25} height={25} src={loacation}/>
+                    <Image width={25} height={25} src={loacation} alt=''/>
                     <h3 className='underline text-[30] font-semibold'>{data.address}</h3>
               </div>
 

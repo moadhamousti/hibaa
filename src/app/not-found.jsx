@@ -13,8 +13,8 @@ export default function Notfound(){
             </div>
             <div className="text-center">
                 <h2 className="text-[20px] mb-5 text-black">Il y avait un problème.</h2>
-                <p className="text-[17px]">nous n'avons pas trouvé la page que vous cherchiez.</p>
-                <p className="text-[17px]">Retournez à la <Link className="text-[--darkishBlue] underline" href="/">page d'accueil</Link> </p>
+                <p className="text-[17px]">nous n&apos;avons pas trouvé la page que vous cherchiez.</p>
+                <p className="text-[17px]">Retournez à la <Link className="text-[--darkishBlue] underline" href="/">page d&apos;accueil</Link> </p>
             </div>
         </div>
 

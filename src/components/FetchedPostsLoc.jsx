@@ -46,7 +46,7 @@ const FetchedPostsLoc = ({ selectedLocation }) => {
     ) : (
         <div>
             {selectedLocation && posts.length === 0 ? (
-                <p>No posts found in this location</p>
+                <p>Aucun postes trouvé à cet Emplacement</p>
             ) : (
                 <div className="">
                     {posts.slice(0, 3).map((post) => (

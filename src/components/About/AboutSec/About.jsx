@@ -8,17 +8,15 @@ const About = () => {
     <div className='flex flex-col md:flex-row'>
       <div className='w-full md:w-1/2 bg-white text-black flex items-center justify-center p-8 md:p-20'>
         <div className='max-w-lg mx-auto'>
-          <h3 className='font-bold text-sm md:text-base lg:text-lg mb-2 text-center md:text-left text-pink-500'>Healing Hearts, Healing Lives</h3>
+          <h3 className='font-bold text-sm md:text-base lg:text-lg mb-2 text-center md:text-left text-pink-500'>Guérir les cœurs, sauver les vies</h3>
           <div className="flex items-center"> {/* Ensure the image stays aligned with the text */}
-            <h1 className='text-4xl md:text-5xl lg:text-6xl lg:leading-[80px] font-bold mb-4 text-center md:text-left'>
-              Being Part Of
-              Donation Is A 
-              Way To Share
+            <h1 className='text-3xl md:text-4xl lg:text-5xl lg:leading-[80px] font-bold mb-4 text-center md:text-left'>
+            Faire partie de la donation est une façon de partager
             </h1>
             {/* <Image src={next} alt="" height={50} width={50} className='hidden lg:block ml-2' /> Adjust margin and display */}
           </div>
           <p className='text-sm md:text-base lg:text-lg text-center md:text-left text-gray-500'>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere provident ipsam. Pariatur consectetur minima voluptas commodi iusto?
+            Nous facilitons le partage d&apos;équipements médicaux essentiels via notre plateforme de dons. Chaque contribution offre un nouvel espoir à ceux qui en ont besoin. Rejoignez-nous dans notre mission de compassion pour fournir des soins et des ressources aux plus vulnérables.
           </p>
         </div>
       </div>

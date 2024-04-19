@@ -75,6 +75,7 @@ const Sidebar = () => {
           src='/logo.svg'
           width={1000}
           height={1000}
+          alt=''
 
           className={` mb-3 cursor-pointer block float-left duration-500 ${open ? 'w-full' : 'w-1/2 absolute top-10 mb-4 -left-0'
             } ${!open && ''}`}

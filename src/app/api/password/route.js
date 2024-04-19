@@ -4,14 +4,14 @@ import { db } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import { getSession } from 'next-auth/react';
 
-export default async (req, res) => {
+const updatePassword = async (req, res) => {
   const session = await getSession({ req });
 
   if (!session) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-//   const { currentPassword, newPassword } = req.body;
+  const { currentPassword, newPassword } = req.body;
 
   try {
     const user = await db.user.findUnique({
@@ -39,3 +39,5 @@ export default async (req, res) => {
     return res.status(500).json({ message: 'Failed to update password' });
   }
 };
+
+export default updatePassword;

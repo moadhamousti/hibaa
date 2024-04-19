@@ -267,9 +267,9 @@ const ProfileForm = () => {
           </div>
           <div className=' p-2  grid sm:grid-cols-2  gap-0"  '>
             <div className='  flex flex-col items-center  w-full '>
-              <div className='mb-8'>
+              {/* <div className='mb-8'>
                 <img src="userProfile.svg" alt="" />
-              </div>
+              </div> */}
         <div className="">
           <div className=" text-xl font-normal py-2 px-4 rounded-2xl text-[--bg]   justify-center   mb-8   w-fit mx-auto cursor-pointer relative">
           {loading && (
@@ -279,12 +279,14 @@ const ProfileForm = () => {
           )}
             <>
             {imagePreview && (
-              <img
+              <Image
                 className="w-[150px] h-[150px] items-center rounded-full mb-4"
                 // src={session?.user.image}
                 value={imagePreview}
                 alt="Profile"
                 src={session?.user.image}
+                height={150}
+                width={150}
               />
             )}
             </>
@@ -318,7 +320,7 @@ const ProfileForm = () => {
               </div>
               <div className="md:flex-1 mt-2 mb:mt-0 md:px-0">
                   <div className="mb-4">
-                    <label className="block uppercase tracking-wide text-xs font-bold">Nom d'utilisateur</label>
+                    <label className="block uppercase tracking-wide text-xs font-bold">Nom d&apos;utilisateur</label>
                       <input 
                         type="text" 
                         placeholder={session?.user?.username || ''} 

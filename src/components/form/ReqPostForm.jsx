@@ -393,7 +393,7 @@ useEffect(() => {
 
 
           <Label htmlFor="toolsCategory">Ajouter une image</Label>
-          <span className='text-gray-500 font-light text-[14px]'>(Pour Clarete, il est conseillé d'ajouter une image)</span>
+          <span className='text-gray-500 font-light text-[14px]'>(Pour Clarete, il est conseillé d&apos;ajouter une image)</span>
 
 
           <div className="flex flex-col items-center justify-center">
@@ -413,10 +413,12 @@ useEffect(() => {
               <Loader /> {/* Replace Loader with your loader component */}
             </div>
           ) : file ? (
-            <img
+            <Image
               src={URL.createObjectURL(file)}
               alt="Preview"
               className="w-full h-full object-cover rounded-md border-2 border-gray-300"
+              height={420}
+              width={500}
             />
           ) : (
             <div

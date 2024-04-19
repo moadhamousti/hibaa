@@ -16,7 +16,7 @@ const MakeDifference = () => {
       <div className='w-full  lg:w-full p-6 sm:p-8 md:p-12 lg:p-16 flex flex-col items-start h-96 justify-center z-10 '>
       <div className='w-full flex flex-col justify-between gap-x-9 text-[--textColor] z-10 absolute left-0 text-center  text-xl font-semibold'>
             <p className='pb-8 text-[#000]'>Prêt à faire la différence ?<br /> 
-            Rejoignez-nous pour partager du matériel et changer des vies dès aujourd'hui.</p>
+            Rejoignez-nous pour partager du matériel et changer des vies dès aujourd&apos;hui.</p>
         {/* </div> */}
         <div>
         <button className="py-2 px-4 inline-flex items-center mt-6  rounded-3xl capitalize text-[--bg] bg-[--textColor] font-medium hover:border-2 hover:bg-transparent  hover:border-[--textColor] text-sm sm:text-base max-md:text-xs max-md:font-normal">

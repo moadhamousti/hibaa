@@ -32,7 +32,7 @@ const Users = async ({searchParams}) => {
           <tr>
             <td className="font-bold  bg-white ">Image</td>
             <td className="font-bold  bg-white ">Nom</td>
-            <td className="font-bold  bg-white ">Nom d'utilisateur</td>
+            <td className="font-bold  bg-white ">Nom d&apos;utilisateur</td>
             <td className="font-bold  bg-white ">E-mail</td>
             <td className="font-bold  bg-white ">Créé à</td>
             <td className="font-bold  bg-white ">Nombre postes</td>

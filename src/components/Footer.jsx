@@ -14,7 +14,7 @@ const Footer = () => {
     <div className="">
     <div className="mt-10  sm:grid flex flex-col items-center sm:items-start  grid-cols-5 sm:gap-y-24 gap-4 text-gray-500 border-b-2 border-gray-400 pb-8 mb-2">
         <div className="w-full flex items-center justify-center sm:justify-start">
-          <img src="/logo.svg" alt="Charity blog" className="w-auto h-auto" />
+          <Image src="/logo.svg" alt="Charity blog" className="w-auto h-auto" height={30} width={125} />
         </div>
 
         <div className='sm:text-start text-center '>

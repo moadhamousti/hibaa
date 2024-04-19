@@ -71,9 +71,9 @@ const page = async ({params}) => {
                 <label>Facebook Lien</label>
                 <input  className='bg-gray-100 mb-3' type="facebook" name='facebook' defaultValue={form.facebook}  placeholder={form.facebook} />
                 <label>Instagram Lien</label>
-                <input  className='bg-gray-100 mb-3' type="instagram" name='instagram' defaultValue={form.instagram}  placeholder={form.facebook} />
+                <input  className='bg-gray-100 mb-3' type="instagram" name='instagram' defaultValue={form.instagram}  placeholder={form.instagram} />
                 <label>Twitter Lien</label>
-                <input  className='bg-gray-100 mb-3' type="twitter" name='twitter' defaultValue={form.twitter}  placeholder={form.facebook} />
+                <input  className='bg-gray-100 mb-3' type="twitter" name='twitter' defaultValue={form.twitter}  placeholder={form.twitter} />
                 {/* <div className="flex gap-5 items-center">
                     <p>WhatsApp Number ?</p>
                     <input type="radio" name="isWhatsapp" id="isWhatsapp" placeholder={form.isWhatsapp} value={form.isWhatsapp}/>

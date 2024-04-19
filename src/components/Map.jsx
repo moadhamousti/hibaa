@@ -7,6 +7,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import Pin from './pin/Pin';
 import Link from 'next/link';
 import pin from '../../public/pin.png'
+import Image from 'next/image';
 
 // Define custom marker icon
 const customMarkerIcon = L.icon({
@@ -32,7 +33,7 @@ const Map = ({ items }) => {
             <Popup>
                 <div className="popupContainer">
                     <span className='name'>{item.phaName}</span><br />
-                    <img className='image' src={item.img} alt='' />
+                    <Image height={1000} width={1000} className='image' src={item.img} alt='' />
                     <div className="textContainer">
                         <Link href={`${item.id}`}>{item.address}</Link>
                         <b>{item.location}</b>

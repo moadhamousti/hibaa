@@ -3,6 +3,7 @@ import Sidebar from '../../../components/Admin/Sidebar';
 import { authOptions } from '@/lib/auth';
 import { getServerSession } from 'next-auth';
 import LostPage from '@/components/LostPage';
+import Image from 'next/image';
 // import '../../globals.css'
 
 const Layout = async ({ children }) => {

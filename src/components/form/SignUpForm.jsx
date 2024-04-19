@@ -30,17 +30,17 @@ import loaderGif from '../../../public/loaderB.gif'
 
 const FormSchema = z
   .object({
-    username: z.string().min(1, "Nom d'utilisateur est nécessaire").max(100),
+    username: z.string().min(1, "Nom d\'utilisateur est nécessaire").max(100),
     email: z
       .string()
-      .min(1, "L'e-mail est requis")
-      .email("L'Email invalide")
+      .min(1, "L\'e-mail est requis")
+      .email("L\'Email invalide")
       .refine((value) => {
         // Custom validation function to check email domain
         const allowedDomains = ["gmail.com", "hotmail.com", "yahoo.com"];
         const emailParts = value.split("@");
         return allowedDomains.includes(emailParts[emailParts.length - 1]);
-      }, "l'e-mail n'est pas valide"),
+      }, "L\'e-mail n\'est pas valide"),
     password: z
       .string()
       .min(1, "Mot de passe requis")
@@ -97,11 +97,17 @@ useEffect(() => {
     })
 
     if(response.ok) {
+      toast({
+        title: "Succès",
+        description:"Compte créé avec succès.",
+        variant:"success",
+        className: "bg-green-500 text-white", 
+      })
       router.push('/sign-in')
     }else{
       toast({
         title: "Error",
-        description:"Something Went Wrong!",
+        description:"Une erreur s'est produite! Veuillez réessayer.",
         variant:"destructive",
       })
     }
@@ -137,7 +143,7 @@ useEffect(() => {
                 name='username'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nom d'utilisateur</FormLabel>
+                    <FormLabel>Nom d&apos;utilisateur</FormLabel>
                     <FormControl>
                       <Input placeholder='utilisateur' {...field} />
                     </FormControl>

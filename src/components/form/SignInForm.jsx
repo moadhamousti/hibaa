@@ -75,7 +75,7 @@ useEffect(() => {
    if(signInData?.error) {
     toast({
       title: "Error",
-      description:"Something Went Wrong!",
+      description:"Une erreur s'est produite! Veuillez réessayer.",
       variant:"destructive",
     })
    }else{
@@ -143,7 +143,9 @@ useEffect(() => {
             )}
           />
           <div>
-            <Link href='/forget-password'><p className='mt-2 text-black font-normal text-end text-[16px] hover:text-[--darkishBlue] '>Mot de passe oublié?</p></Link>
+            <Link href='/forget-password'>
+              <p className='mt-2 text-black font-normal text-end text-[16px] hover:text-[--darkishBlue] '>Mot de passe oubli&eacute;?</p>
+            </Link>
           </div>
         </div>
         {/* <Button className='w-full mt-6' type='submit'>
@@ -167,9 +169,9 @@ useEffect(() => {
       </div>
       <GoogleSignInButton>Connectez-vous avec Google</GoogleSignInButton>
       <p className='text-center text-sm text-gray-600 mt-2'>
-      Si vous n'avez pas de compte, s'il vous plaît{' '}
+      Si vous n&apos;avez pas de compte, s&apos;il vous plaît{' '}
         <Link className='text-blue-500 hover:underline' href='/sign-up'>
-          S'inscrire
+          S&apos;inscrire
         </Link>
       </p>
     </Form>

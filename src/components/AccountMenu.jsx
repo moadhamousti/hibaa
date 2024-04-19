@@ -105,6 +105,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PrivacyTipIcon from '@mui/icons-material/PrivacyTip';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Image from 'next/image';
 
 export const navItems = [
     { name: "Acceuil", href: "/", icon: HomeIcon },
@@ -122,7 +123,7 @@ const AccountMenu = () => {
     };
 
     const user = session?.user;
-    const avatarSrc = session?.user?.image || "https://github.com/shadcn.png";
+    const avatarSrc = session?.user?.image;
 
     console.log(session?.user.role)
 
@@ -146,13 +147,18 @@ const AccountMenu = () => {
                             {!imageLoaded && (
                                 <Skeleton variant="circular" sx={{ backgroundColor: '#E0E0E0' }} width={40} height={40} animation="wave" />
                             )}
-                            <img
+                            <Image
                                 src={avatarSrc}
                                 alt=""
-                                style={{ display: imageLoaded ? 'block'  : 'none' }}
+                                style={{ display: imageLoaded ? 'block' : 'none' }}
                                 className="absolute inset-0 w-full h-full object-cover"
-                                onLoad={handleImageLoad}
+                                onLoad={() => setImageLoaded(true)}
+                                width={100}
+                                height={100}
+                                layout="fixed"
                             />
+
+
                             {/* <AvatarFallback>
                                 {user?.username ? user.username : user?.name}
                             </AvatarFallback> */}

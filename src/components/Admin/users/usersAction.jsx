@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import React, { useState, useEffect } from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 const dateFormat = 'yyyy-MM-dd HH:mm:ss';
 
@@ -30,7 +31,7 @@ const UsersAction = () => {
   }, []);
 
   const columns = [
-    { field: 'image', headerName: 'Image', width: 100, renderCell: (params) => <img className='w-10 h-10 rounded-full' src={params.row.image} alt={params.row.name} /> },
+    { field: 'image', headerName: 'Image', width: 100, renderCell: (params) => <Image className='w-10 h-10 rounded-full' src={params.row.image} alt={params.row.name} /> },
     { field: 'name', headerName: 'Name', width: 150 },
     { field: 'username', headerName: 'Username', width: 150 },
     { field: 'email', headerName: 'Email', width: 200 },

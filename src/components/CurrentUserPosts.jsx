@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 import Card from '@/components/Card';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import loader from '../../../public/loader.gif'
+import loader from '../../public/loader.gif'
 
 
 const CurrentUserPosts = ({item}) => {

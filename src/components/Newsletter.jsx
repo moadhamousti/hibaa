@@ -104,7 +104,7 @@ const Newsletter = () => {
       <div className="container mx-auto text-center">
         <div className="pl-8 pr-8">
           <h2 className="text-[20px] lg:text-3xl text-white md:text-2xl font-medium	 mb-8">
-            "RESTEZ À JOUR DE NOS DERNIERS EFFORTS POUR PARTAGER DES ÉQUIPEMENTS MÉDICAUX EN VOUS ABONNANT À NOTRE NEWSLETTER"
+            &quot;RESTEZ À JOUR DE NOS DERNIERS EFFORTS POUR PARTAGER DES ÉQUIPEMENTS MÉDICAUX EN VOUS ABONNANT À NOTRE NEWSLETTER&quot;
           </h2>
         </div>
       </div> 

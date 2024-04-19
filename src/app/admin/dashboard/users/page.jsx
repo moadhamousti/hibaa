@@ -30,7 +30,7 @@ const Users = async ({searchParams}) => {
           <tr>
             <td className="font-bold  ">Image</td>
             <td className="font-bold  ">Nom</td>
-            <td className="font-bold  ">Nom d'utilisateur</td>
+            <td className="font-bold  ">Nom d&apos;utilisateur</td>
             <td className="font-bold  ">E-mail</td>
             <td className="font-bold  ">Créé à</td>
             <td className="font-bold  ">Rôle</td>
@@ -71,7 +71,7 @@ const Users = async ({searchParams}) => {
                   <button className={`${styles.button} ${styles.view}`}>Voir</button>
                 </Link>
                 <form action={deleteUser}>
-                    <input type='text' defaultValue={user.id} name='id' hidden/>
+                    <input type="text" defaultValue={user.id} name="id" hidden/>
                     <button className={`${styles.button} ${styles.delete}`}>Supprimer</button>
                   </form>
               </div>

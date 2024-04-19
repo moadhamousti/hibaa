@@ -408,18 +408,22 @@ const RequestPostFormUpdate = ({ params }) => {
                     <>
                       {file ? (
                         <label htmlFor="image" className="cursor-pointer">
-                          <img
+                          <Image
                             src={URL.createObjectURL(file)}
                             alt="Preview"
                             className="w-full h-full object-cover rounded-md border-2 border-gray-300"
+                            height={420}
+                            width={500}
                           />
                         </label>
                       ) : postData && postData.img ? (
                         <label htmlFor="image" className="cursor-pointer">
-                          <img
+                          <Image
                             src={postData.img}
                             alt="Current Image"
                             className="w-full h-full object-cover rounded-md border-2 border-gray-300"
+                            height={420}
+                            width={500}
                           />
                         </label>
                       ) : (
@@ -430,7 +434,7 @@ const RequestPostFormUpdate = ({ params }) => {
                         >
                           <label htmlFor="image" className="cursor-pointer">
                             <div className='column self-center bg-white px-10 py-10' style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                              <Image className='mb-6' src={uploadIcon} width={100} height={100} />
+                              <Image className='mb-6' src={uploadIcon} width={100} height={100} alt=''/>
                               <p className="text-gray-400 text-center">Glisser-déposer des fichiers ou <strong className='text-[#00A4BF] font-bold underline'>Parcourir</strong></p>
                             </div>
                           </label>

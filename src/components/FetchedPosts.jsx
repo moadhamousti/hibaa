@@ -46,7 +46,7 @@ const FetchedPosts = ({ selectedCategory }) => {
     ) : (
         <div>
             {selectedCategory && posts.length === 0 ? (
-                <p>No posts found in this category</p>
+                <p>Aucun postes trouvé à cet Catégorie</p>
             ) : (
                 <div className="">
                     {posts.slice(0, 3).map((post) => (

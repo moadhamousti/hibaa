@@ -62,7 +62,7 @@ const NavbarSimple = () => {
         {/* <Link href='/'>Charity</Link> */}
         <div className='flex gap-5'>
             <button onClick={goBack}>
-                <Image src={arrow} className="h-4 w-4" width={100} height={40} />
+                <Image src={arrow} className="h-4 w-4" width={100} height={40} alt=''/>
             </button>
             <span className='text-[25px]'>Arrière</span>
         </div>
