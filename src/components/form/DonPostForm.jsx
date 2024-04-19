@@ -13,7 +13,7 @@ import PostTypeFilter from '@/components/PostTypeFilter';
 import LocationFilter from '@/components/LocationFilter';
 import { Textarea } from '@/components/ui/textarea';
 import Image from 'next/image';
-import whatsapp from '../../../public/whatsapp.png'
+import whatsapp from '../../../public/phone.png'
 import MedToolsTypeFilter from '@/components/MedToolsTypeFilter';
 import { useDropzone } from 'react-dropzone';
 import FileUploader from '@/components/FileUploader';
