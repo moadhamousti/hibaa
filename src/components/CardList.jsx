@@ -4,7 +4,7 @@ import Pagination from './Pagination';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = process.env.NEXTAUTH_URL|| 'http://localhost:3000';
 
 
 const getData = async ({ page, cat,loc,type }) => {
