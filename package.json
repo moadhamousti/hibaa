@@ -44,6 +44,7 @@
     "email-validator": "^2.0.4",
     "firebase": "^10.9.0",
     "framer-motion": "^11.0.12",
+    "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.355.0",

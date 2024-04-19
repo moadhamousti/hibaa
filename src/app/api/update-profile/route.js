@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { verify } from 'jsonwebtoken'; // For verifying JWT
+import { verify } from 'jsonwebtoken'; 
 
 export const put = async function handler(req, res) {
     if (req.method !== 'PUT') {

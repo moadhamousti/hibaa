@@ -6,7 +6,7 @@ import React from 'react'
 import styles from "./posts.module.css"
 import { fetchPosts } from '@/lib/data'
 import { format } from 'date-fns';
-import WhatsApp from "../../../../../public/whatsapp.png"
+import WhatsApp from "../../../../../public/phone.png"
 import Phone from "../../../../../public/phone.png"
 import { Badge } from '@/components/ui/badge';
 import { deletePost } from '@/lib/actions'

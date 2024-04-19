@@ -6,7 +6,7 @@ import React from 'react'
 import styles from "./forms.module.css"
 import { fetchForms, fetchPosts } from '@/lib/data'
 import { format } from 'date-fns';
-import WhatsApp from "../../../../../public/whatsapp.png"
+import WhatsApp from "../../../../../public/phone.png"
 import Phone from "../../../../../public/phone.png"
 import { Badge } from '@/components/ui/badge';
 import { deleteForm, deletePost } from '@/lib/actions'
