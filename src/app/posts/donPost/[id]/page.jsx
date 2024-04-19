@@ -4,7 +4,7 @@ import React from 'react';
 import styles from "./singlePage.module.css";
 import Image from 'next/image';
 import Link from 'next/link';
-import whatsapp from "../../../../../public/whatsapp.png";
+import whatsapp from "../../../../../public/phone.png";
 import gmail from "../../../../../public/Gmail.png";
 import hotmail from "../../../../../public/hotmail.png";
 import yahoo from "../../../../../public/yahoo.png";
