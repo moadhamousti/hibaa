@@ -32,7 +32,6 @@
     "@studio-freight/react-lenis": "^0.0.46",
     "@supabase/supabase-js": "^2.39.8",
     "@svgr/webpack": "^8.1.0",
-    "@uppy/react": "^2.1.2",
     "axios": "^1.6.8",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
