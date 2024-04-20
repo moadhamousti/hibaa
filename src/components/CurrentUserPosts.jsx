@@ -67,7 +67,7 @@ const CurrentUserPosts = ({item}) => {
               >
                 {/* Wrap posts in SwiperSlide components */}
                 {userPosts.map((post) => (
-                  <SwiperSlide key={post.id} className="h-full px-4 mb-4">
+                  <SwiperSlide key={post.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3 px-4 mb-4">
                     <Card item={post} />
                   </SwiperSlide>
                 ))}
