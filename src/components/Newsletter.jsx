@@ -80,13 +80,15 @@ import axios from "axios";
 import { useState } from "react";
 import { RiLoader5Fill } from "react-icons/ri";
 import { useToast } from "@/components/ui/use-toast"
-
+import { useRouter } from 'next/navigation';
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [messageState, setMessageState] = useState("");
   const { toast } = useToast();
+  const router = useRouter();
+
 
 
   const Subscribe = async (e) => {
@@ -97,14 +99,14 @@ const Newsletter = () => {
       const response = await addToMailingList(email);
       setLoading(false);
       setMessageState(response.data.message);
-      if (response.ok) {
+      if (response.data.status === 'success') {
         toast({
           title: "Succès",
           description: "Subscription a été envoyé avec succès",
           variant: "success",
           className: "bg-green-500 text-white", 
         });
-        window.location.reload();
+        router.reload();
       } else {
         toast({
           title: "Erreur",

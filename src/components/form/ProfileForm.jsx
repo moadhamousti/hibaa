@@ -284,6 +284,7 @@ const ProfileForm = () => {
                 // src={session?.user.image}
                 value={imagePreview}
                 alt="Profile"
+                key={session?.user.image}
                 src={session?.user.image}
                 height={150}
                 width={150}
