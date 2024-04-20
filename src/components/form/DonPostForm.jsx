@@ -309,7 +309,7 @@ useEffect(() => {
 
 <div className='flex gap-3'>
   <Image src={whatsapp} alt='' width={20} height={20} />
-  <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+  <span className='text-[16px]'>WhatsApp ?</span>
   
   <input 
     type="radio"
