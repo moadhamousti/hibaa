@@ -3,13 +3,12 @@ import { NextResponse } from "next/server";
 
 export const GET = async (req) => {
     try {
-        const { searchParams } = new URL(req.url);
-        const loc = searchParams.get("loc"); // Change to loc instead of category
+        const loc = req.query.loc; // Access loc from req.query instead of req.url
 
         const DonPost = await db.DonPost.findMany({
             include: { user: true },
             where: {
-                ...(loc && { location: loc }), // Change category to location   
+                ...(loc && { location: loc }), // Use location instead of category
             }
         });
 
