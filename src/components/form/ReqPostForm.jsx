@@ -72,7 +72,12 @@ const ReqPostsForm = () => {
   const { toast } = useToast();
   
   const [loading, setLoading] = useState(false);
-  
+
+  useEffect(() => {
+    if (session && status !== 'authenticated') {
+      router.push('/');
+    }
+  }, [session, status, router]);
 
 
   const handleCategorySelect = (e) => {
