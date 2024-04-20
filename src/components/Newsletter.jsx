@@ -107,13 +107,6 @@ const Newsletter = () => {
           className: "bg-green-500 text-white", 
         });
         router.reload();
-      } else {
-        toast({
-          title: "Erreur",
-          description: "Une erreur s'est produite",
-          variant: "error",
-          className: "bg-red-500 text-white", 
-        });
       }
     } catch (err) {
       setLoading(false);
