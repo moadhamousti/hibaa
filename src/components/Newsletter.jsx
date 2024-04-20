@@ -79,11 +79,15 @@ import addToMailingList from "@/app/api/mailing/route";
 import axios from "axios";
 import { useState } from "react";
 import { RiLoader5Fill } from "react-icons/ri";
+import { useToast } from "@/components/ui/use-toast"
+
 
 const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [messageState, setMessageState] = useState("");
+  const { toast } = useToast();
+
 
   const Subscribe = async (e) => {
     e.preventDefault();
@@ -93,6 +97,22 @@ const Newsletter = () => {
       const response = await addToMailingList(email);
       setLoading(false);
       setMessageState(response.data.message);
+      if (response.ok) {
+        toast({
+          title: "Succès",
+          description: "Subscription a été envoyé avec succès",
+          variant: "success",
+          className: "bg-green-500 text-white", 
+        });
+        window.location.reload();
+      } else {
+        toast({
+          title: "Erreur",
+          description: "Une erreur s'est produite",
+          variant: "error",
+          className: "bg-red-500 text-white", 
+        });
+      }
     } catch (err) {
       setLoading(false);
       setMessageState(String(err.message));
