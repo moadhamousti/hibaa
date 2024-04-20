@@ -64,9 +64,9 @@ const NavbarSimple = () => {
             <button onClick={goBack}>
                 <Image src={arrow} className="h-4 w-4" width={100} height={40} alt=''/>
             </button>
-            <span className='text-[25px]'>Arrière</span>
+            {/* Hide the span on small devices and show it on the rest */}
+            <span className='text-[25px] hidden md:inline-block lg:inline-block xl:inline-block'>Arrière</span>
         </div>
-
       </div>
       {/* <div className="hidden sm:flex items-center gap-15 lg:gap-10 lg:text-base md:gap-5 sm:gap-4 md:text-md text-black">
           <Link href="/#whatWeDo" className="text-[19px]">• What We Do</Link>
