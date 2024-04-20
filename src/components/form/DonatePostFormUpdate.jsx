@@ -17,7 +17,7 @@ import Image from 'next/image';
 import uploadIcon from '../../../public/Upload.svg'
 import Loader from '../Loader';
 import { useToast } from "@/components/ui/use-toast"
-import whatsapp from '../../../public/phone.png'
+import whatsapp from '../../../public/whatsapp.svg'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 
 
@@ -375,7 +375,7 @@ const DonatePostFormUpdate = ({ params }) => {
                 </div> */}
                 <div className='flex gap-3 mt-4 mb-6'>
                   <Image src={whatsapp} alt='' width={20} height={20}/>
-                  <span className='text-[16px]'>Est-ce un numéro WhatsApp ?</span>
+                  <span className='text-[16px]'>WhatsApp ?</span>
                   
                   <input 
                     type="radio"
