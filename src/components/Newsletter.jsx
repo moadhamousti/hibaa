@@ -99,7 +99,7 @@ const Newsletter = () => {
       const response = await addToMailingList(email);
       setLoading(false);
       setMessageState(response.data.message);
-      if (response.data.status === 'success') {
+      if (response.data && response.data.status === 'success') {
         toast({
           title: "Succès",
           description: "Subscription a été envoyé avec succès",
