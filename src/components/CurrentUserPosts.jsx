@@ -65,10 +65,10 @@ const CurrentUserPosts = ({item}) => {
                 slidesPerView={3}
                 className='h-full w-full rounded-lg'
                 breakpoints={{
-                  375: {
+                  320: {
                     slidesPerView: 1,
                   },
-                  640: {
+                  600: {
                     slidesPerView: 2,
                   },
                   768: {
