@@ -99,7 +99,15 @@ const Newsletter = () => {
       const response = await addToMailingList(email);
       setLoading(false);
       setMessageState(response.data.message);
-      if (response.data && response.data.status === 'success') {
+      if (response.data.status === 'success') {
+        toast({
+          title: "Succès",
+          description: "Subscription a été envoyé avec succès",
+          variant: "success",
+          className: "bg-green-500 text-white", 
+        });
+        router.reload();
+      } else {
         toast({
           title: "Succès",
           description: "Subscription a été envoyé avec succès",
@@ -108,7 +116,6 @@ const Newsletter = () => {
         });
         router.reload();
       }
-      console.log("Status",response.data.status)
     } catch (err) {
       setLoading(false);
       setMessageState(String(err.message));
