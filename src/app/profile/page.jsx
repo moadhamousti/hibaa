@@ -10,7 +10,27 @@ import { getServerSession } from 'next-auth'
 import { getSession } from 'next-auth/react'
 import React from 'react'
 
+
+export const getServerSideProps = async ({ req, res }) => {
+  const session = await getServerSession({ req });
+
+  if (!session || !session.user) {
+    return {
+      redirect: {
+        destination: '/sign-in',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // Pass any necessary props here
+  };
+};
+
+
 const page = () => {
+  
   
   return (
     <PageLayout>

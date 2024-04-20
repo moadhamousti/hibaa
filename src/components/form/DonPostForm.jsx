@@ -70,13 +70,7 @@ const DonPostsForm = () => {
   const { toast } = useToast();
   
   const [loading, setLoading] = useState(false);
-
-
-  useEffect(() => {
-    if (session && status === 'authenticated') {
-      router.push('/');
-    }
-  }, [session, status, router]);
+  
 
 const handleImageChange = (e) => {
   const selectedFile = e.target.files[0];

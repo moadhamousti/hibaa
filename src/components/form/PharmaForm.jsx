@@ -85,7 +85,7 @@ const PharmaForm = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (session && status === 'authenticated') {
+    if (!session || status !== 'authenticated') {
       router.push('/sign-in');
     }
   }, [session, status, router]);
