@@ -73,6 +73,12 @@ const ReqPostsForm = () => {
   
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (session && status === 'authenticated') {
+      router.push('/');
+    }
+  }, [session, status, router]);
+
 
   const handleCategorySelect = (e) => {
     setSelectedToolsCategories(e.target.value);

@@ -132,6 +132,8 @@ import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/
 import Loader from '../Loader';
 import loader from '../../../public/loader.gif'
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 
 
 
@@ -141,6 +143,10 @@ const ProfileForm = () => {
   const [newUserName, setNewUserName] = useState(session?.user?.username || '');
   const [newEmail, setNewEmail] = useState(session?.user?.email || '');
   const [newPassword, setNewPassword] = useState(session?.user?.password || '');
+  const router = useRouter();
+
+
+
 
   // const [imagePreview, setImagePreview] = useState("");
   const [file, setFile] = useState(null);
