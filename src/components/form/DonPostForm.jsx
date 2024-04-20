@@ -73,8 +73,8 @@ const DonPostsForm = () => {
 
 
   useEffect(() => {
-    if (session && status !== 'authenticated') {
-      router.push('/');
+    if (!session || status !== 'authenticated') {
+      router.push('/sign-in');
     }
   }, [session, status, router]);
 

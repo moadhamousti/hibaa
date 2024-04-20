@@ -74,8 +74,8 @@ const ReqPostsForm = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (session && status !== 'authenticated') {
-      router.push('/');
+    if (!session || status !== 'authenticated') {
+      router.push('/sign-in');
     }
   }, [session, status, router]);
 

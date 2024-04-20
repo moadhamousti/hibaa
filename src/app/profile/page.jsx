@@ -8,9 +8,13 @@ import ProfileForm from '@/components/form/ProfileForm'
 import { authOptions } from '@/lib/auth'
 import { getServerSession } from 'next-auth'
 import { getSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import React from 'react'
 
-const page = () => {
+const page = async () => {
+
+  
+
   
   
   return (
