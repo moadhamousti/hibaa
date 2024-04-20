@@ -108,6 +108,7 @@ const Newsletter = () => {
         });
         router.reload();
       }
+      console.log("Status",response.data.status)
     } catch (err) {
       setLoading(false);
       setMessageState(String(err.message));
