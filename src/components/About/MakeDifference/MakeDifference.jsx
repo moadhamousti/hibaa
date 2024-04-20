@@ -19,10 +19,14 @@ const MakeDifference = () => {
             Rejoignez-nous pour partager du matériel et changer des vies dès aujourd&apos;hui.</p>
         {/* </div> */}
         <div>
+        <Link href="/feed" >
         <button className="py-2 px-4 inline-flex items-center mt-6  rounded-3xl capitalize text-[--bg] bg-[--textColor] font-medium hover:border-2 hover:bg-transparent  hover:border-[--textColor] text-sm sm:text-base max-md:text-xs max-md:font-normal">
-                  COMMENCER
+                  
+                    COMMENCER
+                  
                   <MdArrowOutward className='text-2xl ml-1'/>
                   </button>
+        </Link>
         </div>
         </div>
 

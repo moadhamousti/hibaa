@@ -57,6 +57,17 @@ const UserPosts = ({ id }) => {
                 modules={[Navigation, Pagination]}
                 slidesPerView={3}
                 className='h-full w-full rounded-lg'
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                  },
+                  600: {
+                    slidesPerView: 2,
+                  },
+                  768: {
+                    slidesPerView: 3,
+                  },
+                }}
               >
                 {/* Wrap posts in SwiperSlide components */}
                 {userPosts.map((post) => (
