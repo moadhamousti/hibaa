@@ -11,11 +11,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 
-export const metadata = {
-  title: 'Hiba & Aatae',
-  description: 'Hiba & Aatae App!',
-}
-
 export default function RootLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
