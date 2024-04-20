@@ -98,7 +98,7 @@ const Newsletter = () => {
     try {
       const response = await addToMailingList(email);
       setLoading(false);
-      setMessageState(response.data.message);
+      // setMessageState(response.data.message);
       if (response.data.status === 'success') {
         toast({
           title: "Succès",
@@ -118,7 +118,7 @@ const Newsletter = () => {
       }
     } catch (err) {
       setLoading(false);
-      setMessageState(String(err.message));
+      // setMessageState(String(err.message));
     }
   };
 
