@@ -63,7 +63,15 @@ const CurrentUserPosts = ({item}) => {
                 pagination={{ clickable: true }} // Make pagination dots clickable
                 modules={[Navigation, Pagination]}
                 slidesPerView={3}
-                className='h-full w-full rounded-lg sm:w-1/2 md:w-1/3 lg:w-1/3 px-4 mb-4'
+                className='h-full w-full rounded-lg'
+                breakpoints={{
+                  640: {
+                    slidesPerView: 1,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                  },
+                }}
               >
                 {/* Wrap posts in SwiperSlide components */}
                 {userPosts.map((post) => (
