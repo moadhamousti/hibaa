@@ -1,7 +1,7 @@
 // NProgressComponent.jsx
 "use client"
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import NProgress from 'nprogress';
 import '../app/globals.css';
 import { usePathname } from 'next/navigation';
