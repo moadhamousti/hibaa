@@ -24,7 +24,7 @@ export default function NProgressComponent() {
     return () => {
       router.events.off('routeChangeComplete', handleComplete);
     };
-  }, []);
+  }, [router.events]);
 
   return null;
 }
