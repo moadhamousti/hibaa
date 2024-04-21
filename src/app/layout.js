@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 import NProgress from 'nprogress';
 import { usePathname, useRouter } from 'next/navigation'; 
 import { useEffect } from 'react';
-import NProgressComponent from '@/components/Nprogress';
+import NProgressComponent from '@/components/NProgress';
 
 
 export default function RootLayout({ children }) {
