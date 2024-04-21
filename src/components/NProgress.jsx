@@ -1,12 +1,13 @@
 // NProgressComponent.jsx
 "use client"
+// NProgressComponent.jsx
 import { useEffect } from 'react';
+import { useRouter } from 'next/router'; // Import useRouter from next/router
 import NProgress from 'nprogress';
-import { usePathname } from 'next/router'; // Import usePathname from next/router
 import '../app/globals.css';
 
 export default function NProgressComponent() {
-    const pathname = usePathname(); // Use usePathname hook to get the current pathname
+    const router = useRouter(); // Use useRouter hook
 
     useEffect(() => {
         const startProgressBar = () => {
@@ -20,17 +21,20 @@ export default function NProgressComponent() {
             }, 3000);
         };
 
-        // Start progress bar when pathname changes
-        startProgressBar();
+        // Start progress bar when route change starts
+        const handleRouteChangeStart = () => startProgressBar();
+        router.events.on('routeChangeStart', handleRouteChangeStart);
 
-        // Stop progress bar after a delay
-        stopProgressBar();
+        // Stop progress bar when route change completes
+        const handleRouteChangeComplete = () => stopProgressBar();
+        router.events.on('routeChangeComplete', handleRouteChangeComplete);
 
-        // Clean up
+        // Clean up event listeners
         return () => {
-            // Cleanup logic if needed
+            router.events.off('routeChangeStart', handleRouteChangeStart);
+            router.events.off('routeChangeComplete', handleRouteChangeComplete);
         };
-    }, [pathname]); // Listen for changes in pathname
+    }, [router]); // Listen for changes in router object
 
     return null; // This component doesn't render anything
 }
