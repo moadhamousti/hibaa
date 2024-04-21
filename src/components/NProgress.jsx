@@ -2,7 +2,7 @@
 "use client"
 // NProgressComponent.jsx
 import { useEffect } from 'react';
-import { useRouter } from 'next/router'; // Import useRouter from next/router
+import { useRouter } from 'next/navigation'; // Import useRouter from next/router
 import NProgress from 'nprogress';
 import '../app/globals.css';
 
