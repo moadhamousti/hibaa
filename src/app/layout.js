@@ -9,22 +9,15 @@ import Footer from '@/components/Footer';
 import NProgress from 'nprogress';
 import { usePathname, useRouter } from 'next/navigation'; 
 import { useEffect } from 'react';
+import NProgressComponent from '@/components/Nprogress';
 
 
 export default function RootLayout({ children }) {
-  const pathname = usePathname();
-  const router = useRouter();
-  useEffect(() => {
-    NProgress.configure({ trickleRate: 0.02, trickleSpeed: 800 });
-    NProgress.start();
-    setTimeout(()=>{
-      NProgress.done();
-    }, 3000)
-  }, [pathname]);
   return (
     <html lang='en' className="!scroll-smooth">
       <body >
           <Provider>
+            <NProgressComponent>
               <main className=''>
                 <div className=''>
                   {/* <Navbar /> */}
@@ -33,6 +26,7 @@ export default function RootLayout({ children }) {
                 </div>
               </main>
               <Toaster/>
+              </NProgressComponent>
           </Provider>
       </body>
     </html>
