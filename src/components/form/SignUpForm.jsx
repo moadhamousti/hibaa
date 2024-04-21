@@ -27,7 +27,7 @@ import loaderGif from '../../../public/loaderB.gif'
 
 
 
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
 const FormSchema = z
   .object({
     username: z.string().min(1, "Nom d\'utilisateur est nécessaire").max(100),
@@ -45,7 +45,7 @@ const FormSchema = z
       .string()
       .min(8, "Le mot de passe doit comporter au moins 8 caractères")
       .refine((value) => passwordRegex.test(value), {
-        message: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un symbole.",
+        message: "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule et un chiffre.",
       }),
     confirmPassword: z.string().min(1, "Une confirmation du mot de passe est requise"),
   })
