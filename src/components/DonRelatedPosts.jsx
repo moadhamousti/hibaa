@@ -38,7 +38,7 @@ const DonRelatedPosts = ({ category, postId }) => {
         </div>
         {limitedPosts.length === 0 ? (
           <div className="items-center text-center p-[50px] mb=[40px]">
-            <p className=''>Aucun article associé dans la même catégorie</p>
+            <p className=''>Aucun Postes associé dans la même catégorie</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

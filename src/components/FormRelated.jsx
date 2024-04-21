@@ -46,7 +46,7 @@ const FormRelated = ({ location, formId }) => {
         </div>
         {limitedForms.length === 0 ? (
           <div className="items-center text-center p-[50px] mb=[40px]">
-            <p className=''>Aucun form associé dans la même location</p>
+            <p className=''>Aucun Pharmacies à proximité à afficher</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
