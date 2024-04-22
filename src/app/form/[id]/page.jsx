@@ -7,7 +7,7 @@ import { authOptions } from '@/lib/auth';
 import Link from 'next/link';
 import EditIcon from '@mui/icons-material/Edit';
 import { formatDistanceToNow, formatDistanceToNowStrict } from 'date-fns';
-import whatsapp from "../../../../public/phone.png";
+import whatsapp from "../../../../public/whatsapp.svg";
 import gmail from "../../../../public/Gmail.png";
 import hotmail from "../../../../public/hotmail.png";
 import yahoo from "../../../../public/yahoo.png";
