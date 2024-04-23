@@ -94,7 +94,15 @@ export const getRelatedPostsByCategory = async (req, res) => {
       include: { user: true }
     });
 
-    res.status(200).json(relatedPosts);
+    // res.status(200).json(relatedPosts);
+    return new NextResponse(JSON.stringify(relatedPosts), { 
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      }
+    });
     
   } catch (error) {
     res.status(500).json({ message: 'Something went wrong' });

@@ -21,7 +21,15 @@ export const POST = async (req) => {
       data: { ...body, userEmail },
     });
 
-    return new NextResponse(JSON.stringify(DonatorForm, { status: 200 }));
+    // return new NextResponse(JSON.stringify(DonatorForm, { status: 200 }));
+    return new NextResponse(JSON.stringify(DonatorForm), { 
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      }
+    });
   } catch (err) {
     console.error(err);
     return new NextResponse(
@@ -44,7 +52,15 @@ export const GET = async (req) => {
       },
     });
 
-    return new NextResponse(JSON.stringify(posts, null, 2), { status: 200 });
+    // return new NextResponse(JSON.stringify(posts, null, 2), { status: 200 });
+    return new NextResponse(JSON.stringify(posts), { 
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      }
+    });
   } catch (err) {
     console.error(err);
     return new NextResponse(
@@ -93,7 +109,16 @@ export const PUT = async (req , {params}) =>{
           where:{id},
           data:{phaName,ownerName,desc,phone,isWhatsapp,address,facebook,twitter,instagram,img,location }
       })
-      return new NextResponse(JSON.stringify(DonatorForm,{status:200}))
+      // return new NextResponse(JSON.stringify(DonatorForm,{status:200}))
+      return new NextResponse(JSON.stringify(DonatorForm), { 
+        status: 200,
+        headers: {
+          'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+          'Access-Control-Allow-Methods': 'GET, OPTIONS',
+          'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        }
+      });
+      
   }catch(err){
       console.log(err)
       return new NextResponse(JSON.stringify({message: 'Something went worng'},{status:500}))
