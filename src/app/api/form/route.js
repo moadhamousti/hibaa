@@ -26,7 +26,7 @@ export const POST = async (req) => {
       status: 200,
       headers: {
         'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       }
     });
@@ -114,7 +114,7 @@ export const PUT = async (req , {params}) =>{
         status: 200,
         headers: {
           'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-          'Access-Control-Allow-Methods': 'GET, OPTIONS',
+          'Access-Control-Allow-Methods': 'PUT, OPTIONS',
           'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
         }
       });
