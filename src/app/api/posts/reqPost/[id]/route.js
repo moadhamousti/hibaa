@@ -10,14 +10,7 @@ export const GET = async (req , {params}) =>{
             include:{user: true},
         })
         // return new NextResponse(JSON.stringify(ReqPost,{status:200}))
-        return new NextResponse(JSON.stringify(ReqPost), { 
-          status: 200,
-          headers: {
-            'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-            'Access-Control-Allow-Methods': 'GET, OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-          }
-        });
+        return new NextResponse(JSON.stringify(ReqPost), { status: 200 });
     }catch(err){
         console.log(err)
         return new NextResponse(JSON.stringify({message: 'Something went worng'},{status:500}))
@@ -40,14 +33,7 @@ export const DELETE = async (req , {params}) =>{
 
         })
         // return new NextResponse(JSON.stringify(ReqPost,{status:200}))
-        return new NextResponse(JSON.stringify(ReqPost), { 
-          status: 200,
-          headers: {
-            'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-            'Access-Control-Allow-Methods': 'DELETE, OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-          }
-        });
+        return new NextResponse(JSON.stringify(ReqPost), { status: 200 });
     }catch(err){
         console.log(err)
         return new NextResponse(JSON.stringify({message: 'Something went worng'},{status:500}))
@@ -65,15 +51,8 @@ export const PUT = async (req , {params}) =>{
             where:{id},
             data:{title, desc, phone, isWhatsapp,location,category,img}
         })
-        return {
-          status: 200,
-          body: JSON.stringify(ReqPost),
-          headers: {
-              'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-              'Access-Control-Allow-Methods': 'PUT, OPTIONS',
-              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-          }
-      };
+        return new NextResponse(JSON.stringify(ReqPost), { status: 200 });
+
     }catch(err){
         console.log(err)
         return new NextResponse(JSON.stringify({message: 'Something went worng'},{status:500}))

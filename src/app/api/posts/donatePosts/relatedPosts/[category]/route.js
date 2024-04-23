@@ -14,14 +14,7 @@ export const GET = async (req) => {
       },
     });
 
-    return new NextResponse(JSON.stringify(DonPost), { 
-      status: 200,
-      headers: {
-        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-      }
-    });
+    return new NextResponse(JSON.stringify(DonPost), { status: 200 });
   } catch (err) {
     console.error(err);
     return new NextResponse(JSON.stringify({ message: "Something went wrong" }), { status: 500 });
