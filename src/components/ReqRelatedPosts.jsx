@@ -10,7 +10,7 @@ const ReqRelatedPosts = ({ category, postId }) => {
   useEffect(() => {
     const fetchRelatedPosts = async () => {
       try {
-        const res = await fetch(`https://hibaatae.vercel.app/api/posts/requestPosts/relatedPosts/${category}`);
+        const res = await fetch(`https://www.hibaaatae.com/api/posts/requestPosts/relatedPosts/${category}`);
         if (!res.ok) {
           throw new Error('Failed to fetch related posts');
         }

@@ -27,7 +27,7 @@ import DeletePost from '@/components/deleteDonPost';
 
 
 const getData = async (id) => {
-  const res = await fetch(`https://hibaatae.vercel.app/api/posts/donPost/${id}`, {
+  const res = await fetch(`https://www.hibaaatae.com/api/posts/donPost/${id}`, {
     cache: "no-store",
   });
 
