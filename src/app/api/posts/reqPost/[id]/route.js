@@ -65,14 +65,15 @@ export const PUT = async (req , {params}) =>{
             where:{id},
             data:{title, desc, phone, isWhatsapp,location,category,img}
         })
-        return new NextResponse(JSON.stringify(ReqPost), { 
+        return {
           status: 200,
+          body: JSON.stringify(ReqPost),
           headers: {
-            'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
-            'Access-Control-Allow-Methods': 'PUT, OPTIONS',
-            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+              'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+              'Access-Control-Allow-Methods': 'PUT, OPTIONS',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
           }
-        });
+      };
     }catch(err){
         console.log(err)
         return new NextResponse(JSON.stringify({message: 'Something went worng'},{status:500}))
