@@ -9,7 +9,15 @@ export const GET = async (req , {params}) =>{
             data:{views:{increment:1}},
             include:{user: true},
         })
-        return new NextResponse(JSON.stringify(DonPost,{status:200}))
+        // return new NextResponse(JSON.stringify(DonPost,{status:200}))
+        return new NextResponse(JSON.stringify(DonPost), { 
+            status: 200,
+            headers: {
+              'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+              'Access-Control-Allow-Methods': 'GET, OPTIONS',
+              'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+            }
+          });
     }catch(err){
         console.log(err)
         return new NextResponse(JSON.stringify({message: 'Something went worng'},{status:500}))
