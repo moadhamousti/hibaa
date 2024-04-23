@@ -28,7 +28,16 @@ export const GET = async (req, { params }) => {
       );
     }
 
-    return new NextResponse(JSON.stringify(userWithPosts), { status: 200 });
+    // return new NextResponse(JSON.stringify(userWithPosts), { status: 200 });
+    // Set CORS headers
+    return new NextResponse(JSON.stringify(userWithPosts), { 
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      }
+    });
   } catch (err) {
     console.error(err);
     return new NextResponse(
