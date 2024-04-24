@@ -146,11 +146,11 @@ const ProfileForm = () => {
   const router = useRouter();
 
 
-  useEffect(() => {
-    if (!session || status !== 'authenticated') {
-      router.push('/sign-in');
-    }
-  }, [session, status, router]);
+  // useEffect(() => {
+  //   if (!session || status !== 'authenticated') {
+  //     router.push('/sign-in');
+  //   }
+  // }, [session, status, router]);
 
   // const [imagePreview, setImagePreview] = useState("");
   const [file, setFile] = useState(null);
