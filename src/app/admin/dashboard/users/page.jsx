@@ -70,19 +70,7 @@ const Users = async ({searchParams}) => {
                 <Link href={`/admin/dashboard/users/${user.id}`}>
                   <button className={`${styles.button} ${styles.view}`}>Voir</button>
                 </Link>
-                <form onSubmit={async (e) => {
-                    e.preventDefault(); // Prevent default form submission
-                    const formData = new FormData(e.target);
-                    const id = formData.get("id");
-                    try {
-                      await deleteUser({ id }); // Call the deleteUser function
-                      console.log("User deleted successfully");
-                      // Optionally, you can add code to update the UI after deletion
-                    } catch (error) {
-                      console.error("Error deleting user:", error);
-                      // Handle error
-                    }
-                  }}>
+                  <form action={deleteUser}>
                     <input type="text" defaultValue={user.id} name="id" hidden />
                     <button type="submit" className={`${styles.button} ${styles.delete}`}>Supprimer</button>
                   </form>
