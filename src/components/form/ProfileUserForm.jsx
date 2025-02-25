@@ -19,7 +19,7 @@ const ProfileUserForm = () => {
         const url = window.location.href;
         const id = url.substring(url.lastIndexOf('/') + 1);
 
-        const res = await fetch(`https://www.hibaaatae.com/api/user/${id}`, {
+        const res = await fetch(`https://hibaatae.vercel.app/api/user/${id}`, {
           cache: "no-store",
         });
         if (!res.ok) {

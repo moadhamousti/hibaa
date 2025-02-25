@@ -30,7 +30,7 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card'
 const storage = getStorage(app);
 
 const getData = async (id) => {
-  const res = await fetch(`https://www.hibaaatae.com/api/posts/donPost/${id}`, {
+  const res = await fetch(`https://hibaatae.vercel.app/api/posts/donPost/${id}`, {
     cache: "no-store",
   });
 
@@ -242,7 +242,7 @@ const DonatePostFormUpdate = ({ params }) => {
 
 
     try {
-      const response = await fetch(`https://www.hibaaatae.com/api/posts/donPost/${id}`, {
+      const response = await fetch(`https://hibaatae.vercel.app/api/posts/donPost/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

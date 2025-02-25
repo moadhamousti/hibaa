@@ -6,11 +6,11 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 
 const getData = async ({ page, cat,loc,type }) => {
-  const resDon = await fetch(`https://www.hibaaatae.com/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
+  const resDon = await fetch(`https://hibaatae.vercel.app/api/posts/donatePosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
     cache: "no-store",
   });
 
-  const resReq = await fetch(`https://www.hibaaatae.com/api/posts/requestPosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
+  const resReq = await fetch(`https://hibaatae.vercel.app/api/posts/requestPosts?page=${page}&cat=${cat || ''}&loc=${loc || ''}&type=${type || ''}`, {
     cache: "no-store",
   });
 

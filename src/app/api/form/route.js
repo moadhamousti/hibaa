@@ -25,7 +25,7 @@ export const POST = async (req) => {
     return new NextResponse(JSON.stringify(DonatorForm), { 
       status: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+        'Access-Control-Allow-Origin': 'https://hibaatae.vercel.app',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       }
@@ -56,7 +56,7 @@ export const GET = async (req) => {
     return new NextResponse(JSON.stringify(posts), { 
       status: 200,
       headers: {
-        'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+        'Access-Control-Allow-Origin': 'https://hibaatae.vercel.app',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       }
@@ -113,7 +113,7 @@ export const PUT = async (req , {params}) =>{
       return new NextResponse(JSON.stringify(DonatorForm), { 
         status: 200,
         headers: {
-          'Access-Control-Allow-Origin': 'https://www.hibaaatae.com',
+          'Access-Control-Allow-Origin': 'https://hibaatae.vercel.app',
           'Access-Control-Allow-Methods': 'PUT, OPTIONS',
           'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
         }

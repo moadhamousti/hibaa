@@ -12,7 +12,7 @@ const TypeList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://www.hibaaatae.com/api/typePost", {
+        const res = await fetch("https://hibaatae.vercel.app/api/typePost", {
           cache: "no-store"
         });
         if (!res.ok) {

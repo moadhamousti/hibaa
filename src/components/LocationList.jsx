@@ -6,7 +6,7 @@ import styles from "./categoryList.module.css";
 import { useRouter } from "next/navigation";
 
 const getData = async () => {
-  const res = await fetch("https://www.hibaaatae.com/api/location", {
+  const res = await fetch("https://hibaatae.vercel.app/api/location", {
     cache: "no-store",
   });
 
